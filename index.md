@@ -1,182 +1,74 @@
-PicoScenes: Enabling Modern Wi-Fi ISAC Research!
-================================================
+# PicoScenes: Enabling Modern Wi-Fi ISAC Research!
 
-News!
------
+## News!
 
--   May 12, 2024 PicoScenes Radar mode now supports SISO, SIMO, MIMO and
-    MIMO across multiple devices measurements, see
-    `radar-mode`{.interpreted-text role="ref"}.
--   Mar. 19, 2024 PicoScenes now provides a UDP forwarding/receiving
-    utility! See `udp-remote-logger`{.interpreted-text role="ref"}.
--   Mar. 19, 2024 PicoScenes now officially supports Ubuntu 22.04! See
-    `install_software`{.interpreted-text role="ref"}.
--   Mar. 12, 2024 We are pleased to announce that our research,
-    \"**Reshaping Wi-Fi ISAC with High-Coherence Hardware
-    Capabilities**\", has been accepted by **IEEE Communication Magazine
-    (IF=11.2)**. For More information, please visit its online
-    supplementary materials `reshaping-wifi-isac`{.interpreted-text
-    role="doc"}.
--   Jan. 20, 2024 Page `/plugin`{.interpreted-text role="doc"} is
-    completely rewritten. Thanks to Tian Teng for his brilliant work!
--   Dec. 26, 2023 Revise the `ni`{.interpreted-text role="doc"} page.
--   Dec. 20, 2023 Initiating the Ubuntu 22.04 (and soon 24.04)
-    transition of PicoScenes system (client program and CI server).
--   Dec. 3, 2023 Add Radar and MIMO-Radar modes for SDR frontend, see
-    `radar-mode`{.interpreted-text role="ref"}.
--   Dec. 2, 2023 Major update to license: all limitations for COTS NICS
-    (6 GHz band, 11ax 80/160 MHz CBW packet injection and more) removed!
-    More than 10 SDR-only limitations are removed (unlimited
-    channel/bandwidth access, Wi-Fi 7 Tx and Rx, up to 320 MHz CBW and
-    more). See `/features_pricing`{.interpreted-text role="doc"} for
-    more details. (**Upgrade to latest version to validate**!)
--   Nov. 29, 2023 Add a new page `/ni`{.interpreted-text role="doc"}
-    describing how we collaborate with NI selling USRP hardware. This
-    program is exclusively available in mainland China.
--   Nov. 28, 2023 Add a new page `/features_pricing`{.interpreted-text
-    role="doc"} replacing the old PSLP page.
--   Nov. 20, 2023 Page `/scenarios`{.interpreted-text role="doc"} is
-    completely rewritten. Readability is significantly improved.
--   Nov. 18, 2023 Add docs for two experimental features:
-    `dual-split-merge`{.interpreted-text role="ref"} and
-    `parallel-decoding`{.interpreted-text role="ref"}.
--   Nov. 17, 2023 Add two quick reference pages:
-    `channels`{.interpreted-text role="doc"} and
-    `presets`{.interpreted-text role="doc"}.
--   Nov. 16, 2023 Page revised `/hardware`{.interpreted-text
-    role="doc"}, `/installation`{.interpreted-text role="doc"},
-    `/scenarios`{.interpreted-text role="doc"}, and
-    `/utilities`{.interpreted-text role="doc"}.
--   Nov. 1, 2023 **PicoScenes adds Wi-Fi 7 (EHT-SU) support for SDR
-    frontends.** PicoScenes is currently the only platform support Wi-Fi
-    7 based ISAC research. See our Wi-Fi 7 examples
-    `sdr_tx`{.interpreted-text role="ref"}.
+- May 12, 2024 PicoScenes Radar mode now supports SISO, SIMO, MIMO and MIMO across multiple devices measurements, see [radar-mode](#radar-mode).
+- Mar. 19, 2024 PicoScenes now provides a UDP forwarding/receiving utility! See [udp-remote-logger](#udp-remote-logger).
+- Mar. 19, 2024 PicoScenes now officially supports Ubuntu 22.04! See [install_software](#install_software).
+- Mar. 12, 2024 We are pleased to announce that our research, "**Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities**", has been accepted by **IEEE Communication Magazine (IF=11.2)**. For More information, please visit its online supplementary materials [reshaping-wifi-isac](reshaping-wifi-isac).
+- Jan. 20, 2024 Page [plugin](plugin) is completely rewritten. Thanks to Tian Teng for his brilliant work!
+- Dec. 26, 2023 Revise the [ni](ni) page.
+- Dec. 20, 2023 Initiating the Ubuntu 22.04 (and soon 24.04) transition of PicoScenes system (client program and CI server).
+- Dec. 3, 2023 Add Radar and MIMO-Radar modes for SDR frontend, see [radar-mode](#radar-mode).
+- Dec. 2, 2023 Major update to license: all limitations for COTS NICS (6 GHz band, 11ax 80/160 MHz CBW packet injection and more) removed! More than 10 SDR-only limitations are removed (unlimited channel/bandwidth access, Wi-Fi 7 Tx and Rx, up to 320 MHz CBW and more). See [features_pricing](features_pricing) for more details. (**Upgrade to latest version to validate**!)
+- Nov. 29, 2023 Add a new page [ni](ni) describing how we collaborate with NI selling USRP hardware. This program is exclusively available in mainland China.
+- Nov. 28, 2023 Add a new page [features_pricing](features_pricing) replacing the old PSLP page.
+- Nov. 20, 2023 Page [scenarios](scenarios) is completely rewritten. Readability is significantly improved.
+- Nov. 18, 2023 Add docs for two experimental features: [dual-split-merge](#dual-split-merge) and [parallel-decoding](#parallel-decoding).
+- Nov. 17, 2023 Add two quick reference pages: [channels](channels) and [presets](presets).
+- Nov. 16, 2023 Page revised [hardware](hardware), [installation](installation), [scenarios](scenarios), and [utilities](utilities).
+- Nov. 1, 2023 **PicoScenes adds Wi-Fi 7 (EHT-SU) support for SDR frontends.** PicoScenes is currently the only platform support Wi-Fi 7 based ISAC research. See our Wi-Fi 7 examples [sdr_tx](#sdr_tx).
 
-What is PicoScenes?
--------------------
+## What is PicoScenes?
 
-PicoScenes is a powerful middleware for modern Wi-Fi integrated sensing
-and communication (Wi-Fi ISAC) research that addresses two key barriers
-in the field: hardware limitations and software functionality.
+PicoScenes is a powerful middleware for modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research that addresses two key barriers in the field: hardware limitations and software functionality.
 
-**Hardware Side**
+### Hardware Side
 
-PicoScenes is compatible with a wide range of CSI-extractable devices,
-including commercial off-the-shelf (COTS) Wi-Fi NICs and
-software-defined radio (SDR) devices. The supported COTS NIC models
-include Intel Wi-Fi 6E AX210 (**AX210**), Intel Wi-Fi 6 AX200
-(**AX200**), Qualcomm Atheros AR9300 (**QCA9300**), and the legendary
-Intel Wireless Link 5300 (**IWL5300**). The supported SDR devices
-include the HackRF One and *all* models of **USRP** devices.
+PicoScenes is compatible with a wide range of CSI-extractable devices, including commercial off-the-shelf (COTS) Wi-Fi NICs and software-defined radio (SDR) devices. The supported COTS NIC models include Intel Wi-Fi 6E AX210 (**AX210**), Intel Wi-Fi 6 AX200 (**AX200**), Qualcomm Atheros AR9300 (**QCA9300**), and the legendary Intel Wireless Link 5300 (**IWL5300**). The supported SDR devices include the HackRF One and *all* models of **USRP** devices.
 
-For COTS Wi-Fi NICs, PicoScenes provides many exclusive hardware
-features:
+For COTS Wi-Fi NICs, PicoScenes provides many exclusive hardware features: 
 
--   With AX210/AX200 NIC, PicoScenes is the first and currently the only
-    publicly available platform that enables **CSI extraction for
-    802.11ax-format** frames using commodity Wi-Fi hardware. It supports
-    CSI extraction for **all Wi-Fi formats (802.11a/g/n/ac/ax)** and
-    **up to 160 MHz bandwidth**. Additionally, PicoScenes enables **CSI
-    measurement for all overheard frames in monitor mode**, utilizing
-    the surrounding Wi-Fi devices as excitation signals for ISAC
-    research & applications.
--   With AX210 NIC, PicoScenes is the first and currently the only
-    publicly available platform that enables packet injection and **CSI
-    measurement in the Wi-Fi 6 GHz band** using the AX210 NIC. It
-    unlocks **a total of 1.18 GHz** spectrum from 5945 MHz to 7125 MHz,
-    providing researchers worldwide with continuous spectrum
-    availability for Wi-Fi ISAC research. The AX210 NIC, as the
-    next-generation of AX200, is the only Wi-Fi 6E NIC ready for Wi-Fi
-    ISAC, marking the entrance of Wi-Fi ISAC into the Wi-Fi 6E era.
--   With QCA9300 NIC, PicoScenes offers **arbitrary tuning for both
-    carrier frequency and baseband sampling rate**, providing a total of
-    **2.4 GHz-wide spectrum** availability and **2.5 to 80 MHz
-    bandwidth**. It also includes **manual Rx gain control** ranging
-    from 0 to 66 dB. The platform supports QCA9300 to IWL5300 CSI
-    measurement, as well as Tx/Rx radio-chain control and transmission
-    of **extra spatial sounding** LTFs (HT-ELTFs).
+- With AX210/AX200 NIC, PicoScenes is the first and currently the only publicly available platform that enables **CSI extraction for 802.11ax-format** frames using commodity Wi-Fi hardware. It supports CSI extraction for **all Wi-Fi formats (802.11a/g/n/ac/ax)** and **up to 160 MHz bandwidth**. Additionally, PicoScenes enables **CSI measurement for all overheard frames in monitor mode**, utilizing the surrounding Wi-Fi devices as excitation signals for ISAC research & applications.
 
-For SDR, PicoScenes is currently the *only* platform that can transform
-a SDR device into a SDR-based Wi-Fi NIC, *i.e.*,
-**transmitting/receiving Wi-Fi frames and measuring their CSI in real
-time just like a full-functional Wi-Fi NIC**. It has four major
-highlights: full protocol compliance, rich PHY-layer control, complete
-and all-stage PHY-layer information, and high performance.
+- With AX210 NIC, PicoScenes is the first and currently the only publicly available platform that enables packet injection and **CSI measurement in the Wi-Fi 6 GHz band** using the AX210 NIC. It unlocks **a total of 1.18 GHz** spectrum from 5945 MHz to 7125 MHz, providing researchers worldwide with continuous spectrum availability for Wi-Fi ISAC research. The AX210 NIC, as the next-generation of AX200, is the only Wi-Fi 6E NIC ready for Wi-Fi ISAC, marking the entrance of Wi-Fi ISAC into the Wi-Fi 6E era.
 
--   **Full Protocol Compliance up to Wi-Fi 7**: PicoScenes Wi-Fi
-    baseband supports transmitting and receiving Wi-Fi frames in all
-    formats, including 802.11a/g/n/ac/**ax/be**, and across all
-    bandwidths (20/40/80/**160/320 MHz**). It also supports all coding
-    schemes (LDPC and BCC), *all modulation and coding schemes (MCS 0
-    to 13)*, and *up to 4x4 MIMO*.
--   **Rich PHY-Layer Control**: PicoScenes **grants users extensive
-    control over the transmission and reception process**. Users can
-    operate in non-standard carrier frequencies and bandwidths, manually
-    specify carrier frequency offset (CFO), sampling frequency offset
-    (SFO), symbol timing offset (STO), I/Q mismatching, resampling, and
-    various OFDM encoding/decoding settings. PicoScenes is the first
-    platform to provide *signal precoding/steering capabilities*,
-    allowing users to implement beamforming, phased array, or arbitrary
-    Tx equalization. For example, users can specify antenna positions
-    and desired angles of departure (AoD) for phased array applications,
-    and PicoScenes will calculate the steering matrix and apply it to
-    the spatial mapping mechanism of 802.11n/ac/ax/be.
--   **Complete and All-Stage PHY-Layer Information**: PicoScenes
-    provides users with comprehensive information about the PHY layer.
-    This includes not only the *raw I/Q streams* but also all the staged
-    information produced during the OFDM demodulation process. This
-    information includes CSI computed by L-LTF (*Legacy CSI*), CSI
-    computed by HT/VHT/HE/EHT-LTF (*HT/VHT/HE/EHT-CSI*), *CFO/SFO
-    estimation*, and low-level *per-packet baseband signals*.
--   **High Performance**: PicoScenes is designed to support real-time
-    Wi-Fi ISAC research with high performance. It can achieve up to 1
-    kHz CSI measurement at a 20 MHz bandwidth (single thread), support
-    *multi-thread RX decoding*, and achieve packet injection rates of up
-    to 4 kHz in real-time mode and up to 40 kHz in *signal-replay mode*.
-    For timing-tolerant research, PicoScenes offers signal record and
-    replay functionalities for both Tx and Rx I/Q streams, enabling
-    users to capture signals and decode frames without packet loss.
-    PicoScenes also provides a *Virtual SDR mode*, allowing users to
-    generate, manipulate, and test Wi-Fi baseband signals without
-    connecting to an actual SDR device.
+- With QCA9300 NIC, PicoScenes offers **arbitrary tuning for both carrier frequency and baseband sampling rate**, providing a total of **2.4 GHz-wide spectrum** availability and **2.5 to 80 MHz bandwidth**. It also includes **manual Rx gain control** ranging from 0 to 66 dB. The platform supports QCA9300 to IWL5300 CSI measurement, as well as Tx/Rx radio-chain control and transmission of **extra spatial sounding** LTFs (HT-ELTFs).
 
-**Software Side**:
+For SDR, PicoScenes is currently the *only* platform that can transform a SDR device into a SDR-based Wi-Fi NIC, *i.e.*, **transmitting/receiving Wi-Fi frames and measuring their CSI in real time just like a full-functional Wi-Fi NIC**. It has four major highlights: full protocol compliance, rich PHY-layer control, complete and all-stage PHY-layer information, and high performance. 
 
-PicoScenes is far beyond a simple CSI data logger but a versatile Wi-Fi
-ISAC research platform. As far as we know, It is the first and currently
-the only platform that supports **multi-NIC concurrent CSI
-measurement**, which significantly simplifies the array-based CSI
-measurement. Besides that, it also features the live CSI plot, various
-low-level controls, and **packet injection in all-format and
-all-bandwidth**, which promises a fixed-rate CSI measurement.
+- **Full Protocol Compliance up to Wi-Fi 7**: PicoScenes Wi-Fi baseband supports transmitting and receiving Wi-Fi frames in all formats, including 802.11a/g/n/ac/**ax/be**, and across all bandwidths (20/40/80/**160/320 MHz**). It also supports all coding schemes (LDPC and BCC), *all modulation and coding schemes (MCS 0 to 13)*, and *up to 4x4 MIMO*.
+- **Rich PHY-Layer Control**: PicoScenes **grants users extensive control over the transmission and reception process**. Users can operate in non-standard carrier frequencies and bandwidths, manually specify carrier frequency offset (CFO), sampling frequency offset (SFO), symbol timing offset (STO), I/Q mismatching, resampling, and various OFDM encoding/decoding settings. PicoScenes is the first platform to provide *signal precoding/steering capabilities*, allowing users to implement beamforming, phased array, or arbitrary Tx equalization. For example, users can specify antenna positions and desired angles of departure (AoD) for phased array applications, and PicoScenes will calculate the steering matrix and apply it to the spatial mapping mechanism of 802.11n/ac/ax/be.
+- **Complete and All-Stage PHY-Layer Information**: PicoScenes provides users with comprehensive information about the PHY layer. This includes not only the *raw I/Q streams* but also all the staged information produced during the OFDM demodulation process. This information includes CSI computed by L-LTF (*Legacy CSI*), CSI computed by HT/VHT/HE/EHT-LTF (*HT/VHT/HE/EHT-CSI*), *CFO/SFO estimation*, and low-level *per-packet baseband signals*.
+- **High Performance**: PicoScenes is designed to support real-time Wi-Fi ISAC research with high performance. It can achieve up to 1 kHz CSI measurement at a 20 MHz bandwidth (single thread), support *multi-thread RX decoding*, and achieve packet injection rates of up to 4 kHz in real-time mode and up to 40 kHz in *signal-replay mode*. For timing-tolerant research, PicoScenes offers signal record and replay functionalities for both Tx and Rx I/Q streams, enabling users to capture signals and decode frames without packet loss. PicoScenes also provides a *Virtual SDR mode*, allowing users to generate, manipulate, and test Wi-Fi baseband signals without connecting to an actual SDR device.
 
-As a Wi-Fi ISAC research middleware, PicoScenes encapsulates the per-NIC
-low-level hardware controls into a set of unified APIs and exposes them
-to the upper-level plugin layer. Through the PicoScenes plugin
-mechanism, **complex and interactive CSI measurement tasks can be easily
-prototyped in a mission-focus manner**. We demonstrate this advantage by
-*EchoProbe*, a PicoScenes plugin, which provides *ms*-grade round-trip
-CSI measurement, large spectrum scanning and the most basic CSI data
-logging capabilities.
+### Software Side
 
-PicoScenes MATLAB Toolbox (PMT) is the MATLAB parsing routine for the
-*.csi* file generated by the PicoScenes. The parsing can be as easy as
-just **dragging the .csi files into MATLAB**. The fundamental data
-structure is in versioned-segment format, which guarantees forward
-compatibility across the future upgrade.
+PicoScenes is far beyond a simple CSI data logger but a versatile Wi-Fi ISAC research platform. As far as we know, It is the first and currently the only platform that supports **multi-NIC concurrent CSI measurement**, which significantly simplifies the array-based CSI measurement. Besides that, it also features the live CSI plot, various low-level controls, and **packet injection in all-format and all-bandwidth**, which promises a fixed-rate CSI measurement. 
 
-The PicoScenes software ecosystem (customized driver, platform, and
-plugins) is **built against the latest kernel, packaged in the Debian
-.deb format, and auto-updated via the easy** *apt upgrade* **command**.
-A fresh-new installation can be as short as 10 minutes. Setting up a
-CSI-measurement environment can never be such easy!
+As a Wi-Fi ISAC research middleware, PicoScenes encapsulates the per-NIC low-level hardware controls into a set of unified APIs and exposes them to the upper-level plugin layer. Through the PicoScenes plugin mechanism, **complex and interactive CSI measurement tasks can be easily prototyped in a mission-focus manner**. We demonstrate this advantage by *EchoProbe*, a PicoScenes plugin, which provides *ms*-grade round-trip CSI measurement, large spectrum scanning and the most basic CSI data logging capabilities. 
 
-You may refer to `features_pricing`{.interpreted-text role="doc"} to
-learn all the features of PicoScenes platform. We hope you enjoy the
-next ride of Wi-Fi ISAC research, supercharged by PicoScenes!
+PicoScenes MATLAB Toolbox (PMT) is the MATLAB parsing routine for the *.csi* file generated by the PicoScenes. The parsing can be as easy as just **dragging the .csi files into MATLAB**. The fundamental data structure is in versioned-segment format, which guarantees forward compatibility across the future upgrade.
 
-::: {.toctree maxdepth="2" numbered="" caption="Table of Contents:"}
-gallery users hardware features\_pricing installation scenarios
-parameters matlab utilities plugin status resources troubleshooting eula
-credits ni
-:::
+The PicoScenes software ecosystem (customized driver, platform, and plugins) is **built against the latest kernel, packaged in the Debian .deb format, and auto-updated via the easy** *apt upgrade* **command**. A fresh-new installation can be as short as 10 minutes. Setting up a CSI-measurement environment can never be such easy!
+
+You may refer to [features_pricing](features_pricing) to learn all the features of PicoScenes platform. We hope you enjoy the next ride of Wi-Fi ISAC research, supercharged by PicoScenes!
+
+## Table of Contents
+
+1. [Gallery](gallery.md)
+2. [Users](users.md)
+3. [Hardware](hardware.md)
+4. [Features & Pricing](features_pricing.md)
+5. [Installation](installation.md)
+6. [Scenarios](scenarios.md)
+7. [Parameters](parameters.md)
+8. [MATLAB](matlab.md)
+9. [Utilities](utilities.md)
+10. [Plugin](plugin.md)
+11. [Status](status.md)
+12. [Resources](resources.md)
+13. [Troubleshooting](troubleshooting.md)
+14. [EULA](eula.md)
+15. [Credits](credits.md)
+16. [NI](ni.md)
