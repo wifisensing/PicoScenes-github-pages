@@ -1,242 +1,1108 @@
-# CSI Measurement using PicoScenes
+Command Line Interface and Program Option Reference
+===================================================
+
+------------------------------------------------------------------------
+
+As shown in the `scenarios`{.interpreted-text role="doc"}, multiple
+command options can be written in one single command string, which is
+surrounded by quotation marks. This section uses the following example
+commands to describe how PicoScenes parses the program options.
+
+``` {.bash}
+PicoScenes "-d debug;
+            // the following commands are for each NIC.
+            -i 4 --freq 2412e6 --rate 20e6 --mode responder --rxcm 3 --cbw 40 --sts 2 --txcm 5 -ess 1 --txpower 15 --coding ldpc;
+            -i 3 --freq 2412e6 --rate 20e6 --mode initiator --repeat 100 --delay 5000 --cf 2412e6:5e6:2484e6 --sf 20e6:5e6:40e6 --cbw 20 --sts 2 --mcs 0 --gi 400 --txcm 3 --ack-mcs 3  --ack-type header;
+            -q"
+```
+
+The first step of command parsing is to segment the long string into
+several `;` ended [command sentences]{.title-ref}. The second command
+sentence starts with `//` or `#`, it is recognized as a line of comment
+and is skipped. The remaining command sentences are:
+
+1.  `-d debug`
+2.  `-i 4 --freq 2412e6 --rate 20e6 --mode responder --rxcm 3 --cbw 40 --sts 2 --txcm 5 -ess 1 --txpower 15 --coding ldpc`;
+3.  `-i 3 --freq 2412e6 --rate 20e6 --mode initiator --repeat 100 --delay 5000 --cf 2412e6:5e6:2484e6 --sf 20e6:5e6:40e6 --cbw 20 --sts 2 --mcs 0 --gi 400 --txcm 3 --ack-mcs 3  --ack-type header`;
+4.  `-q`
+
+Each command sentence composes of one or multiple [program
+options]{.title-ref}. Each program option usually starts with `--`. For
+some frequently used options, we provide shortcuts, like `-i` is for
+`--interface`, `-q` is for `--quit` and `-d` is for
+`--log-display-level`. Each program option consists of the option name
+and zero or more parameters, for example `--no-hp` doesn\'t require a
+parameter, and user may provide multiple parameters for `--tx-channel`,
+like `--tx-channel 0,1,2,3`.
+
+**PicoScenes parses and executes the command sentence in input order**.
+For the program options within one command sentence, PicoScenes invokes
+**four levels of program option parsers to parse them**; therefore, the
+order of the program options does not matter. The four levels of
+parsers, in their hierarchical order, are Platform Startup Options,
+Platform Options, Frontend Level Options, and Per-Plugin Level Options.
+They are detailed in the following Program Options Hierarchy. Platform
+Startup Options and Platform Options are frontend-irrelevant, and the
+other two levels of parsers are frontend-related.
+
+The following process simulates the real parsing process of the above
+command sentences.
+
+1.  
+
+    for the first command sentence `-d debug`:
+
+    :   1.  Platform Startup Option parser recognizes the `-d debug`
+            option, and set the debug message display level to
+            [debug]{.title-ref}.
+        2.  Platform Option parser recognizes nothing.
+        3.  As no frontend is specified, Frontend Option parser and
+            Per-Plugin Option parsers are skipped.
+
+2.  
+
+    for the second command sentence `-i 4 --freq 2412e6 --rate 20e6 --mode responder --rxcm 3 --cbw 40 --sts 2 --txcm 5 -ess 1 --txpower 15 --coding ldpc`:
+
+    :   1.  Platform Startup Option parser recognizes nothing.
+        2.  Platform Option parser recognizes `-i 3`, indicating that
+            the rest of the program options within this command sentence
+            are all for NIC `3`.
+        3.  Frontend Option parser recognizes 5 hardware-tuning options:
+            `--freq 2412e6`, `--rate 20e6`, `--rxcm 3` `--txcm 5`, and
+            `--txpower 16`. All these controls are for NIC `3`, and
+            Frontend Option parser doesn\'t perform the hardware tuning
+            but delegates these parameters to the FrontEnd class.
+        4.  Each PicoScenes plugin has the ability to parse command
+            sentence, and PicoScenes enumerates all the active plugin
+            instances of NIC `3` and let them parse the current command
+            sentence. In the above example, the program option parser of
+            EchoProbe plugin recognizes 5 options, namely,
+            `--mode responder`, `--cbw 40`, `--sts 2`, `--ess 1` and
+            `--coding ldpc`. The [responder mode]{.title-ref} of
+            EchoProbe plugin is not a thread-blocking mode, therefore,
+            the parser of EchoProbe plugin will save the parameters and
+            exit.
+        5.  PicoScenes continues to enumerate the rest of the plugins
+            (if there are) and let them parse the same command sentence.
+        6.  All four level of parsers finish their jobs, PicoScenes
+            continues to next command sentence.
+
+3.  
+
+    for the third command sentence `-i 3 --freq 2412e6 --rate 20e6 --mode initiator --repeat 100 --delay 5000 --cf 2412e6:5e6:2484e6 --sf 20e6:5e6:40e6 --cbw 20 --sts 2 --mcs 0 --gi 400 --txcm 3 --ack-mcs 3  --ack-type header`:
+
+    :   1.  Platform Startup Option parser recognizes nothing.
+        2.  Platform Option parser recognizes `-i 4`, indicating this
+            the rest of the program options are all for NIC `4`.
+        3.  Frontend Option parser recognizes 3 program options
+            `--freq 2412e6`, `--rate 20e6`, `--txcm 3`. All these
+            controls are for NIC `4`, and Frontend Option parser
+            doesn\'t perform the hardware tuning but delegates these
+            parameters to the FrontEnd class.
+        4.  PicoScenes enumerates all the active plugin instances of NIC
+            `4` and let them parse the current command sentence. The
+            program option parser of EchoProbe plugin recognizes 11
+            options, namely, `–mode initiator`, `–-repeat 100`,
+            `-–delay 5000`, `-–cf 2412e6:5e6:2484e6`,
+            `-–sf 20e6:5e6:40e6` `-–cbw 20`, `-–sts 2`, `-–mcs 0`,
+            `-–gi 400`, `-–ack-mcs 3` and `-–ack-type header`. The
+            [initiator mode]{.title-ref} of EchoProbe plugin is a
+            blocking mode. NIC `4`\'s EchoProbe plugin instance will
+            perform the round-trip and spectrum-scanning CSI
+            measurement. When the measurement finishes or fails,
+            EchoProbe will exit the blocking state.
+        5.  PicoScenes continue to enumerate the rest of the plugins (if
+            there are) and let them parse the same command sentence.
+        6.  All four level of parsers finish their jobs, PicoScenes
+            continues to next command sentence.
 
-**Revised on Dec. 3, 2023**
+4.  
 
-## Revisions
+    for the fourth command sentence `-q`:
 
-- Dec. 3, 2023: Added radar mode and MIMO radar mode, see [radar-mode](#radar-mode).
+    :   1.  Platform Startup Option parser recognizes nothing.
+        2.  Platform Option parser recognizes `-q` and trigger
+            PicoScenes shutdown sequence.
 
-On this page, we will demonstrate the methods of CSI measurement and various low-level controls on different hardware frontends. You can jump to the topics of interest via the following links:
+Program Options Hierarchy {#option_hierachy}
+-------------------------
 
-1. [Fundamentals](#fundamentals)
-2. [CSI by SDR](#csi_by_sdr)
-3. [AX200 Measurements](#ax200-measurements)
-4. [CSI by 5300 and 9300](#csi-by-5300-and-9300)
-5. [Interoperability](#interoperability)
+Various PicoScenes program options are organized in a hierarchical structure as listed below:
 
-Before we proceed, it is assumed that you have already installed the PicoScenes software and the supported hardware. See [installation](#installation) for hardware and software installation guides.
+:   -   
 
-> **Hint:** 如果您不想费劲地看英文，请开启浏览器的翻译功能，省脑子。
+        Per-Plugin level Options (Top)
 
-## Before Getting Started: Some Fundamentals
+        :   Each PicoScenes plugin can have its own program options. For
+            example, the EchoProbe plugin has a large set of options
+            controlling the packet injection and round-trip measurement.
 
-Here we introduce two fundamentals: [Device Naming](#device_naming) and [Basic Facts of Wi-Fi Channelization](#fact-wifi-channels).
+    -   
 
-### Device Naming
+        Frontend Level Options
 
-In order to support multi-frontend operation, we devised a simple device naming protocol, which is elaborated in the following sections.
+        :   PicoScenes provides two independent sets of options for
+            QCA9300/IWL5300 and SDR frontends, respectively. Users
+            specify different options for different Wi-Fi NICs or USRPs.
 
-#### Device Naming for Commercial Wi-Fi NICs
+    -   
 
-PicoScenes provides a script named `array_status`, which lists all the **PCI-E based Wi-Fi NICs**. A sample output is as below:
+        Platform Options
 
-![8 Wi-Fi NICs detected, and each has four IDs](/images/array_status.png)
+        :   These are a few global options valid *after* the launch of
+            the PicoScenes platform.
 
-In the `array_status` output, there are four IDs for each NIC: *PhyPath*, *PhyId*, *DevId*, and *MonId*. Their explanations are shown below. Among them, we strongly **recommend using PhyPath ID** in all scenarios.
+    -   
 
-| ID Type | Description |
-|---------|-------------|
-| **PhyId** | The *Physical ID* is assigned by the Linux mac80211 module at the system level, primarily used for low-level hardware control. The main drawback is that *Physical ID* may change upon each reboot. |
-| **DevId** | The *Device ID* is also assigned by the Linux mac80211 module at the system level, mainly used for link-level Wi-Fi configuration. The main drawback is that *Device ID* may change upon each reboot. |
-| **MonId** | The *Monitor interface ID* is created by the user for the attached monitor interface. The main drawback is that the monitor interface does not exist by default. |
-| **PhyPath (Recommended)** | To address the issue of ID inconsistency, we introduce a new ID called *PhyPath*, listed in the first column of the `array_status` output. The main advantage of PhyPath is that **it remains consistent across reboots and even system reinstallations, because it is bound to the PCI-E connection hierarchy**. *PhyPath* is supported throughout the PicoScenes system, including the PicoScenes program, plugins, and bash scripts. |
+        Platform Startup Options (Bottom)
 
-#### Device Naming for SDR
+        :   These are a few global options valid *before* the launch of
+            the PicoScenes platform.
 
-Device naming for SDR devices has three subtypes: [Naming for USRP](#naming_for_usrp), [Device Naming for HackRF One](#device-naming-for-hackrf-one), and [Device Naming for Virtual SDR](#device-naming-for-virtual-sdr).
+    We present the detailed description for each PicoScenes (including
+    EchoProbe plugin) options in the following text.
 
-##### Device Naming for NI USRP
+    ::: {.tip}
+    ::: {.title}
+    Tip
+    :::
 
-We devised a simple and scalable naming protocol for USRP devices. It has four forms:
+    You can also look up the **complete** program options by running the
+    command `PicoScenes --help`, if you have successfully installed the
+    PicoScenes.
+    :::
 
-- `usrp`: Used in case of only one USRP device connected to the computer. For example, if only one USRP device is connected to the computer, you can select this device with simply `usrp`.
-- `usrp<IPADDRESS_or_RESOURCEID_or_SERIALID_or_DEVICENAME>`: Used in case of selecting one of multiple connected USRP devices. For example, to select a USRP X310 device (ip-addr=192.168.40.2, serial=DID1234, name=myX310, resourceId=RID4567) from multiple USRP devices connected, this device can be represented by any one of the four possible IDs: `usrp192.168.40.2`, `usrpDID1234`, `usrpmyX310` or `usrpRID4567`.
-- `usrp<IPADDRESS_or_RESOURCEID_or_SERIALID_or_DEVICENAME>,[multiple <IPADDRESS_or_RESOURCEID_or_SERIALID_or_DEVICENAME>]`: Used in case of combining multiple USRPs devices. For example, the combination of two USRP X310 devices (with IP addresses of 192.168.40.2 and 192.168.41.2) can be represented by `usrp192.168.40.2,192.168.41.2`.
-- `usrp<IPADDRESS0_IPADDRESS1>,[multiple <IPADDRESS0_IPADDRESS1>]`: Used in case of combining the two 10GbE connections of one or multiple USRP X310 devices. Assume you have two USRP X310 devices connected. The first USRP X310 device has two 10GbE connections with IP addresses of 192.168.30.2 and 192.168.40.2, and the second USRP X310 device has two 10GbE connections with IP addresses of 192.168.70.2 and 192.168.80.2. The combination of the two channels of the first X310 can be represented by `usrp192.168.30.2_192.168.40.2`. The combination of all four channels can be represented by `usrp192.168.30.2_192.168.40.2,192.168.70.2_192.168.80.2`. The combination of the first two and the last one can be represented by `usrp192.168.30.2_192.168.40.2,192.168.80.2`.
+Platform Startup Options (Bottom)
+---------------------------------
 
-##### Device Naming for HackRF One
+-   
 
-All HackRF One devices are named as `hackrf<Device_Number>`, e.g., `hackrf0` or `hackrf1`. The starting device number is `0`, and the device number is in the same order as the command `SoapySDRUtil --find="driver=hackrf"` lists.
+    `--plugin-dir <new_plugin_dir>`
 
-##### Device Naming for Virtual SDR
+    :   -   Description: change the plugin search directory to your
+            specified directory, e.g.
+            `--plugin-dir /home/YOUR_HOME/PicoScenes-PDK`. If not
+            specified, PicoScenes will by default search for plugins in
+            /usr/local/PicoScenes/plugins.
+        -   Default: /usr/local/PicoScenes/plugins
+        -   Value Range: N/A
+        -   Notes: No
+        -   Example: \--plugin-dir /home/YOUR\_NAME/PicoScenes-PDK
 
-The Virtual SDR device adopts the naming pattern of `virtualsdr<ANY_GIVEN_ID>`, e.g., `virtualsdr0`, `virtualsdr_astringId` or the simplest `virtualsdr`.
+-   
 
-### Basic Facts of Wi-Fi Channelization
+    `-d [ --display-level ] <log_diplay_level>`
 
-Many PicoScenes users are confused about how to correctly specify Wi-Fi channels for COTS NICs and SDR devices. We create a big table [channels](#channels) for reference.
+    :   -   Description: specify the log message display level.
+        -   Default: `info`
+        -   Value Range: \[`vv`, `verbose`, `debug`, `detail`, `trace`,
+            `info`, `warning`, `error`, `mute`\]
+        -   Notes: `vv` is the [most verbose]{.title-ref} mode and
+            `mute` silences all log display.
+        -   Example: -d trace
 
-## ISAC Research using NI USRP or HackRF One SDR
+-   
 
-PicoScenes can drive SDR devices to transmit 802.11a/g/n/ac/ax/be format frames, receive frames, and measure the CSI data in real-time. In the following sections, we explore four major topics:
+    `--no-hp`
 
-1. Receiving frames and measuring CSI by [SDR RX](#sdr_rx)
-2. Transmitting Frames by [SDR TX](#sdr_tx)
-3. Wi-Fi Radar mode by [radar-mode](#radar-mode)
-4. Non-Standard Tx and Rx by [non-standard-tx-rx](#non-standard-tx-rx)
-5. Concurrent multi-SDR operation by [multi-SDR-operation](#multi-SDR-operation)
-6. Some advanced features by [experimental-features](#experimental-features)
+    :   -   Description: Disable process priority escalation.
+            `PicoScenes` will by default try to escalate its process
+            priority to improve the performance, however, it
+            [may]{.title-ref} fail due to insufficient privilege. You
+            may specify `--no-hp` to disable the priority escalation.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: N/A
 
-### Listening to Wi-Fi Traffic and Measuring CSI for 802.11a/g/n/ac/ax/be-Format Frame
+Platform Options
+----------------
 
-#### Listening to 20 MHz Bandwidth Channels
+-   
 
-In the simplest form, if you want to listen to the Wi-Fi traffic of a 20 MHz bandwidth channel centered at 2412 MHz using an SDR device with the ID `SDR_ID` (see [naming-for-sdr](#naming-for-sdr) for `SDR_ID`), you can use the following command:
+    `-i [ --interface ] arg`
 
-`PicoScenes "-d debug -i SDR_ID --mode logger --freq 2412 --plot"`
+    :   -   
 
-The command options, `"-d debug -i SDR_ID --freq 2412  --mode logger --plot"`, have the following interpretations:
+            Description: The ID of the target device/interface. This value MUST be provided to validate the Frontend Options.
 
-- `-d debug`: Modifies the display level of the logging service to debug;
-- `-i SDR_ID --mode logger`: Switches the device `SDR_ID` to CSI logger mode, see [naming-for-sdr](#naming-for-sdr) for `SDR_ID`;
-- `--freq 2412`: Change the center frequency of device `SDR_ID` to 2412 MHz;
-- `--plot`: Live-plots the CSI measurements.
+            :   -   For QCA9300/IWL5300 NIC, PhyId, DvId, MonId and
+                    PhyPath are all acceptable. (What are these IDs? You
+                    may refer to `device_naming`{.interpreted-text
+                    role="ref"} for help.)
+                -   For a single network-connected N210/X310 USRP, the
+                    name should be `usrp<ip address of the USRP>`, e.g.,
+                    `usrp192.168.10.2`.
+                -   For a single PCI-E cable-connected X310 USRP, the
+                    name should be `usrp<Resource Id of the X310>`,
+                    e.g., `usrpRIO0`.
+                -   To combine multiple network-connected (or MIMO cable
+                    connected) N210s/X310s, the name should be
+                    `usrp<ip address of the USRP1,ip address of the USRP2,ip address of the USRP3...>`,
+                    e.g., `usrp192.168.40.2,192.168.41.2`.
 
-> **Hint:** PicoScenes sets many Rx parameters by default, such as using the *RX_CBW_20* preset, using the Tx/Rx antenna port, using the normalized 0.65 Rx gain, etc. See [rx-gain-control](#rx-gain-control) for Rx Gain control.
+        -   Default: N/A
 
-#### Listening to 40/80/160/320 MHz Bandwidth Channels
+        -   Value Range: N/A
 
-In this case, if you want to listen to the Wi-Fi traffic on a 40 MHz bandwidth channel centered at 5190 MHz (or "5180 HT40+" or "5200 HT40-") using an SDR device with the ID `SDR_ID` (see [naming-for-sdr](#naming-for-sdr) for `SDR_ID`), you can use the following command:
+        -   
 
-`PicoScenes "-d debug -i SDR_ID --mode logger --freq 5190 --preset RX_CBW_40 --plot"`
+            Notes:
 
-The command options, `"-d debug -i SDR_ID --mode logger --freq 5190 --preset RX_CBW_40 --plot"`, have the following interpretations:
+            :   -   Note 1: For USRP, You can lookup the IP address or
+                    Resource ID via the UHD facility `uhd_find_devices`.
+                -   Note 2: For network connected USRPs, you MUST pay
+                    special attention to check the matching of IP
+                    addresses between the IP address of USRP and the IP
+                    address of your NIC. `uhd_find_devices` may find
+                    USRP devices even under mismatched address spaces,
+                    however, PicoScenes cannot initialize the USRP
+                    device in the mismatched situation.
 
-- `-d debug`: Modifies the display level of the logging service to debug;
-- `-i SDR_ID --mode logger`: Switches the device `SDR_ID` to CSI logger mode;
-- `--freq 5190`: Change the center frequency of device `SDR_ID` to 5190 MHz;
-- `--preset RX_CBW_40`: Uses the Rx preset named `RX_CBW_40`, which boosts the Rx sampling rate to 40 MHz and tells the baseband to treat the received signals as being sampled with a 40 MHz rate.
-- `--plot`: Live-plots the CSI measurements.
+        -   Example: `-i usrp192.168.10.2`, `-i 3`, `-i wlp3s0`,
+            `-i phy0`, `-i phy0mon`
 
-Similarly, if you want to listen to an 80 MHz bandwidth channel centered at 5210 MHz using an SDR device with the ID `SDR_ID`, you can use the following command:
+-   
 
-`PicoScenes "-d debug -i SDR_ID --mode logger --freq 5210 --preset RX_CBW_80 --plot"`
+    `-h [ --help ]`
 
-Similarly, if you want to listen to a 160 MHz bandwidth channel centered at 5250 MHz using an SDR device with the ID `SDR_ID`, you can use the following command:
+    :   -   Description: Show help information.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `-h`
 
-`PicoScenes "-d debug -i SDR_ID --mode logger --freq 5250 --preset RX_CBW_160 --plot"`
+Frontend Level Options
+----------------------
 
-> **Hint:** You can refer to [presets](#presets) for a full list of presets.
+PicoScenes provides different options for QCA9300/IWL5300 NICs and
+USRPs.
 
-> **Important:** Not all SDR devices support the 40/80/160 MHz sampling rate. For example, HackRF One with a maximum of 20 MHz sampling rate does not support 40 MHz or wider sampling rate. While the NI USRP X3x0 Series or other advanced models have a maximum of over 200 MHz sampling rate, supporting the 40/80/160 MHz bandwidth channels.
+### QCA9300/IWL5300 NIC options
 
-### Antenna Selection (Only for NI USRP Device)
+-   
 
-NI USRP features two antenna ports for each RF channel, **TX/RX** and **RX2**. PicoScenes provides a pair of options for Tx/Rx antenna selection: `--tx-ant` and `--rx-ant`. For example, if you want to use the RX2 antenna port for signal receiving, you can add `--rx-ant` to the above command:
+    `--freq arg`
 
-`PicoScenes "-d debug -i SDR_ID --mode logger --freq 5250 --preset RX_CBW_160 --rx-ant RX2 --plot"`
+    :   -   Description: Specify the carrier frequency for both the
+            QCA9300 and IWL5300. This option supports the scientific
+            notation like 2412e6 or 2.412e9.
 
-> **Important:** **PicoScenes uses the TX/RX port of each RF channel by default**.
+        -   Default: The default value is the the current working
+            carrier frequency.
 
-### Rx Gain Control: Manual GC and AGC
+        -   
 
-Proper Rx gain, or Rx signal amplification level, is crucial for Rx decoding performance and CSI measurement quality. Depending on the distance and strength of the transmitted signal, you may need to adjust the Rx gain. PicoScenes provides two ways to specify the Rx gain: using the **absolute gain value** or the **normalized gain value**.
+            Value Range:
 
-1. Specifying the absolute Rx gain: To set the Rx gain to a specific value, you can use the `--rx-gain` option followed by the desired gain value in dBm. For example:
+            :   -   For QCA9300, its frequency synthesizer supports
+                    ranges of \[2.2-2.9\] GHz and \[4.4 - 6.1\] GHz in
+                    the 2.4 and 5 GHz bands, respectively. You can
+                    specify any carrier frequency within the ranges.
+                -   For IWL5300, you can only specify the standard
+                    channel frequencies, e.g., 2412e6, 2432e6, 5815e6,
+                    etc.
 
-   `PicoScenes "-d debug -i SDR_ID --mode logger --freq 2412 --plot --rx-gain 20"`
+        -   
 
-   In this command, `--rx-gain 20` specifies an absolute Rx gain of 20 dBm.
+            Notes:
 
-2. Specifying the normalized Rx gain: To set the Rx gain using a normalized value, you can use the `--rx-gain` option followed by the desired normalized gain value. For example:
+            :   -   We have observed the decline of Tx/Rx performance
+                    caused by the cross-band tuning, e.g.,
+                    2412e6-\>5200e6. We recommend to use
+                    `array_prepare_for_picoscenes` to performance the
+                    cross-band tuning.
+                -   When operating in `HT40+/-` channel modes, this
+                    option, which always refers to the real carrier
+                    frequency, is not equal to the center frequency of
+                    `HT40+/-`\'s primary channel, e.g., if you want to
+                    communicate with a `5200 HT40-` channel, you should
+                    tune your carrier frequency to 5190e6 or 5200e6 with
+                    40 or 20 MHz channel bandwidth (CBW), respectively.
 
-   `PicoScenes "-d debug -i SDR_ID --mode logger --freq 2412 --plot --rx-gain 0.7"`
+        -   Example: `--freq 5200e6`
 
-   The `--rx-gain 0.7` specifies a normalized Rx gain of 0.7, **equivalent to 0.7 of the hardware-supported maximum Rx gain**. 
+-   
 
-   If the value specified to `--rx-gain` is greater than 1, the value is considered to be the absolute gain; otherwise, the normalized gain values.
+    `--rate arg`
 
-   > **Hint:** PicoScenes sets `--rx-gain` to 0.65 by default.
+    :   -   Description: Specify the baseband sampling rate (or
+            bandwidth) for both the QCA9300 and IWL5300. This option
+            supports the scientific notation like `20e6` or `25e6`.
 
-3. Some SDR devices support automatic gain control (AGC), such as the NI USRP B210. To enable AGC, you can use the `--agc` option. For example:
+        -   Default: The default value is the the current working
+            baseband bandwidth.
 
-   `PicoScenes "-d debug -i A_B210_SDR --mode logger --freq 2412 --plot --agc"`
+        -   
 
-   This command enables AGC for the SDR device with the ID A_B210_SDR.
+            Value Range:
 
-### Multi-Channel Rx by Single NI USRP Device
+            :   -   For QCA9300, the available rates under `HT20`
+                    channel mode are \[2.5, 5, 7.5, 10, 12.5, 15, 17.5,
+                    20, 25, 30, 35, 40\] MHz; for `HT40+/-` channel
+                    modes the supported rates are \[5, 10, 15, 20, 25,
+                    30, 35 40, 45, 50, 55, 60, 65, 70, 75, 80\] MHz.
+                -   For IWL5300, the driver does NOT support bandwidth
+                    arbitrary tuning, so this option only supports 20 or
+                    40 MHz.
 
-PicoScenes supports *multi-channel Rx* and even *multi-USRP combined multi-channel Rx*. For example, the NI USRP B210, X310, and other advanced models have two or more independent RF channels. PicoScenes supports receiving dual/multi-channel signals and decoding MIMO frames.
+        -   Notes: When HT20 mode communicate with `HT40+/-` modes with
+            a non-standard bandwidth, you should tune the carrier
+            frequency of the `HT20` side to the correct value. For
+            example, with 20 MHz real bandwidth, `HT40-` channel mode at
+            the 5190 MHz can ONLY communicate with a `HT20` mode with
+            5195 MHz carrier frequency.
 
-1. Single USRP Device - Dual/Multi-Channel Rx. 
+        -   Example: `--rate 20e6`
 
-   For example, if you want to use an X310 or other multi-channel USRP devices to listen to Wi-Fi traffic on the 40 MHz channel centered at 5190 MHz (the *5180 HT40+* or *5200 HT40-* channel) with two Rx channels, you can use the following command:
+-   
 
-   `PicoScenes "-d debug -i usrp --mode logger --freq 5190 --preset RX_CBW_40 --rxcm 3 --plot"`
+    `--txcm arg`
 
-   In this command, `--rxcm 3` specifies the *Rx chainmask* value of 3, indicating the use of the 1st and 2nd Rx antennas for Rx. The `--rxcm` option allows you to specify the antenna selection using a bitwise style: 1 for the 1st antenna, 2 for the 2nd antenna, 3 for the first 2 antennas, 4 for the 3rd antenna, 5 for the 1st and 3rd antennas, and so on.
+    :   -   Description: Specify the transmit chain(s) for the QCA9300
+            and IWL5300 NICs. The mask are in 3-bit format,i.e., 1/2/4
+            for the 1st/2nd/3rd chain, 3 for both the 1st and 2nd chains
+            and 7 for all three chains.
 
-   If you want to use an X310 or other multi-channel USRP devices to listen to Wi-Fi traffic on the 80 MHz channel centered at 5210 MHz with two Rx channels, you can use the following command:
+        -   Default: This value is 7 by default and is persistent until
+            the next NIC reset.
 
-   `PicoScenes "-d debug -i usrp --mode logger --freq 5210 --preset RX_CBW_80 --rxcm 3 --plot"`
+        -   Value Range: \[1, 2, 3, 4, 7\]
 
-2. Single USRP Device - Dual/Multi-Channel Rx with Dual 10GbE connections. 
+        -   
 
-   The previous option cannot support the dual-channel signal receiving and decoding for a 160 MHz channel, because the dual-channel 160 MHz-rate signal receiving requires up to 12.8Gbps Ethernet bandwidth which exceeds the limit of a single 10GbE connection. Therefore, you have to use the dual 10GbE connection to satisfy this bandwidth. Assuming the dual-10GbE connection is correctly set up with IP addresses of 192.168.30.2 and 192.168.40.2, you can use the following command to perform dual-channel receiving for a 160 MHz bandwidth channel centered at 5250 MHz:
+            Notes:
 
-   `PicoScenes "-d debug -i usrp192.168.30.2_192.168.40.2 --mode logger --freq 5250 --preset RX_CBW_160 --rxcm 3 --plot"`
+            :   -   When the number of the transmit chains(s),
+                    [N](){tx}, is smaller than the number of transmit
+                    spatial-time streams, [N](){sts}, the transmission
+                    is invalid.
+                -   Value 5 and 6 are not valid for both QCA9300 and
+                    IWL5300.
 
-   > **Hint:** You can follow the guides below to set up dual 10GbE connections for the X3x0 and N3x0 series.
+        -   Example: `--txcm 1`
 
-   - X3x0 Series: [Using Dual 10 Gigabit Ethernet on the USRP X300/X310](https://kb.ettus.com/Using_Dual_10_Gigabit_Ethernet_on_the_USRP_X300/X310)
-   - N3x0 Series: [USRP N300/N310/N320/N321 Getting Started Guide - Dual 10Gb Streaming](https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Dual_10Gb_Streaming_SFP_Ports_0.2F1)
+-   
 
-### Multi-Channel Rx by Multiple NI USRP Devices
+    `--rxcm arg`
 
-PicoScenes supports combining multiple NI USRP devices of the same model into a single, virtual device, providing a higher level of MIMO and larger cross-antenna phase coherency. Taking the NI USRP X310 as an example, if you have two X310 devices and each is equipped with a dual UBX-160 daughterboard, **we can achieve four-channel phase coherent Rx if they are properly combined and synchronized**.
+    :   -   Description: Specify the receive chain(s) for the QCA9300
+            and IWL5300 NICs. This option has the identical format as
+            \--txcm option.
 
-#### Clock Synchronization across Multiple USRP Devices
+        -   Default: This value is 7 by default and is persistent until
+            the next NIC reset.
 
-We recommend two options to achieve clock synchronization across multiple USRP devices:
+        -   Value Range: 1, 2, 3, 4, 7
 
-1. For all devices, by a central clock distribution module (**Recommended**). We recommend the 8-port [OctoClock-G](https://www.ettus.com/all-products/OctoClock-G/) or [OctoClock](https://www.ettus.com/all-products/octoclock/) to distribute clock signals for all NI USRP devices.
+        -   
 
-2. For NI USRP X3x0 model, By Ref clock export. X3x0 model has *PPS OUT* and *TRIG OUT* ports that can be directly fed into another X3x0 device, or fed into a clock distribution module.
+            Notes:
 
-#### Combining Multiple USRP devices
+            :   -   When the number of the receive chains(s), [N](){rx},
+                    is smaller than [N](){sts} of the transmitted
+                    packets, the receiver cannot decode the frame.
+                -   Value 5 and 6 are not valid for both QCA9300 and
+                    IWL5300.
 
-Assume you have two NI USRP X3x0 devices each equipped with two UBX-160 daughterboards, and with IP Addresses of 192.168.30.2 and 192.168.70.2, respectively. And also assume you have physically synchronized these two devices by either solution of [phase_sync_multiple_device](#phase_sync_multiple_device), you can achieve four-channel coherent Rx by the following command:
+        -   Example: `--rxcm 1`
 
-`PicoScenes "-d debug -i usrp192.168.30.2,192.168.70.2 --mode logger --freq 5190 --preset RX_CBW_40 --rx-channel 0,1,2,3 --clock-source external --plot"`
+-   
 
-In this command, please pay special attention to the comma (`,`) in the option `-i usrp192.168.30.2,192.168.70.2`. It means to combine multiple USRP devices. You can refer to [naming_for_usrp](#naming_for_usrp) for the complete naming protocols for NI USRP devices. The option `--rx-channel` is equivalent to `--rxcm` introduced aforementioned, and `--rx-channel 0,1,2,3` is equivalent to `--rxcm 15` meaning to use all four RF channels for receiving. The option `--clock-source external` tells USRP to use external clock signals for the frequency generations for the LO and ADC/DAC pair.
+    `--txpower arg`
 
-> **Important:** The order of the IP addresses affects the order of the TX/RX channels! For example, the 0th and 3rd channels of the combined USRP `usrp192.168.40.2,192.168.41.2` refer to the first and the second channel of the devices with the IP addresses of 192.168.40.2 and 192.168.41.2, respectively.
+    :   -   Description: Specify the transmit power (Tx power) in dBm
+            for both the QCA9300 and IWL5300.
+        -   Default: 20
+        -   Value Range: 0 dBm \~ 30 dBm
+        -   Notes: This value is 20 by default and is persistent until
+            the next NIC reset.
+        -   Example: `--txpower 15`
 
-#### Combining Multiple USRP Devices plus Dual-10GbE Connection
+-   
 
-Assuming you have two NI USRP X3x0 devices each equipped with two UBX-160 daughterboards, and assume each X3x0 device is dual-10GbE connected with IP Addresses of 192.168.30.2 and 192.168.31.2 for the first and 192.168.70.2 and 192.168.71.2 for the second, respectively. And also assume you have physically synchronized these two devices by either solution of [phase_sync_multiple_device](#phase_sync_multiple_device), you can achieve four-channel coherent Rx for a 160 MHz Wi-Fi channel by the following command:
+    `-p [ --cf-tuning-policy ] arg`
 
-`PicoScenes "-d debug -i usrp192.168.30.2_192.168.31.2,192.168.70.2_192.168.71.2 --mode logger --freq 5250 --preset RX_CBW_160 --rx-channel 0,1,2,3 --clock-source external --plot"`
+    :   -   Description: Specify the tuning policy for QCA9300\'s
+            carrier frequency. You can specify one of the three
+            policies: `chansel`, `fastcc` and `reset`.
 
-Please pay special attention to the comma (`,`) and underline (`_`) in the option `-i usrp192.168.30.2_192.168.31.2,192.168.70.2_192.168.71.2`. It means to use the dual 10GbE connection plus combining multiple USRP devices. You can refer to [naming_for_usrp](#naming_for_usrp) for the complete naming protocols for NI USRP devices.
+        -   Default: `fastcc`
 
-### Transmitting 802.11a/g/n/ac/ax/be protocol frames using SDR Devices
+        -   Value Range: `chansel`, `fastcc` and `reset`
 
-#### Single-Device Tx with Rich Low-Level Controls
+        -   
 
-In the following examples, we demonstrate how to use PicoScenes to drive SDR devices to transmit Wi-Fi packets with gradually enriched low-level controls. We assume your SDR ID is `SDR_ID` and your SDR supports a sufficiently high sampling rate, like 200 MSPS or higher.
+            Notes:
 
-##### Transmitting 20 MHz bandwidth 802.11n Format Frames
+            :   -   `chansel` refers to the direct tuning of the RF
+                    frequency synthesizer via hardware registers. Since
+                    this policy tunes ONLY the synthesizer and bypasses
+                    many other settings, this is the fastest but also
+                    the least reliable policy.
+                -   `fastcc` refers to the FAST Channel Change protocol
+                    in ath9k driver. This is the default policy in both
+                    the ath9k driver and PicoScenes. In ath9k driver,
+                    `fastcc` handles the non-crossband channel change
+                    scenarios.
+                -   `reset` refers to the longer and more complete
+                    channel channel protocol in ath9k driver, which
+                    includes hardware reset. In ath9k driver `reset`
+                    handels the cross band channel change.
 
-If you just want to transmit some 802.11n rate, 20 MHz bandwidth frames at 5900 MHz channel for CSI measurement, you can use the following command:
+        -   Example: `-p chansel`
 
-`PicoScenes "-d debug -i SDR_ID --freq 5900 --mode injector --repeat 1e5 --delay 5e3"`
+### USRP frontend options
 
-The new options `--mode injector --repeat 1e5 --delay 5e3` can be interpreted as:
+-   
 
-- `--mode injector`: Ask the SDR to operate at packet injector mode;
-- `--repeat 1e5`: Inject 10000 packets;
-- `--delay 5e3`: The inter-frame delay is 5000 microseconds.
+    `--freq arg`
 
-> **Hint:** PicoScenes uses 802.11n format for packet injection by default.
+    :   -   Description: Specify the carrier frequency for SDR frontend.
+            This option supports the scientific notation like 2412e6 or
+            2.412e9.
 
-##### Transmitting 40/80/160/320 MHz bandwidth 802.11a/g/n/ac/ax/be Format Frames
+        -   Default: This option has NO default value and is not
+            persistent. You should specify it every time.
 
-You can use the powerful `--preset` options to specify bandwidth and format, like:
+        -   Value Range: Hardware decide the range.
 
-`PicoScenes "-d debug -i SDR_ID --freq 5900 --mode injector --preset TX_CBW_40 --repeat 1e5 --delay 5e3"`
+        -   
 
-This command transmits 802.11ac format frames with a 40 MHz bandwidth at 5900 MHz. The `--preset TX_CBW_40` option specifies the transmission preset for 40 MHz bandwidth.
+            Notes:
 
-> **Important:** Ensure your SDR device supports the desired bandwidth and format before attempting transmission.
+            :   -   The value range is based on your hardware. For
+                    example, UBX-40/160 daughterboard supports a range
+                    of 10-6000MHz.
+                -   This option sets the same carrier frequency for both
+                    the Tx and Rx chains, though the hardware supports
+                    setting different frequencies for them.
+                -   For multi-channel configurations (the both channels
+                    of X310, or multiple USRPs synchronized by the MIMO
+                    cable or external clock source), this option will
+                    set the same frequency for all channels.
+
+        -   Example: `--freq 5200e6`
+
+-   
+
+    `--rate arg`
+
+    :   -   Description: Specify the baseband sampling rate (or
+            bandwidth) for SDR frontend. This option supports the
+            scientific notation like 25e6 or 40e6.
+
+        -   Default: This option has NO default value and is not
+            persistent. You should specify it every time.
+
+        -   Value Range: N/A
+
+        -   
+
+            Notes:
+
+            :   -   The value range is based on your hardware. For
+                    example, X310 motherboard supports a maximum
+                    sampling rate of 200 MHz.
+                -   This option sets the same sampling rate for both the
+                    Tx and Rx chains, though the hardware supports
+                    setting different sampling rates for them.
+                -   Different hardware has different tuning granularity.
+                    For example, you can only specify 200/INT\_N MHz
+                    sampling rate where INT\_N is a positive integer.
+
+        -   Example: `--rate 20e6`
+
+-   
+
+    `--tx-resample-ratio arg`
+
+    :   -   Description: Specify the Tx resampling ratio. This is a
+            software-based Tx resampling mechanism to enable arbitrary
+            channel bandwidth. For example, X310 cannot tune the
+            baseband sampling rate to 80 MHz. To overcome this issues,
+            we can tune the hardware to 100 MHz (by `--rate 100e6`) and
+            then resample the Tx signal by 0.8 (by
+            `--tx-resample-ratio 0.8`).
+
+        -   Default: 1.0
+
+        -   Value Range: 0 \~ 1.0
+
+        -   
+
+            Notes:
+
+            :   -   This option is implemented by zero-order
+                    interpolation in software side, i.e., generate the
+                    signal by 80 MHz then interpolate the signal to 100
+                    MHz.
+                -   This interpolation is implemented by software,
+                    therefore the performance decline should be
+                    expected.
+
+        -   Example: `--tx-resample-ratio 0.8`
+
+-   
+
+    `--rx-resample-ratio arg`
+
+    :   -   Description: Specify the Rx resampling ratio. This is a
+            software-based Rx resampling mechanism to enable arbitrary
+            channel bandwidth.For example, X310 cannot tune the baseband
+            sampling rate to 80 MHz. To overcome this issues, we can
+            tune the hardware to 100 MHz (by `--rate 100e6`) andthen
+            resample the Rx signal by 0.8 (by
+            `--rx-resample-ratio 0.8`).
+
+        -   Default: 1.0
+
+        -   Value Range: 0 \~ 1.0
+
+        -   
+
+            Notes:
+
+            :   -   This option is implemented by uniform signal
+                    dropping in software side,i.e., receive the signal
+                    by 100 MHz rate then decimate the signal to 80 MHz.
+                -   This resample is implemented by software, therefore
+                    the performance decline should be expected.
+
+        -   Example: `--rx-resample-ratio 1.0`
+
+-   
+
+    `--clock-source arg`
+
+    :   -   Description: Specify the clock and time source for
+            SDRfrontend.
+        -   Default: `internal`
+        -   Value Range: `internal`, `external`, `mimo`.
+        -   Notes: You can specify `external` for G-Octoclock based
+            clock source or `mimo` for N210 MIMO-cable based clock
+            source sharing.
+        -   Example: `--clock-source external`
+
+-   
+
+    `--cfo arg`
+
+    :   -   Description: Specify the carrier frequency offset for Tx
+            baseband. This option supports the scientific notation like
+            1e3 (1000 Hz cfo). This option is implemented by Wi-Fi
+            baseband software, therefore the performance decline should
+            be expected.
+        -   Default: 0.0
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--cfo 1e3`
+
+-   
+
+    `--sfo arg`
+
+    :   -   Description: Specify the sampling rate offset for Tx
+            baseband. This option supports the scientific notation like
+            1e3 (1000 Hz sfo). This option is implemented by Wi-Fi
+            baseband software, therefore the performance decline should
+            be expected.
+        -   Default: 0.0
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--sfo 1e3`
+
+-   
+
+    `--master-clock-rate arg`
+
+    :   -   Description: Specify the master clock rate of USRP. For
+            Wi-Fi communication
+        -   Default: For N210 and X310, the default value is 100e6 and
+            200e6 respectively.
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--master-clock-rate 100e6`
+
+-   
+
+    `--tx-channel arg`
+
+    :   -   Description: Specify the Tx channel(s) for SDR frontend. The
+            default value is 0, which mean 0-th channel. Multiple
+            channel numbers are separated by a comma [,]{.title-ref}.In
+            multi-channel configurations, taking two combined X310s for
+            example, you can specify `0,1,2,3` to use all 4 channels for
+            Tx. You can also skip some of them, such as `0,2,3` which
+            specify the 0-th, 1st and 3rd antenna for Tx.
+
+        -   Value Range: N/A
+
+        -   
+
+            Notes:
+
+            :   -   the order does not matter. `0,2,3` is equal to
+                    `3,2,0`.
+                -   The physical mapping between the channel number and
+                    antenna is ordered. For example, assuming that we
+                    combine two X310s together with
+                    `-i usrp192.168.40.2,192.168.41.2`, 0-th and 1st
+                    antennas correspond to the left and right
+                    daughterboards of the X310 with IP address
+                    192.168.40.2; and 2nd and 3rd antennas correspond to
+                    the left and rightdaughterboards of the X310 with IP
+                    address 192.168.41.2.
+
+        -   Example: `--tx-channel 0,1`
+
+-   
+
+    `--rx-channel arg`
+
+    :   -   Description: Specify the Tx channel(s) for SDR frontend. The
+            default value is 0, which mean 0-th channel. Multiple
+            channel numbers are separated by a comma
+            [,]{.title-ref}.This option has the identical format as
+            `--tx-channel`.
+        -   Default: `0`
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--rx-channel 0,1`
+
+-   
+
+    `--rx-cbw arg`
+
+    :   -   Description: Specify the Channel Bandwidth (CBW) for Rx
+            baseband. You can specify `20`, `40`, `80` or `160`, which
+            corresponds to 20/40/80/160MHz CBW for Rx baseband.
+        -   Default: `20`
+        -   Value Range: `20`, `40`, `80`, `160`
+        -   Notes: In order to receive and correctly decode the packet
+            transmitted in HT20/HT40/VHT80/VHT160 formats, you must
+            specify Rx CBW to 20/40/80/160, respectively.
+        -   Example: `--rx-cbw 40`
+
+-   
+
+    `--rx-ant arg`
+
+    :   -   Description: Specify to use which RX antenna
+        -   Default: `RX2`
+        -   Value Range: `TX/RX`, `RX2`
+        -   Notes: For USRP UBX/CBX/SBX daughterboard, TX/RX or RX2
+        -   Example: `--rx-ant TX/RX`
+
+-   
+
+    `--txpower arg`
+
+    :   -   Description: Tx gain.
+        -   Default: N/A
+        -   Value Range: 0 \~ 38 dB
+        -   Notes: N/A
+        -   Example: `--txpower 20`
+
+-   
+
+    `--rx-gain arg`
+
+    :   -   Description: Rx gain.
+        -   Default: N/A
+        -   Value Range: 0 \~ 38 dB
+        -   Notes: N/A
+        -   Example: `--rx-gain 20`
+
+-   
+
+    `--filter-bw arg`
+
+    :   -   Description: Baseband filter bandwidth (unit in Hz,
+            scientific notation supported)
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: N/A
+
+-   
+
+    `--tx-to-file arg`
+
+    :   -   Description: Supply a file name (without extension, just the
+            name), `PicoScenes` will save all the Tx signals to file.
+            The signals will be save to a `.bbsignals` file with the
+            specified file name.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `tx-to-file demo`
+
+-   
+
+    `--tx-from-file arg`
+
+    :   -   Description: Supply a file name (without extension, just the
+            name), PicoScenes will replay the signal save in the
+            `.bbsignals` file as if the signal is generated from the
+            baseband.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--tx-from-file demo`
+
+-   
+
+    `--tx-from-file-delay arg`
+
+    :   -   Description: The delay (in ms) before Tx signal replay.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--tx-from-file-delay 1000`
+
+-   
+
+    `--rx-to-file arg`
+
+    :   -   Description: Dump baseband signals received from SDR device
+            to a `.bbsignals` file with the specified file name. This is
+            actually theRx signal recorder.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: When rx-to-file is ON, the received signal will NOT
+            be sent to baseband for decoding.
+        -   Example: `--rx-to-file demo`
+
+-   
+
+    `--rx-from-file arg`
+
+    :   -   Description: Replay baseband signals saved in the
+            `.bbsignals` file as if the signal is received from the RF
+            frontend. This is actually the Rx signal replay.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: The Rx signal replay keeps the same pace with the Rx
+            baseband, therefore there will be no signal dropping.
+        -   Example: `--rx-from-file demo`
+
+-   
+
+    `--rx-sensitivity arg`
+
+    :   -   Description: Specify the lowest power level (specified in
+            dB) above the rx noise floor to trigger packet detection.
+        -   Default: 5
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--rx-sensitivity 10`
+
+-   
+
+    `--rx-cp-offset arg`
+
+    :   -   Description: Specify at which position of Cyclic Prefix is
+            regard as the start of OFDM signal (pre-advancement)
+        -   Default: 0.75
+        -   Value Range: 0 \~ 1
+        -   Notes: N/A
+        -   Example: `--rx-cp-offset 0.5`
+
+-   
+
+    `--tx-iq-mismatch arg`
+
+    :   -   Description: Specify Tx I/Q mismatch, for example `1.5 15`
+            means 1.5dB Tx I/Q ratio and 15 degree of Tx I/Q crosstalk
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `tx-iq-mismatch "1.5 15"`
+
+-   
+
+    `--rx-iq-mismatch arg`
+
+    :   -   Description: Specify Rx I/Q mismatch, for example `1.5 15`
+            means 1.5dB Rx I/Q ratio and 15 degree of Rx I/Q crosstalk
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `rx-iq-mismatch "1.5 15"`
+
+-   
+
+    `--disable-1ant-tx-4-extra-sounding`
+
+    :   -   Description: Enable a special HT-LTF demodulation mode when
+            signal is received from a transmitter with only 1 TX
+            antenna.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--disable-1ant-tx-4-extra-sounding`
+
+-   
+
+    `--enable-loopback`
+
+    :   -   Description: Enable USRP Rx loopback signal from Tx.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--enable-loopback`
+
+-   
+
+    `--enable-hw-acc`
+
+    :   -   Description: enable/or disable hardware acceleration for
+            Wi-Fi packet detection (enabling requires our special
+            firmware, false as default).
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--enable-hw-acc`
+
+Per-Plugin Level Options (Top)
+------------------------------
+
+### EchoProbe Options
+
+-   
+
+    `-mode arg`
+
+    :   -   Description: EchoProbe working mode.
+        -   Default: N/A
+        -   Value Range: `injector`, `logger`[,
+            ]{.title-ref}[initiator]{.title-ref}[,
+            ]{.title-ref}[responder]{.title-ref}\`
+        -   Notes: N/A
+        -   Example: `--mode injector`
+
+### EchoProbe initiator options
+
+-   
+
+    `--target-mac-address`
+
+    :   -   Description: MAC address of the injection target \[ magic
+            Intel `00:16:ea:12:34:56` is default\].
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: N/A
+
+-   
+
+    `--5300`
+
+    :   -   Description: Both Destination and Source MAC addresses are
+            set to \[ magic Intel `00:16:ea:12:34:56` \].
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: N/A
+
+-   
+
+    `--cf`
+
+    :   -   Description: MATLAB-style specification for carrier
+            frequency scan range, format `begin:step:end`.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--cf 5200e6:20e6:5800e6`
+
+-   
+
+    `--sf`
+
+    :   -   Description: MATLAB-style specification for baseband
+            sampling frequency multiplier scan range, format
+            `begin:step:end`.
+        -   Default: N/A
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--sf 10e6:5e6:20e6`
+
+-   
+
+    `--repeat`
+
+    :   -   Description: The injection number per cf/bw combination.
+        -   Default: 100
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--repeat 1e4`
+
+-   
+
+    `--delay`
+
+    :   -   Description: The delay between successive injections(unit in
+            us).
+        -   Default: 5e5
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--delay 5e3`
+
+-   
+
+    `--delayed-start`
+
+    :   -   Description: A one-time delay before injection(unit in us)
+        -   Default: 0
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--delayed-start 5e5`
+
+-   
+
+    `--format`
+
+    :   -   Description: 802.11 frame format.
+        -   Default: HT
+        -   Value Range: `nonHT`, `HT`, `VHT`, `HESU`
+        -   Notes: N/A
+        -   Example: `--format VHT`
+
+-   
+
+    `--cbw`
+
+    :   -   Description: Channel Bandwidth (CBW) for injection(unit in
+            MHz).
+        -   Default: 20
+        -   Value Range: `20`, `40`, `80`, `160`
+        -   Notes: N/A
+        -   Example: `--cbw 40`
+
+-   
+
+    `--mcs`
+
+    :   -   Description: The MCS index for one single spatial stream.
+        -   Default: 0
+        -   Value Range: 0 \~ 11
+        -   Notes: N/A
+        -   Example: `--mcs 4`
+
+-   
+
+    `--sts`
+
+    :   -   Description: Number of spatial time stream (STS).
+        -   Default: 1
+        -   Value Range: 1 \~ 4
+        -   Notes: N/A
+        -   Example: `--sts 2`
+
+-   
+
+    `--ess`
+
+    :   -   Description: Number of Extension Spatial Stream for TX.
+        -   Default: 0
+        -   Value Range: 0 \~ 3
+        -   Notes: N/A
+        -   Example: `--ess 2`
+
+-   
+
+    `--gi`
+
+    :   -   Description: Guarding Interval.
+        -   Default: 800
+        -   Value Range: `400`, `800`, `1600`, `3200`
+        -   Notes: N/A
+        -   Example: `--gi 1600`
+
+-   
+
+    `--coding`
+
+    :   -   Description: Code scheme.
+        -   Default: BCC
+        -   Value Range: `LDPC`, `BCC`
+        -   Notes: N/A
+        -   Example: `--coding LDPC`
+
+-   
+
+    `--injector-content`
+
+    :   -   Description: Content type for injector mode.
+        -   Default: full
+        -   Value Range: `full`, `header`, `ndp`
+        -   Notes: N/A
+        -   Example: `--injector-content header`
+
+-   
+
+    `--ifs`
+
+    :   -   Description: Inter-Frame Spacing in seconds.
+        -   Default: 20e-6
+        -   Value Range: N/A
+        -   Notes: N/A
+        -   Example: `--ifs 10e-6`
+
+### Echo responder options
+
+-   
+
+    `--ack-type`
+
+    :   -   Description: EchoProbe reply strategy.
+        -   Default: full
+        -   Value Range: `full`, `csi`, `extra`, `header`
+        -   Notes: N/A
+        -   Example: `--ack-type csi`
+
+-   
+
+    `--ack-mcs`
+
+    :   -   Description: MCS value (for one single spatial stream) for
+            ack packets, unspecified as default.
+        -   Default: N/A
+        -   Value Range: 0 \~ 11
+        -   Notes: N/A
+        -   Example: `--ack-mcs 4`
+
+-   
+
+    `--ack-sts`
+
+    :   -   Description: The number of spatial time stream (STS) for ack
+            packets, unspecified as default.
+        -   Default: N/A
+        -   Value Range: 0 \~ 23
+        -   Notes: N/A
+        -   Example: `--ack-sts 3`
+
+-   
+
+    `--ack-cbw`
+
+    :   -   Description: Bandwidth for ack packets (unit in MHz),
+            unspecified as default.
+        -   Default: N/A
+        -   Value Range: `20`, `40`, `80`, `160`
+        -   Notes: N/A
+        -   Example: `--ack-cbw 40`
+
+-   
+
+    `--ack-gi`
+
+    :   -   Description: Guarding-interval for ack packets, unspecified
+            as default.
+        -   Default: N/A
+        -   Value Range: `400`, `800`, `1600`, `3200`
+        -   Notes: N/A
+        -   Example: `--ack-gi 800`
