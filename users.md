@@ -1,8 +1,8 @@
-# Users
+# 2. Users
 
 From the easiest CSI-data collection using the Intel AX210 to the SDR-based 802.11be multi-user (MU) experiments, PicoScenes is powering the next wave of the Wi-Fi ISAC research.
 
-## Published Papers by PicoScenes Users
+## 2.1. Published Papers by PicoScenes Users
 
 - Viktor Erdélyi, Kazuki Miyao, Akira Uchiyama, Tomoki Murakami, ["Poster: Activity Recognition Using CSI Backscatter with Commodity Wi-Fi"](https://dl.acm.org/doi/abs/10.1145/3643832.3661396), 2024, MobiSys.
 - Hao Yin, Murali Ramanujam, Joe Schaefer, Stan Adermann, Srihari Narlanka, Perry Lea, Ravi Netravali, Krishna Chintalapudi, ["ADR-X: ANN-Assisted Wireless Link Rate Adaptation for Compute-Constrained Embedded Gaming Devices"](https://www.usenix.org/conference/nsdi24/presentation/yin), 2024 NSDI.
@@ -25,7 +25,7 @@ From the easiest CSI-data collection using the Intel AX210 to the SDR-based 802.
 - Qing Yang, Tianzhang Xing, Zhiping Jiang, Junfeng Wang, Jingyi He, ["WiRD: Real-Time and Cross Domain Detection System on Edge Device"](https://link.springer.com/chapter/10.1007/978-3-030-95388-1_23), Algorithms and Architectures for Parallel Processing, 2022.
 - Xiaoyu Ma, Hui He, Hui Zhang, Wei Xi, Zuhao Chen, Jizhong Zhao, ["Measuring and Modeling Multipath of Wi-Fi to Locate People in Indoor Environments"](https://ieeexplore.ieee.org/abstract/document/9763705), 2021 IEEE 27th International Conference on Parallel and Distributed Systems (ICPADS).
 
-## Affiliations using PicoScenes
+## 2.2. Affiliations using PicoScenes
 
 The following grid lists the affiliations that use PicoScenes platform in their latest research.
 
@@ -73,5 +73,5 @@ The following grid lists the affiliations that use PicoScenes platform in their 
 | ![Arizona State University](/images/logos/Arizona_State_University.png) | ![Chemnitz](/images/logos/Chemnitz.png) | | |
 
 > **Note:**
-> 1. All affiliations listed above are identified from the collected software usage data. Data collection is expressly stated in the [EULA](/eula).
+> 1. All affiliations listed above are identified from the collected software usage data. Data collection is expressly stated in the [PicoScenes Software End User License Agreement](eula.md).
 > 2. Both lists grow in time order.
