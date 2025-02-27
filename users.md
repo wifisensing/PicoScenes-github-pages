@@ -1,8 +1,8 @@
-# 2. Users
+# Users
 
 From the easiest CSI-data collection using the Intel AX210 to the SDR-based 802.11be multi-user (MU) experiments, PicoScenes is powering the next wave of the Wi-Fi ISAC research.
 
-## 2.1. Published Papers by PicoScenes Users
+## Published Papers by PicoScenes Users
 
 - Viktor Erdélyi, Kazuki Miyao, Akira Uchiyama, Tomoki Murakami, ["Poster: Activity Recognition Using CSI Backscatter with Commodity Wi-Fi"](https://dl.acm.org/doi/abs/10.1145/3643832.3661396), 2024, MobiSys.
 - Hao Yin, Murali Ramanujam, Joe Schaefer, Stan Adermann, Srihari Narlanka, Perry Lea, Ravi Netravali, Krishna Chintalapudi, ["ADR-X: ANN-Assisted Wireless Link Rate Adaptation for Compute-Constrained Embedded Gaming Devices"](https://www.usenix.org/conference/nsdi24/presentation/yin), 2024 NSDI.
@@ -25,230 +25,53 @@ From the easiest CSI-data collection using the Intel AX210 to the SDR-based 802.
 - Qing Yang, Tianzhang Xing, Zhiping Jiang, Junfeng Wang, Jingyi He, ["WiRD: Real-Time and Cross Domain Detection System on Edge Device"](https://link.springer.com/chapter/10.1007/978-3-030-95388-1_23), Algorithms and Architectures for Parallel Processing, 2022.
 - Xiaoyu Ma, Hui He, Hui Zhang, Wei Xi, Zuhao Chen, Jizhong Zhao, ["Measuring and Modeling Multipath of Wi-Fi to Locate People in Indoor Environments"](https://ieeexplore.ieee.org/abstract/document/9763705), 2021 IEEE 27th International Conference on Parallel and Distributed Systems (ICPADS).
 
-## 2.2. Affiliations using PicoScenes
+## Affiliations using PicoScenes
 
 The following grid lists the affiliations that use PicoScenes platform in their latest research.
 
 ### China Mainland Users
 
-<table>
-<tr>
-<td><img src="/images/logos/Xidian_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/XiJiao.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Zhejiang_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Northwestern_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Beijing_University_of_Posts_and_Telecommunications.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Tsinghua_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Peking_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Shandong_University_of_Science_and_Technology.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/uestc.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Kunming_University_of_Science_and_Technology.jfif" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/National_University_of_Defense_Technology.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Jinan_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Tianjin_University_of_Science_and_Technology.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/XUPT.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/dlut.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NJUPT.jpg" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/IMU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Central_South.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NUSRI.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/ZJUT.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/SUSTech.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/CQU.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/USTC.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/HAUT.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/SJTU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/SCU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/HIT.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/BJTU.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/SZU.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/HNUST.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NPU.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/WUT.jpg" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/JiLin_University.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Central_China_Normal_University.jpeg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/SNU.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/SouthEast_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/NJUST.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/wyu.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/OUOC.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/TJU.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/GuangXiYiKe_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Hefei_University_of_Technology.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/HUST.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/MSRA.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/ZhengZhouUniversity.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/FuDan.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/HeFei_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/ZGKD.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Hangzhou_City_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Sun_Yat_sen_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Hunan_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/huawei.png" style="width:100%; max-width:150px;"></td>
-</tr>
-</table>
+| ![Xidian University](/images/logos/Xidian_University.png) | ![XiJiao](/images/logos/XiJiao.png) | ![Zhejiang University](/images/logos/Zhejiang_University.png) | ![Northwestern University](/images/logos/Northwestern_University.png) |
+|:--:|:--:|:--:|:--:|
+| ![Beijing University of Posts and Telecommunications](/images/logos/Beijing_University_of_Posts_and_Telecommunications.png) | ![Tsinghua University](/images/logos/Tsinghua_University.png) | ![Peking University](/images/logos/Peking_University.png) | ![Shandong University of Science and Technology](/images/logos/Shandong_University_of_Science_and_Technology.png) |
+| ![UESTC](/images/logos/uestc.jpg) | ![Kunming University of Science and Technology](/images/logos/Kunming_University_of_Science_and_Technology.jfif) | ![National University of Defense Technology](/images/logos/National_University_of_Defense_Technology.png) | ![Jinan University](/images/logos/Jinan_University.png) |
+| ![Tianjin University of Science and Technology](/images/logos/Tianjin_University_of_Science_and_Technology.png) | ![XUPT](/images/logos/XUPT.png) | ![DLUT](/images/logos/dlut.jpg) | ![NJUPT](/images/logos/NJUPT.jpg) |
+| ![IMU](/images/logos/IMU.png) | ![Central South](/images/logos/Central_South.png) | ![NUSRI](/images/logos/NUSRI.png) | ![ZJUT](/images/logos/ZJUT.png) |
+| ![SUSTech](/images/logos/SUSTech.jpg) | ![CQU](/images/logos/CQU.jpg) | ![USTC](/images/logos/USTC.png) | ![HAUT](/images/logos/HAUT.png) |
+| ![SJTU](/images/logos/SJTU.png) | ![SCU](/images/logos/SCU.png) | ![HIT](/images/logos/HIT.png) | ![BJTU](/images/logos/BJTU.png) |
+| ![SZU](/images/logos/SZU.jpg) | ![HNUST](/images/logos/HNUST.jpg) | ![NPU](/images/logos/NPU.jpg) | ![WUT](/images/logos/WUT.jpg) |
+| ![JiLin University](/images/logos/JiLin_University.jpg) | ![Central China Normal University](/images/logos/Central_China_Normal_University.jpeg) | ![SNU](/images/logos/SNU.jpg) | ![SouthEast University](/images/logos/SouthEast_University.png) |
+| ![NJUST](/images/logos/NJUST.png) | ![WYU](/images/logos/wyu.png) | ![OUOC](/images/logos/OUOC.jpg) | ![TJU](/images/logos/TJU.png) |
+| ![GuangXiYiKe University](/images/logos/GuangXiYiKe_University.png) | ![Hefei University of Technology](/images/logos/Hefei_University_of_Technology.png) | ![HUST](/images/logos/HUST.png) | ![MSRA](/images/logos/MSRA.png) |
+| ![ZhengZhou University](/images/logos/ZhengZhouUniversity.png) | ![FuDan](/images/logos/FuDan.png) | ![HeFei University](/images/logos/HeFei_University.png) | ![ZGKD](/images/logos/ZGKD.png) |
+| ![Hangzhou City University](/images/logos/Hangzhou_City_University.png) | ![Sun Yat-sen University](/images/logos/Sun_Yat_sen_University.png) | ![Hunan University](/images/logos/Hunan_University.png) | ![Huawei](/images/logos/huawei.png) |
 
 ### Global Users
 
-<table>
-<tr>
-<td><img src="/images/logos/UT_Austin.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/CSU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/RGU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/HKU.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/UW.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Samsung.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/UCSD.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/IIT.Bombay.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Kyoto.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NTU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Mitsubishi_Electric.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/UM.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/UOHYD.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Moscow_State_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/KNU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NTUST.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/UCL.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/UIT-HCM.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Osaka.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NSYSU.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/U_Hawaii_Manoa.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/DJU.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/TUM.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/exeter.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/UA.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/I2R.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/UFG.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/KanSai.jpg" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/VNU.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/PrincetonUniversity.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/SNU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/CUHK.jpg" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Nagoya_University.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NYCU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/IIT_Madras.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/MNIT.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/florida_state_university.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/University_of_Waterloo.jpg" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/University_of_Liverpool.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/kyushu.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/MIPT.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/TUDelft.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/USYD.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NUS.jpg" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Northeastern.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/BRECIA.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/University_of_Twente.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/York_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/PolyU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/CMU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Fraunhofer.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/UCLA.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/TUDA.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/MHI.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/WASEDA.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/WITS.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/PASSAU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/INESCTEC.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/BahirDar_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/PusanUniversity.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Tokyo.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Universidade_de_Coimbra.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/University_of_Cologne.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/National_Central_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/CCU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Hanbat_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Dhaka_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Stuttgart_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/university_surrey.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/ULPGC_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/KU_Leuven_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Virginia_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/HW_Dubai_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/JKU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NYCU_T.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/DTU.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Keio_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/NLP_Logix.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Intel.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Plymouth_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Bremen_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/WGU.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Florida_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Kalgenfurt_University.png" style="width:100%; max-width:150px;"></td>
-</tr>
-<tr>
-<td><img src="/images/logos/Arizona_State_University.png" style="width:100%; max-width:150px;"></td>
-<td><img src="/images/logos/Chemnitz.png" style="width:100%; max-width:150px;"></td>
-<td></td>
-<td></td>
-</tr>
-</table>
+| ![UT Austin](/images/logos/UT_Austin.png) | ![CSU](/images/logos/CSU.png) | ![RGU](/images/logos/RGU.png) | ![HKU](/images/logos/HKU.png) |
+|:--:|:--:|:--:|:--:|
+| ![UW](/images/logos/UW.png) | ![Samsung](/images/logos/Samsung.png) | ![UCSD](/images/logos/UCSD.png) | ![IIT Bombay](/images/logos/IIT.Bombay.png) |
+| ![Kyoto](/images/logos/Kyoto.png) | ![NTU](/images/logos/NTU.png) | ![Mitsubishi Electric](/images/logos/Mitsubishi_Electric.png) | ![UM](/images/logos/UM.png) |
+| ![UOHYD](/images/logos/UOHYD.png) | ![Moscow State University](/images/logos/Moscow_State_University.png) | ![KNU](/images/logos/KNU.png) | ![NTUST](/images/logos/NTUST.png) |
+| ![UCL](/images/logos/UCL.png) | ![UIT-HCM](/images/logos/UIT-HCM.jpg) | ![Osaka](/images/logos/Osaka.jpg) | ![NSYSU](/images/logos/NSYSU.png) |
+| ![U Hawaii Manoa](/images/logos/U_Hawaii_Manoa.png) | ![DJU](/images/logos/DJU.jpg) | ![TUM](/images/logos/TUM.jpg) | ![Exeter](/images/logos/exeter.png) |
+| ![UA](/images/logos/UA.png) | ![I2R](/images/logos/I2R.png) | ![UFG](/images/logos/UFG.png) | ![KanSai](/images/logos/KanSai.jpg) |
+| ![VNU](/images/logos/VNU.jpg) | ![Princeton University](/images/logos/PrincetonUniversity.png) | ![SNU](/images/logos/SNU.png) | ![CUHK](/images/logos/CUHK.jpg) |
+| ![Nagoya University](/images/logos/Nagoya_University.jpg) | ![NYCU](/images/logos/NYCU.png) | ![IIT Madras](/images/logos/IIT_Madras.png) | ![MNIT](/images/logos/MNIT.png) |
+| ![Florida State University](/images/logos/florida_state_university.png) | ![University of Waterloo](/images/logos/University_of_Waterloo.jpg) | ![University of Liverpool](/images/logos/University_of_Liverpool.png) | ![Kyushu](/images/logos/kyushu.png) |
+| ![MIPT](/images/logos/MIPT.png) | ![TUDelft](/images/logos/TUDelft.png) | ![USYD](/images/logos/USYD.png) | ![NUS](/images/logos/NUS.jpg) |
+| ![Northeastern](/images/logos/Northeastern.png) | ![BRECIA](/images/logos/BRECIA.png) | ![University of Twente](/images/logos/University_of_Twente.png) | ![York University](/images/logos/York_University.png) |
+| ![PolyU](/images/logos/PolyU.png) | ![CMU](/images/logos/CMU.png) | ![Fraunhofer](/images/logos/Fraunhofer.png) | ![UCLA](/images/logos/UCLA.png) |
+| ![TUDA](/images/logos/TUDA.png) | ![MHI](/images/logos/MHI.png) | ![WASEDA](/images/logos/WASEDA.png) | ![WITS](/images/logos/WITS.png) |
+| ![PASSAU](/images/logos/PASSAU.png) | ![INESCTEC](/images/logos/INESCTEC.png) | ![BahirDar University](/images/logos/BahirDar_University.png) | ![Pusan University](/images/logos/PusanUniversity.png) |
+| ![Tokyo](/images/logos/Tokyo.png) | ![Universidade de Coimbra](/images/logos/Universidade_de_Coimbra.png) | ![University of Cologne](/images/logos/University_of_Cologne.png) | ![National Central University](/images/logos/National_Central_University.png) |
+| ![CCU](/images/logos/CCU.png) | ![Hanbat University](/images/logos/Hanbat_University.png) | ![Dhaka University](/images/logos/Dhaka_University.png) | ![Stuttgart University](/images/logos/Stuttgart_University.png) |
+| ![University of Surrey](/images/logos/university_surrey.png) | ![ULPGC University](/images/logos/ULPGC_University.png) | ![KU Leuven University](/images/logos/KU_Leuven_University.png) | ![Virginia University](/images/logos/Virginia_University.png) |
+| ![HW Dubai University](/images/logos/HW_Dubai_University.png) | ![JKU](/images/logos/JKU.png) | ![NYCU T](/images/logos/NYCU_T.png) | ![DTU](/images/logos/DTU.png) |
+| ![Keio University](/images/logos/Keio_University.png) | ![NLP Logix](/images/logos/NLP_Logix.png) | ![Intel](/images/logos/Intel.png) | ![Plymouth University](/images/logos/Plymouth_University.png) |
+| ![Bremen University](/images/logos/Bremen_University.png) | ![WGU](/images/logos/WGU.png) | ![Florida University](/images/logos/Florida_University.png) | ![Kalgenfurt University](/images/logos/Kalgenfurt_University.png) |
+| ![Arizona State University](/images/logos/Arizona_State_University.png) | ![Chemnitz](/images/logos/Chemnitz.png) | | |
 
 > **Note:**
-> 1. All affiliations listed above are identified from the collected software usage data. Data collection is expressly stated in the [PicoScenes Software End User License Agreement](eula.md).
+> 1. All affiliations listed above are identified from the collected software usage data. Data collection is expressly stated in the [EULA](/eula).
 > 2. Both lists grow in time order.
