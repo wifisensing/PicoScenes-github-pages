@@ -5,9 +5,24 @@
 
 /* Custom styles for PicoScenes documentation */
 
-/* Main navigation styling */
+/* Layout adjustments */
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+
+/* Sidebar navigation styling */
 .main-nav {
-  margin-bottom: 30px;
+  width: 250px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 20px;
+  background: #f8f8f8;
+  border-right: 1px solid #e5e5e5;
+  overflow-y: auto;
 }
 
 .main-nav h3 {
@@ -37,10 +52,19 @@
   text-decoration: underline;
 }
 
+/* Main content area */
+section {
+  margin-left: 270px;
+  padding: 20px;
+  width: calc(100% - 270px);
+}
+
 /* Improve content readability */
 body {
   font-size: 16px;
   line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -64,9 +88,23 @@ pre {
 }
 
 /* Responsive adjustments */
-@media print, screen and (max-width: 960px) {
-  div.wrapper {
+@media print, screen and (max-width: 1200px) {
+  .wrapper {
     width: auto;
     margin: 0;
+    flex-direction: column;
+  }
+
+  .main-nav {
+    position: relative;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  section {
+    margin-left: 0;
+    width: auto;
+    padding: 20px;
   }
 }
