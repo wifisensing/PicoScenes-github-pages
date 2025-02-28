@@ -1,6 +1,6 @@
-# Credits
+# 15. Credits
 
-## Development Team
+## 15.1. Development Team
 
 The creation of PicoScenes is the result of collaborative efforts of the following members.
 
@@ -45,4 +45,4 @@ The creation of PicoScenes is the result of collaborative efforts of the followi
 
 ## Open-source software
 
-PicoScenes are built upon many open-source software libraries. Their license information is at [opensource_license](/opensource_license).
+PicoScenes are built upon many open-source software libraries. Their license information is at [opensource_license](opensource_license.md).
