@@ -1,8 +1,8 @@
-# Utility Programs and Bash Scripts
+# 9. Utility Programs and Bash Scripts
 
 **Revised on Nov. 16, 2023**
 
-## UDP-Forwarder Plugin & UDPRemoteLogger
+## 9.1. UDP-Forwarder Plugin & UDPRemoteLogger
 
 The UDP-Forwarder plugin can forward the received PicoScenes Rx frame to a remote computer via UDP. The UDPRemoteLogger program can listen to UDP and save the PicoScenes Rx frames to a .csi file on another machine. Their usage is straightforward.
 
@@ -20,7 +20,7 @@ UDPRemoteLogger --port 50000
 
 > **Hint:** UDP-Forwarder and UDPRemoteLogger are fully open-sourced at [https://github.com/wifisensing/PicoScenes-PDK](https://github.com/wifisensing/PicoScenes-PDK)
 
-## Utility Scripts
+## 9.2. Utility Scripts
 
 Besides the `PicoScenes` main program, we also provide several handy bash scripts.
 
@@ -60,7 +60,7 @@ Besides the `PicoScenes` main program, we also provide several handy bash script
 
 2. **array_status**: list all PCI-E connected Wi-Fi NICs
 
-    As discussed in the device naming section, PicoScenes uses an ID system to refer to the specific Wi-Fi NICs. `array_status` shows the PhyPath, DevId, PhyId, [MonId], Device MAC address (changeable), Hardware MAC address (unchangeable), Carrier Frequency, Bandwidth, and Model description for each NIC. The default parameter is all, which lists all NICs. The following is a sample output:
+    As discussed in [Device Naming](scenarios.md#611-device-naming), PicoScenes uses an ID system to refer to the specific Wi-Fi NICs. `array_status` shows the PhyPath, DevId, PhyId, [MonId], Device MAC address (changeable), Hardware MAC address (unchangeable), Carrier Frequency, Bandwidth, and Model description for each NIC. The default parameter is all, which lists all NICs. The following is a sample output:
 
     ```console
     csi@csi-System:~$ array_status
