@@ -34,7 +34,8 @@ array_prepare_for_picoscenes NIC_ID "5180 80 5210" #<- Don't miss the quotation 
 array_prepare_for_picoscenes NIC_ID "5180 160 5250" #<- Don't miss the quotation mark (")
 ```
 
-> **Note**: See [naming_for_nics] for <NIC_ID>.
+> **Hint**: 
+    See [Device Naming for Commercial Wi-Fi NICs](scenarios.md#6111-device-naming-for-commercial-wi-fi-nics) for <NIC_ID>.
 
 ### For SDR Devices
 
@@ -62,7 +63,8 @@ PicoScenes "-d debug -i SDR_ID --freq 5210 -preset RX_CBW_80 --mode logger"
 PicoScenes "-d debug -i SDR_ID --freq 5250 -preset RX_CBW_160 --mode logger"
 ```
 
-> **Note**: See [naming_for_usrp] for <SDR_ID>.
+> **Hint**: 
+    See [Device Naming for NI USRP](scenarios.md#61121-device-naming-for-ni-usrp) for <SDR_ID>.
 
 ## The Big Wi-Fi Channelization Table
 
