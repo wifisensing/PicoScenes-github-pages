@@ -54,7 +54,7 @@ You may download and run the complete takeaway bash script for this scenario at 
 
 ## Two QCA9300 NICs scan both the spectrum and bandwidth (Difficulty Level: Medium)
 
-This experiment adds just two new options to the above scenario. See [dual_nics_scan](#dual_nics_scan) first. The following is the bash script that scans both the carrier frequency and bandwidth. The carrier frequency is the `inner loop` and bandwidth is the `outer loop`.
+This experiment adds just two new options to the above scenario. See [dual_nics_scan](scenarios.md#6264-dual-channel-spectrum-splitting-and-stitching-experimental) first. The following is the bash script that scans both the carrier frequency and bandwidth. The carrier frequency is the `inner loop` and bandwidth is the `outer loop`.
 
 ```bash
 #!/bin/sh -e 
@@ -73,7 +73,7 @@ You may download and run the complete takeaway bash script for this scenario at 
 
 ## Two QCA9300 NICs scan both the spectrum and bandwidth w/ advanced measurement settings (Difficulty Level: Medium Plus)
 
-The following script is based on the last scenario [dual_nics_scan](#dual_nics_scan), but adds a few more options to demonstrate the advanced measurement settings.
+The following script is based on the last scenario [dual_nics_scan](scenarios.md#6264-dual-channel-spectrum-splitting-and-stitching-experimental), but adds a few more options to demonstrate the advanced measurement settings.
 
 ```bash
 #!/bin/sh -e 
@@ -88,7 +88,7 @@ PicoScenes "-d debug;
 
 The above commands demonstrate the mostly used Tx/Rx options, namely `--cbw`, `--sts`, `--mcs`, `--txcm`, `--rxcm`, `--gi`, `--ess`, `--txpower`, `--coding`, and two EchoProbe ACK options `--ack-mcs` and `--ack-type`. `--cbw` indicates to transmit the frame in HT40 format. `--sts` and `--mcs` specify the number of space-time stream (\(N_{STS}\)) and MCS. `--txcm` and `--rxcm` are the Tx/Rx chain mask, `--txcm 5` means using the 1st and 3rd antennas for transmission, and `--rxcm 3` means using the 1st and 2nd antenna for receiving. `--gi 400` enables the Short Guard Interval (400ns) for HT-data portion. `--ess 1` means adding one extra spatial sounding HT-LTF. Adding the two conventional spatial streams (`--sts 2`) and one extra spatial stream, the transmitted packet has three HT-LTF, thus, three CSI measurements. `--txpower 15` specifies the transmission power to be 15 dBm. Last, `--coding ldpc` specifies the NIC baseband to encode the packet using low-density parity-check (LDPC) coding scheme.
 
-EchoProbe plugin also introduces several options to control the transmission of reply frames. `--ack-mcs 3` tells the responder to use MCS=3 if the responder doesn't specify MCS explicitly. There are also `--ack-sts`, `--ack-gi`, and `--ack-cbw` options. `--ack-type header` tells the responder not to reply the full CSI but only a header. Users may refer to [parameters](./parameters) for more detailed explanations.
+EchoProbe plugin also introduces several options to control the transmission of reply frames. `--ack-mcs 3` tells the responder to use MCS=3 if the responder doesn't specify MCS explicitly. There are also `--ack-sts`, `--ack-gi`, and `--ack-cbw` options. `--ack-type header` tells the responder not to reply the full CSI but only a header. Users may refer to [parameters](parameters.md) for more detailed explanations.
 
 > **Important:** PicoScenes uses the 802.11ac/ax style MCS/STS definition which decouples \(N_{STS}\) (`--sts`) and per-stream MCS (`--mcs`). For example, MCS=9 in 802.11n version is represented by two terms in 802.11ac/ax: \(N_{STS}=2\) (`--sts 2`) and MCS=1 (`--mcs 1`).
 
