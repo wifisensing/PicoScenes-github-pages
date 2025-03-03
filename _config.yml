@@ -1,3 +1,21 @@
 title: PicoScenes Documentation
 description: Comprehensive documentation for PicoScenes - A Powerful Wi-Fi Sensing Platform
-theme: jekyll-theme-minimal
+url: "https://您的用户名.github.io" 
+
+theme: jekyll-theme-minimal 
+
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 导航菜单设置
+header_pages:
+  - about.md
+  - projects.md
+
+# 社交媒体链接
+social_links:
+  github: 您的GitHub用户名
+  twitter: 您的Twitter用户名
+  # 可以添加更多社交媒体链接
