@@ -1,14 +1,19 @@
+---
+title: plugin
+permalink: /plugin/
+---
+
 # 10. Developing Your PicoScenes Plugins
 
 **Author:** Tian Teng, Xidian University, tengtianmoemoe@gmail.com
 
 Before creating your own PicoScenes plugins from scratch, you have seven steps to gradually develop your understanding of the PicoScenes architecture and the coding skillset. During this process, you will learn how to git clone PS-PDK code, compile it, modify it, debug it, and imitate it. You will also have a general understanding of `modern C++` development on the Linux platform.
 
-## 10.1. Prerequisites
+## 10.1. Prerequisites {#prerequisites}
 
 PicoScenes Plugin Development Kit (PS-PDK), as a standard C++ library, includes the PicoScenes `C/C++ headers` and `libraries`. If you have installed PicoScenes software, PS-PDK is already in your system. The headers and the binary library files are installed at `/usr/local/PicoScenes/include/PicoScenes` and `/usr/local/PicoScenes/lib`, respectively. You may refer to the document [installation](installation.md) to ensure your installation.
 
-### 10.1.1. Install necessary development dependencies
+### 10.1.1. Install necessary development dependencies {#install_necessary_development_dependencies}
 
 Run the following command to install the dependencies for PS-PDK development.
 
@@ -16,7 +21,7 @@ Run the following command to install the dependencies for PS-PDK development.
 sudo apt install -y git cmake build-essential libboost-all-dev libssl-dev libcpprest-dev libsodium-dev libfmt-dev libuhd-dev libopenblas-dev libfftw3-dev pkg-config
 ```
 
-### 10.1.2. Clone, build and install PicoScenes PDK project
+### 10.1.2. Clone, build and install PicoScenes PDK project {#clone_build_and_install_picoscenes_pdk_project}
 
 Run the following command to `git clone` the PicoScenes-PDK project
 
@@ -48,13 +53,13 @@ cd $scriptDir/build && sudo dpkg -i ./picoscenes*.deb
 
 If everything goes fine, the above command rebuilds and reinstalls the latest PS-PDK repository.
 
-### 10.1.3. Optional Feature Prerequisites
+### 10.1.3. Optional Feature Prerequisites {#optional_feature_prerequisites}
 
 We recommand JetBrains **CLion** as the IDE for PicoScenes plugin development.
 
-## 10.2. Developing PicoScenes Plugins
+## 10.2. Developing PicoScenes Plugins {#developing_picoscenes_plugins}
 
-### 10.2.1. PicoScenes Plugin Overview
+### 10.2.1. PicoScenes Plugin Overview {#pico_scenes_plugin_overview}
 
 The following image illustrates the relationship between PicoScenes-plugin and PicoScenes.  
 
@@ -72,7 +77,7 @@ The plugin has the capability to control all hardware on the platform, with all 
 
 > **Hint:** You can learn how to write plugins step by step following the tutorial, or you can view the complete code in the [repository](https://github.com/wifisensing/PicoScenes-PDK/).
 
-### 10.2.2. PicoScenes Plugin folder structure
+### 10.2.2. PicoScenes Plugin folder structure {#pico_scenes_plugin_folder_structure}
 
 The entire PS-PDK project is managed by `CMake` and contains three working plugins, a Demo plugin, the EchoProbe, and UDP-forwarder.
 
@@ -190,7 +195,7 @@ void DemoPlugin::parseAndExecuteCommands(const std::string &commandString) {
 }
 ```
 
-### 10.2.3. How to parse commands
+### 10.2.3. How to parse commands {#how_to_parse_commands}
 
 Add the following content in `DemoPlugin.cxx`
 
@@ -297,7 +302,7 @@ void DemoPlugin::parseAndExecuteCommands(const std::string &commandString) {
 
 - `vm["demo"].as<std::string>()`: Get parameters "HelloPicoScenes"
 
-### 10.2.4. How to receive packages
+### 10.2.4. How to receive packages {#how_to_receive_packages}
 
 You have now learned how to define a command and parse it. In the upcoming example, you will learn how to make a receive/send plugin.
 
@@ -388,7 +393,7 @@ If successfully running, the terminal will show
 [17:34:09.811501] [Platform] [Debug] This is my rxframe: RxFrame:{RxSBasic:[device=USRP(SDR), center=2412, control=2412, CBW=20, format=HT, Pkt_CBW=20, MCS=0, numSTS=1, GI=0.8us, UsrIdx/NUsr=(0/1), timestamp=1288, system_ns=1704015249809485863, NF=-78, RSS=-7], RxExtraInfo:[len=24, ver=0x2, sf=20.000000 MHz, cfo=0.000000 kHz, sfo=0 Hz], SDRExtra:[scrambler=39, packetStartInternal=25761, rxIndex=25760, rxTime=0.001288, decodingDelay=0.0620708466, lastTxTime=0, sigEVM=2.4], (HT)CSI:[device=USRP(SDR), format=HT, CBW=20, cf=2412.000000 MHz, sf=20.000000 MHz, subcarrierBW=312.500000 kHz, dim(nTones,nSTS,nESS,nRx,nCSI)=(56,1,0,1,1), raw=0B], LegacyCSI:[device=USRP(SDR), format=NonHT, CBW=20, cf=2412.000000 MHz, sf=20.000000 MHz, subcarrierBW=312.500000 kHz, dim(nTones,nSTS,nESS,nRx,nCSI)=(52,1,0,1,2), raw=0B], BasebandSignal:[(float) 3045x1], MACHeader:[type=[MF]Reserved_14, dest=00:16:ea:12:34:56, src=00:16:ea:12:34:56, seq=8, frag=0, mfrags=0], PSFHeader:[ver=0x20201110, device=QCA9300, numSegs=1, type=10, taskId=55742, txId=0], TxExtraInfo:[len=8, ver=0x2], MPDU:[num=1, total=75B]}
 ```
 
-### 10.2.5. How to transmit packages
+### 10.2.5. How to transmit packages {#how_to_transmit_packages}    
 
 The process of frame transmitting is similar to frame receiving.
 
@@ -498,7 +503,7 @@ PicoScenes "-d debug
 [18:15:35.993309] [SDR     ] [Debug] virtualsdr(Virtual(SDR))-->TxFrame:{MACHeader:[type=[MF]Reserved_14, dest=00:16:ea:12:34:56, src=00:16:ea:12:34:56, seq=0, frag=0, mfrags=0], PSFHeader:[ver=0x20201110, device=QCA9300, numSegs=0, type=0, taskId=33196, txId=0], tx_param[preset=DEFAULT, type=HT, CBW=20, MCS=0, numSTS=1, Coding=BCC, GI=0.8us, numESS= , sounding(11n)=1]} | PPDU: 2480
 ```
 
-## 10.3. Debug PicoScenes plugins
+## 10.3. Debug PicoScenes plugins {#debug_picoscenes_plugins}   
 
 Since the plugin .so file cannot run by itself, a tricky problem of plugin development emerges, `how to debug a plugin?`
 

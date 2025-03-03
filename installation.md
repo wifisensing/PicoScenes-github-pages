@@ -1,16 +1,21 @@
+---
+title: installation
+permalink: /installation/
+---
+
 # 5. PicoScenes Installation & Upgrade
 
 **Revised on Nov. 16, 2023**
 
 > 如果您不想费劲地看英文，请开启浏览器的翻译功能，省脑子。
 
-## 5.1. Hardware Installation
+## 5.1. Hardware Installation {#hardware_installation}
 
 PicoScenes currently supports 4 commercial Wi-Fi NIC models and SDR devices, including the AX200 (or AX201), AX210(or AX211), QCA9300 and IWL5300, all models of USRP devices, and the HackRF One.
 
 The most welcomed feature of PicoScenes is the concurrent operation of multiple RF frontends, i.e., simultaneous CSI measurement or packet injection using a commercial Wi-Fi NIC/SDR array. To help you get the hardware ready, we share some hardware preparation experience, mainly focusing on the multi-devices setup.
 
-### 5.1.1. Installation of (Multiple) Commercial Wi-Fi NICs
+### 5.1.1. Installation of (Multiple) Commercial Wi-Fi NICs {#installation_of_multiple_commercial_wi_fi_nics}
 
 We recommend three methods for installing multiple NICs.
 
@@ -40,18 +45,18 @@ We recommend three methods for installing multiple NICs.
 >
 > * Get them from our Taobao shop [PicoScenes软硬件与服务](https://shop235693252.taobao.com/)! Our shop sells the modified ThinkPad X201 and all supported Wi-Fi NICs.
 
-### 5.1.2. Installation of (Multiple) USRP Devices
+### 5.1.2. Installation of (Multiple) USRP Devices {#installation_of_multiple_usrp_devices}
 
 The installation, usage, and optimization of USRP are much more complex than that of a COTS NIC. Therefore, please follow the steps below to configure and verify the USRP hardware.
 
-#### 5.1.2.1. Installing PicoScenes Software 
+#### 5.1.2.1. Installing PicoScenes Software {#installing_picoscenes_software}
 
-Before setting up the USRP hardware, you should install the PicoScenes software first. Please follow the instructions in the [PicoScenes Software Installation](#52-picoscenes-software-installation) section to install PicoScenes. Please note that PicoScenes depends on specific version of UHD. If you have previously installed your own compiled version of UHD, please uninstall it before proceeding.
+Before setting up the USRP hardware, you should install the PicoScenes software first. Please follow the instructions in the [PicoScenes Software Installation](#picoscenes_software_installation) section to install PicoScenes. Please note that PicoScenes depends on specific version of UHD. If you have previously installed your own compiled version of UHD, please uninstall it before proceeding.
 
 > **Hint** :
 > The driver installation or build process listed on the USRP Official site can be complicated and prone to errors. To simplify this process, we have built and packaged the PicoScenes software using the USRP driver shipped with the Ubuntu system. Therefore, by installing PicoScenes software, you will also be installing the USRP driver.
 
-#### 5.1.2.2. Configuring USRP Hardware
+#### 5.1.2.2. Configuring USRP Hardware {#configuring_usrp_hardware}
 
 You should set up your hardware according to the USRP official [Devices & Usage Manual](https://files.ettus.com/manual/page_devices.html). Read and follow the Get Started sections according to your USRP models.
 
@@ -65,7 +70,7 @@ You should set up your hardware according to the USRP official [Devices & Usage 
 > **Hint** :
 > The PicoScenes software installer installs the UHD software. So, you skip the UHD installation or source code building steps.
 
-##### 5.1.2.2.1. Suggestions for NI USRP Hardware Setup
+##### 5.1.2.2.1. Suggestions for NI USRP Hardware Setup {#suggestions_for_ni_usrp_hardware_setup}
 
 Based on our experience, we have the following suggestions for setting up USRP hardware:
 
@@ -83,11 +88,11 @@ Based on our experience, we have the following suggestions for setting up USRP h
 
 - Clock Synchronization: For clock synchronization, the OctoClock-G from EttusResearch is a cost-effective choice. It can distribute GPS-disciplined clocks to up to eight USRP devices.
 
-#### 5.1.2.3. Verifying Hardware Installation
+#### 5.1.2.3. Verifying Hardware Installation {#verifying_hardware_installation}
 
 To ensure that your USRP is ready for PicoScenes, follow the four-stage verification process outlined below.
 
-##### 5.1.2.3.1. Verifying Hardware Connection
+##### 5.1.2.3.1. Verifying Hardware Connection {#verifying_hardware_connection}
 
 Open a terminal and execute the following command:
 
@@ -97,7 +102,7 @@ uhd_find_devices
 
 The uhd_find_devices command is provided by UHD as a device discovery program. It will list all the connected USRP devices. If your device is not displayed, please refer to the USRP manual for troubleshooting steps to check the hardware connection.
 
-##### 5.1.2.3.2. Verifying Firmware Version
+##### 5.1.2.3.2. Verifying Firmware Version {#verifying_firmware_version}
 
 Open a terminal and execute the following command:
 
@@ -105,7 +110,7 @@ Open a terminal and execute the following command:
 uhd_usrp_probe
 ```
 
-The uhd_usrp_probe command prints the hardware details of all connected devices and checks whether the devices’ firmware versions are consistent with the UHD software installed on the host computer. If any inconsistencies are detected, you can use the uhd_image_loader command to flash the latest firmware to the USRP.
+The uhd_usrp_probe command prints the hardware details of all connected devices and checks whether the devices' firmware versions are consistent with the UHD software installed on the host computer. If any inconsistencies are detected, you can use the uhd_image_loader command to flash the latest firmware to the USRP.
 
 To update the firmware for USRP N2x0 devices, run the following command:
 
@@ -119,7 +124,7 @@ For USRP X3x0 devices, use the following command to update the firmware:
 uhd_image_loader --args="type=x300"
 ```
 
-##### 5.1.2.3.3. Verifying Signal Reception (RX)
+##### 5.1.2.3.3. Verifying Signal Reception (RX) {#verifying_signal_reception_rx}
 
 To check if your USRP can receive the signal, you can use UHD's `uhd_fft` command. Execute the following command:
 
@@ -129,19 +134,19 @@ uhd_fft --args="ADDRESS_STRING" -f 2412e6 -s 20e6
 
 Replace `ADDRESS_STRING` with the USRP identification string. For more details, refer to the [USRP Common Device Identifiers](https://files.ettus.com/manual/page_identification.html#id_identifying_common).
 
-##### 5.1.2.3.4. Tx/Rx Self-Calibration (for USRP N2x0, X3x0, and N3x0 users)
+##### 5.1.2.3.4. Tx/Rx Self-Calibration (for USRP N2x0, X3x0, and N3x0 users) {#tx_rx_self_calibration_for_usrp_n2x0_x3x0_and_n3x0_users}
 
 Uncalibrated daughterboards can introduce `serious` signal distortion. It is recommended to perform calibrations for EACH daughterboard following the instructions in the [Device Calibration](https://files.ettus.com/manual/page_calibration.html) section. Calibrating the frequency range that covers your intended measurements will help achieve the best signal quality.
 
-### 5.1.3. Installation of (Multiple) HackRF One
+### 5.1.3. Installation of (Multiple) HackRF One {#installation_of_multiple_hackrf_one}
 
 The installation and verification process for HackRF One is relatively simpler compared to USRP. Please follow the steps below to complete the installation and verification.
 
-#### 5.1.3.1. Installing The PicoScenes Software 
+#### 5.1.3.1. Installing The PicoScenes Software {#installing_the_picoscenes_software}
 
-Before setting up the HackRF One hardware, you should install the PicoScenes software first. you should follow [PicoScenes Software Installation](#52-picoscenes-software-installation) section to install the PicoScenes software.
+Before setting up the HackRF One hardware, you should install the PicoScenes software first. you should follow [PicoScenes Software Installation](#picoscenes_software_installation) section to install the PicoScenes software.
 
-#### 5.1.3.2. Verifying Hardware Connection
+#### 5.1.3.2. Verifying Hardware Connection {#verifying_hardware_connection}
 
 The HackRF One is a USB 2.0 interfaced SDR device, so you can simply plug in the device. To check the connection, run the following command:
 
@@ -151,11 +156,11 @@ SoapySDRUtil --find="driver=hackrf"
 
 If the connection is successful, you will see the device information displayed.
 
-## 5.2. PicoScenes Software Installation
+## 5.2. PicoScenes Software Installation {#picoscenes_software_installation}
 
 Before installing the PicoScenes software, please make sure you meet the following prerequisites:
 
-### 5.2.1. Prerequisites
+### 5.2.1. Prerequisites {#prerequisites}
 
 - You **agree to be bound by** [PicoScenes Software End User License Agreement](eula.md).
 - Your computer is X86-64 architecture. *We don't support ARM CPU, despite planned.*
@@ -168,7 +173,7 @@ Before installing the PicoScenes software, please make sure you meet the followi
 - You need permission to install the latest kernel version. PicoScenes depends on the latest kernel versions. During the installation and subsequent upgrades, your system will be forced to update to the latest kernel version.
 - (Optional) The latest version of MATLAB on Linux/macOS/Windows: PicoScenes MATLAB Toolbox (PMT) supports the R2020b or above versions of MATLAB on Linux/macOS/Windows platforms.
 
-### 5.2.2. Install PicoScenes via *apt* command 
+### 5.2.2. Install PicoScenes via *apt* command {#install_picoscenes_via_apt_command}  
 
 Please ensure that your system meets all the requirements mentioned earlier before proceeding with the installation.
 
@@ -225,11 +230,11 @@ Please ensure that your system meets all the requirements mentioned earlier befo
 
    Since PicoScenes is designed to be a `service` program, it will not quit automatically. You can press `Ctrl+C` in the terminal to exit the program.
 
-## 5.3. Install PicoScenes MATLAB Toolbox Core
+## 5.3. Install PicoScenes MATLAB Toolbox Core {#install_picoscenes_matlab_toolbox_core}
 
 PicoScenes MATLAB Toolbox Core (PMT-Core) is used for parsing the `.csi files` generated by the PicoScenes program.
 
-### 5.3.1. Prerequisites and Preparations
+### 5.3.1. Prerequisites and Preparations {#prerequisites_and_preparations}
 
 Since the PicoScenes MATLAB Toolbox Core (PMT-Core) and the PicoScenes main program utilize the same [RxS-Parsing-Core library](https://github.com/wifisensing/RXS-Parsing-Core) to parse the CSI data, PMT-Core has dependencies on specific combinations of operating systems (OS), MATLAB versions, and C/C++ compilers. The table below lists the proven working environments.
 
@@ -241,7 +246,7 @@ Since the PicoScenes MATLAB Toolbox Core (PMT-Core) and the PicoScenes main prog
 
 The following are the preparation steps for each supported OS.
 
-#### 5.3.1.1. Preparation steps for Ubuntu
+#### 5.3.1.1. Preparation steps for Ubuntu {#preparation_steps_for_ubuntu}
 
 - Install MATLAB (version R2020b or above)
 - Run `sudo apt install build-essential` to install GCC
@@ -254,12 +259,12 @@ The following are the preparation steps for each supported OS.
     3. For "Authorized user for MATLAB" leave the field blank.
     4. For "Rename MATLAB's GCC libraries?" choose YES.
 
-#### 5.3.1.2. Preparation steps for macOS
+#### 5.3.1.2. Preparation steps for macOS {#preparation_steps_for_macos}
 
 - Install MATLAB (version R2020b or above)
 - Install Xcode 12.4 (or above) from macOS App Store 
 
-#### 5.3.1.3. Preparation steps for Windows
+#### 5.3.1.3. Preparation steps for Windows {#preparation_steps_for_windows}
 
 - Install MATLAB (version R2020b or above)
 - Install [TDM-GCC-64](https://jmeubank.github.io/tdm-gcc/) (choose the MinGW-w64 based version, version 10.3+)
@@ -273,7 +278,7 @@ The following screenshot demonstrates how to set up TDM-GCC-64 v10.3 in MATLAB R
 
 ![Screenshot: Setting up TDM-GCC in MATLAB](/images/tdm-gcc-matlab.jpg)
 
-### 5.3.2. Obtaining PicoScenes MATLAB Toolbox Core (PMT-Core)
+### 5.3.2. Obtaining PicoScenes MATLAB Toolbox Core (PMT-Core) {#obtaining_picoscenes_matlab_toolbox_core_pmt_core}
 
 To obtain the PicoScenes MATLAB Toolbox Core (PMT-Core), you should **ONLY** use the `git clone` command to clone from the toolbox's git repository [PicoScenes MATLAB Toolbox Core](https://github.com/wifisensing/PicoScenes-MATLAB-Toolbox-Core). Make sure to include the **--recursive** option when cloning. It is important **not to download the toolbox directly**.
 
@@ -285,7 +290,7 @@ To obtain the PicoScenes MATLAB Toolbox Core (PMT-Core), you should **ONLY** use
 >
 > A: By default, the `git clone` command clones and checks out the main repository but not its submodules. The `--recursive` option ensures that the submodule is also cloned and checked out.
 
-### 5.3.3. Installing the PicoScenes MATLAB Toolbox Core
+### 5.3.3. Installing the PicoScenes MATLAB Toolbox Core {#installing_the_picoscenes_matlab_toolbox_core}
 
 Open MATLAB, navigate `Current Folder` to the `PicoScenes-MATLAB-Toolbox-Core` directory and run the following command in `Command Window`:
 
@@ -298,21 +303,21 @@ Wait for a few seconds. If you see similar messages as shown in the picture belo
 
 ![Screenshot: Installing PMT-Core in MATLAB](/images/install-PicoScenes-MATLAB-Toolbox.png)
 
-### 5.3.4. Verifying installation
+### 5.3.4. Verifying installation {#verifying_installation}
 
 In MATLAB `Current Folder`, navigate to `PicoScenes-MATLAB-Toolbox-Core/samples` directory, *drag'n'drop* a sample .csi file into `Command Window`. Soon, they will be parsed into MATLAB cell arrays.
 
-## 5.4. Installing PicoScenes Python Toolbox
+## 5.4. Installing PicoScenes Python Toolbox {#installing_picoscenes_python_toolbox}
 
 PicoScenes Python Toolbox (PPT) is used for parsing the .csi files in Python. Its installation and usage is documented in the project [repo](https://github.com/wifisensing/PicoScenes-Python-Toolbox).
 
-## 5.5. Upgrading PicoScenes Software
+## 5.5. Upgrading PicoScenes Software {#upgrading_picoscenes_software}
 
 Since PicoScenes is *still* under *very active* development, adding new features, adding new hardware support and fixing bugs, we recommend you upgrade PicoScenes software regularly.
 
-### 5.5.1. Check and Upgrade the PicoScenes Binaries
+### 5.5.1. Check and Upgrade the PicoScenes Binaries {#check_and_upgrade_the_picoscenes_binaries}
 
-#### 5.5.1.1. Checking for upgrade
+#### 5.5.1.1. Checking for upgrade {#checking_for_upgrade}
 
 PicoScenes has a built-in feature to check for upgrades, which is triggered during every launch if an internet connection is available. To manually check for upgrades, follow these steps:
 
@@ -323,7 +328,7 @@ PicoScenes has a built-in feature to check for upgrades, which is triggered duri
 
 ![Screenshot: PicoScenes hints for the upgrade](/images/PicoScenes_check_upgrade.png)
 
-#### 5.5.1.2. Upgrading the PicoScenes Binaries
+#### 5.5.1.2. Upgrading the PicoScenes Binaries {#upgrading_the_picoscenes_binaries}
 
 The upgrade process for PicoScenes is simplified through the Debian package system. Follow these steps to upgrade the software:
 
@@ -340,19 +345,19 @@ For Ubuntu CLI users:
 sudo apt update && sudo apt upgrade
 ```
 
-### 5.5.2. Checking and Upgrading the PMT-Core
+### 5.5.2. Checking and Upgrading the PMT-Core {#checking_and_upgrading_the_pmt_core}
 
 PMT-Core is released via git, therefore to upgrade PMT-Core, run `git pull & git submodule update` within the PMT directory.
 
-## 5.6. Uninstallation of The PicoScenes Ecosystem
+## 5.6. Uninstallation of The PicoScenes Ecosystem {#uninstallation_of_the_picoscenes_ecosystem}
 
-### 5.6.1. Uninstalling the PicoScenes Binaries
+### 5.6.1. Uninstalling the PicoScenes Binaries {#uninstalling_the_picoscenes_binaries}
 
 - Run `sudo apt remove picoscenes-driver-modules-<PRESS TAB KEY>` to remove the PicoScenes Drivers.
 - Run `sudo apt remove picoscenes-<PRESS TAB KEY>` to remove PicoScenes platform and plugins.
 - Reboot your computer to complete the uninstallation process.
 
-### 5.6.2. Uninstalling the PMT-Core
+### 5.6.2. Uninstalling the PMT-Core {#uninstalling_the_pmt_core}
 
 - Run `uninstall_PicoScenes_MATLAB_Toolbox` in MATLAB
 - Remove the PMT folder

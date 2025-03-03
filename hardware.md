@@ -1,12 +1,17 @@
+---
+title: hardware
+permalink: /hardware/
+---
+
 # 3. Supported Hardware
 
 **Revised on Nov. 29, 2023**
 
 In this page, we briefly compare the capabilities of the PicoScenes-supported CSI hardware. 
 
-[Exclusive for China mainland users]: PicoScenes团队很荣幸得到NI的认可与支持，获得NI USRP授权销售资格([与NI中国合作赠送 PSLP-PRO-DBL许可证 (Gifting PSLP-PRO-DBL Licenses in Collaboration with NI China)](features_pricing.md#421-与ni中国合作赠送-pslp-pro-dbl许可证-gifting-pslp-pro-dbl-licenses-in-collaboration-with-ni-china))。您可以在这个页面查看我们的NI USRP销售方案，[Selling NI USRP Devices (与NI合作销售USRP系列产品)](ni.md)。
+Exclusive for China mainland users: PicoScenes团队很荣幸得到NI的认可与支持，获得NI USRP授权销售资格([与NI中国合作赠送 PSLP-PRO-DBL许可证 (Gifting PSLP-PRO-DBL Licenses in Collaboration with NI China)](features_pricing.md#421-与ni中国合作赠送-pslp-pro-dbl许可证-gifting-pslp-pro-dbl-licenses-in-collaboration-with-ni-china))。您可以在这个页面查看我们的NI USRP销售方案，[Selling NI USRP Devices (与NI合作销售USRP系列产品)](ni.md)。
 
-## CSI-Extractable Hardware Supported by The PicoScenes Platform
+**CSI-Extractable Hardware Supported by The PicoScenes Platform**
 
 | Hardware Model | USRP-based SDR (X410 as example) | HackRF One | AX210/AX200 | QCA9300 | IWL5300 |
 |---------------|----------------------------------|------------|-------------|----------|----------|

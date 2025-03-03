@@ -53,15 +53,22 @@ header_pages:
   - why.md
   - eula.md
 
-# 集合设置（如果需要）
-# collections:
-#   products:
-#     output: true
+# 添加以下配置
+permalink: pretty
+kramdown:
+  auto_ids: true
+  input: GFM
 
-# 默认布局设置
+# 添加collections配置
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
 defaults:
   -
     scope:
-      path: "" # 空字符串表示所有文件
+      path: ""
+      type: "pages"
     values:
-      layout: "default" # 使用 default 布局
+      layout: "default"

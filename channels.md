@@ -1,3 +1,9 @@
+---
+layout: default
+title: Wi-Fi Channelization
+permalink: /channels/
+---
+
 # Wi-Fi Channelization
 
 **Revised on Nov. 16, 2023**

@@ -1,3 +1,8 @@
+---
+title: presets
+permalink: /presets/
+---
+
 # PicoScenes Presets
 
 We recommend users in most cases to use *preset-based Tx/Rx setting*. It significantly shorten the command line options and avoid many mistakes. In this page, we show and explain all presets provided by PicoScenes.

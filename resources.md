@@ -1,8 +1,13 @@
+---
+title: resources
+permalink: /resources/
+---
+
 # 12. Useful Resources
 
 **Revised on Nov. 16, 2023**
 
-## 12.1. The academic paper of PicoScenes
+## 12.1. The academic paper of PicoScenes {#the_academic_paper_of_picoscenes} 
 
 Zhiping Jiang, Tom H. Luan, Xincheng Ren, Dongtao Lv, Han Hao, Jing Wang, Kun Zhao, Wei Xi, Yueshen Xu, Rui Li, [Eliminating the Barriers: Demystifying Wi-Fi Baseband Design and Introducing the PicoScenes Wi-Fi Sensing Platform, in IEEE Internet of Things Journal (IEEE IOT-J)](https://doi.org/10.1109/JIOT.2021.3104666).
 
@@ -10,13 +15,13 @@ This paper introduces PicoScenes and also reports very extensive performance eva
 
 > **Important**: If PicoScenes software (including the main program, bash scripts, PicoScenes MATLAB Toolbox and any PicoScenes plugins regardless of the ownership) is used by any form in your academic research, **you should cite the above work**. This citation requirement is also included in the PicoScenes Software EULA.
 
-## 12.2. Quick Reference
+## 12.2. Quick Reference {#quick_reference}
 
 - Wi-Fi Channelization Table: [channels](channels.md)
 - Frontend Presets List: [presets](presets.md)
 - Device Naming Protocol: [device_naming](scenarios.md#611-device-naming)
 
-## 12.3. Opensource repositories
+## 12.3. Opensource repositories {#opensource_repositories} 
 
 - PicoScenes projects group: [https://github.com/wifisensing](https://github.com/wifisensing). The following are some of the open source sub-projects.
   - [PicoScenes MATLAB Toolbox Core](https://github.com/wifisensing/PicoScenes-MATLAB-Toolbox-Core): the official PicoScenes MATLAB Toolbox (PMT) that parse the PicoScenes .csi file.
@@ -25,6 +30,6 @@ This paper introduces PicoScenes and also reports very extensive performance eva
   - [PicoScenes Plugin Development Kit (PS-PDK)](https://github.com/wifisensing/PicoScenes-PDK): the source repositories of three PicoScenes plugins, namely the Demo Plugin, UDP Forwarder and EchoProbe. We name it PS-PDK, because most PicoScenes plugins are developed based on this repo.
   - [PicoScenes Manual](https://github.com/wifisensing/PicoScenes-Manual): the reStructuredText source code of this documentation.
 
-## 12.4. Other useful resources on Wi-Fi/RF/Smart Sensing
+## 12.4. Other useful resources on Wi-Fi/RF/Smart Sensing {#other_useful_resources_on_wi_fi_rf_smart_sensing}
 
 - [IoT Book](https://iot-book.github.io) by Jiliang Wang, Tsinghua University (A full Chinese book). 王老师的这本IoT Book覆盖了智能感知相关的众多研究方向的最新进展及上手宝典，是入门智能感知相关研究不可多得的教材。

@@ -1,8 +1,13 @@
+---
+title: utilities
+permalink: /utilities/
+---
+
 # 9. Utility Programs and Bash Scripts
 
 **Revised on Nov. 16, 2023**
 
-## 9.1. UDP-Forwarder Plugin & UDPRemoteLogger
+## 9.1. UDP-Forwarder Plugin & UDPRemoteLogger {#udp_forwarder_plugin_and_udpremotelogger}  
 
 The UDP-Forwarder plugin can forward the received PicoScenes Rx frame to a remote computer via UDP. The UDPRemoteLogger program can listen to UDP and save the PicoScenes Rx frames to a .csi file on another machine. Their usage is straightforward.
 
@@ -20,7 +25,7 @@ UDPRemoteLogger --port 50000
 
 > **Hint:** UDP-Forwarder and UDPRemoteLogger are fully open-sourced at [https://github.com/wifisensing/PicoScenes-PDK](https://github.com/wifisensing/PicoScenes-PDK)
 
-## 9.2. Utility Scripts
+## 9.2. Utility Scripts {#utility_scripts}  
 
 Besides the `PicoScenes` main program, we also provide several handy bash scripts.
 

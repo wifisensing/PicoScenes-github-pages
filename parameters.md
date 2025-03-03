@@ -1,6 +1,11 @@
+---
+title: parameters
+permalink: /parameters/
+---
+
 # 7. Command Line Interface and Program Option Reference
 
-## 7.1. PicoScenes Command Line Interface 
+## 7.1. PicoScenes Command Line Interface {#picoscenes_command_line_interface}
 
 As shown in the [scenarios](scenarios.md), multiple command options can be written in one single command string, which is surrounded by quotation marks. This section uses the following example commands to describe how PicoScenes parses the program options.
 
@@ -52,7 +57,7 @@ The following process simulates the real parsing process of the above command se
     1. Platform Startup Option parser recognizes nothing.
     2. Platform Option parser recognizes ``-q`` and trigger PicoScenes shutdown sequence.
 
-## 7.2. Program Options Hierarchy
+## 7.2. Program Options Hierarchy {#program_options_hierarchy}
 
 Various PicoScenes program options are organized in a hierarchical structure as listed below:
 
@@ -70,7 +75,7 @@ Various PicoScenes program options are organized in a hierarchical structure as 
 
 > **Tip**: You can also look up the **complete** program options by running the command `PicoScenes --help`, if you have successfully installed the PicoScenes.
 
-## 7.3. Platform Startup Options (Bottom)
+## 7.3. Platform Startup Options (Bottom) {#platform_startup_options}
 
 - `--plugin-dir <new_plugin_dir>`
   - Description: Change the plugin search directory to your specified directory, e.g. `--plugin-dir /home/YOUR_HOME/PicoScenes-PDK`. If not specified, PicoScenes will by default search for plugins in /usr/local/PicoScenes/plugins.
@@ -93,7 +98,7 @@ Various PicoScenes program options are organized in a hierarchical structure as 
   - Notes: N/A
   - Example: N/A 
 
-## 7.4. Platform Options
+## 7.4. Platform Options {#platform_options}
 
 - `-i [ --interface ] arg`
   - Description: The ID of the target device/interface. This value MUST be provided to validate the Frontend Options.
@@ -115,7 +120,7 @@ Various PicoScenes program options are organized in a hierarchical structure as 
   - Notes: N/A
   - Example: `-h`
 
-## 7.5. Frontend Level Options
+## 7.5. Frontend Level Options {#frontend_level_options}
 
 PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
 
@@ -176,7 +181,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - `reset` refers to the longer and more complete channel channel protocol in ath9k driver, which includes hardware reset. In ath9k driver `reset` handels the cross band channel change.
   - Example: `-p chansel`
 
-### 7.5.2. USRP frontend options
+### 7.5.2. USRP frontend options {#usrp_frontend_options} 
 - `--freq arg`
   - Description: Specify the carrier frequency for SDR frontend. This option supports the scientific notation like 2412e6 or 2.412e9.
   - Default: This option has NO default value and is not persistent. You should specify it every time.
@@ -351,15 +356,15 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Value Range: N/A
   - Notes: N/A
   - Example: `--enable-hw-acc`
-## 7.6. Per-Plugin Level Options (Top)
-### 7.6.1. EchoProbe Options
+## 7.6. Per-Plugin Level Options (Top) {#per_plugin_level_options}
+### 7.6.1. EchoProbe Options {#echo_probe_options}
 - `--mode arg`
   - Description: EchoProbe working mode.
   - Default: N/A
   - Value Range: `injector`, `logger`, `initiator`, `responder`
   - Notes: N/A
   - Example: `--mode injector`
-### 7.6.2. EchoProbe initiator options
+### 7.6.2. EchoProbe initiator options {#echo_probe_initiator_options}
 - `--target-mac-address`
   - Description: MAC address of the injection target [ magic Intel `00:16:ea:12:34:56` is default].
   - Default: N/A
@@ -473,7 +478,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Notes: N/A
   - Example: `--ifs 10e-6`
 
-### 7.6.3. Echo responder options
+### 7.6.3. Echo responder options {#echo_responder_options} 
 
 - `--ack-type`
   - Description: EchoProbe reply strategy.

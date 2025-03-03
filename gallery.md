@@ -4,33 +4,22 @@ title: Gallery
 permalink: /gallery/
 ---
 
-<nav class="gallery-nav">
-  <ul>
-    <li><a href="#b210_hackrf">USRP B210 & HackRF</a></li>
-    <li><a href="#hackrf_live">HackRF Live CSI</a></li>
-    <li><a href="#ax210_160">AX210 160MHz</a></li>
-    <li><a href="#ax210_monitor">AX210 Monitor</a></li>
-    <li><a href="#scan_9300">QCA9300 Spectrum</a></li>
-    <!-- Add more navigation items as needed -->
-  </ul>
-</nav>
-
 # 1. Gallery
 
 This page shows some of most highlighted features of PicoScenes.
 
-- [PicoScenes Driving USRP B210 and HackRF One to Inject 11AX Packets and Measuring CSI (1 & 2)](#11-picoscenes-driving-usrp-b210-and-hackrf-one-to-inject-11ax-packets-and-measuring-csi-1--2-b210_hackrf)
-- [Live CSI measurement and plot using HackRF One](#12-live-csi-measurement-and-plot-using-hackrf-one-hackrf_live) 
-- [AX210 NIC in STA mode measuring the 160-MHz bandwidth CSI and live-plotting](#13-ax210-nic-in-sta-mode-measuring-the-160-mhz-bandwidth-csi-and-live-plotting-ax210_160)
-- [AX210 NIC in Monitor Mode measuring CSI for all overheard frames and live-plotting](#14-ax210-nic-in-monitor-mode-measuring-csi-for-all-overheard-frames-and-live-plotting-ax210_monitor)
-- [AX210 NIC Measuring CSI in Monitor mode w/ 20/160-MHz BW Packet Injection from Another AX210](#15-ax210-nic-measuring-csi-in-monitor-mode-w-20160-mhz-bw-packet-injection-from-another-ax210-ax210_another_210)
-- [AX210 NIC Measuring CSI in Monitor mode w/ Round-trip CSI and Frequency Hopping](#16-ax210-nic-measuring-csi-in-monitor-mode-w-round-trip-csi-and-frequency-hopping-ax210_ax210)
-- [CSI measurements over a large and continuous spectrum by QCA9300](#17-csi-measurements-over-a-large-and-continuous-spectrum-by-qca9300-scan_9300)
-- [CSI measurements under tunable and wide baseband bandwidths](#18-csi-measurements-under-tunable-and-wide-baseband-bandwidths-qca9300_tune_bw)
-- [Large spectrum stitching using two QCA9300 NICs](#19-large-spectrum-stitching-using-two-qca9300-nics-stitching_9300)
-- [Large spectrum stitching using A USRP X310 and a QCA9300 NIC](#110-large-spectrum-stitching-using-a-usrp-x310-and-a-qca9300-nic-stitching_x310_9300)
-- [Installation of PicoScenes MATLAB Toolbox and drag'n'drop style .csi file parsing](#111-installation-of-picoscenes-matlab-toolbox-and-dragndrop-style-csi-file-parsing-dragndrop)
-- [27-NIC Wi-Fi sensing array](#112-27-nic-wi-fi-sensing-array-27nic_array)
+- [PicoScenes Driving USRP B210 and HackRF One to Inject 11AX Packets and Measuring CSI (1 & 2)](#b210_hackrf)
+- [Live CSI measurement and plot using HackRF One](#hackrf_live)
+- [AX210 NIC in STA mode measuring the 160-MHz bandwidth CSI and live-plotting](#ax210_160)
+- [AX210 NIC in Monitor Mode measuring CSI for all overheard frames and live-plotting](#ax210_monitor)
+- [AX210 NIC Measuring CSI in Monitor mode w/ 20/160-MHz BW Packet Injection from Another AX210](#ax210_another_210)
+- [AX210 NIC Measuring CSI in Monitor mode w/ Round-trip CSI and Frequency Hopping](#ax210_ax210)
+- [CSI measurements over a large and continuous spectrum by QCA9300](#scan_9300)
+- [CSI measurements under tunable and wide baseband bandwidths](#qca9300_tune_bw)
+- [Large spectrum stitching using two QCA9300 NICs](#stitching_9300)
+- [Large spectrum stitching using A USRP X310 and a QCA9300 NIC](#stitching_x310_9300)
+- [Installation of PicoScenes MATLAB Toolbox and drag'n'drop style .csi file parsing](#dragndrop)
+- [27-NIC Wi-Fi sensing array](#nic_array)
 
 ## 1.1. PicoScenes Driving USRP B210 and HackRF One to Inject 11AX Packets and Measuring CSI (1 & 2) {#b210_hackrf}
 
@@ -160,7 +149,7 @@ Bilibili:
 
 <iframe src="//player.bilibili.com/player.html?aid=383047528&bvid=BV1NY4y1C79T&cid=570756427&page=1" scrolling="no" border="0" framespacing="0" allowfullscreen="true" style="width: 800px; height: 450px; max-width: 100%; align:center; padding:20px 0;" frameborder="no"> </iframe>
 
-## 1.12. 27-NIC Wi-Fi sensing array {#27nic_array}
+## 1.12. 27-NIC Wi-Fi sensing array {#nic_array}
 
 To fully demonstrate the capacity of multi-NIC CSI measurement, we setup a 27-NIC Wi-Fi sensing array. The array contains 27 QCA9300 NICs and 10 1-to-3 PCI-E bridge adapters. For more details, you may refer to the evaluation part of [The academic paper of PicoScenes](resources.md#121-the-academic-paper-of-picoscenes).
 

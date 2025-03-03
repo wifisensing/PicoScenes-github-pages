@@ -1,13 +1,18 @@
+---
+title: credits
+permalink: /credits/
+---
+
 # 15. Credits
 
-## 15.1. Development Team
+## 15.1. Development Team {#development_team}   
 
 The creation of PicoScenes is the result of collaborative efforts of the following members.
 
 | ![Xidian University](/images/logos/Xidian_University.png) | ![Xi'an Jiaotong University](/images/logos/XiJiao.png) | ![Zhejiang University](/images/logos/Zhejiang_University.png) |
 |:---:|:---:|:---:|
 
-### Xidian University
+### Xidian University {#xidian_university}
 
 - Prof. Zhiping Jiang, 蒋志平 (Associate Professor with the School of Computer Science and Technology)
 - Yonghui Duan, 段永辉 (Graduate student with the School of Computer Science and Technology)
@@ -23,7 +28,7 @@ The creation of PicoScenes is the result of collaborative efforts of the followi
 - Prof. Rui Li, 李瑞 (Professor with the School of Computer Science and Technology)
 - Prof. Tom H. Luan, 栾浩 (Professor with the School of Cyber Engineering)
 
-#### Leaved students
+#### Leaved students {#leaved_students} 
 
 - Xu Wang, 王旭 (Ph.D student with the School of Computer Science and Technology)
 - Chen He, 何琛 (Graduated student with the School of Computer Science and Technology)
@@ -32,17 +37,17 @@ The creation of PicoScenes is the result of collaborative efforts of the followi
 - Xuetao Li, 李薜滔 (Graduated student with the School of Computer Science and Technology)
 - Tian Teng, 滕天 (Graduated UG student with the School of Computer Science and Technology)
 
-### Xi'an Jiaotong University
+### Xi'an Jiaotong University {#xi_an_jiaotong_university}
 
 - Han Hao, 蒿翰 (Ph.D student with the School of Computer Science and Technology)
 - Prof. Wei Xi, 惠维 (Professor with the School of Computer Science and Technology)
 - Prof. Jizhong Zhao, 赵季中 (Professor with the School of Computer Science and Technology)
 - Dr. Kun Zhao, 赵鲲 (Assistant professor with the School of Computer Science and Technology)
 
-### Zhejiang University
+### Zhejiang University {#zhejiang_university}  
 
 - [Prof. Jinsong Han](https://person.zju.edu.cn/en/hanjinsong), 韩劲松 (Professor with the Institute of Cyberspace Research, College of Computer Science and Technology)
 
-## Open-source software
+## Open-source software {#open_source_software} 
 
 PicoScenes are built upon many open-source software libraries. Their license information is at [opensource_license](opensource_license.md).

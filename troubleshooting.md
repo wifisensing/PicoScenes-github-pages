@@ -1,10 +1,15 @@
+---
+title: troubleshooting
+permalink: /troubleshooting/
+---
+
 # 13. Troubleshooting & Support
 
-## 13.1. Troubleshooting
+## 13.1. Troubleshooting {#troubleshooting}
 
 The following shows some of the most frequently seen errors and their solutions for quick reference. For other issues that happened during the installation, upgrading or later usage, you may seek [technical support](#132-technical-support) by submitting a bug report to PicoScenes Issues Tracker.
 
-### 13.1.1. Errors during installation & daily update
+### 13.1.1. Errors during installation & daily update {#errors_during_installation_daily_update}  
 
 - *Problem*: **Error during apt update, "Certificate verification failed: The certificate is NOT trusted. The certificate chain uses expired certificate. XXX.... The repository 'xxxx' does not have a Release file."**
 
@@ -22,7 +27,7 @@ The following shows some of the most frequently seen errors and their solutions 
 
   **Solution**: [Issue #61 on GitHub](https://github.com/wifisensing/PicoScenes-Issue-Tracker/-/issues/61)
 
-### 13.1.2. Runtime errors
+### 13.1.2. Runtime errors {#runtime_errors}
 
 - *Problem*: **[Warning] Incompatible kernel version, current version: XXX, expected version: YYY.**
 
@@ -38,21 +43,21 @@ The following shows some of the most frequently seen errors and their solutions 
 
   **Solution**: run `sudo /usr/lib/uhd/utils/uhd_images_downloader.py` to download **all** USRP images.
 
-### 13.1.3. MATLAB Toolbox errors
+### 13.1.3. MATLAB Toolbox errors {#matlab_toolbox_errors}
 
 - *Problem*: libstdc++.so.6: version GLIBCXX_3.4.26 not found
 
   **Solution**: install `matlab-support` package as described in [Install PicoScenes MATLAB Toolbox Core](installation.md#53-install-picoscenes-matlab-toolbox-core).
   Thanks *Jinen Li* from Shenzhen University (SZU) for providing this bug fix!
 
-## 13.2. Technical Support
+## 13.2. Technical Support {#technical_support}
 
-### 13.2.1. PicoScenes Issues Tracker (PicoScenes官方交流问答)
+### 13.2.1. PicoScenes Issues Tracker (PicoScenes官方交流问答) {#pico_scenes_issues_tracker}  
 
 We provide the official and public technical support via [PicoScenes Issues Tracker](https://github.com/wifisensing/PicoScenes-Issue-Tracker/issues). You may post software bugs, encountered problems and suggestions to the issue tracker. Once you post an issue, GitHub will notify us and we will reach it as soon as possible.
 
 **对于中文用户**：如果您不想咬文嚼字用英语交流，没问题！ 您中文提问，我们中文回复：）
 
-### 13.2.2. PicoScenes微信群(PicoScenes WeChat group)
+### 13.2.2. PicoScenes微信群(PicoScenes WeChat group) {#pico_scenes_wechat_group}
 
 If WeChat is one of your favorite IM APPs, you may join the PicoScenes WeChat Group by contacting Zhiping Jiang "jiangzhiping" in WeChat. As the group has exceeded 200 people, you can only be invited to the group.

@@ -1,3 +1,9 @@
+---
+layout: default
+title: Online Supplementaries for "Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities"
+permalink: /reshaping-wifi-isac/
+---
+
 # Online Supplementaries for "Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities"
 
 **Update: Mar. 12, 2024**

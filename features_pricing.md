@@ -1,3 +1,8 @@
+---
+title: Features & License
+permalink: /features_pricing/
+---
+
 # 4. Features & License
 
 **Revised on Dec. 4, 2023**
@@ -14,11 +19,11 @@ In the sections below, we cover three main topics:
 
 > 如果您不想费劲地看英文，请开启浏览器的翻译功能，省脑子。
 
-## 4.1. Features of The PicoScenes Platform
+## 4.1. Features of The PicoScenes Platform {#features_of_the_picoscenes_platform}
 
 We categorize the distinctive features of the PicoScenes platform into three tables: [Platform Features](#411-platform-features), [Hardware Features](#412-hardware-features), and [Data & API Access](#416-data--api-access). In these tables, we also list the availability of each feature for free users (in the *Free* columns) and Pro users (in the *Pro* columns). A detailed comparison between the Free and Pro licenses can be found in [Introducing PicoScenes Licensing Plan](#42-introducing-picoscenes-licensing-plan) and [Pricing & Payment](#43-pricing--payment).
 
-### 4.1.1. Platform Features
+### 4.1.1. Platform Features {#platform_features}
 
 | Feature | Description | Free | Pro |
 |---------|-------------|------|-----|
@@ -31,11 +36,11 @@ We categorize the distinctive features of the PicoScenes platform into three tab
 | Public Technical Support | Public and searchable assistance at https://github.com/wifisensing/PicoScenes-Issue-Tracker | **✓** | **✓** |
 | Very Timely and Personal Technical Support on IM | **Very timely assistance on WeChat or other IM Apps, only for Pro users** | | **✓** |
 
-### 4.1.2. Hardware Features
+### 4.1.2. Hardware Features {#hardware_features}
 
 We categorize the technical features based on the underlying hardware: [Support for SDR: NI USRP Hardware and HackRF One](#413-sdr-support-ni-usrp-hardware-and-hackrf-one), [COTS NIC: AX210 and AX200](#414-cots-nic-ax210-and-ax200), [COTS NIC: QCA9300 and IWL5300](#415-cots-nic-qca9300-and-iwl5300).
 
-#### 4.1.3. SDR Support: NI USRP Hardware and HackRF One
+#### 4.1.3. SDR Support: NI USRP Hardware and HackRF One {#sdr_support_ni_usrp_hardware_and_hackrf_one}
 
 One of the major highlights of the PicoScenes platform is its built-in high-performance software baseband implementation of the 802.11 PHY, which *supports the 802.11a/g/n/ac/ax/be protocols, 4096-QAM, up to 320 MHz CBW, and LDPC codecs*. Developed in C++, it leverages the multi-threading, BLAS library, and AVX2 instruction set for accelerated processing.
 
@@ -61,7 +66,7 @@ One of the major highlights of the PicoScenes platform is its built-in high-perf
 | Wi-Fi Radar Mode | The *self-Tx-self-Rx* radar model for Wi-Fi sensing research. See [Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format](scenarios.md#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format) | **✓** | **✓** |
 | Interoperability | Interoperability with COTS NICs, AX210/AX200, QCA9300, IWL5300 and all other Wi-Fi NICs. See [Interoperability among SDR and COTS NICs](scenarios.md#65-interoperability-among-sdr-and-cots-nics). | **✓** | **✓** |
 
-#### 4.1.4. COTS NIC: AX210 and AX200
+#### 4.1.4. COTS NIC: AX210 and AX200 {#cots_nic_ax210_and_ax200}
 
 PicoScenes is the exclusive platform that supports the packet injection (Tx), receiving, and CSI measurement on Intel AX210/AX200 NIC. All features below are free of charge.
 
@@ -73,7 +78,7 @@ PicoScenes is the exclusive platform that supports the packet injection (Tx), re
 | Transmit 11a/g/n/ac/ax-Format Frames | Supporting Packet Injection with 11a/g/n/ac/ax format and up to 160 MHz CBW. See [Packet Injection-Based CSI Measurement (Tx with 802.11a/g/n/ac/ax Format and 20/40/80/160 MHz CBW)](scenarios.md#633-packet-injection-based-csi-measurement-tx-with-80211agnacax-format-and-204080160-mhz-cbw) and [Packet Injection with MCS Setting and Antenna Selection](scenarios.md#634-packet-injection-with-mcs-setting-and-antenna-selection) | **✓** | **✓** |
 | Runtime Specifying Channel and Bandwidth | Specifying channel, CBW, Tx/Rx chainmasks in runtime by commands or APIs. See [Specifying Channel and Bandwidth in Real-time](scenarios.md#635-specifying-channel-and-bandwidth-in-real-time). | **✓** | **✓** |
 
-#### 4.1.5. COTS NIC: QCA9300 and IWL5300
+#### 4.1.5. COTS NIC: QCA9300 and IWL5300 {#cots_nic_qca9300_and_iwl5300}
 
 PicoScenes supports the legendary QCA9300 and IWL5300 NICs and exclusively unlocks several low-level controls for QCA9300. All features below are free of charge.
 
@@ -84,14 +89,14 @@ PicoScenes supports the legendary QCA9300 and IWL5300 NICs and exclusively unloc
 | Manual Rx Gain Control | Disabling AGC and specifying a fixed [0-60] dBm Rx Gain. See [QCA9300 Operating with Non-Standard Channel, Bandwidth, and Manual Rx Gain](scenarios.md#645-qca9300-operating-with-non-standard-channel-bandwidth-and-manual-rx-gain) | **✓** | **✓** |
 | Tx/Rx chain specification | Specify Tx and Rx chainmasks in runtime, see [Specifying Tx and Rx Chains](scenarios.md#643-specifying-tx-and-rx-chains) | **✓** | **✓** |
 
-### 4.1.6. Data & API Access
+### 4.1.6. Data & API Access {#data_api_access}
 
 | Feature | Description | Free | Pro |
 |---------|-------------|------|-----|
 | Complete baseband signal | **SDR Only**. Return the per-packet complete multi-channel baseband signals. See [Data structures of the Raw Parsing](matlab.md#852-data-structures-of-the-raw-parsing) | **✓** | **✓** |
 | Multi-CSI-per-Frame | **SDR Only**. Return multiple CSI measurements (if available). See [Multiple CSI Measurements per Frame](scenarios.md#6262-multiple-csi-measurements-per-frame). | **✓** | **✓** |
 
-## 4.2. Introducing PicoScenes Licensing Plan
+## 4.2. Introducing PicoScenes Licensing Plan {#introducing_picoscenes_licensing_plan}
 
 PicoScenes Licensing Plan (PSLP) has two tiers: Free License and Pro License. Their differences are:
 
@@ -108,7 +113,7 @@ PicoScenes Licensing Plan (PSLP) has two tiers: Free License and Pro License. Th
 
 > Note: PSLP-PUL v0.8.1 is converted to PSLP-PRO-TL in v1.0 automatically.
 
-### 4.2.1. 与NI中国合作赠送 PSLP-PRO-DBL许可证 (Gifting PSLP-PRO-DBL Licenses in Collaboration with NI China)
+### 4.2.1. 与NI中国合作赠送 PSLP-PRO-DBL许可证 (Gifting PSLP-PRO-DBL Licenses in Collaboration with NI China) {#gifting_pslp_pro_dbl_licenses_in_collaboration_with_ni_china}
 
 PicoScenes平台非常荣幸地得到 [NI](https://www.ni.com) (美国国家仪器)公司(中国)的认可与支持，NI公司认为"**PicoScenes平台填补了NI公司在Wi-Fi ISAC领域的不足**"。
     
@@ -118,7 +123,7 @@ The PicoScenes platform is honored to receive recognition and support from Natio
     
 To support more users in the Wi-Fi/5G/6G ISAC field for research and applications using the PicoScenes platform and NI USRP series products, NI (China) has entered into a collaboration with the PicoScenes team: **a PSLP-PRO-DBL license will be provided free of charge** for each USRP Series SDR device sold by PicoScenes' partner store (independent machine or "motherboard + daughterboard" kit). In return, NI (China) will fund the PicoScenes platform, provide USRP devices for PicoScenes platform development and testing, and offer technical support. We sincerely appreciate NI's recognition and support for the PicoScenes platform ❤️❤️❤️!
 
-## 4.3. Pricing & Payment
+## 4.3. Pricing & Payment {#pricing_payment}
 
 - **PSLP-PRO-TL**: 
 
