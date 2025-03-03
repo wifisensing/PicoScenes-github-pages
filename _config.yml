@@ -26,6 +26,9 @@ github_username:  yourusername
 # Build settings
 markdown: kramdown
 theme: minima
+sass:
+  sass_dir: _sass
+  style: compressed
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -55,18 +58,10 @@ header_pages:
 #   products:
 #     output: true
 
-# 默认设置
+# 默认布局设置
 defaults:
   -
     scope:
-      path: ""
-      type: "posts"
+      path: "" # 空字符串表示所有文件
     values:
-      layout: "post"
-      author: "网站作者"
-  -
-    scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
+      layout: "default" # 使用 default 布局

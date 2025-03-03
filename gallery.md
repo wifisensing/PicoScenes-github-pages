@@ -1,3 +1,20 @@
+---
+layout: default
+title: Gallery
+permalink: /gallery/
+---
+
+<nav class="gallery-nav">
+  <ul>
+    <li><a href="#b210_hackrf">USRP B210 & HackRF</a></li>
+    <li><a href="#hackrf_live">HackRF Live CSI</a></li>
+    <li><a href="#ax210_160">AX210 160MHz</a></li>
+    <li><a href="#ax210_monitor">AX210 Monitor</a></li>
+    <li><a href="#scan_9300">QCA9300 Spectrum</a></li>
+    <!-- Add more navigation items as needed -->
+  </ul>
+</nav>
+
 # 1. Gallery
 
 This page shows some of most highlighted features of PicoScenes.

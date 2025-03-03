@@ -71,6 +71,8 @@ DEPENDENCIES
   colorator (~> 1.1.0)
   forwardable-extended (= 2.6.0)
   jekyll (~> 3.9.5)
+  jekyll-feed (~> 0.12)
+  jekyll-sass-converter
   kramdown (~> 2.4.0)
   kramdown-parser-gfm (~> 1.1.0)
   minima (~> 2.5.2)
