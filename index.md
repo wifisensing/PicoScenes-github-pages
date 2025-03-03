@@ -1,3 +1,8 @@
+---
+layout: default
+title: Index
+---
+
 # PicoScenes: Enabling Modern Wi-Fi ISAC Research!
 
 ## News!

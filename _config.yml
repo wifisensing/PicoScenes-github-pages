@@ -1,21 +1,29 @@
-title: PicoScenes Documentation 111
-description: Comprehensive documentation for PicoScenes - A Powerful Wi-Fi Sensing Platform 111
-url: "https://您的用户名.github.io" 
+title: PicoScenes Documentation
+description: A Powerful Middleware for Wi-Fi Integrated Sensing and Communication Research
+url: "https://github.com/wifisensing/PicoScenes-github-pages"
 
-theme: jekyll-theme-minimal 
+theme: jekyll-theme-minimal
 
-markdown: kramdown
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-
-# 导航菜单设置
 header_pages:
   - gallery.md
   - hardware.md
+  - features_pricing.md
+  - installation.md
+  - scenarios.md
+  - matlab.md
+  - plugin.md
+  - utilities.md
+  - ni.md
+  - reshaping-wifi-isac.md
+  - channels.md
+  - presets.md
 
-# 社交媒体链接
-social_links:
-  github: 您的GitHub用户名
-  twitter: 您的Twitter用户名
-  # 可以添加更多社交媒体链接
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
