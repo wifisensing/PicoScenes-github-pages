@@ -121,6 +121,18 @@ section {
   text-decoration: underline;
 }
 
+.toc-container .page-toc {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.toc-container .toc-level-h1 { padding-left: 0; }
+.toc-container .toc-level-h2 { padding-left: 15px; }
+.toc-container .toc-level-h3 { padding-left: 30px; }
+.toc-container .toc-level-h4 { padding-left: 45px; }
+.toc-container .toc-level-h5 { padding-left: 60px; }
+.toc-container .toc-level-h6 { padding-left: 75px; }
+
 /* Dark mode toggle */
 .theme-toggle {
   position: fixed;
