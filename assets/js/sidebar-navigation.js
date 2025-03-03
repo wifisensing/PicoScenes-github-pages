@@ -268,17 +268,31 @@ function createRightSidebar() {
         document.querySelector('section').appendChild(rightSidebar);
     }
     
-    // Create TOC list without a title
+    // Create TOC list with a title
+    const tocTitle = document.createElement('h2');
+    tocTitle.textContent = 'Table of Contents';
+    rightSidebar.appendChild(tocTitle);
+
     const tocList = document.createElement('ul');
     tocList.className = 'page-toc';
     rightSidebar.appendChild(tocList);
     
-    // Find all h2 headings in the current page
+    // Find all headings in the current page
     const content = document.querySelector('section');
-    const headings = content.querySelectorAll('h2');
+    const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
     
     // Add each heading to the TOC
     headings.forEach((heading, index) => {
+        // Skip the title heading if it's "PicoScenes: Enabling Modern Wi-Fi ISAC Research!"
+        if (heading.textContent.includes('PicoScenes: Enabling Modern Wi-Fi ISAC Research')) {
+            return;
+        }
+
+        // Skip the Table of Contents heading itself
+        if (heading.textContent === 'Table of Contents') {
+            return;
+        }
+        
         // Add an ID to the heading if it doesn't have one
         if (!heading.id) {
             heading.id = 'section-' + index;
@@ -288,6 +302,10 @@ function createRightSidebar() {
         const link = document.createElement('a');
         link.href = '#' + heading.id;
         link.textContent = heading.textContent;
+
+        // Add indentation class based on heading level
+        listItem.className = `toc-level-${heading.tagName.toLowerCase()}`;
+        
         listItem.appendChild(link);
         tocList.appendChild(listItem);
     });
@@ -297,14 +315,12 @@ function setupMobileToggles() {
     // Create toggle buttons for mobile view with only icons
     const leftToggle = document.createElement('button');
     leftToggle.className = 'sidebar-toggle left-toggle';
-    leftToggle.textContent = '☰';
     leftToggle.addEventListener('click', function() {
         document.querySelector('.main-nav').classList.toggle('show-sidebar');
     });
     
     const rightToggle = document.createElement('button');
     rightToggle.className = 'sidebar-toggle right-toggle';
-    rightToggle.textContent = '☰';
     rightToggle.addEventListener('click', function() {
         document.querySelector('.toc-container').classList.toggle('show-sidebar');
     });
