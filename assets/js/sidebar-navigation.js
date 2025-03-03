@@ -1,12 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Create left sidebar for main document structure
-    createLeftSidebar();
-    
     // Create right sidebar for current page's second-level headings
     createRightSidebar();
-    
-    // Add event listeners for sidebar toggles on mobile
-    setupMobileToggles();
 });
 
 function createLeftSidebar() {
@@ -291,28 +285,4 @@ function createRightSidebar() {
         listItem.appendChild(link);
         tocList.appendChild(listItem);
     });
-}
-
-function setupMobileToggles() {
-    // Create toggle buttons for mobile view with only icons
-    const leftToggle = document.createElement('button');
-    leftToggle.className = 'sidebar-toggle left-toggle';
-    leftToggle.textContent = '☰';
-    leftToggle.addEventListener('click', function() {
-        document.querySelector('.main-nav').classList.toggle('show-sidebar');
-    });
-    
-    const rightToggle = document.createElement('button');
-    rightToggle.className = 'sidebar-toggle right-toggle';
-    rightToggle.textContent = '☰';
-    rightToggle.addEventListener('click', function() {
-        document.querySelector('.toc-container').classList.toggle('show-sidebar');
-    });
-    
-    // Add toggles to the page in mobile view
-    const header = document.querySelector('header');
-    if (header) {
-        header.prepend(leftToggle);
-        header.appendChild(rightToggle);
-    }
 }
