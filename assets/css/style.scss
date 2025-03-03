@@ -55,6 +55,22 @@
   text-decoration: underline;
 }
 
+.main-nav ul li.sub-heading {
+  margin-left: 15px;
+  font-size: 0.9em;
+}
+
+.main-nav ul li.nav-separator {
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 15px 0;
+}
+
+.main-nav ul li a.back-to-home {
+  color: #267CB9;
+  font-weight: bold;
+}
+
 /* Main content area */
 section {
   margin-left: 280px;

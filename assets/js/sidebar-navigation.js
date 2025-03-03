@@ -20,7 +20,7 @@ function createLeftSidebar() {
     
     // Add title to the sidebar
     const sidebarTitle = document.createElement('h2');
-    sidebarTitle.textContent = 'Document Structure';
+    sidebarTitle.textContent = 'PicoScenes Documentation';
     leftSidebar.appendChild(sidebarTitle);
     
     // Create navigation list
@@ -28,39 +28,33 @@ function createLeftSidebar() {
     navList.className = 'doc-structure-nav';
     leftSidebar.appendChild(navList);
     
-    // Fetch the index.md content to extract main headings
-    fetch('/index.md')
-        .then(response => {
-            if (!response.ok) {
-                // If direct fetch fails, try to extract from the current page if we're on index
-                if (window.location.pathname === '/' || window.location.pathname.includes('index')) {
-                    extractMainHeadingsFromCurrentPage();
-                } else {
-                    // Try to fetch the processed HTML version of index.md
-                    return fetch('/');
-                }
-                return;
-            }
-            return response.text();
-        })
-        .then(text => {
-            if (text) {
-                if (text.includes('<!DOCTYPE html>')) {
-                    // This is HTML content, extract headings from HTML
-                    extractMainHeadingsFromHTML(text, navList);
-                } else {
-                    // This is markdown content
-                    populateMainHeadings(text, navList);
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching index.md:', error);
-            // Fallback: try to extract from current page if we're on index
-            if (window.location.pathname === '/' || window.location.pathname.includes('index')) {
-                extractMainHeadingsFromCurrentPage();
-            }
-        });
+    // Check if we're on the index page or another page
+    const isIndexPage = window.location.pathname === '/' || 
+                       window.location.pathname.endsWith('index.html') || 
+                       window.location.pathname.endsWith('index.md');
+    
+    if (isIndexPage) {
+        // On index page, extract the main modules from the Table of Contents section
+        extractMainModulesFromCurrentPage(navList);
+    } else {
+        // On other pages, show a link back to index and extract the current page's structure
+        const homeItem = document.createElement('li');
+        const homeLink = document.createElement('a');
+        homeLink.href = '/';
+        homeLink.textContent = '← Back to Main Page';
+        homeLink.className = 'back-to-home';
+        homeItem.appendChild(homeLink);
+        navList.appendChild(homeItem);
+        
+        // Add a separator
+        const separator = document.createElement('li');
+        separator.className = 'nav-separator';
+        navList.appendChild(separator);
+        
+        // Extract the current page's main headings
+        extractCurrentPageMainHeadings(navList);
+    }
+}
 }
 
 function extractMainHeadingsFromHTML(html, navList) {
@@ -103,72 +97,98 @@ function extractMainHeadingsFromHTML(html, navList) {
     });
 }
 
-function extractMainHeadingsFromCurrentPage() {
-    const navList = document.querySelector('.doc-structure-nav');
-    if (!navList) return;
-    
+function extractMainModulesFromCurrentPage(navList) {
     // Look for the table of contents section in the current page
     const content = document.querySelector('section');
     if (!content) return;
     
-    // Find all h1 elements in the content
-    const h1Elements = content.querySelectorAll('h1');
+    // Find the "Table of Contents" heading
+    let tocHeading = null;
+    const headings = content.querySelectorAll('h2');
+    for (const heading of headings) {
+        if (heading.textContent.includes('Table of Contents')) {
+            tocHeading = heading;
+            break;
+        }
+    }
     
-    // Add each h1 heading to the navigation
-    h1Elements.forEach((heading, index) => {
+    if (tocHeading) {
+        // Get the list that follows the TOC heading
+        let tocList = tocHeading.nextElementSibling;
+        while (tocList && tocList.tagName !== 'UL') {
+            tocList = tocList.nextElementSibling;
+        }
+        
+        if (tocList) {
+            // Extract main modules (level 1) from the TOC
+            const mainItems = tocList.querySelectorAll('li > a');
+            for (const item of mainItems) {
+                // Check if this is a main module (not indented/sub-item)
+                if (!item.closest('li').parentElement.closest('li')) {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = item.href;
+                    link.textContent = item.textContent;
+                    listItem.appendChild(link);
+                    navList.appendChild(listItem);
+                }
+            }
+        }
+    } else {
+        // If no TOC heading found, try to extract from the content directly
+        // Find links that match the pattern of "[number]. [Title]" like "1. Gallery"
+        const links = content.querySelectorAll('a');
+        const moduleLinks = Array.from(links).filter(link => {
+            return /^\d+\.\s+[A-Za-z]+/.test(link.textContent);
+        });
+        
+        moduleLinks.forEach(link => {
+            const listItem = document.createElement('li');
+            const newLink = document.createElement('a');
+            newLink.href = link.href;
+            newLink.textContent = link.textContent;
+            listItem.appendChild(newLink);
+            navList.appendChild(listItem);
+        });
+    }
+}
+
+function extractCurrentPageMainHeadings(navList) {
+    // Look for the content in the current page
+    const content = document.querySelector('section');
+    if (!content) return;
+    
+    // Find all h1 and h2 elements in the content
+    const headings = content.querySelectorAll('h1, h2');
+    
+    // Add each heading to the navigation
+    headings.forEach((heading, index) => {
         // Skip the title heading if it's "PicoScenes: Enabling Modern Wi-Fi ISAC Research!"
         if (heading.textContent.includes('PicoScenes: Enabling Modern Wi-Fi ISAC Research')) {
             return;
         }
         
-        const listItem = document.createElement('li');
-        const link = document.createElement('a');
-        
-        // Get the href from the heading's id or create one
-        const headingId = heading.id || 'heading-' + index;
-        link.href = '#' + headingId;
-        link.textContent = heading.textContent;
-        
-        listItem.appendChild(link);
-        navList.appendChild(listItem);
-    });
-    
-    // If no h1 elements were found, try to find links in the table of contents
-    if (navList.children.length === 0) {
-        // Find the "Table of Contents" heading
-        let tocHeading = null;
-        const headings = content.querySelectorAll('h2');
-        for (const heading of headings) {
-            if (heading.textContent.includes('Table of Contents')) {
-                tocHeading = heading;
-                break;
-            }
-        }
-        
-        if (tocHeading) {
-            // Get the list that follows the TOC heading
-            let tocList = tocHeading.nextElementSibling;
-            while (tocList && tocList.tagName !== 'UL') {
-                tocList = tocList.nextElementSibling;
+        // Only include h1 and direct h2 (not nested under other elements)
+        if (heading.tagName === 'H1' || 
+            (heading.tagName === 'H2' && !heading.textContent.includes('Table of Contents'))) {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            
+            // Get the href from the heading's id or create one
+            const headingId = heading.id || 'heading-' + index;
+            heading.id = headingId; // Ensure the heading has an ID for linking
+            link.href = '#' + headingId;
+            link.textContent = heading.textContent;
+            
+            // Add a class to differentiate h1 and h2
+            if (heading.tagName === 'H2') {
+                listItem.className = 'sub-heading';
             }
             
-            if (tocList) {
-                // Extract main headings (level 1) from the TOC
-                const mainItems = tocList.querySelectorAll('li > a');
-                for (const item of mainItems) {
-                    // Check if this is a main heading (not indented/sub-item)
-                    if (!item.closest('li').parentElement.closest('li')) {
-                        const listItem = document.createElement('li');
-                        const link = document.createElement('a');
-                        link.href = item.href;
-                        link.textContent = item.textContent;
-                        listItem.appendChild(link);
-                        navList.appendChild(listItem);
-                    }
-                }
-            }
+            listItem.appendChild(link);
+            navList.appendChild(listItem);
         }
-    }
+    });
 }
 
 function populateMainHeadings(text, navList) {
