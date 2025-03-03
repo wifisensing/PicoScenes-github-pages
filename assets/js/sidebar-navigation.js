@@ -28,16 +28,22 @@ function createLeftSidebar() {
     navList.className = 'doc-structure-nav';
     leftSidebar.appendChild(navList);
     
-    // Check if we're on the index page or another page
+    // Always extract the main modules from the Table of Contents section
+    // regardless of whether we're on the index page or not
+    extractMainModulesFromCurrentPage(navList);
+    
+    // If we're not on the index page, also show a link back to index
     const isIndexPage = window.location.pathname === '/' || 
                        window.location.pathname.endsWith('index.html') || 
                        window.location.pathname.endsWith('index.md');
     
-    if (isIndexPage) {
-        // On index page, extract the main modules from the Table of Contents section
-        extractMainModulesFromCurrentPage(navList);
-    } else {
-        // On other pages, show a link back to index and extract the current page's structure
+    if (!isIndexPage) {
+        // Add a separator
+        const separator = document.createElement('li');
+        separator.className = 'nav-separator';
+        navList.appendChild(separator);
+        
+        // Add back to home link
         const homeItem = document.createElement('li');
         const homeLink = document.createElement('a');
         homeLink.href = '/';
@@ -45,11 +51,6 @@ function createLeftSidebar() {
         homeLink.className = 'back-to-home';
         homeItem.appendChild(homeLink);
         navList.appendChild(homeItem);
-        
-        // Add a separator
-        const separator = document.createElement('li');
-        separator.className = 'nav-separator';
-        navList.appendChild(separator);
         
         // Extract the current page's main headings
         extractCurrentPageMainHeadings(navList);
@@ -267,12 +268,7 @@ function createRightSidebar() {
         document.querySelector('section').appendChild(rightSidebar);
     }
     
-    // Add title to the sidebar
-    const sidebarTitle = document.createElement('h2');
-    sidebarTitle.textContent = 'On This Page';
-    rightSidebar.appendChild(sidebarTitle);
-    
-    // Create TOC list
+    // Create TOC list without a title
     const tocList = document.createElement('ul');
     tocList.className = 'page-toc';
     rightSidebar.appendChild(tocList);
@@ -298,17 +294,17 @@ function createRightSidebar() {
 }
 
 function setupMobileToggles() {
-    // Create toggle buttons for mobile view
+    // Create toggle buttons for mobile view with only icons
     const leftToggle = document.createElement('button');
     leftToggle.className = 'sidebar-toggle left-toggle';
-    leftToggle.textContent = '☰ Menu';
+    leftToggle.textContent = '☰';
     leftToggle.addEventListener('click', function() {
         document.querySelector('.main-nav').classList.toggle('show-sidebar');
     });
     
     const rightToggle = document.createElement('button');
     rightToggle.className = 'sidebar-toggle right-toggle';
-    rightToggle.textContent = '☰ On This Page';
+    rightToggle.textContent = '☰';
     rightToggle.addEventListener('click', function() {
         document.querySelector('.toc-container').classList.toggle('show-sidebar');
     });
