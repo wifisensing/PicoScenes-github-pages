@@ -1,8 +1,3 @@
----
-layout: default
-title: Gallery
----
-
 # 1. Gallery
 
 This page shows some of most highlighted features of PicoScenes.
