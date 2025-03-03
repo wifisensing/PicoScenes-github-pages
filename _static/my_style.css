@@ -1,0 +1,29 @@
+@media (min-width: 1500px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 2500px !important;
+    }
+}
+
+.rst-versions.rst-badge {
+    display: none !important;
+}
+
+.bd-sidebar div.navbar_extra_footer {
+    display: none !important;
+}
+
+.full-screen-button {
+    display: none !important;
+}
+
+html {
+    font-size: 18px !important;
+}
+
+.prev-next-bottom {
+    height: 5em;
+}
+
+body {
+    line-height: 1.5;
+}

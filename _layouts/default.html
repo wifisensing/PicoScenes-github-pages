@@ -1,90 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} | {{ site.tagline }}{% endif %}</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  {% seo %}
-</head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <span class="site-tagline">{{ site.tagline }}</span>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+        
+        {% if site.logo %}
+          <img src="{{site.logo | relative_url}}" alt="Logo" />
+        {% endif %}
+
+        <p>{{ site.description | default: site.github.project_tagline }}</p>
+      </header>
       
-      <nav class="main-nav">
-        <ul>
-          {% for page in site.header_pages %}
-            {% assign page_url = page | replace: '.md', '.html' %}
-            <li><a href="{{ page_url | relative_url }}">{{ page | replace: '.md', '' | replace: '-', ' ' | capitalize }}</a></li>
-          {% endfor %}
-        </ul>
-      </nav>
+      <section>
+      {{ content }}
+      </section>
+      
     </div>
-  </header>
-
-  <div class="main-content">
-    {% if site.show_sidebar %}
-    <aside class="sidebar">
-      <nav class="sidebar-nav">
-        <ul>
-          {% for item in site.header_pages %}
-            {% assign item_url = item | replace: '.md', '.html' %}
-            <li>
-              <a href="{{ item_url | relative_url }}" {% if page.url == item_url %}class="active"{% endif %}>
-                {{ item | replace: '.md', '' | replace: '-', ' ' | capitalize }}
-              </a>
-              
-              {% if page.url == item_url %}
-                {% if page.content contains '##' %}
-                <ul>
-                  {% assign content_array = page.content | split: '##' %}
-                  {% for section in content_array offset: 1 %}
-                    {% assign section_title = section | split: '\n' | first | strip %}
-                    {% assign section_id = section_title | slugify %}
-                    <li><a href="#{{ section_id }}">{{ section_title }}</a></li>
-                  {% endfor %}
-                </ul>
-                {% endif %}
-              {% endif %}
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
-    </aside>
-    {% endif %}
-
-    <div class="content-wrapper">
-      <div class="container">
-        {{ content }}
-      </div>
-    </div>
-  </div>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-links">
-        {% for link in site.footer_links %}
-          <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>
-        {% endfor %}
-      </div>
-      <div class="footer-copyright">
-        &copy; {{ site.time | date: '%Y' }} PicoScenes. All rights reserved.
-      </div>
-    </div>
-  </footer>
-
-  {% if site.google_analytics %}
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', '{{ site.google_analytics }}', 'auto');
-    ga('send', 'pageview');
-  </script>
-  {% endif %}
-</body>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/sidebar-navigation.js" | relative_url }}"></script>
+  </body>
 </html>
