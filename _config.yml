@@ -1,55 +1,44 @@
-title: PicoScenes Documentation
-description: Comprehensive documentation for PicoScenes - A Powerful Wi-Fi Sensing Platform
-theme: jekyll-theme-minimal
+# PicoScenes Jekyll Theme Configuration
 
+# Site settings
+title: PicoScenes
+tagline: Enabling Modern Wi-Fi ISAC Research
+description: A powerful middleware for modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlight_theme: github
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Theme settings
+theme_color: "#0066cc"
+secondary_color: "#333333"
+accent_color: "#ff9900"
+
+# Navigation
 header_pages:
   - index.md
-  - why.md
+  - hardware.md
   - features_pricing.md
   - installation.md
-  - hardware.md
-  - parameters.md
-  - plugin.md
-  - matlab.md
   - scenarios.md
   - utilities.md
-  - troubleshooting.md
+  - plugin.md
   - resources.md
-  - credits.md
+  - troubleshooting.md
 
-navigation:
-  - title: Getting Started
-    children:
-      - title: Why PicoScenes
-        url: /why.html
-      - title: Features & Pricing
-        url: /features_pricing.html
-  - title: Installation & Setup
-    children:
-      - title: Installation Guide
-        url: /installation.html
-      - title: Hardware Setup
-        url: /hardware.html
-  - title: Documentation
-    children:
-      - title: Parameters Reference
-        url: /parameters.html
-      - title: Plugin Development
-        url: /plugin.html
-      - title: MATLAB Integration
-        url: /matlab.html
-      - title: Usage Scenarios
-        url: /scenarios.html
-      - title: Utilities
-        url: /utilities.html
-  - title: Support
-    children:
-      - title: Troubleshooting
-        url: /troubleshooting.html
-      - title: Resources
-        url: /resources.html
-      - title: Credits
-        url: /credits.html
+# Footer
+footer_links:
+  - title: GitHub
+    url: https://github.com/wifisensing/PicoScenes-Issue-Tracker
+  - title: Academic Paper
+    url: https://doi.org/10.1109/JIOT.2021.3104666
 
+# Additional settings
 show_downloads: false
-google_analytics:
+google_analytics: 
+show_sidebar: true
