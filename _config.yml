@@ -1,5 +1,5 @@
-title: PicoScenes Documentation
-description: Comprehensive documentation for PicoScenes - A Powerful Wi-Fi Sensing Platform
+title: PicoScenes Documentation 111
+description: Comprehensive documentation for PicoScenes - A Powerful Wi-Fi Sensing Platform 111
 url: "https://您的用户名.github.io" 
 
 theme: jekyll-theme-minimal 
@@ -11,8 +11,8 @@ plugins:
 
 # 导航菜单设置
 header_pages:
-  - about.md
-  - projects.md
+  - gallery.md
+  - hardware.md
 
 # 社交媒体链接
 social_links:
