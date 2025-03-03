@@ -1,29 +1,39 @@
+# Site settings
 title: PicoScenes Documentation
-description: A Powerful Middleware for Wi-Fi Integrated Sensing and Communication Research
-url: "https://github.com/wifisensing/PicoScenes-github-pages"
+description: Documentation for the PicoScenes Wi-Fi ISAC research platform
+url: "https://ps.zpj.io" # Replace with your actual URL
+baseurl: ""
 
-theme: jekyll-theme-minimal
-
-header_pages:
-  - gallery.md
-  - hardware.md
-  - features_pricing.md
-  - installation.md
-  - scenarios.md
-  - matlab.md
-  - plugin.md
-  - utilities.md
-  - ni.md
-  - reshaping-wifi-isac.md
-  - channels.md
-  - presets.md
-
-
+# Build settings
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+remote_theme: just-the-docs/just-the-docs # A popular documentation theme
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+# Theme settings
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+
+# Aux links for the upper right navigation
+aux_links:
+  "PicoScenes on GitHub":
+    - "https://github.com/wifisensing"
+
+# Footer content
+footer_content: "Copyright &copy; 2021-2024 PicoScenes Team. Distributed under the terms of the <a href=\"https://ps.zpj.io/eula.html\">PicoScenes Software EULA</a>."
+
+# Collections
+collections:
+  docs:
+    permalink: "/:collection/:path/"
+    output: true
+
+# Just the Docs specific settings
+search:
+  # Split pages into sections that can be searched individually
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false 

@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "zh-CN" }}">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+---
+layout: default
+---
 
-{% seo %}
-    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container-lg px-3 my-5 markdown-body">
-      <header>
-        <h1><a href="{{ "/" | absolute_url }}">{{ site.title }}</a></h1>
-        
-        {% if site.logo %}
-          <img src="{{site.logo | relative_url}}" alt="Logo" />
-        {% endif %}
-
-        {% if site.description %}<p>{{ site.description }}</p>{% endif %}
-      </header>
-      
-      <main>
-        {{ content }}
-      </main>
-      
-      <footer>
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
-      </footer>
-    </div>
-    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
-    <script src="{{ "/assets/js/sidebar-navigation.js" | relative_url }}"></script>
-  </body>
-</html>
+{{ content }} 

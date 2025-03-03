@@ -1,3 +1,9 @@
+---
+layout: default
+title: Why Use PicoScenes
+nav_order: 2
+---
+
 # Why Use PicoScenes
 
 > **Hint:** This page is under active editing.

@@ -1,6 +1,8 @@
 ---
 layout: default
-title: Index
+title: Home
+nav_order: 1
+permalink: /
 ---
 
 # PicoScenes: Enabling Modern Wi-Fi ISAC Research!
@@ -10,7 +12,7 @@ title: Index
 - **May 12, 2024** PicoScenes Radar mode now supports SISO, SIMO, MIMO and MIMO across multiple devices measurements, see [Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format](scenarios.md#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format).
 - **Mar. 19, 2024** PicoScenes now provides a UDP forwarding/receiving utility! See [UDP-Forwarder Plugin & UDPRemoteLogger](utilities.md#91-udp-forwarder-plugin--udpremotelogger).
 - **Mar. 19, 2024** PicoScenes now officially supports Ubuntu 22.04! See [PicoScenes Software Installation](installation.md#52-picoscenes-software-installation).
-- **Mar. 12, 2024** We are pleased to announce that our research, "**Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities**", has been accepted by **IEEE Communication Magazine (IF=11.2)**. For More information, please visit its online supplementary materials [Online supplementaries for “Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities”](reshaping-wifi-isac.md).
+- **Mar. 12, 2024** We are pleased to announce that our research, "**Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities**", has been accepted by **IEEE Communication Magazine (IF=11.2)**. For More information, please visit its online supplementary materials [Online supplementaries for "Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities"](reshaping-wifi-isac.md).
 - **Jan. 20, 2024** [Developing Your PicoScenes Plugins](plugin.md) page is completely rewritten. Thanks to Tian Teng for his brilliant work!
 - **Dec. 26, 2023** Revise the [Selling NI USRP Devices (与NI合作销售USRP系列产品)](ni.md) page.
 - **Dec. 20, 2023** Initiating the Ubuntu 22.04 (and soon 24.04) transition of PicoScenes system (client program and CI server).
@@ -75,7 +77,7 @@ You may refer to [Features & License](features_pricing.md) to learn all the feat
   - [1.8. CSI measurements under tunable and wide baseband bandwidths](gallery.md#18-csi-measurements-under-tunable-and-wide-baseband-bandwidths)
   - [1.9. Large spectrum stitching using two QCA9300 NICs](gallery.md#19-large-spectrum-stitching-using-two-qca9300-nics)
   - [1.10. Large spectrum stitching using A USRP X310 and a QCA9300 NIC](gallery.md#110-large-spectrum-stitching-using-a-usrp-x310-and-a-qca9300-nic)
-  - [1.11. Installation of PicoScenes MATLAB Toolbox and drag’n’drop style .csi file parsing](gallery.md#111-installation-of-picoscenes-matlab-toolbox-and-dragndrop-style-csi-file-parsing)
+  - [1.11. Installation of PicoScenes MATLAB Toolbox and drag'n'drop style .csi file parsing](gallery.md#111-installation-of-picoscenes-matlab-toolbox-and-dragndrop-style-csi-file-parsing)
   - [1.12. 27-NIC Wi-Fi sensing array](gallery.md#112-27-nic-wi-fi-sensing-array)
 
 [2. Users](users.md)
