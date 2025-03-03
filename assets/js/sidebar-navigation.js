@@ -35,6 +35,9 @@ function createLeftSidebar() {
                 // If direct fetch fails, try to extract from the current page if we're on index
                 if (window.location.pathname === '/' || window.location.pathname.includes('index')) {
                     extractMainHeadingsFromCurrentPage();
+                } else {
+                    // Try to fetch the processed HTML version of index.md
+                    return fetch('/');
                 }
                 return;
             }
@@ -42,7 +45,13 @@ function createLeftSidebar() {
         })
         .then(text => {
             if (text) {
-                populateMainHeadings(text, navList);
+                if (text.includes('<!DOCTYPE html>')) {
+                    // This is HTML content, extract headings from HTML
+                    extractMainHeadingsFromHTML(text, navList);
+                } else {
+                    // This is markdown content
+                    populateMainHeadings(text, navList);
+                }
             }
         })
         .catch(error => {
@@ -54,6 +63,46 @@ function createLeftSidebar() {
         });
 }
 
+function extractMainHeadingsFromHTML(html, navList) {
+    // Create a temporary element to parse the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    
+    // Find all h1 elements in the parsed HTML
+    const h1Elements = tempDiv.querySelectorAll('h1');
+    
+    h1Elements.forEach(heading => {
+        // Skip the title heading (PicoScenes: Enabling Modern Wi-Fi ISAC Research!)
+        if (heading.textContent.includes('PicoScenes: Enabling Modern Wi-Fi ISAC Research')) {
+            return;
+        }
+        
+        // Create list item for each main heading
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        
+        // Get the href from the heading's id or create one
+        const headingId = heading.id || heading.textContent.toLowerCase().replace(/[^\w]+/g, '-');
+        
+        // Determine the correct link
+        let href = '#' + headingId;
+        
+        // If the heading contains a link, use that link instead
+        const headingLink = heading.querySelector('a');
+        if (headingLink) {
+            href = headingLink.getAttribute('href');
+        }
+        
+        // If the heading text contains a number (like "1. Gallery"), extract it
+        const headingText = heading.textContent.trim();
+        
+        link.href = href;
+        link.textContent = headingText;
+        listItem.appendChild(link);
+        navList.appendChild(listItem);
+    });
+}
+
 function extractMainHeadingsFromCurrentPage() {
     const navList = document.querySelector('.doc-structure-nav');
     if (!navList) return;
@@ -62,33 +111,61 @@ function extractMainHeadingsFromCurrentPage() {
     const content = document.querySelector('section');
     if (!content) return;
     
-    // Find the "Table of Contents" heading
-    let tocHeading = null;
-    const headings = content.querySelectorAll('h2');
-    for (const heading of headings) {
-        if (heading.textContent.includes('Table of Contents')) {
-            tocHeading = heading;
-            break;
-        }
-    }
+    // Find all h1 elements in the content
+    const h1Elements = content.querySelectorAll('h1');
     
-    if (tocHeading) {
-        // Get the list that follows the TOC heading
-        let tocList = tocHeading.nextElementSibling;
-        while (tocList && tocList.tagName !== 'UL') {
-            tocList = tocList.nextElementSibling;
+    // Add each h1 heading to the navigation
+    h1Elements.forEach((heading, index) => {
+        // Skip the title heading if it's "PicoScenes: Enabling Modern Wi-Fi ISAC Research!"
+        if (heading.textContent.includes('PicoScenes: Enabling Modern Wi-Fi ISAC Research')) {
+            return;
         }
         
-        if (tocList) {
-            // Extract main headings (level 1) from the TOC
-            const mainItems = tocList.querySelectorAll('li > a');
-            for (const item of mainItems) {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = item.href;
-                link.textContent = item.textContent;
-                listItem.appendChild(link);
-                navList.appendChild(listItem);
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        
+        // Get the href from the heading's id or create one
+        const headingId = heading.id || 'heading-' + index;
+        link.href = '#' + headingId;
+        link.textContent = heading.textContent;
+        
+        listItem.appendChild(link);
+        navList.appendChild(listItem);
+    });
+    
+    // If no h1 elements were found, try to find links in the table of contents
+    if (navList.children.length === 0) {
+        // Find the "Table of Contents" heading
+        let tocHeading = null;
+        const headings = content.querySelectorAll('h2');
+        for (const heading of headings) {
+            if (heading.textContent.includes('Table of Contents')) {
+                tocHeading = heading;
+                break;
+            }
+        }
+        
+        if (tocHeading) {
+            // Get the list that follows the TOC heading
+            let tocList = tocHeading.nextElementSibling;
+            while (tocList && tocList.tagName !== 'UL') {
+                tocList = tocList.nextElementSibling;
+            }
+            
+            if (tocList) {
+                // Extract main headings (level 1) from the TOC
+                const mainItems = tocList.querySelectorAll('li > a');
+                for (const item of mainItems) {
+                    // Check if this is a main heading (not indented/sub-item)
+                    if (!item.closest('li').parentElement.closest('li')) {
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = item.href;
+                        link.textContent = item.textContent;
+                        listItem.appendChild(link);
+                        navList.appendChild(listItem);
+                    }
+                }
             }
         }
     }
@@ -96,23 +173,67 @@ function extractMainHeadingsFromCurrentPage() {
 
 function populateMainHeadings(text, navList) {
     // Extract main headings (level 1) from index.md content
-    const tocSection = text.match(/## Table of Contents[\s\S]*?(?=##|$)/);
-    if (tocSection) {
-        const mainHeadings = tocSection[0].match(/\[\d+\. [^\]]+\]\([^\)]+\)/g);
-        if (mainHeadings) {
-            mainHeadings.forEach(heading => {
-                const title = heading.match(/\[(\d+\. [^\]]+)\]/);
-                const link = heading.match(/\(([^\)]+)\)/);
+    const mainHeadings = text.match(/^# (.+)$/gm);
+    
+    if (mainHeadings) {
+        mainHeadings.forEach(heading => {
+            // Skip the title heading
+            if (heading.includes('PicoScenes: Enabling Modern Wi-Fi ISAC Research')) {
+                return;
+            }
+            
+            const title = heading.replace('# ', '');
+            const slug = title.toLowerCase().replace(/[^\w]+/g, '-');
+            
+            const listItem = document.createElement('li');
+            const anchor = document.createElement('a');
+            
+            // If the title contains a number and a filename (like "1. Gallery"), extract it
+            const match = title.match(/(\d+\. [^\(]+)(\(([^\)]+)\))?/);
+            
+            if (match) {
+                const displayTitle = match[1].trim();
+                const fileName = match[3] ? match[3].trim() : null;
                 
-                if (title && link) {
-                    const listItem = document.createElement('li');
-                    const anchor = document.createElement('a');
-                    anchor.href = link[1];
-                    anchor.textContent = title[1];
-                    listItem.appendChild(anchor);
-                    navList.appendChild(listItem);
+                anchor.textContent = displayTitle;
+                
+                // If we have a filename, use it for the href
+                if (fileName) {
+                    anchor.href = '/' + fileName;
+                } else {
+                    // Otherwise use the slug
+                    anchor.href = '#' + slug;
                 }
-            });
+            } else {
+                anchor.href = '#' + slug;
+                anchor.textContent = title;
+            }
+            
+            listItem.appendChild(anchor);
+            navList.appendChild(listItem);
+        });
+    }
+    
+    // If no main headings were found, try to extract from Table of Contents
+    if (navList.children.length <= 1) { // Only the title is present
+        const tocSection = text.match(/## Table of Contents[\s\S]*?(?=##|$)/);
+        if (tocSection) {
+            const mainHeadingLinks = tocSection[0].match(/\[([^\]]+)\]\(([^\)]+)\)/g);
+            if (mainHeadingLinks) {
+                mainHeadingLinks.forEach(heading => {
+                    const title = heading.match(/\[([^\]]+)\]/);
+                    const link = heading.match(/\(([^\)]+)\)/);
+                    
+                    if (title && link) {
+                        const listItem = document.createElement('li');
+                        const anchor = document.createElement('a');
+                        anchor.href = link[1];
+                        anchor.textContent = title[1];
+                        listItem.appendChild(anchor);
+                        navList.appendChild(listItem);
+                    }
+                });
+            }
         }
     }
 }
