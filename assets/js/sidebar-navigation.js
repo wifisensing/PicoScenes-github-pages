@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Create left sidebar for main document structure
+    createLeftSidebar();
+    
     // Create right sidebar for current page's second-level headings
     createRightSidebar();
 });
