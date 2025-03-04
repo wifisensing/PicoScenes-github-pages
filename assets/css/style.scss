@@ -19,7 +19,7 @@ header {
 
 // 主内容区
 section {
-  width: 800px;
+  width: 750px;  // 减小宽度
   float: left;
   margin-left: 300px;  // 为左侧导航留出空间
   padding: 20px;
@@ -29,15 +29,16 @@ section {
 .page-toc {
   width: 250px;
   position: fixed;
-  right: 0;
+  right: 50px;  // 调整右边距
   top: 0;
   padding: 20px;
   height: 100vh;
   overflow-y: auto;
   background: #f8f8f8;
+  margin-left: 1100px;  // 确保不会与左侧内容重叠
   
   h2 {
-    margin-top: 0;
+    margin-top: 20px;  // 增加顶部间距
     font-size: 1.2em;
   }
   
