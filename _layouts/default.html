@@ -23,6 +23,16 @@
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
+        <nav>
+          <h2>目录</h2>
+          {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+          <ul>
+            {% for post in sorted_posts %}
+              <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+
         {% if site.github.is_project_page %}
         <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
         {% endif %}
@@ -40,8 +50,14 @@
         {% endif %}
       </header>
       <section>
+        {% if page.layout == 'post' %}
+          <div class="post-toc">
+            <h2>文章目录</h2>
+            {{ content | toc }}
+          </div>
+        {% endif %}
 
-      {{ content }}
+        {{ content }}
 
       </section>
       <footer>

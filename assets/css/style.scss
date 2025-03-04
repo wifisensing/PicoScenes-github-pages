@@ -1,4 +1,68 @@
----
----
-
 @import "jekyll-theme-minimal";
+
+// 调整左侧栏位置
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  width: 800px;
+  float: right;
+  padding-bottom: 50px;
+}
+
+header {
+  width: 300px;
+  float: left;
+  position: fixed;
+  -webkit-font-smoothing: subpixel-antialiased;
+  padding-left: 0;  // 移除左边距
+}
+
+// 添加导航栏样式
+nav {
+  margin-top: 20px;
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+    
+    li {
+      margin-bottom: 10px;
+      
+      a {
+        color: #267CB9;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// 文章内部目录样式
+.post-toc {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #f8f8f8;
+  border-radius: 5px;
+  
+  h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+  }
+  
+  ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+}
+
+// 调整导航栏标题样式
+nav h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
