@@ -24,7 +24,7 @@
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
         <nav>
-          <h2>目录</h2>
+          <h2>Index</h2>
           <ul>
             {% assign pages = site.pages | where_exp: "page", "page.nav_order" | sort: 'nav_order' %}
             {% for page in pages %}
@@ -50,16 +50,15 @@
         {% endif %}
       </header>
       <section>
-        {% if page.layout == 'post' %}
-          <div class="post-toc">
-            <h2>文章目录</h2>
-            {{ content | toc }}
-          </div>
-        {% endif %}
-
         {{ content }}
-
       </section>
+
+      <!-- 添加右侧目录 -->
+      <div class="page-toc">
+        <h2>Contents</h2>
+        {{ content | toc }}
+      </div>
+
       <footer>
         {% if site.github.is_project_page %}
         <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>

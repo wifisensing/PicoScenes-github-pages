@@ -1,26 +1,67 @@
 @import "jekyll-theme-minimal";
 
-// 调整左侧栏位置
+// 调整整体布局
 .wrapper {
-  width: 1200px;
+  width: 1400px;  // 增加总宽度以适应三栏
   margin: 0 auto;
 }
 
-section {
-  width: 800px;
-  float: right;
-  padding-bottom: 50px;
-}
-
+// 左侧导航栏
 header {
-  width: 300px;
+  width: 250px;
   float: left;
   position: fixed;
-  -webkit-font-smoothing: subpixel-antialiased;
-  padding-left: 0;  // 移除左边距
+  left: 0;  // 确保靠左对齐
+  padding: 20px;
+  overflow-y: auto;  // 内容过多时可滚动
+  height: 100vh;  // 占满整个视口高度
 }
 
-// 添加导航栏样式
+// 主内容区
+section {
+  width: 800px;
+  float: left;
+  margin-left: 300px;  // 为左侧导航留出空间
+  padding: 20px;
+}
+
+// 右侧目录
+.page-toc {
+  width: 250px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  background: #f8f8f8;
+  
+  h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 15px;
+    
+    li {
+      margin-bottom: 8px;
+      font-size: 0.9em;
+      
+      a {
+        color: #267CB9;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// 调整导航栏样式
 nav {
   margin-top: 20px;
   
