@@ -1,0 +1,389 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  product: Documentation
+  # version: 1.0
+  folders:
+
+  - title:
+    output: pdf
+    type: frontmatter
+    folderitems:
+    - title:
+      url: /titlepage.html
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage.html
+      output: pdf
+      type: frontmatter
+
+  - title: Overview
+    url: /index.html
+    output: web, pdf
+    folderitems:
+
+    - title: "PicoScenes: A Middleware for Wi-Fi Sensing"
+      url: /index.html
+      output: web, pdf
+
+    - title: News
+      url: /index.html/#news
+      output: web, pdf
+      type: homepage
+
+    - title: What is PicoScenes?
+      url: /index.html/#what_is_picoscenes
+      output: web, pdf
+
+  - title: Gallery
+    output: web, pdf
+    folderitems:
+    
+    - title: Gallery
+      url: /gallery.html
+      output: web, pdf
+
+    - title: 1.1. PicoScenes Driving USRP B210 and HackRF One to Inject 11AX Packets and Measuring CSI (1 & 2)
+      url: /gallery.html/#b210_hackrf
+      output: web, pdf
+
+    - title: 1.2. Live CSI measurement and plot using HackRF One
+      url: /gallery.html/#hackrf_live
+      output: web, pdf
+
+    - title: 1.3. AX210 NIC in STA mode measuring the 160-MHz bandwidth CSI and live-plotting
+      url: /gallery.html/#ax210_160
+      output: web, pdf
+
+    - title: 1.4. AX210 NIC in Monitor Mode measuring CSI for all overheard frames and live-plotting
+      url: /gallery.html/#ax210_monitor
+      output: web, pdf
+
+    - title: 1.5. AX210 NIC Measuring CSI in Monitor mode w/ 20/160-MHz BW Packet Injection from Another AX210
+      url: /gallery.html/#ax210_another_210
+      output: web, pdf  
+
+    - title: 1.6. AX210 NIC Measuring CSI in Monitor mode w/ Round-trip CSI and Frequency Hopping 
+      url: /gallery.html/#ax210_ax210
+      output: web, pdf
+
+    - title: 1.7. CSI measurements over a large and continuous spectrum by QCA9300
+      url: /gallery.html/#scan_9300
+      output: web, pdf
+
+    - title: 1.8. CSI measurements under tunable and wide baseband bandwidths
+      url: /gallery.html/#qca9300_tune_bw
+      output: web, pdf  
+
+    - title: 1.9. Large spectrum stitching using two QCA9300 NICs
+      url: /gallery.html/#stitching_9300
+      output: web, pdf
+
+    - title: 1.10. Large spectrum stitching using a USRP X310 and a QCA9300 NIC
+      url: /gallery.html/#stitching_x310_9300
+      output: web, pdf
+
+    - title: 1.11. Installation of PicoScenes MATLAB Toolbox and drag'n'drop style .csi file parsing
+      url: /gallery.html/#dragndrop
+      output: web, pdf
+
+    - title: 1.12. 27-NIC Wi-Fi sensing array
+      url: /gallery.html/#nic_array
+      output: web, pdf  
+
+  - title: Users
+    output: web, pdf
+    folderitems:
+    
+    - title: Users
+      url: /users.html
+      output: web, pdf
+
+    - title: 2.1. Published Papers by PicoScenes Users
+      url: /users.html/#published_papers
+      output: web, pdf 
+
+    - title: 2.2. PicoScenes Users in the Wi-Fi ISAC Community
+      url: /users.html/#community
+      output: web, pdf  
+
+  - title: Supported Hardware
+    output: web, pdf
+    folderitems:
+
+    - title: Supported Hardware
+      url: /hardware.html
+      output: web, pdf
+
+  - title: Features & License
+    output: web, pdf
+    folderitems:
+
+    - title: Features & License
+      url: /features_pricing.html
+      output: web, pdf
+
+    - title: 4.1. Features of The PicoScenes Platform
+      url: /features_pricing.html/#41-features-of-the-picoscenes-platform
+      output: web, pdf
+
+    - title: 4.2. Introducing PicoScenes Licensing Plan
+      url: /features_pricing.html/#42-introducing-picoscenes-licensing-plan
+      output: web, pdf
+
+    - title: 4.3. Pricing & Payment
+      url: /features_pricing.html/#43-pricing--payment
+      output: web, pdf  
+
+  - title: Installation & Upgrade
+    output: web, pdf
+    folderitems:
+
+    - title: Installation & Upgrade
+      url: /installation.html
+      output: web, pdf
+
+    - title: 5.1. Hardware Installation
+      url: /installation.html/#51-hardware-installation
+      output: web, pdf
+
+    - title: 5.2. PicoScenes Software Installation
+      url: /installation.html/#52-picoscenes-software-installation
+      output: web, pdf
+
+    - title: 5.3. Install PicoScenes MATLAB Toolbox Core
+      url: /installation.html/#53-install-picoscenes-matlab-toolbox-core
+      output: web, pdf
+
+    - title: 5.4. Installing PicoScenes Python Toolbox
+      url: /installation.html/#54-installing-picoscenes-python-toolbox
+      output: web, pdf
+
+    - title: 5.5. Upgrading PicoScenes Software
+      url: /installation.html/#55-upgrading-picoscenes-software
+      output: web, pdf
+
+    - title: 5.6. Uninstallation of The PicoScenes Ecosystem
+      url: /installation.html/#56-uninstallation-of-the-picoscenes-ecosystem
+      output: web, pdf  
+
+  - title: CSI Measurement using PicoScenes
+    output: web, pdf
+    folderitems:
+
+    - title: CSI Measurement using PicoScenes
+      url: /scenarios.html
+      output: web, pdf
+
+    - title: "6.1. Before Getting Started: Some Fundamentals"
+      url: /scenarios.html/#61-before-getting-started-some-fundamentals
+      output: web, pdf
+
+    - title: 6.2. ISAC Research using NI USRP or HackRF One SDR 
+      url: /scenarios.html/#62-isac-research-using-ni-usrp-or-hackrf-one-sdr
+      output: web, pdf  
+
+    - title: 6.3. CSI Measurement using AX210/AX200 NICs
+      url: /scenarios.html/#63-csi-measurement-using-ax210ax200-nics
+      output: web, pdf  
+
+    - title: 6.4. CSI Measurement using QCA9300 and IWL5300 NICs
+      url: /scenarios.html/#64-csi-measurement-using-qca9300-and-iwl5300-nics
+      output: web, pdf    
+
+    - title: 6.5. Interoperability among SDR and COTS NICs
+      url: /scenarios.html/#65-interoperability-among-sdr-and-cots-nics
+      output: web, pdf
+
+  - title: Command Line Interface and Program Option Reference
+    output: web, pdf
+    folderitems:
+
+    - title: Command Line Interface and Program Option Reference
+      url: /parameters.html
+      output: web, pdf
+
+    - title: 7.1. PicoScenes Command Line Interface 
+      url: /parameters.html/#71-picoscenes-command-line-interface
+      output: web, pdf
+
+    - title: 7.2. Program Options Hierarchy
+      url: /parameters.html/#72-program-options-hierarchy
+      output: web, pdf
+
+    - title: 7.3. Platform Startup Options (Bottom)
+      url: /parameters.html/#73-platform-startup-options-bottom
+      output: web, pdf
+
+    - title: 7.4. Platform Options
+      url: /parameters.html/#74-platform-options
+      output: web, pdf
+
+    - title: 7.5. Frontend Level Options
+      url: /parameters.html/#75-frontend-level-options
+      output: web, pdf
+
+    - title: 7.6. Per-Plugin Level Options (Top)
+      url: /parameters.html/#76-per-plugin-level-options-top
+      output: web, pdf
+
+  - title: PicoScenes MATLAB Toolbox Core
+    output: web, pdf
+    folderitems:
+
+    - title: PicoScenes MATLAB Toolbox Core
+      url: /matlab.html
+      output: web, pdf
+
+    - title: 8.1. Prerequisites
+      url: /matlab.html/#81-prerequisites
+      output: web, pdf
+
+    - title: 8.2. Obtain PicoScenes MATLAB Toolbox Core
+      url: /matlab.html/#82-obtain-picoscenes-matlab-toolbox-core
+      output: web, pdf
+
+    - title: 8.3. Install PMT-Core in MATLAB
+      url: /matlab.html/#83-install-pmt-core-in-matlab
+      output: web, pdf   
+
+    - title: 8.4. Verify the installation
+      url: /matlab.html/#84-verify-the-installation
+      output: web, pdf
+
+    - title: 8.5. Usage
+      url: /matlab.html/#85-usage
+      output: web, pdf  
+
+  - title: Utility Programs and Bash Scripts
+    output: web, pdf
+    folderitems:
+
+    - title: Utility Programs and Bash Scripts
+      url: /utilities.html
+      output: web, pdf 
+    
+    - title: 9.1. UDP-Forwarder Plugin & UDPRemoteLogger
+      url: /utilities.html/#91-udp-forwarder-plugin--udpremotelogger
+      output: web, pdf
+
+    - title: 9.2. Utility Scripts
+      url: /utilities.html/#92-utility-scripts
+      output: web, pdf  
+
+  - title: Developing Your PicoScenes Plugins
+    output: web, pdf
+    folderitems:
+
+    - title: Developing Your PicoScenes Plugins
+      url: /plugin.html
+      output: web, pdf  
+
+    - title: 10.1. Prerequisites
+      url: /plugin.html/#101-prerequisites
+      output: web, pdf
+
+    - title: 10.2. Developing PicoScenes Plugins
+      url: /plugin.html/#102-developing-picoscenes-plugins
+      output: web, pdf
+
+    - title: 10.3. Debug PicoScenes plugins
+      url: /plugin.html/#103-debug-picoscenes-plugins
+      output: web, pdf  
+      
+  - title: Development Status
+    output: web, pdf
+    folderitems:
+
+    - title: Development Status
+      url: /status.html
+      output: web, pdf  
+
+  - title: Useful Resources
+    output: web, pdf
+    folderitems:
+
+    - title: Useful Resources
+      url: /resources.html
+      output: web, pdf  
+
+    - title: 12.1. The academic paper of PicoScenes
+      url: /resources.html/#121-the-academic-paper-of-picoscenes
+      output: web, pdf
+
+    - title: 12.2. Quick Reference
+      url: /resources.html/#122-quick-reference
+      output: web, pdf  
+
+    - title: 12.3. Opensource repositories
+      url: /resources.html/#123-opensource-repositories
+      output: web, pdf  
+
+    - title: 12.4. Other useful resources on Wi-Fi/RF/Smart Sensing
+      url: /resources.html/#other_useful
+      output: web, pdf    
+      
+  - title: Troubleshooting & Support
+    output: web, pdf
+    folderitems:
+
+    - title: Troubleshooting & Support
+      url: /troubleshooting.html
+      output: web, pdf    
+
+    - title: 13.1. Troubleshooting
+      url: /troubleshooting.html/#131-troubleshooting
+      output: web, pdf
+
+    - title: 13.2. Technical Support
+      url: /troubleshooting.html/#132-technical-support
+      output: web, pdf
+
+  - title: PicoScenes Software End User License Agreement
+    output: web, pdf
+    folderitems:
+
+    - title: PicoScenes Software End User License Agreement
+      url: /eula.html
+      output: web, pdf
+  
+  - title: Credits
+    output: web, pdf
+    folderitems:
+
+    - title: Credits
+      url: /credits.html
+      output: web, pdf  
+
+    - title: 15.1. Development Team
+      url: /credits.html/#151-development-team
+      output: web, pdf
+
+  - title: Selling NI USRP Devices
+    output: web, pdf
+    folderitems:
+
+    - title: Selling NI USRP Devices
+      url: /ni.html
+      output: web, pdf  
+
+    - title: 16.1. 从我们这里采购USRP设备的优势：放心、省钱、省事 
+      url: /ni.html/#advantages-of-choosing-us
+      output: web, pdf
+
+    - title: 16.2. 我们推荐的USRP型号
+      url: /ni.html/#recommended-models 
+
+    - title: 16.3.  其它要考虑的因素
+      url: /ni.html/#other-things-to-consider
+      output: web, pdf
+
+    - title: 16.4. 报价与支付方式
+      url: /ni.html/#partner-store
+      output: web, pdf
+
+    - title: 16.5. 亲身经历：不要选择山寨USRP，会后悔 
+      url: /ni.html/#why-not-choose-piracy
+      output: web, pdf

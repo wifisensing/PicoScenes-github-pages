@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title></title>
+        <description>Intended as a documentation theme based on Jekyll for technical writers documenting software and other technical products, this theme has all the elements you would need to handle multiple products with both multi-level sidebar navigation, tags, and other documentation features.</description>
+        <link>http://localhost:4000/</link>
+        <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Tue, 04 Mar 2025 16:53:29 +0800</pubDate>
+        <lastBuildDate>Tue, 04 Mar 2025 16:53:29 +0800</lastBuildDate>
+        <generator>Jekyll v4.4.1</generator>
+        
+        <item>
+            <title>News!</title>
+            <description>&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;May 12, 2024&lt;/strong&gt; PicoScenes Radar mode now supports SISO, SIMO, MIMO and MIMO across multiple devices measurements, see &lt;a href=&quot;scenarios.md#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format&quot;&gt;Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Mar. 19, 2024&lt;/strong&gt; PicoScenes now provides a UDP forwarding/receiving utility! See &lt;a href=&quot;utilities.md#91-udp-forwarder-plugin--udpremotelogger&quot;&gt;UDP-Forwarder Plugin &amp;amp; UDPRemoteLogger&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Mar. 19, 2024&lt;/strong&gt; PicoScenes now officially supports Ubuntu 22.04! See &lt;a href=&quot;installation.md#52-picoscenes-software-installation&quot;&gt;PicoScenes Software Installation&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Mar. 12, 2024&lt;/strong&gt; We are pleased to announce that our research, “&lt;strong&gt;Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities&lt;/strong&gt;”, has been accepted by &lt;strong&gt;IEEE Communication Magazine (IF=11.2)&lt;/strong&gt;. For More information, please visit its online supplementary materials &lt;a href=&quot;reshaping-wifi-isac.md&quot;&gt;Online supplementaries for “Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities”&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Jan. 20, 2024&lt;/strong&gt; &lt;a href=&quot;plugin.md&quot;&gt;Developing Your PicoScenes Plugins&lt;/a&gt; page is completely rewritten. Thanks to Tian Teng for his brilliant work!&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dec. 26, 2023&lt;/strong&gt; Revise the &lt;a href=&quot;ni.md&quot;&gt;Selling NI USRP Devices (与NI合作销售USRP系列产品)&lt;/a&gt; page.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dec. 20, 2023&lt;/strong&gt; Initiating the Ubuntu 22.04 (and soon 24.04) transition of PicoScenes system (client program and CI server).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dec. 3, 2023&lt;/strong&gt; Add Radar and MIMO-Radar modes for SDR frontend, see &lt;a href=&quot;scenarios.md#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format&quot;&gt;Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format.&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dec. 2, 2023&lt;/strong&gt; Major update to license: all limitations for COTS NICS (6 GHz band, 11ax 80/160 MHz CBW packet injection and more) removed! More than 10 SDR-only limitations are removed (unlimited channel/bandwidth access, Wi-Fi 7 Tx and Rx, up to 320 MHz CBW and more). See &lt;a href=&quot;features_pricing.md&quot;&gt;Features &amp;amp; License&lt;/a&gt; for more details. (&lt;strong&gt;Upgrade to latest version to validate&lt;/strong&gt;!)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nov. 29, 2023&lt;/strong&gt; Add a new page &lt;a href=&quot;ni.md&quot;&gt;Selling NI USRP Devices (与NI合作销售USRP系列产品)&lt;/a&gt; describing how we collaborate with NI selling USRP hardware. This program is exclusively available in mainland China.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nov. 28, 2023&lt;/strong&gt; Add a new page &lt;a href=&quot;features_pricing.md&quot;&gt;Features &amp;amp; License&lt;/a&gt; replacing the old PSLP page.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nov. 20, 2023&lt;/strong&gt; page &lt;a href=&quot;scenarios.md&quot;&gt;CSI Measurement using PicoScenes&lt;/a&gt; is completely rewritten. Readability is significantly improved.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nov. 18, 2023&lt;/strong&gt; Add docs for two experimental features: &lt;a href=&quot;scenarios.md#6264-dual-channel-spectrum-splitting-and-stitching-experimental&quot;&gt;Dual-Channel Spectrum Splitting and Stitching (Experimental)&lt;/a&gt; and &lt;a href=&quot;scenarios.md#6265-multi-thread-rx-decoding-experimental&quot;&gt;Multi-Thread Rx Decoding (Experimental)&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nov. 17, 2023&lt;/strong&gt; Add two quick reference pages: &lt;a href=&quot;channels.md&quot;&gt;Wi-Fi Channelization&lt;/a&gt; and &lt;a href=&quot;presets.md&quot;&gt;PicoScenes Presets&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nov. 16, 2023&lt;/strong&gt; Page revised &lt;a href=&quot;hardware.md&quot;&gt;Supported Hardware&lt;/a&gt;, &lt;a href=&quot;installation.md&quot;&gt;PicoScenes Installation &amp;amp; Upgrade&lt;/a&gt;, &lt;a href=&quot;scenarios.md&quot;&gt;CSI Measurement using PicoScenes&lt;/a&gt;, and &lt;a href=&quot;utilities.md&quot;&gt;Utility Programs and Bash Scripts&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Nov. 1, 2023&lt;/strong&gt; &lt;strong&gt;PicoScenes adds Wi-Fi 7 (EHT-SU) support for SDR frontends.&lt;/strong&gt; PicoScenes is currently the only platform support Wi-Fi 7 based ISAC research. See our Wi-Fi 7 examples &lt;a href=&quot;scenarios.md#622-transmitting-80211agnacaxbe-protocol-frames-using-sdr-devices&quot;&gt;Transmitting 802.11a/g/n/ac/ax/be protocol frames using SDR Devices&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+            <pubDate>Tue, 04 Mar 2025 00:00:00 +0800</pubDate>
+            <link>http://localhost:4000/myupdate.html</link>
+            <guid isPermaLink="true">http://localhost:4000/myupdate.html</guid>
+            
+            <category>news</category>
+            
+            
+        </item>
+        
+    </channel>
+</rss>

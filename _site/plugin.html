@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="This page provides instructions for developing your own PicoScenes plugins.">
+<meta name="keywords" content=" PicoScenes, Plugin, Development, C++, Linux">
+<title>Developing Your PicoScenes Plugins | PicoScenes Introduction</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> PicoScenes Introduction</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="https://github.com/wifisensing" target="_blank" rel="noopener">GitHub</a></li>
+                
+                
+                
+                <li><a href="news">News</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicoScenes Help<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="https://github.com/wifisensing" target="_blank" rel="noopener">github issues Leave a message</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="installation.html">PicoScenes Ubuntu 22.04</a></li>
+                        
+                        
+                        
+                        <li><a href="installation.html">PicoScenes Win11</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:tomjoht@gmail.com?subject=Jekyll documentation theme feedback&body=I have some feedback about the Developing Your PicoScenes Plugins page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Developing Your PicoScenes Plugins">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle">Documentation </li>
+  
+  
+  
+      
+  
+  <li>
+      <a title="Overview" href="#">Overview</a>
+      <ul>
+          
+          
+          
+          <li><a title="PicoScenes: A Middleware for Wi-Fi Sensing" href="index.html">PicoScenes: A Middleware for Wi-Fi Sensing</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="News" href="index.html#news">News</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="What is PicoScenes?" href="index.html#what_is_picoscenes">What is PicoScenes?</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Gallery" href="#">Gallery</a>
+      <ul>
+          
+          
+          
+          <li><a title="Gallery" href="gallery.html">Gallery</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.1. PicoScenes Driving USRP B210 and HackRF One to Inject 11AX Packets and Measuring CSI (1 & 2)" href="gallery.html#b210_hackrf">1.1. PicoScenes Driving USRP B210 and HackRF One to Inject 11AX Packets and Measuring CSI (1 & 2)</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.2. Live CSI measurement and plot using HackRF One" href="gallery.html#hackrf_live">1.2. Live CSI measurement and plot using HackRF One</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.3. AX210 NIC in STA mode measuring the 160-MHz bandwidth CSI and live-plotting" href="gallery.html#ax210_160">1.3. AX210 NIC in STA mode measuring the 160-MHz bandwidth CSI and live-plotting</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.4. AX210 NIC in Monitor Mode measuring CSI for all overheard frames and live-plotting" href="gallery.html#ax210_monitor">1.4. AX210 NIC in Monitor Mode measuring CSI for all overheard frames and live-plotting</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.5. AX210 NIC Measuring CSI in Monitor mode w/ 20/160-MHz BW Packet Injection from Another AX210" href="gallery.html#ax210_another_210">1.5. AX210 NIC Measuring CSI in Monitor mode w/ 20/160-MHz BW Packet Injection from Another AX210</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.6. AX210 NIC Measuring CSI in Monitor mode w/ Round-trip CSI and Frequency Hopping" href="gallery.html#ax210_ax210">1.6. AX210 NIC Measuring CSI in Monitor mode w/ Round-trip CSI and Frequency Hopping</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.7. CSI measurements over a large and continuous spectrum by QCA9300" href="gallery.html#scan_9300">1.7. CSI measurements over a large and continuous spectrum by QCA9300</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.8. CSI measurements under tunable and wide baseband bandwidths" href="gallery.html#qca9300_tune_bw">1.8. CSI measurements under tunable and wide baseband bandwidths</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.9. Large spectrum stitching using two QCA9300 NICs" href="gallery.html#stitching_9300">1.9. Large spectrum stitching using two QCA9300 NICs</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.10. Large spectrum stitching using a USRP X310 and a QCA9300 NIC" href="gallery.html#stitching_x310_9300">1.10. Large spectrum stitching using a USRP X310 and a QCA9300 NIC</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.11. Installation of PicoScenes MATLAB Toolbox and drag'n'drop style .csi file parsing" href="gallery.html#dragndrop">1.11. Installation of PicoScenes MATLAB Toolbox and drag'n'drop style .csi file parsing</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="1.12. 27-NIC Wi-Fi sensing array" href="gallery.html#nic_array">1.12. 27-NIC Wi-Fi sensing array</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Users" href="#">Users</a>
+      <ul>
+          
+          
+          
+          <li><a title="Users" href="users.html">Users</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="2.1. Published Papers by PicoScenes Users" href="users.html#published_papers">2.1. Published Papers by PicoScenes Users</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="2.2. PicoScenes Users in the Wi-Fi ISAC Community" href="users.html#community">2.2. PicoScenes Users in the Wi-Fi ISAC Community</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Supported Hardware" href="#">Supported Hardware</a>
+      <ul>
+          
+          
+          
+          <li><a title="Supported Hardware" href="hardware.html">Supported Hardware</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Features & License" href="#">Features & License</a>
+      <ul>
+          
+          
+          
+          <li><a title="Features & License" href="features_pricing.html">Features & License</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="4.1. Features of The PicoScenes Platform" href="features_pricing.html#41-features-of-the-picoscenes-platform">4.1. Features of The PicoScenes Platform</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="4.2. Introducing PicoScenes Licensing Plan" href="features_pricing.html#42-introducing-picoscenes-licensing-plan">4.2. Introducing PicoScenes Licensing Plan</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="4.3. Pricing & Payment" href="features_pricing.html#43-pricing--payment">4.3. Pricing & Payment</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Installation & Upgrade" href="#">Installation & Upgrade</a>
+      <ul>
+          
+          
+          
+          <li><a title="Installation & Upgrade" href="installation.html">Installation & Upgrade</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="5.1. Hardware Installation" href="installation.html#51-hardware-installation">5.1. Hardware Installation</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="5.2. PicoScenes Software Installation" href="installation.html#52-picoscenes-software-installation">5.2. PicoScenes Software Installation</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="5.3. Install PicoScenes MATLAB Toolbox Core" href="installation.html#53-install-picoscenes-matlab-toolbox-core">5.3. Install PicoScenes MATLAB Toolbox Core</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="5.4. Installing PicoScenes Python Toolbox" href="installation.html#54-installing-picoscenes-python-toolbox">5.4. Installing PicoScenes Python Toolbox</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="5.5. Upgrading PicoScenes Software" href="installation.html#55-upgrading-picoscenes-software">5.5. Upgrading PicoScenes Software</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="5.6. Uninstallation of The PicoScenes Ecosystem" href="installation.html#56-uninstallation-of-the-picoscenes-ecosystem">5.6. Uninstallation of The PicoScenes Ecosystem</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="CSI Measurement using PicoScenes" href="#">CSI Measurement using PicoScenes</a>
+      <ul>
+          
+          
+          
+          <li><a title="CSI Measurement using PicoScenes" href="scenarios.html">CSI Measurement using PicoScenes</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="6.1. Before Getting Started: Some Fundamentals" href="scenarios.html#61-before-getting-started-some-fundamentals">6.1. Before Getting Started: Some Fundamentals</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="6.2. ISAC Research using NI USRP or HackRF One SDR" href="scenarios.html#62-isac-research-using-ni-usrp-or-hackrf-one-sdr">6.2. ISAC Research using NI USRP or HackRF One SDR</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="6.3. CSI Measurement using AX210/AX200 NICs" href="scenarios.html#63-csi-measurement-using-ax210ax200-nics">6.3. CSI Measurement using AX210/AX200 NICs</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="6.4. CSI Measurement using QCA9300 and IWL5300 NICs" href="scenarios.html#64-csi-measurement-using-qca9300-and-iwl5300-nics">6.4. CSI Measurement using QCA9300 and IWL5300 NICs</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="6.5. Interoperability among SDR and COTS NICs" href="scenarios.html#65-interoperability-among-sdr-and-cots-nics">6.5. Interoperability among SDR and COTS NICs</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Command Line Interface and Program Option Reference" href="#">Command Line Interface and Program Option Reference</a>
+      <ul>
+          
+          
+          
+          <li><a title="Command Line Interface and Program Option Reference" href="parameters.html">Command Line Interface and Program Option Reference</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="7.1. PicoScenes Command Line Interface" href="parameters.html#71-picoscenes-command-line-interface">7.1. PicoScenes Command Line Interface</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="7.2. Program Options Hierarchy" href="parameters.html#72-program-options-hierarchy">7.2. Program Options Hierarchy</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="7.3. Platform Startup Options (Bottom)" href="parameters.html#73-platform-startup-options-bottom">7.3. Platform Startup Options (Bottom)</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="7.4. Platform Options" href="parameters.html#74-platform-options">7.4. Platform Options</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="7.5. Frontend Level Options" href="parameters.html#75-frontend-level-options">7.5. Frontend Level Options</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="7.6. Per-Plugin Level Options (Top)" href="parameters.html#76-per-plugin-level-options-top">7.6. Per-Plugin Level Options (Top)</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="PicoScenes MATLAB Toolbox Core" href="#">PicoScenes MATLAB Toolbox Core</a>
+      <ul>
+          
+          
+          
+          <li><a title="PicoScenes MATLAB Toolbox Core" href="matlab.html">PicoScenes MATLAB Toolbox Core</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="8.1. Prerequisites" href="matlab.html#81-prerequisites">8.1. Prerequisites</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="8.2. Obtain PicoScenes MATLAB Toolbox Core" href="matlab.html#82-obtain-picoscenes-matlab-toolbox-core">8.2. Obtain PicoScenes MATLAB Toolbox Core</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="8.3. Install PMT-Core in MATLAB" href="matlab.html#83-install-pmt-core-in-matlab">8.3. Install PMT-Core in MATLAB</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="8.4. Verify the installation" href="matlab.html#84-verify-the-installation">8.4. Verify the installation</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="8.5. Usage" href="matlab.html#85-usage">8.5. Usage</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Utility Programs and Bash Scripts" href="#">Utility Programs and Bash Scripts</a>
+      <ul>
+          
+          
+          
+          <li><a title="Utility Programs and Bash Scripts" href="utilities.html">Utility Programs and Bash Scripts</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="9.1. UDP-Forwarder Plugin & UDPRemoteLogger" href="utilities.html#91-udp-forwarder-plugin--udpremotelogger">9.1. UDP-Forwarder Plugin & UDPRemoteLogger</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="9.2. Utility Scripts" href="utilities.html#92-utility-scripts">9.2. Utility Scripts</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Developing Your PicoScenes Plugins" href="#">Developing Your PicoScenes Plugins</a>
+      <ul>
+          
+          
+          
+          <li class="active"><a title="Developing Your PicoScenes Plugins" href="plugin.html">Developing Your PicoScenes Plugins</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="10.1. Prerequisites" href="plugin.html#101-prerequisites">10.1. Prerequisites</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="10.2. Developing PicoScenes Plugins" href="plugin.html#102-developing-picoscenes-plugins">10.2. Developing PicoScenes Plugins</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="10.3. Debug PicoScenes plugins" href="plugin.html#103-debug-picoscenes-plugins">10.3. Debug PicoScenes plugins</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Development Status" href="#">Development Status</a>
+      <ul>
+          
+          
+          
+          <li><a title="Development Status" href="status.html">Development Status</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Useful Resources" href="#">Useful Resources</a>
+      <ul>
+          
+          
+          
+          <li><a title="Useful Resources" href="resources.html">Useful Resources</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="12.1. The academic paper of PicoScenes" href="resources.html#121-the-academic-paper-of-picoscenes">12.1. The academic paper of PicoScenes</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="12.2. Quick Reference" href="resources.html#122-quick-reference">12.2. Quick Reference</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="12.3. Opensource repositories" href="resources.html#123-opensource-repositories">12.3. Opensource repositories</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="12.4. Other useful resources on Wi-Fi/RF/Smart Sensing" href="resources.html#other_useful">12.4. Other useful resources on Wi-Fi/RF/Smart Sensing</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Troubleshooting & Support" href="#">Troubleshooting & Support</a>
+      <ul>
+          
+          
+          
+          <li><a title="Troubleshooting & Support" href="troubleshooting.html">Troubleshooting & Support</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="13.1. Troubleshooting" href="troubleshooting.html#131-troubleshooting">13.1. Troubleshooting</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="13.2. Technical Support" href="troubleshooting.html#132-technical-support">13.2. Technical Support</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="PicoScenes Software End User License Agreement" href="#">PicoScenes Software End User License Agreement</a>
+      <ul>
+          
+          
+          
+          <li><a title="PicoScenes Software End User License Agreement" href="eula.html">PicoScenes Software End User License Agreement</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Credits" href="#">Credits</a>
+      <ul>
+          
+          
+          
+          <li><a title="Credits" href="credits.html">Credits</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="15.1. Development Team" href="credits.html#151-development-team">15.1. Development Team</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+  
+  <li>
+      <a title="Selling NI USRP Devices" href="#">Selling NI USRP Devices</a>
+      <ul>
+          
+          
+          
+          <li><a title="Selling NI USRP Devices" href="ni.html">Selling NI USRP Devices</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="16.1. 从我们这里采购USRP设备的优势：放心、省钱、省事" href="ni.html#advantages-of-choosing-us">16.1. 从我们这里采购USRP设备的优势：放心、省钱、省事</a></li>
+          
+          
+          
+          
+          
+          
+          
+          
+          <li><a title="16.3.  其它要考虑的因素" href="ni.html#other-things-to-consider">16.3.  其它要考虑的因素</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="16.4. 报价与支付方式" href="ni.html#partner-store">16.4. 报价与支付方式</a></li>
+          
+          
+          
+          
+          
+          
+          <li><a title="16.5. 亲身经历：不要选择山寨USRP，会后悔" href="ni.html#why-not-choose-piracy">16.5. 亲身经历：不要选择山寨USRP，会后悔</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Developing Your PicoScenes Plugins</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">This page provides instructions for developing your own PicoScenes plugins.</div>
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+
+});
+</script>
+
+<div id="toc"></div>
+
+
+
+    
+
+
+    
+
+    <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/plugin.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a>
+
+    
+
+   <p><strong>Author:</strong> Tian Teng, Xidian University, tengtianmoemoe@gmail.com</p>
+
+<p>Before creating your own PicoScenes plugins from scratch, you have seven steps to gradually develop your understanding of the PicoScenes architecture and the coding skillset. During this process, you will learn how to git clone PS-PDK code, compile it, modify it, debug it, and imitate it. You will also have a general understanding of <code class="language-plaintext highlighter-rouge">modern C++</code> development on the Linux platform.</p>
+
+<h2 id="101-prerequisites">10.1. Prerequisites</h2>
+
+<p>PicoScenes Plugin Development Kit (PS-PDK), as a standard C++ library, includes the PicoScenes <code class="language-plaintext highlighter-rouge">C/C++ headers</code> and <code class="language-plaintext highlighter-rouge">libraries</code>. If you have installed PicoScenes software, PS-PDK is already in your system. The headers and the binary library files are installed at <code class="language-plaintext highlighter-rouge">/usr/local/PicoScenes/include/PicoScenes</code> and <code class="language-plaintext highlighter-rouge">/usr/local/PicoScenes/lib</code>, respectively. You may refer to the document <a href="installation.html">installation</a> to ensure your installation.</p>
+
+<h3 id="1011-install-necessary-development-dependencies">10.1.1. Install necessary development dependencies</h3>
+
+<p>Run the following command to install the dependencies for PS-PDK development.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> git cmake build-essential libboost-all-dev libssl-dev libcpprest-dev libsodium-dev libfmt-dev libuhd-dev libopenblas-dev libfftw3-dev pkg-config
+</code></pre></div></div>
+
+<h3 id="1012-clone-build-and-install-picoscenes-pdk-project">10.1.2. Clone, build and install PicoScenes PDK project</h3>
+
+<p>Run the following command to <code class="language-plaintext highlighter-rouge">git clone</code> the PicoScenes-PDK project</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/wifisensing/PicoScenes-PDK <span class="nt">--recursive</span>
+</code></pre></div></div>
+
+<p>If PicoScenes and all the development dependencies are successfully installed, you can run the following command to build and install the three plugins of PicoScenes-PDK project.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>PicoScenes-PDK <span class="c"># or cd to the cloned directory</span>
+./Fast_Build_Install_Plugin.sh
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Fast_Build_Install_Plugin.sh</code> is a bash script with the following content, which rebuilds the plugins and the .deb package and install the .deb package.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">scriptDir</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">cd</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">dirname</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BASH_SOURCE</span><span class="p">[0]</span><span class="k">}</span><span class="s2">"</span> <span class="si">)</span><span class="s2">"</span> <span class="o">&amp;&amp;</span> <span class="nb">pwd</span> <span class="si">)</span><span class="s2">"</span>
+
+<span class="nb">sudo </span>apt purge picoscenes-plugins-demo-echoprobe-forwarder <span class="nt">-y</span>
+
+<span class="nb">cd</span> <span class="nv">$scriptDir</span> <span class="o">&amp;&amp;</span> <span class="nb">rm</span> <span class="nt">-rf</span> <span class="nv">$scriptDir</span>/build <span class="o">&amp;&amp;</span> <span class="nb">mkdir</span> <span class="nv">$scriptDir</span>/build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$scriptDir</span>/build
+cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</span><span class="sb">`</span><span class="nb">nproc</span><span class="sb">`</span>
+
+<span class="nb">cd</span> <span class="nv">$scriptDir</span>/build <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>dpkg <span class="nt">-i</span> ./picoscenes<span class="k">*</span>.deb
+</code></pre></div></div>
+
+<p>If everything goes fine, the above command rebuilds and reinstalls the latest PS-PDK repository.</p>
+
+<h3 id="1013-optional-feature-prerequisites">10.1.3. Optional Feature Prerequisites</h3>
+
+<p>We recommand JetBrains <strong>CLion</strong> as the IDE for PicoScenes plugin development.</p>
+
+<h2 id="102-developing-picoscenes-plugins">10.2. Developing PicoScenes Plugins</h2>
+
+<h3 id="1021-picoscenes-plugin-overview">10.2.1. PicoScenes Plugin Overview</h3>
+
+<p>The following image illustrates the relationship between PicoScenes-plugin and PicoScenes.</p>
+
+<p><img src="images/PicoScenes-Data-Flow.png" alt="PicoScenes-Data-Flow" /></p>
+
+<p>The top box is labeled “PicoScenes Application Plugins,” which contains multiple sub-boxes marked as “Plugin-1,” “Plugin-2,” through “Plugin-n,” indicating that there are multiple plugins available for use by the PicoScenes platform. These plugins are managed through an intermediary box, “Plugins Manager,” signifying that all plugins are uniformly managed by this plugin manager.</p>
+
+<p>The process begins with the initiation of the platform, followed by the automatic detection of all available plugins. After detection, each plugin is systematically installed. Once the installation is complete, the system <a href="#1022-picoscenes-plugin-folder-structure">parses user commands</a> and proceeds to poll each plugin to verify if they meet the requirements of the commands. Upon confirmation, the system executes the corresponding plugins.</p>
+
+<p><img src="images/Plugin-Start-Sequence.png" alt="Plugin-Start-Sequence" /></p>
+
+<p>The plugin has the capability to control all hardware on the platform, with all functions and APIs within its realm of control. It is capable of <a href="#1024-how-to-receive-packages">receiving</a> and <a href="#1025-how-to-transmit-packages">transmitting</a> data flows, including WiFi packets. Once the hardware platform captures a packet, it forwards this data to all plugins, ensuring that each one receives the packet.</p>
+
+<p>“Imitation is not just the sincerest form of flattery - it’s the sincerest form of learning.” – George Bernard Shaw</p>
+
+<blockquote>
+  <p><strong>Hint:</strong> You can learn how to write plugins step by step following the tutorial, or you can view the complete code in the <a href="https://github.com/wifisensing/PicoScenes-PDK/">repository</a>.</p>
+</blockquote>
+
+<h3 id="1022-picoscenes-plugin-folder-structure">10.2.2. PicoScenes Plugin folder structure</h3>
+
+<p>The entire PS-PDK project is managed by <code class="language-plaintext highlighter-rouge">CMake</code> and contains three working plugins, a Demo plugin, the EchoProbe, and UDP-forwarder.</p>
+
+<p><code class="language-plaintext highlighter-rouge">PicoScenes-PDK/CMakeLists.txt</code></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ...</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span>plugin-demo<span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span>plugin-echoprobe<span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span>plugin-forwarder<span class="p">)</span>
+<span class="c1"># ...</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">add_subdirectory(plugin-demo)</code>: searches CMakeLists.txt in <code class="language-plaintext highlighter-rouge">plugin-demo</code></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">PicoScenes-PDK/plugin-demo/CMakeLists.txt</code></p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># PicoScenes-PDK/plugin-demo/CMakeLists.txt</span>
+
+<span class="c1"># The PicoScenes Plugins MUST be named in "PDK-xxx" pattern.</span>
+<span class="nf">ADD_LIBRARY</span><span class="p">(</span>PDK-demo SHARED DemoPlugin.cxx<span class="p">)</span>
+<span class="nf">TARGET_LINK_LIBRARIES</span><span class="p">(</span>PDK-demo  <span class="si">${</span><span class="nv">Boost_LIBRARIES</span><span class="si">}</span> fmt::fmt SystemTools<span class="p">)</span>
+<span class="nb">install</span><span class="p">(</span>TARGETS PDK-demo  DESTINATION .<span class="p">)</span>
+</code></pre></div></div>
+
+<p>DemoPlugin Inherits from AbstractPicoScenesPlugin. Below are the properties and methods in DemoPlugin.</p>
+
+<p><code class="language-plaintext highlighter-rouge">DemoPlugin.hxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// DemoPlugin.hxx</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;mutex&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;PicoScenes/AbstractPicoScenesPlugin.hxx&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;PicoScenes/MAC80211CSIExtractableNIC.hxx&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">DemoPlugin</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AbstractPicoScenesPlugin</span> <span class="p">{</span>
+<span class="nl">public:</span>
+
+    <span class="c1">// Get the name of the plugin</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getPluginName</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Get the description of the plugin</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getPluginDescription</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Get the status of the plugin</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">pluginStatus</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Get the supported device types by the plugin</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PicoScenesDeviceType</span><span class="o">&gt;</span> <span class="n">getSupportedDeviceTypes</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Perform initialization tasks for the plugin</span>
+    <span class="kt">void</span> <span class="n">initialization</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Get the options description for the plugin</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">program_options</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span> <span class="n">pluginOptionsDescription</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Parse and execute commands for the plugin</span>
+    <span class="kt">void</span> <span class="n">parseAndExecuteCommands</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">commandString</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Create an instance of the DemoPlugin</span>
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">DemoPlugin</span><span class="o">&gt;</span> <span class="n">create</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">DemoPlugin</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+
+    <span class="c1">// Options description for the plugin</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">po</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span> <span class="n">options</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Alias the create function to 'initPicoScenesPlugin' using BOOST_DLL_ALIAS</span>
+<span class="n">BOOST_DLL_ALIAS</span><span class="p">(</span><span class="n">DemoPlugin</span><span class="o">::</span><span class="n">create</span><span class="p">,</span> <span class="n">initPicoScenesPlugin</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>These methods are implemented in <code class="language-plaintext highlighter-rouge">Demoplugin.cxx</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">DemoPlugin.cxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// DemoPlugin.cxx</span>
+<span class="cp">#include</span> <span class="cpf">"DemoPlugin.hxx"</span><span class="cp">
+</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">getPluginName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">"PicoScenes Demo Plugin"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">getPluginDescription</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">"Demonstrate the PicoScenes Plugin functionality"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">pluginStatus</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">"this method returns the status of the plugin."</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PicoScenesDeviceType</span><span class="o">&gt;</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">getSupportedDeviceTypes</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">auto</span> <span class="n">supportedDevices</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PicoScenesDeviceType</span><span class="o">&gt;</span><span class="p">{</span><span class="n">PicoScenesDeviceType</span><span class="o">::</span><span class="n">IWL5300</span><span class="p">,</span> <span class="n">PicoScenesDeviceType</span><span class="o">::</span><span class="n">QCA9300</span><span class="p">,</span> <span class="n">PicoScenesDeviceType</span><span class="o">::</span><span class="n">IWLMVM_AX200</span><span class="p">,</span> <span class="n">PicoScenesDeviceType</span><span class="o">::</span><span class="n">IWLMVM_AX210</span><span class="p">,</span> <span class="n">PicoScenesDeviceType</span><span class="o">::</span><span class="n">VirtualSDR</span><span class="p">,</span> <span class="n">PicoScenesDeviceType</span><span class="o">::</span><span class="n">USRP</span><span class="p">,</span> <span class="n">PicoScenesDeviceType</span><span class="o">::</span><span class="n">SoapySDR</span><span class="p">};</span>
+    <span class="k">return</span> <span class="n">supportedDevices</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">initialization</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Create an options description for the DemoPlugin with a specific name and line length</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">po</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"Demo Options"</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">program_options</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">pluginOptionsDescription</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">options</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">parseAndExecuteCommands</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">commandString</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="1023-how-to-parse-commands">10.2.3. How to parse commands</h3>
+
+<p>Add the following content in <code class="language-plaintext highlighter-rouge">DemoPlugin.cxx</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">DemoPlugin.cxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// DemoPlugin.cxx</span>
+
+<span class="p">...</span>
+<span class="p">...</span>
+<span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">initialization</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Create an options description for the DemoPlugin with a specific name and line length</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">po</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"Demo Options"</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
+
+    <span class="c1">// Add a command-line option for the DemoPlugin</span>
+    <span class="n">options</span><span class="o">-&gt;</span><span class="n">add_options</span><span class="p">()</span>
+            <span class="p">(</span><span class="s">"demo"</span><span class="p">,</span> <span class="n">po</span><span class="o">::</span><span class="n">value</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(),</span> <span class="s">"--demo &lt;param&gt;"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">...</span>
+<span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">parseAndExecuteCommands</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">commandString</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Create a variables map to store parsed options</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">variables_map</span> <span class="n">vm</span><span class="p">;</span>
+
+    <span class="c1">// Parse the command string using Boost.ProgramOptions</span>
+    <span class="k">auto</span> <span class="n">parsedOptions</span> <span class="o">=</span> <span class="n">po</span><span class="o">::</span><span class="n">command_line_parser</span><span class="p">(</span><span class="n">po</span><span class="o">::</span><span class="n">split_unix</span><span class="p">(</span><span class="n">commandString</span><span class="p">))</span>
+        <span class="p">.</span><span class="n">options</span><span class="p">(</span><span class="o">*</span><span class="n">pluginOptionsDescription</span><span class="p">())</span>
+        <span class="p">.</span><span class="n">allow_unregistered</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="n">po</span><span class="o">::</span><span class="n">command_line_style</span><span class="o">::</span><span class="n">unix_style</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">po</span><span class="o">::</span><span class="n">command_line_style</span><span class="o">::</span><span class="n">allow_guessing</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">run</span><span class="p">();</span>
+
+    <span class="c1">// Store the parsed options in the variables map</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">store</span><span class="p">(</span><span class="n">parsedOptions</span><span class="p">,</span> <span class="n">vm</span><span class="p">);</span>
+
+    <span class="c1">// Notify the variables map about the parsed options</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">notify</span><span class="p">(</span><span class="n">vm</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"demo"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">optionValue</span> <span class="o">=</span> <span class="n">vm</span><span class="p">[</span><span class="s">"demo"</span><span class="p">].</span><span class="n">as</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">();</span>
+        <span class="n">LoggingService_Plugin_info_print</span><span class="p">(</span><span class="s">"Plugin has been installed, its param is {}"</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">optionValue</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Compile and run plugin</strong></p>
+
+<p>Compile the plugin using <code class="language-plaintext highlighter-rouge">./Fast_Build_Install_Plugin.sh</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./Fast_Build_Install_Plugin.sh
+</code></pre></div></div>
+
+<p>Open <strong>terminal</strong>, run Picoscenes platform</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PicoScenes <span class="s2">"-d debug
+            --plugin-dir &lt;your-plugin-dir&gt;/PicoScenes-PDK;
+            -i virtualsdr
+            --demo HelloPicoScenes"</span>
+</code></pre></div></div>
+
+<p>If successfully executed, you will see the following content in the console.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>17:31:51.183948] <span class="o">[</span>Plugin  <span class="o">]</span> <span class="o">[</span>Info <span class="o">]</span> Plugin has been installed, its param is HelloPicoScenes
+</code></pre></div></div>
+
+<p>The command options, *“-d debug  –plugin-dir <your-plugin-dir>/PicoScenes-PDK; -i virtualsdr  --demo HelloPicoScenes"*, have the following interpretations:</your-plugin-dir></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-d debug</code>: Modifies the display level of the logging service to debug</li>
+  <li><code class="language-plaintext highlighter-rouge">--plugin</code>: Search plugin’s directory  <your-plugin-dir>/PicoScenes-PDK is your plugin's location</your-plugin-dir></li>
+  <li><code class="language-plaintext highlighter-rouge">-i virtualsdr</code>: Switches the device to virtualsdr</li>
+  <li><code class="language-plaintext highlighter-rouge">--demo HelloPicoScenes</code>: enable demo command, “HelloPicoScenes” is the parameter</li>
+</ul>
+
+<p>PicoScenes uses polymorphism to manage plugins. Developers should inherit from <code class="language-plaintext highlighter-rouge">AbstractPicoScenesPlugin</code> to develop their plugins. The following diagram shows the inheritance.</p>
+
+<p><img src="/images/Plugin-Structure.png" alt="Plugin Structure" /></p>
+
+<p>The <strong>initialization()</strong> method defines plugin’s commands. <strong>parseAndExecuteCommands()</strong> method parses commands and arguments.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">initialization</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Create an options description for the DemoPlugin with a specific name and line length</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">po</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"Demo Options"</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>
+
+    <span class="c1">// Add a command-line option for the DemoPlugin</span>
+    <span class="n">options</span><span class="o">-&gt;</span><span class="n">add_options</span><span class="p">()</span>
+            <span class="p">(</span><span class="s">"demo"</span><span class="p">,</span> <span class="n">po</span><span class="o">::</span><span class="n">value</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(),</span> <span class="s">"--demo &lt;param&gt;"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">options-&gt;add_options()</code>: Define command “demo” and set parameter’s type</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">parseAndExecuteCommands</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">commandString</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"demo"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">optionValue</span> <span class="o">=</span> <span class="n">vm</span><span class="p">[</span><span class="s">"demo"</span><span class="p">].</span><span class="n">as</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">();</span>
+        <span class="n">LoggingService_Plugin_info_print</span><span class="p">(</span><span class="s">"Plugin has been installed, its param is {}"</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">optionValue</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">vm["demo"].as&lt;std::string&gt;()</code>: Get parameters “HelloPicoScenes”</li>
+</ul>
+
+<h3 id="1024-how-to-receive-packages">10.2.4. How to receive packages</h3>
+
+<p>You have now learned how to define a command and parse it. In the upcoming example, you will learn how to make a receive/send plugin.</p>
+
+<p>Before writing a plugin for <code class="language-plaintext highlighter-rouge">receiving</code> signals, understand the process of writing a receive plugin.</p>
+
+<p><img src="/images/Receiving.png" alt="Receiving" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">parseAndExecuteCommands()</code>: Parse plugin command and parameters</li>
+  <li><code class="language-plaintext highlighter-rouge">nic-&gt;startRxService()</code>:  Start receiving signals from different devices</li>
+  <li><code class="language-plaintext highlighter-rouge">rxHandle()</code>: Handle receiving signals</li>
+</ul>
+
+<p>Add plugin commands and activate the receive mode</p>
+
+<p><code class="language-plaintext highlighter-rouge">DemoPlugin.cxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">parseAndExecuteCommands</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">commandString</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Create a variables map to store parsed options</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">variables_map</span> <span class="n">vm</span><span class="p">;</span>
+
+    <span class="c1">// Define the command line options style</span>
+    <span class="k">auto</span> <span class="n">style</span> <span class="o">=</span> <span class="n">pos</span><span class="o">::</span><span class="n">allow_long</span> <span class="o">|</span> <span class="n">pos</span><span class="o">::</span><span class="n">allow_dash_for_short</span> <span class="o">|</span>
+                 <span class="n">pos</span><span class="o">::</span><span class="n">long_allow_adjacent</span> <span class="o">|</span> <span class="n">pos</span><span class="o">::</span><span class="n">long_allow_next</span> <span class="o">|</span>
+                 <span class="n">pos</span><span class="o">::</span><span class="n">short_allow_adjacent</span> <span class="o">|</span> <span class="n">pos</span><span class="o">::</span><span class="n">short_allow_next</span><span class="p">;</span>
+
+    <span class="c1">// Parse the command string using Boost.ProgramOptions and store options in the variables map</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">store</span><span class="p">(</span><span class="n">po</span><span class="o">::</span><span class="n">command_line_parser</span><span class="p">(</span><span class="n">po</span><span class="o">::</span><span class="n">split_unix</span><span class="p">(</span><span class="n">commandString</span><span class="p">)).</span><span class="n">options</span><span class="p">(</span><span class="o">*</span><span class="n">options</span><span class="p">).</span><span class="n">style</span><span class="p">(</span><span class="n">style</span><span class="p">).</span><span class="n">allow_unregistered</span><span class="p">().</span><span class="n">run</span><span class="p">(),</span> <span class="n">vm</span><span class="p">);</span>
+
+    <span class="c1">// Notify the variables map about the parsed options</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">notify</span><span class="p">(</span><span class="n">vm</span><span class="p">);</span>
+
+    <span class="c1">// Check if the "demo" option is present</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"demo"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// Get the value of the "demo" option</span>
+        <span class="k">auto</span> <span class="n">modeString</span> <span class="o">=</span> <span class="n">vm</span><span class="p">[</span><span class="s">"demo"</span><span class="p">].</span><span class="n">as</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">();</span>
+
+        <span class="c1">// Check if the modeString contains "logger" and start the Rx service accordingly</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">modeString</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"logger"</span><span class="p">)</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nic</span><span class="o">-&gt;</span><span class="n">startRxService</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">DemoPlugin.hxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DemoPlugin</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AbstractPicoScenesPlugin</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+    <span class="c1">// Handle received frames in the plugin</span>
+    <span class="kt">void</span> <span class="n">rxHandle</span><span class="p">(</span><span class="k">const</span> <span class="n">ModularPicoScenesRxFrame</span> <span class="o">&amp;</span><span class="n">rxframe</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+
+<span class="nl">private:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">po</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span> <span class="n">options</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Implement <code class="language-plaintext highlighter-rouge">rxHandle()</code> in <code class="language-plaintext highlighter-rouge">DemoPlugin.cxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">rxHandle</span><span class="p">(</span><span class="k">const</span> <span class="n">ModularPicoScenesRxFrame</span> <span class="o">&amp;</span><span class="n">rxframe</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LoggingService_debug_print</span><span class="p">(</span><span class="s">"This is my rxframe: {}"</span><span class="p">,</span><span class="n">rxframe</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Build the plugin and run in terminal</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./Fast_Build_Install_Plugin.sh
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PicoScenes <span class="s2">"-d debug
+            --bp
+            --plugin-dir &lt;your-plugin-dir&gt;/PicoScenes-PDK;
+            -i virtualsdr
+            --rx-from-file sample5
+            --demo logger"</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--rx-from-file</code>: Read signals from file sample.bbsignal</li>
+</ul>
+
+<p>If successfully running, the terminal will show</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>17:34:09.811501] <span class="o">[</span>Platform] <span class="o">[</span>Debug] This is my rxframe: RxFrame:<span class="o">{</span>RxSBasic:[device<span class="o">=</span>USRP<span class="o">(</span>SDR<span class="o">)</span>, <span class="nv">center</span><span class="o">=</span>2412, <span class="nv">control</span><span class="o">=</span>2412, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">format</span><span class="o">=</span>HT, <span class="nv">Pkt_CBW</span><span class="o">=</span>20, <span class="nv">MCS</span><span class="o">=</span>0, <span class="nv">numSTS</span><span class="o">=</span>1, <span class="nv">GI</span><span class="o">=</span>0.8us, UsrIdx/NUsr<span class="o">=(</span>0/1<span class="o">)</span>, <span class="nv">timestamp</span><span class="o">=</span>1288, <span class="nv">system_ns</span><span class="o">=</span>1704015249809485863, <span class="nv">NF</span><span class="o">=</span><span class="nt">-78</span>, <span class="nv">RSS</span><span class="o">=</span><span class="nt">-7</span><span class="o">]</span>, RxExtraInfo:[len<span class="o">=</span>24, <span class="nv">ver</span><span class="o">=</span>0x2, <span class="nv">sf</span><span class="o">=</span>20.000000 MHz, <span class="nv">cfo</span><span class="o">=</span>0.000000 kHz, <span class="nv">sfo</span><span class="o">=</span>0 Hz], SDRExtra:[scrambler<span class="o">=</span>39, <span class="nv">packetStartInternal</span><span class="o">=</span>25761, <span class="nv">rxIndex</span><span class="o">=</span>25760, <span class="nv">rxTime</span><span class="o">=</span>0.001288, <span class="nv">decodingDelay</span><span class="o">=</span>0.0620708466, <span class="nv">lastTxTime</span><span class="o">=</span>0, <span class="nv">sigEVM</span><span class="o">=</span>2.4], <span class="o">(</span>HT<span class="o">)</span>CSI:[device<span class="o">=</span>USRP<span class="o">(</span>SDR<span class="o">)</span>, <span class="nv">format</span><span class="o">=</span>HT, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">cf</span><span class="o">=</span>2412.000000 MHz, <span class="nv">sf</span><span class="o">=</span>20.000000 MHz, <span class="nv">subcarrierBW</span><span class="o">=</span>312.500000 kHz, dim<span class="o">(</span>nTones,nSTS,nESS,nRx,nCSI<span class="o">)=(</span>56,1,0,1,1<span class="o">)</span>, <span class="nv">raw</span><span class="o">=</span>0B], LegacyCSI:[device<span class="o">=</span>USRP<span class="o">(</span>SDR<span class="o">)</span>, <span class="nv">format</span><span class="o">=</span>NonHT, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">cf</span><span class="o">=</span>2412.000000 MHz, <span class="nv">sf</span><span class="o">=</span>20.000000 MHz, <span class="nv">subcarrierBW</span><span class="o">=</span>312.500000 kHz, dim<span class="o">(</span>nTones,nSTS,nESS,nRx,nCSI<span class="o">)=(</span>52,1,0,1,2<span class="o">)</span>, <span class="nv">raw</span><span class="o">=</span>0B], BasebandSignal:[<span class="o">(</span>float<span class="o">)</span> 3045x1], MACHeader:[type<span class="o">=[</span>MF]Reserved_14, <span class="nv">dest</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nv">src</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nb">seq</span><span class="o">=</span>8, <span class="nv">frag</span><span class="o">=</span>0, <span class="nv">mfrags</span><span class="o">=</span>0], PSFHeader:[ver<span class="o">=</span>0x20201110, <span class="nv">device</span><span class="o">=</span>QCA9300, <span class="nv">numSegs</span><span class="o">=</span>1, <span class="nb">type</span><span class="o">=</span>10, <span class="nv">taskId</span><span class="o">=</span>55742, <span class="nv">txId</span><span class="o">=</span>0], TxExtraInfo:[len<span class="o">=</span>8, <span class="nv">ver</span><span class="o">=</span>0x2], MPDU:[num<span class="o">=</span>1, <span class="nv">total</span><span class="o">=</span>75B]<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="1025-how-to-transmit-packages">10.2.5. How to transmit packages</h3>
+
+<p>The process of frame transmitting is similar to frame receiving.</p>
+
+<p><img src="/images/Transmitting.png" alt="Transmitting" /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">nic-&gt;startTxService()</code>:  Start transmitting signals process</li>
+  <li><code class="language-plaintext highlighter-rouge">buildBasicFrame</code>: Initialize and build Packet frame</li>
+  <li><code class="language-plaintext highlighter-rouge">nic-&gt;transmitPicoScenesFrameSync(*txframe);</code>: deliver frame to phy layer</li>
+</ul>
+
+<p>Add method <code class="language-plaintext highlighter-rouge">buildBasicFrame()</code> in <code class="language-plaintext highlighter-rouge">DemoPlugin.hxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DemoPlugin</span> <span class="o">:</span> <span class="k">public</span> <span class="n">AbstractPicoScenesPlugin</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="p">...</span>
+
+    <span class="c1">// Handle received frames in the plugin</span>
+    <span class="kt">void</span> <span class="n">rxHandle</span><span class="p">(</span><span class="k">const</span> <span class="n">ModularPicoScenesRxFrame</span> <span class="o">&amp;</span><span class="n">rxframe</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+
+    <span class="c1">// Build a basic transmission frame for the plugin</span>
+    <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ModularPicoScenesTxFrame</span><span class="o">&gt;</span> <span class="n">buildBasicFrame</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">taskId</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span> <span class="p">;</span>
+
+<span class="nl">private:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">po</span><span class="o">::</span><span class="n">options_description</span><span class="o">&gt;</span> <span class="n">options</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Implement <code class="language-plaintext highlighter-rouge">buildBasicFrame()</code> in <code class="language-plaintext highlighter-rouge">DemoPlugin.cxx</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ModularPicoScenesTxFrame</span><span class="o">&gt;</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">buildBasicFrame</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">taskId</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">nic</span><span class="o">-&gt;</span><span class="n">initializeTxFrame</span><span class="p">();</span>
+
+    <span class="cm">/**
+     * The platform parser will parse the Tx parameters options and store the results in AbstractNIC.
+     */</span>
+
+    <span class="n">frame</span><span class="o">-&gt;</span><span class="n">setTxParameters</span><span class="p">(</span><span class="n">nic</span><span class="o">-&gt;</span><span class="n">getUserSpecifiedTxParameters</span><span class="p">());</span>
+    <span class="n">frame</span><span class="o">-&gt;</span><span class="n">setTaskId</span><span class="p">(</span><span class="n">taskId</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">sourceAddr</span> <span class="o">=</span> <span class="n">MagicIntel123456</span><span class="p">;</span>
+    <span class="n">frame</span><span class="o">-&gt;</span><span class="n">setSourceAddress</span><span class="p">(</span><span class="n">sourceAddr</span><span class="p">.</span><span class="n">data</span><span class="p">());</span>
+    <span class="n">frame</span><span class="o">-&gt;</span><span class="n">set3rdAddress</span><span class="p">(</span><span class="n">nic</span><span class="o">-&gt;</span><span class="n">getFrontEnd</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getMacAddressPhy</span><span class="p">().</span><span class="n">data</span><span class="p">());</span>
+
+    <span class="k">return</span> <span class="n">frame</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Add transmit command <code class="language-plaintext highlighter-rouge">injector</code> in <code class="language-plaintext highlighter-rouge">parseAndExecuteCommands()</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">DemoPlugin</span><span class="o">::</span><span class="n">parseAndExecuteCommands</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">commandString</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Create a variables map to store parsed options</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">variables_map</span> <span class="n">vm</span><span class="p">;</span>
+
+    <span class="c1">// Define the command line options style</span>
+    <span class="k">auto</span> <span class="n">style</span> <span class="o">=</span> <span class="n">pos</span><span class="o">::</span><span class="n">allow_long</span> <span class="o">|</span> <span class="n">pos</span><span class="o">::</span><span class="n">allow_dash_for_short</span> <span class="o">|</span>
+                 <span class="n">pos</span><span class="o">::</span><span class="n">long_allow_adjacent</span> <span class="o">|</span> <span class="n">pos</span><span class="o">::</span><span class="n">long_allow_next</span> <span class="o">|</span>
+                 <span class="n">pos</span><span class="o">::</span><span class="n">short_allow_adjacent</span> <span class="o">|</span> <span class="n">pos</span><span class="o">::</span><span class="n">short_allow_next</span><span class="p">;</span>
+
+    <span class="c1">// Parse the command string using Boost.ProgramOptions and store options in the variables map</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">store</span><span class="p">(</span><span class="n">po</span><span class="o">::</span><span class="n">command_line_parser</span><span class="p">(</span><span class="n">po</span><span class="o">::</span><span class="n">split_unix</span><span class="p">(</span><span class="n">commandString</span><span class="p">)).</span><span class="n">options</span><span class="p">(</span><span class="o">*</span><span class="n">options</span><span class="p">).</span><span class="n">style</span><span class="p">(</span><span class="n">style</span><span class="p">).</span><span class="n">allow_unregistered</span><span class="p">().</span><span class="n">run</span><span class="p">(),</span> <span class="n">vm</span><span class="p">);</span>
+
+    <span class="c1">// Notify the variables map about the parsed options</span>
+    <span class="n">po</span><span class="o">::</span><span class="n">notify</span><span class="p">(</span><span class="n">vm</span><span class="p">);</span>
+
+    <span class="c1">// Check if the "demo" option is present</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"demo"</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// Get the value of the "demo" option</span>
+        <span class="k">auto</span> <span class="n">modeString</span> <span class="o">=</span> <span class="n">vm</span><span class="p">[</span><span class="s">"demo"</span><span class="p">].</span><span class="n">as</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">();</span>
+
+        <span class="c1">// Check if the modeString contains "logger" and start the Rx service accordingly</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">modeString</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"logger"</span><span class="p">)</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nic</span><span class="o">-&gt;</span><span class="n">startRxService</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="c1">// Check if the modeString contains "injector" and start the Tx service with basic frame transmission</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">modeString</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"injector"</span><span class="p">)</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nic</span><span class="o">-&gt;</span><span class="n">startTxService</span><span class="p">();</span>
+
+            <span class="c1">// Generate a random task ID within a specified range</span>
+            <span class="k">auto</span> <span class="n">taskId</span> <span class="o">=</span> <span class="n">SystemTools</span><span class="o">::</span><span class="n">Math</span><span class="o">::</span><span class="n">uniformRandomNumberWithinRange</span><span class="o">&lt;</span><span class="kt">uint16_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">9999</span><span class="p">,</span> <span class="n">UINT16_MAX</span><span class="p">);</span>
+
+            <span class="c1">// Build a basic transmission frame with the generated task ID</span>
+            <span class="k">auto</span> <span class="n">txframe</span> <span class="o">=</span> <span class="n">buildBasicFrame</span><span class="p">(</span><span class="n">taskId</span><span class="p">);</span>
+
+            <span class="c1">// Transmit the PicoScenes frame synchronously</span>
+            <span class="n">nic</span><span class="o">-&gt;</span><span class="n">transmitPicoScenesFrameSync</span><span class="p">(</span><span class="o">*</span><span class="n">txframe</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Build the plugin and run in terminal</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./Fast_Build_Install_Plugin.sh
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PicoScenes <span class="s2">"-d debug
+            --bp --plugin-dir &lt;your-plugin-dir&gt;/PicoScenes-PDK;
+            -i virtualsdr
+            --demo injector"</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>18:15:35.993309] <span class="o">[</span>SDR     <span class="o">]</span> <span class="o">[</span>Debug] virtualsdr<span class="o">(</span>Virtual<span class="o">(</span>SDR<span class="o">))</span><span class="nt">--</span><span class="o">&gt;</span>TxFrame:<span class="o">{</span>MACHeader:[type<span class="o">=[</span>MF]Reserved_14, <span class="nv">dest</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nv">src</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nb">seq</span><span class="o">=</span>0, <span class="nv">frag</span><span class="o">=</span>0, <span class="nv">mfrags</span><span class="o">=</span>0], PSFHeader:[ver<span class="o">=</span>0x20201110, <span class="nv">device</span><span class="o">=</span>QCA9300, <span class="nv">numSegs</span><span class="o">=</span>0, <span class="nb">type</span><span class="o">=</span>0, <span class="nv">taskId</span><span class="o">=</span>33196, <span class="nv">txId</span><span class="o">=</span>0], tx_param[preset<span class="o">=</span>DEFAULT, <span class="nb">type</span><span class="o">=</span>HT, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">MCS</span><span class="o">=</span>0, <span class="nv">numSTS</span><span class="o">=</span>1, <span class="nv">Coding</span><span class="o">=</span>BCC, <span class="nv">GI</span><span class="o">=</span>0.8us, <span class="nv">numESS</span><span class="o">=</span> , sounding<span class="o">(</span>11n<span class="o">)=</span>1]<span class="o">}</span> | PPDU: 2480
+</code></pre></div></div>
+
+<h2 id="103-debug-picoscenes-plugins">10.3. Debug PicoScenes plugins</h2>
+
+<p>Since the plugin .so file cannot run by itself, a tricky problem of plugin development emerges, <code class="language-plaintext highlighter-rouge">how to debug a plugin?</code></p>
+
+<p>Xincheng Ren, one of our contributors, records a .gif video describing the plugin debug process. In this video, we use JetBrains CLion as our IDE. To debug the EchoProbe plugin, rather than specifying the .so plugin file as the <code class="language-plaintext highlighter-rouge">debug main program</code>, you must specify the PicoScenes main program at <code class="language-plaintext highlighter-rouge">/usr/local/PicoScenes/bin/</code> to be the <code class="language-plaintext highlighter-rouge">debug main program</code>. Second, you should also add <code class="language-plaintext highlighter-rouge">--plugin-dir /path-to-plugin</code> program option to tell PicoScenes main program to load your plugins.</p>
+
+<p><img src="/images/Plugin-Debug.gif" alt="Debug PicoScenes plugins" /></p>
+
+<p>You can download this .gif video from <a href="images/Plugin-Debug.gif">Debug Plugin</a>.</p>
+
+
+
+    <div class="tags">
+        
+    </div>
+
+
+<div id="commento"></div>
+<script src="https://cdn.commento.io/js/commento.js"></script>
+<noscript>Please enable JavaScript to load the comments.</noscript>
+
+
+
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
+<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 4, 2025 <br />
+<p><img src="images/company_logo.png" alt="Company logo"/></p>
+                </div>
+            </div>
+</footer>
+
+
+
+
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-66296557-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+
+
+
+</html>
+
+

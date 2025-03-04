@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content="news,  ">
+<title>News! | PicoScenes Introduction</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/boxshadowproperties.css">
+<!-- most color styles are extracted out to here -->
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Anchor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.2.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> PicoScenes Introduction</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+
+
+
+
+                
+                
+                
+                <li><a href="https://github.com/wifisensing" target="_blank" rel="noopener">GitHub</a></li>
+                
+                
+                
+                <li><a href="news">News</a></li>
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicoScenes Help<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="https://github.com/wifisensing" target="_blank" rel="noopener">github issues Leave a message</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="installation.html">PicoScenes Ubuntu 22.04</a></li>
+                        
+                        
+                        
+                        <li><a href="installation.html">PicoScenes Win11</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:tomjoht@gmail.com?subject=Jekyll documentation theme feedback&body=I have some feedback about the News! page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="News!">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+
+
+<!-- Page Content -->
+<div class="container">
+  <div id="main">
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+<ul id="mysidebar" class="nav">
+  <li class="sidebarTitle"> </li>
+  
+  
+  
+  <li>
+      <a title="Products" href="#">Products</a>
+      <ul>
+          
+          
+          
+          <li><a title="News" href="news.html">News</a></li>
+          
+          
+          
+          
+      </ul>
+   </li>
+     
+      
+      
+      <!-- if you aren't using the accordion, uncomment this block:
+         <p class="external">
+             <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+         </p>
+         -->
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">News!</h1>
+        <p class="post-meta"><time datetime="2025-03-04T00:00:00+08:00" itemprop="datePublished">Mar 4, 2025</time> /
+            
+            
+            
+            <a href="tag_news.html">news</a>
+            
+            
+            
+
+        </p>
+
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+
+        
+
+        <ul>
+  <li><strong>May 12, 2024</strong> PicoScenes Radar mode now supports SISO, SIMO, MIMO and MIMO across multiple devices measurements, see <a href="scenarios.md#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format">Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format</a>.</li>
+  <li><strong>Mar. 19, 2024</strong> PicoScenes now provides a UDP forwarding/receiving utility! See <a href="utilities.md#91-udp-forwarder-plugin--udpremotelogger">UDP-Forwarder Plugin &amp; UDPRemoteLogger</a>.</li>
+  <li><strong>Mar. 19, 2024</strong> PicoScenes now officially supports Ubuntu 22.04! See <a href="installation.md#52-picoscenes-software-installation">PicoScenes Software Installation</a>.</li>
+  <li><strong>Mar. 12, 2024</strong> We are pleased to announce that our research, “<strong>Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities</strong>”, has been accepted by <strong>IEEE Communication Magazine (IF=11.2)</strong>. For More information, please visit its online supplementary materials <a href="reshaping-wifi-isac.md">Online supplementaries for “Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities”</a>.</li>
+  <li><strong>Jan. 20, 2024</strong> <a href="plugin.md">Developing Your PicoScenes Plugins</a> page is completely rewritten. Thanks to Tian Teng for his brilliant work!</li>
+  <li><strong>Dec. 26, 2023</strong> Revise the <a href="ni.md">Selling NI USRP Devices (与NI合作销售USRP系列产品)</a> page.</li>
+  <li><strong>Dec. 20, 2023</strong> Initiating the Ubuntu 22.04 (and soon 24.04) transition of PicoScenes system (client program and CI server).</li>
+  <li><strong>Dec. 3, 2023</strong> Add Radar and MIMO-Radar modes for SDR frontend, see <a href="scenarios.md#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format">Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format.</a>.</li>
+  <li><strong>Dec. 2, 2023</strong> Major update to license: all limitations for COTS NICS (6 GHz band, 11ax 80/160 MHz CBW packet injection and more) removed! More than 10 SDR-only limitations are removed (unlimited channel/bandwidth access, Wi-Fi 7 Tx and Rx, up to 320 MHz CBW and more). See <a href="features_pricing.md">Features &amp; License</a> for more details. (<strong>Upgrade to latest version to validate</strong>!)</li>
+  <li><strong>Nov. 29, 2023</strong> Add a new page <a href="ni.md">Selling NI USRP Devices (与NI合作销售USRP系列产品)</a> describing how we collaborate with NI selling USRP hardware. This program is exclusively available in mainland China.</li>
+  <li><strong>Nov. 28, 2023</strong> Add a new page <a href="features_pricing.md">Features &amp; License</a> replacing the old PSLP page.</li>
+  <li><strong>Nov. 20, 2023</strong> page <a href="scenarios.md">CSI Measurement using PicoScenes</a> is completely rewritten. Readability is significantly improved.</li>
+  <li><strong>Nov. 18, 2023</strong> Add docs for two experimental features: <a href="scenarios.md#6264-dual-channel-spectrum-splitting-and-stitching-experimental">Dual-Channel Spectrum Splitting and Stitching (Experimental)</a> and <a href="scenarios.md#6265-multi-thread-rx-decoding-experimental">Multi-Thread Rx Decoding (Experimental)</a>.</li>
+  <li><strong>Nov. 17, 2023</strong> Add two quick reference pages: <a href="channels.md">Wi-Fi Channelization</a> and <a href="presets.md">PicoScenes Presets</a>.</li>
+  <li><strong>Nov. 16, 2023</strong> Page revised <a href="hardware.md">Supported Hardware</a>, <a href="installation.md">PicoScenes Installation &amp; Upgrade</a>, <a href="scenarios.md">CSI Measurement using PicoScenes</a>, and <a href="utilities.md">Utility Programs and Bash Scripts</a>.</li>
+  <li><strong>Nov. 1, 2023</strong> <strong>PicoScenes adds Wi-Fi 7 (EHT-SU) support for SDR frontends.</strong> PicoScenes is currently the only platform support Wi-Fi 7 based ISAC research. See our Wi-Fi 7 examples <a href="scenarios.md#622-transmitting-80211agnacaxbe-protocol-frames-using-sdr-devices">Transmitting 802.11a/g/n/ac/ax/be protocol frames using SDR Devices</a>.</li>
+</ul>
+
+
+    </div>
+
+
+
+</article>
+
+
+<div id="commento"></div>
+<script src="https://cdn.commento.io/js/commento.js"></script>
+<noscript>Please enable JavaScript to load the comments.</noscript>
+
+
+
+
+
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-12 footer">
+               &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
+ Site last generated: Mar 4, 2025 <br />
+<p><img src="images/company_logo.png" alt="Company logo"/></p>
+                </div>
+            </div>
+</footer>
+
+
+
+
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+</div>
+<!-- /#main -->
+    </div>
+
+</body>
+
+<!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-66296557-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+
+
+
+</html>
+
+

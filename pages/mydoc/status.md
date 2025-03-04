@@ -1,0 +1,18 @@
+---
+title: Development Status
+keywords: PicoScenes, Development, Status, Changelog
+last_updated: Nov. 16, 2023
+summary: "This page provides the development status of PicoScenes."
+sidebar: mydoc_sidebar
+permalink: status.html
+--- 
+
+# 11. Development Status
+
+PicoScenes is *still* under *very active* development. We are adding new features, new controls, and fix bugs. Checkout the changelogs for the latest progress.
+
+[PicoScenes Platform Changelog](https://zpj.io/PicoScenes/platform-changelog)
+
+[PicoScenes Plugin Development Kit (PDK) Changelog](https://github.com/wifisensing/PicoScenes-PDK/-/blob/master/changelog.html)
+
+[PicoScenes MATLAB Toolbox (PMT) Changelog](https://github.com/wifisensing/PicoScenes-MATLAB-Toolbox-Core/-/blob/main/changelog.html)
