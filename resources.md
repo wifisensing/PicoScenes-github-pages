@@ -1,3 +1,9 @@
+---
+layout: default
+title: 12. Useful Resources
+nav_order: 12
+---
+
 # 12. Useful Resources
 
 **Revised on Nov. 16, 2023**

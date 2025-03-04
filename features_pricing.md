@@ -1,3 +1,9 @@
+---
+layout: default
+title: 4. Features & License
+nav_order: 4
+---
+
 # 4. Features & License
 
 **Revised on Dec. 4, 2023**

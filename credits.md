@@ -1,3 +1,9 @@
+---
+layout: default
+title: 15. Credits
+nav_order: 15
+---
+
 # 15. Credits
 
 ## 15.1. Development Team

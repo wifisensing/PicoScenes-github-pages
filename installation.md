@@ -1,3 +1,9 @@
+---
+layout: default
+title: 5. Installation & Upgrade
+nav_order: 5
+---
+
 # 5. PicoScenes Installation & Upgrade
 
 **Revised on Nov. 16, 2023**

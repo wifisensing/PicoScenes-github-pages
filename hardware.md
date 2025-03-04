@@ -1,3 +1,9 @@
+---
+layout: default
+title: 3. Supported Hardware
+nav_order: 3
+---
+
 # 3. Supported Hardware
 
 **Revised on Nov. 29, 2023**

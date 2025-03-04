@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Why Use PicoScenes
-nav_order: 2
 ---
 
 # Why Use PicoScenes

@@ -1,3 +1,9 @@
+---
+layout: default
+title: 11. Development Status
+nav_order: 11
+---
+
 # 11. Development Status
 
 PicoScenes is *still* under *very active* development. We are adding new features, new controls, and fix bugs. Checkout the changelogs for the latest progress.

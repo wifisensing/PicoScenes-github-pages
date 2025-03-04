@@ -1,3 +1,9 @@
+---
+layout: default
+title: 2. Users
+nav_order: 2
+---
+
 # 2. Users
 
 From the easiest CSI-data collection using the Intel AX210 to the SDR-based 802.11be multi-user (MU) experiments, PicoScenes is powering the next wave of the Wi-Fi ISAC research.

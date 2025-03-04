@@ -1,3 +1,9 @@
+---
+layout: default
+title: 16. Selling NI USRP Devices
+nav_order: 16
+---
+
 # 16. Selling NI USRP Devices (与NI合作销售USRP系列产品)
 
 **Revised on May 29, 2024**

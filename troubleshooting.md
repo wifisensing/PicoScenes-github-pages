@@ -1,3 +1,9 @@
+---
+layout: default
+title: 13. Troubleshooting & Support
+nav_order: 13
+---
+
 # 13. Troubleshooting & Support
 
 ## 13.1. Troubleshooting

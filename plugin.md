@@ -1,3 +1,9 @@
+---
+layout: default
+title: 10. Developing Your PicoScenes Plugins
+nav_order: 10
+---
+
 # 10. Developing Your PicoScenes Plugins
 
 **Author:** Tian Teng, Xidian University, tengtianmoemoe@gmail.com

@@ -1,3 +1,9 @@
+---
+layout: default
+title: 6. CSI Measurement using PicoScenes
+nav_order: 6
+---
+
 # 6.CSI Measurement using PicoScenes
 
 **Revised on Dec. 3, 2023**

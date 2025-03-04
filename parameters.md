@@ -1,3 +1,9 @@
+---
+layout: default
+title: 7. Command Line Interface and Program Option Reference
+nav_order: 7
+---
+
 # 7. Command Line Interface and Program Option Reference
 
 ## 7.1. PicoScenes Command Line Interface 

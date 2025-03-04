@@ -1,3 +1,10 @@
+
+---
+layout: default
+title: 9. Utility Programs and Bash Scripts
+nav_order: 9
+---
+
 # 9. Utility Programs and Bash Scripts
 
 **Revised on Nov. 16, 2023**
