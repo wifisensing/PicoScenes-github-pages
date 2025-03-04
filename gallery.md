@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Gallery
+title: 1. Gallery
+nav_order: 2
 ---
 
 # 1. Gallery
