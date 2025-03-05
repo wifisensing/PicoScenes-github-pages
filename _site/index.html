@@ -919,39 +919,6 @@
 
 
 <div class="post-content">
-
-   
-    <div class="summary">PicoScenes is a powerful middleware for modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research that addresses two key barriers in the field: hardware limitations and software functionality.</div>
-   
-
-    
-    
-<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
-<script>
-$( document ).ready(function() {
-  // Handler for .ready() called.
-
-$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
-
-/* this offset helps account for the space taken up by the floating toolbar. */
-$('#toc').on('click', 'a', function() {
-  var target = $(this.getAttribute('href'))
-    , scroll_target = target.offset().top
-
-  $(window).scrollTop(scroll_target - 10);
-  return false
-})
-
-});
-</script>
-
-<div id="toc"></div>
-
-
-
-    
-
-
     
 
     <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/index.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
@@ -1093,5 +1060,7 @@ $('#toc').on('click', 'a', function() {
 
 
 </html>
+
+<script src="js/toc-roll.js"></script>
 
 
