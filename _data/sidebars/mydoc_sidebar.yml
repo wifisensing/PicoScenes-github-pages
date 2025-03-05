@@ -126,15 +126,15 @@ entries:
       output: web, pdf
 
     - title: 4.1. Features of The PicoScenes Platform
-      url: /features_pricing.html/#41-features-of-the-picoscenes-platform
+      url: /features_pricing.html/#features-of-the-picoscenes-platform
       output: web, pdf
 
     - title: 4.2. Introducing PicoScenes Licensing Plan
-      url: /features_pricing.html/#42-introducing-picoscenes-licensing-plan
+      url: /features_pricing.html/#introducing-picoscenes-licensing-plan
       output: web, pdf
 
     - title: 4.3. Pricing & Payment
-      url: /features_pricing.html/#43-pricing--payment
+      url: /features_pricing.html/#pricing--payment
       output: web, pdf  
 
   - title: Installation & Upgrade
@@ -146,27 +146,27 @@ entries:
       output: web, pdf
 
     - title: 5.1. Hardware Installation
-      url: /installation.html/#51-hardware-installation
+      url: /installation.html/#hardware-installation
       output: web, pdf
 
     - title: 5.2. PicoScenes Software Installation
-      url: /installation.html/#52-picoscenes-software-installation
+      url: /installation.html/#picoscenes-software-installation
       output: web, pdf
 
     - title: 5.3. Install PicoScenes MATLAB Toolbox Core
-      url: /installation.html/#53-install-picoscenes-matlab-toolbox-core
+      url: /installation.html/#install-picoscenes-matlab-toolbox-core
       output: web, pdf
 
     - title: 5.4. Installing PicoScenes Python Toolbox
-      url: /installation.html/#54-installing-picoscenes-python-toolbox
+      url: /installation.html/#installing-picoscenes-python-toolbox
       output: web, pdf
 
     - title: 5.5. Upgrading PicoScenes Software
-      url: /installation.html/#55-upgrading-picoscenes-software
+      url: /installation.html/#upgrading-picoscenes-software
       output: web, pdf
 
     - title: 5.6. Uninstallation of The PicoScenes Ecosystem
-      url: /installation.html/#56-uninstallation-of-the-picoscenes-ecosystem
+      url: /installation.html/#uninstallation-of-the-picoscenes-ecosystem
       output: web, pdf  
 
   - title: CSI Measurement using PicoScenes
@@ -178,23 +178,23 @@ entries:
       output: web, pdf
 
     - title: "6.1. Before Getting Started: Some Fundamentals"
-      url: /scenarios.html/#61-before-getting-started-some-fundamentals
+      url: /scenarios.html/#before-getting-started-some-fundamentals
       output: web, pdf
 
     - title: 6.2. ISAC Research using NI USRP or HackRF One SDR 
-      url: /scenarios.html/#62-isac-research-using-ni-usrp-or-hackrf-one-sdr
+      url: /scenarios.html/#isac-research-using-ni-usrp-or-hackrf-one-sdr
       output: web, pdf  
 
     - title: 6.3. CSI Measurement using AX210/AX200 NICs
-      url: /scenarios.html/#63-csi-measurement-using-ax210ax200-nics
+      url: /scenarios.html/#csi-measurement-using-ax210ax200-nics
       output: web, pdf  
 
     - title: 6.4. CSI Measurement using QCA9300 and IWL5300 NICs
-      url: /scenarios.html/#64-csi-measurement-using-qca9300-and-iwl5300-nics
+      url: /scenarios.html/#csi-measurement-using-qca9300-and-iwl5300-nics
       output: web, pdf    
 
     - title: 6.5. Interoperability among SDR and COTS NICs
-      url: /scenarios.html/#65-interoperability-among-sdr-and-cots-nics
+      url: /scenarios.html/#interoperability-among-sdr-and-cots-nics
       output: web, pdf
 
   - title: Command Line Interface and Program Option Reference
@@ -206,27 +206,27 @@ entries:
       output: web, pdf
 
     - title: 7.1. PicoScenes Command Line Interface 
-      url: /parameters.html/#71-picoscenes-command-line-interface
+      url: /parameters.html/#picoscenes-command-line-interface
       output: web, pdf
 
     - title: 7.2. Program Options Hierarchy
-      url: /parameters.html/#72-program-options-hierarchy
+      url: /parameters.html/#program-options-hierarchy
       output: web, pdf
 
     - title: 7.3. Platform Startup Options (Bottom)
-      url: /parameters.html/#73-platform-startup-options-bottom
+      url: /parameters.html/#platform-startup-options-bottom
       output: web, pdf
 
     - title: 7.4. Platform Options
-      url: /parameters.html/#74-platform-options
+      url: /parameters.html/#platform-options
       output: web, pdf
 
     - title: 7.5. Frontend Level Options
-      url: /parameters.html/#75-frontend-level-options
+      url: /parameters.html/#frontend-level-options
       output: web, pdf
 
     - title: 7.6. Per-Plugin Level Options (Top)
-      url: /parameters.html/#76-per-plugin-level-options-top
+      url: /parameters.html/#per-plugin-level-options-top
       output: web, pdf
 
   - title: PicoScenes MATLAB Toolbox Core
@@ -238,23 +238,23 @@ entries:
       output: web, pdf
 
     - title: 8.1. Prerequisites
-      url: /matlab.html/#81-prerequisites
+      url: /matlab.html/#prerequisites
       output: web, pdf
 
     - title: 8.2. Obtain PicoScenes MATLAB Toolbox Core
-      url: /matlab.html/#82-obtain-picoscenes-matlab-toolbox-core
+      url: /matlab.html/#obtain-picoscenes-matlab-toolbox-core
       output: web, pdf
 
     - title: 8.3. Install PMT-Core in MATLAB
-      url: /matlab.html/#83-install-pmt-core-in-matlab
+      url: /matlab.html/#install-pmt-core-in-matlab
       output: web, pdf   
 
     - title: 8.4. Verify the installation
-      url: /matlab.html/#84-verify-the-installation
+      url: /matlab.html/#verify-the-installation
       output: web, pdf
 
     - title: 8.5. Usage
-      url: /matlab.html/#85-usage
+      url: /matlab.html/#usage
       output: web, pdf  
 
   - title: Utility Programs and Bash Scripts
@@ -266,11 +266,11 @@ entries:
       output: web, pdf 
     
     - title: 9.1. UDP-Forwarder Plugin & UDPRemoteLogger
-      url: /utilities.html/#91-udp-forwarder-plugin--udpremotelogger
+      url: /utilities.html/#udp-forwarder-plugin--udpremotelogger
       output: web, pdf
 
     - title: 9.2. Utility Scripts
-      url: /utilities.html/#92-utility-scripts
+      url: /utilities.html/#utility-scripts
       output: web, pdf  
 
   - title: Developing Your PicoScenes Plugins
@@ -282,15 +282,15 @@ entries:
       output: web, pdf  
 
     - title: 10.1. Prerequisites
-      url: /plugin.html/#101-prerequisites
+      url: /plugin.html/#prerequisites
       output: web, pdf
 
     - title: 10.2. Developing PicoScenes Plugins
-      url: /plugin.html/#102-developing-picoscenes-plugins
+      url: /plugin.html/#developing-picoscenes-plugins
       output: web, pdf
 
     - title: 10.3. Debug PicoScenes plugins
-      url: /plugin.html/#103-debug-picoscenes-plugins
+      url: /plugin.html/#debug-picoscenes-plugins
       output: web, pdf  
       
   - title: Development Status
@@ -310,15 +310,15 @@ entries:
       output: web, pdf  
 
     - title: 12.1. The academic paper of PicoScenes
-      url: /resources.html/#121-the-academic-paper-of-picoscenes
+      url: /resources.html/#the-academic-paper-of-picoscenes
       output: web, pdf
 
     - title: 12.2. Quick Reference
-      url: /resources.html/#122-quick-reference
+      url: /resources.html/#quick-reference
       output: web, pdf  
 
     - title: 12.3. Opensource repositories
-      url: /resources.html/#123-opensource-repositories
+      url: /resources.html/#opensource-repositories
       output: web, pdf  
 
     - title: 12.4. Other useful resources on Wi-Fi/RF/Smart Sensing
@@ -334,11 +334,11 @@ entries:
       output: web, pdf    
 
     - title: 13.1. Troubleshooting
-      url: /troubleshooting.html/#131-troubleshooting
+      url: /troubleshooting.html/#troubleshooting
       output: web, pdf
 
     - title: 13.2. Technical Support
-      url: /troubleshooting.html/#132-technical-support
+      url: /troubleshooting.html/#technical-support
       output: web, pdf
 
   - title: PicoScenes Software End User License Agreement
@@ -358,7 +358,7 @@ entries:
       output: web, pdf  
 
     - title: 15.1. Development Team
-      url: /credits.html/#151-development-team
+      url: /credits.html/#development-team
       output: web, pdf
 
   - title: Selling NI USRP Devices
