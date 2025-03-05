@@ -43,6 +43,51 @@
 
 <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
 
+<!-- 标题自动编号脚本 -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取文档编号，如果未设置则默认为0
+        var docNumber = 12;
+        
+        var headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6');
+        var counters = [docNumber, 0, 0, 0, 0, 0]; // 使用文档编号初始化第一级计数器
+        
+        headings.forEach(function(heading) {
+            if (heading.classList.contains('no-number')) {
+                return;
+            }
+            
+            var level = parseInt(heading.tagName.charAt(1)) - 1;
+            
+            // 如果是h1，使用文档编号
+            if (level === 0) {
+                numberStr = docNumber + '. ';
+            } else {
+                // 更新当前级别的计数器
+                counters[level]++;
+                
+                // 重置所有更低级别的计数器
+                for (var i = level + 1; i < 6; i++) {
+                    counters[i] = 0;
+                }
+                
+                // 生成编号字符串
+                var numberStr = '';
+                for (var i = 0; i <= level; i++) {
+                    numberStr += counters[i] + (i < level ? '.' : '. ');
+                }
+            }
+            
+            var span = document.createElement('span');
+            span.className = 'heading-number';
+            span.textContent = numberStr;
+            
+            heading.insertBefore(span, heading.firstChild);
+        });
+    });
+</script>
+
 
 
     <script>
@@ -952,11 +997,11 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/resources.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/12.resources.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
 
     
 
-   <h2 id="121-the-academic-paper-of-picoscenes">12.1. The academic paper of PicoScenes</h2>
+   <h2 id="the-academic-paper-of-picoscenes">The academic paper of PicoScenes</h2>
 
 <p>Zhiping Jiang, Tom H. Luan, Xincheng Ren, Dongtao Lv, Han Hao, Jing Wang, Kun Zhao, Wei Xi, Yueshen Xu, Rui Li, <a href="https://doi.org/10.1109/JIOT.2021.3104666">Eliminating the Barriers: Demystifying Wi-Fi Baseband Design and Introducing the PicoScenes Wi-Fi Sensing Platform, in IEEE Internet of Things Journal (IEEE IOT-J)</a>.</p>
 
@@ -966,7 +1011,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Important</strong>: If PicoScenes software (including the main program, bash scripts, PicoScenes MATLAB Toolbox and any PicoScenes plugins regardless of the ownership) is used by any form in your academic research, <strong>you should cite the above work</strong>. This citation requirement is also included in the PicoScenes Software EULA.</p>
 </blockquote>
 
-<h2 id="122-quick-reference">12.2. Quick Reference</h2>
+<h2 id="quick-reference">Quick Reference</h2>
 
 <ul>
   <li>Wi-Fi Channelization Table: <a href="channels.html">channels</a></li>
@@ -974,7 +1019,7 @@ $('#toc').on('click', 'a', function() {
   <li>Device Naming Protocol: <a href="scenarios.html#611-device-naming">device_naming</a></li>
 </ul>
 
-<h2 id="123-opensource-repositories">12.3. Opensource repositories</h2>
+<h2 id="opensource-repositories">Opensource repositories</h2>
 
 <ul>
   <li>PicoScenes projects group: <a href="https://github.com/wifisensing">https://github.com/wifisensing</a>. The following are some of the open source sub-projects.
@@ -988,7 +1033,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h2 id="other_useful">12.4. Other useful resources on Wi-Fi/RF/Smart Sensing</h2>
+<h2 id="other_useful">Other useful resources on Wi-Fi/RF/Smart Sensing</h2>
 
 <ul>
   <li><a href="https://iot-book.github.io">IoT Book</a> by Jiliang Wang, Tsinghua University (A full Chinese book). 王老师的这本IoT Book覆盖了智能感知相关的众多研究方向的最新进展及上手宝典，是入门智能感知相关研究不可多得的教材。</li>
@@ -1017,7 +1062,7 @@ $('#toc').on('click', 'a', function() {
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
-<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 4, 2025 <br />
+<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 5, 2025 <br />
 <p><img src="images/company_logo.png" alt="Company logo"/></p>
                 </div>
             </div>

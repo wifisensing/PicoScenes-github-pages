@@ -59,15 +59,10 @@ body {
     color: #5bc0de;
 }
 
-
 .gi-2x{font-size: 2em;}
 .gi-3x{font-size: 3em;}
 .gi-4x{font-size: 4em;}
 .gi-5x{font-size: 5em;}
-
-
-
-
 
 .breadcrumb > .active {color: #777 !important;}
 
@@ -1199,5 +1194,19 @@ h4.panel-title {
     }
     .collapse.in{
         display:block !important;
+    }
+}
+
+/* 标题编号样式 */
+.heading_number {
+    margin-right: 0.5em;
+    font-weight: normal;
+    color: #555;
+}
+
+/* 如果需要在打印时显示不同的样式 */
+@media print {
+    .heading-number {
+        color: #000;
     }
 }

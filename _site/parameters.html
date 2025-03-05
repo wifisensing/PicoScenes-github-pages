@@ -43,6 +43,51 @@
 
 <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
 
+<!-- 标题自动编号脚本 -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取文档编号，如果未设置则默认为0
+        var docNumber = 7;
+        
+        var headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6');
+        var counters = [docNumber, 0, 0, 0, 0, 0]; // 使用文档编号初始化第一级计数器
+        
+        headings.forEach(function(heading) {
+            if (heading.classList.contains('no-number')) {
+                return;
+            }
+            
+            var level = parseInt(heading.tagName.charAt(1)) - 1;
+            
+            // 如果是h1，使用文档编号
+            if (level === 0) {
+                numberStr = docNumber + '. ';
+            } else {
+                // 更新当前级别的计数器
+                counters[level]++;
+                
+                // 重置所有更低级别的计数器
+                for (var i = level + 1; i < 6; i++) {
+                    counters[i] = 0;
+                }
+                
+                // 生成编号字符串
+                var numberStr = '';
+                for (var i = 0; i <= level; i++) {
+                    numberStr += counters[i] + (i < level ? '.' : '. ');
+                }
+            }
+            
+            var span = document.createElement('span');
+            span.className = 'heading-number';
+            span.textContent = numberStr;
+            
+            heading.insertBefore(span, heading.firstChild);
+        });
+    });
+</script>
+
 
 
     <script>
@@ -952,11 +997,11 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/parameters.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/7.parameters.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
 
     
 
-   <h2 id="71-picoscenes-command-line-interface">7.1. PicoScenes Command Line Interface</h2>
+   <h2 id="picoscenes-command-line-interface">PicoScenes Command Line Interface</h2>
 
 <p>As shown in the <a href="scenarios.html">scenarios</a>, multiple command options can be written in one single command string, which is surrounded by quotation marks. This section uses the following example commands to describe how PicoScenes parses the program options.</p>
 
@@ -1026,7 +1071,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ol>
 
-<h2 id="72-program-options-hierarchy">7.2. Program Options Hierarchy</h2>
+<h2 id="program-options-hierarchy">Program Options Hierarchy</h2>
 
 <p>Various PicoScenes program options are organized in a hierarchical structure as listed below:</p>
 
@@ -1057,7 +1102,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Tip</strong>: You can also look up the <strong>complete</strong> program options by running the command <code class="language-plaintext highlighter-rouge">PicoScenes --help</code>, if you have successfully installed the PicoScenes.</p>
 </blockquote>
 
-<h2 id="73-platform-startup-options-bottom">7.3. Platform Startup Options (Bottom)</h2>
+<h2 id="platform-startup-options-bottom">Platform Startup Options (Bottom)</h2>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">--plugin-dir &lt;new_plugin_dir&gt;</code>
@@ -1089,7 +1134,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h2 id="74-platform-options">7.4. Platform Options</h2>
+<h2 id="platform-options">Platform Options</h2>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">-i [ --interface ] arg</code>
@@ -1124,11 +1169,11 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h2 id="75-frontend-level-options">7.5. Frontend Level Options</h2>
+<h2 id="frontend-level-options">Frontend Level Options</h2>
 
 <p>PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.</p>
 
-<h3 id="751-qca9300iwl5300-nic-options">7.5.1. QCA9300/IWL5300 NIC options</h3>
+<h3 id="qca9300iwl5300-nic-options">QCA9300/IWL5300 NIC options</h3>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">--freq arg</code>
@@ -1218,7 +1263,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h3 id="752-usrp-frontend-options">7.5.2. USRP frontend options</h3>
+<h3 id="usrp-frontend-options">USRP frontend options</h3>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">--freq arg</code>
     <ul>
@@ -1492,8 +1537,8 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h2 id="76-per-plugin-level-options-top">7.6. Per-Plugin Level Options (Top)</h2>
-<h3 id="761-echoprobe-options">7.6.1. EchoProbe Options</h3>
+<h2 id="per-plugin-level-options-top">Per-Plugin Level Options (Top)</h2>
+<h3 id="echoprobe-options">EchoProbe Options</h3>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">--mode arg</code>
     <ul>
@@ -1502,7 +1547,7 @@ $('#toc').on('click', 'a', function() {
       <li>Value Range: <code class="language-plaintext highlighter-rouge">injector</code>, <code class="language-plaintext highlighter-rouge">logger</code>, <code class="language-plaintext highlighter-rouge">initiator</code>, <code class="language-plaintext highlighter-rouge">responder</code></li>
       <li>Notes: N/A</li>
       <li>Example: <code class="language-plaintext highlighter-rouge">--mode injector</code>
-        <h3 id="762-echoprobe-initiator-options">7.6.2. EchoProbe initiator options</h3>
+        <h3 id="echoprobe-initiator-options">EchoProbe initiator options</h3>
       </li>
     </ul>
   </li>
@@ -1660,7 +1705,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h3 id="763-echo-responder-options">7.6.3. Echo responder options</h3>
+<h3 id="echo-responder-options">Echo responder options</h3>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">--ack-type</code>
@@ -1733,7 +1778,7 @@ $('#toc').on('click', 'a', function() {
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
-<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 4, 2025 <br />
+<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 5, 2025 <br />
 <p><img src="images/company_logo.png" alt="Company logo"/></p>
                 </div>
             </div>

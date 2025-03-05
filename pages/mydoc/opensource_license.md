@@ -2,6 +2,7 @@
 title: Open Source Software Licenses
 sidebar: mydoc_sidebar
 permalink: opensource_license.html
+disables_heading_numbers: true
 ---
 
 ## The 3-Clause BSD License

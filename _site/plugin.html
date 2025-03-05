@@ -43,6 +43,51 @@
 
 <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
 
+<!-- 标题自动编号脚本 -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取文档编号，如果未设置则默认为0
+        var docNumber = 10;
+        
+        var headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6');
+        var counters = [docNumber, 0, 0, 0, 0, 0]; // 使用文档编号初始化第一级计数器
+        
+        headings.forEach(function(heading) {
+            if (heading.classList.contains('no-number')) {
+                return;
+            }
+            
+            var level = parseInt(heading.tagName.charAt(1)) - 1;
+            
+            // 如果是h1，使用文档编号
+            if (level === 0) {
+                numberStr = docNumber + '. ';
+            } else {
+                // 更新当前级别的计数器
+                counters[level]++;
+                
+                // 重置所有更低级别的计数器
+                for (var i = level + 1; i < 6; i++) {
+                    counters[i] = 0;
+                }
+                
+                // 生成编号字符串
+                var numberStr = '';
+                for (var i = 0; i <= level; i++) {
+                    numberStr += counters[i] + (i < level ? '.' : '. ');
+                }
+            }
+            
+            var span = document.createElement('span');
+            span.className = 'heading-number';
+            span.textContent = numberStr;
+            
+            heading.insertBefore(span, heading.firstChild);
+        });
+    });
+</script>
+
 
 
     <script>
@@ -952,7 +997,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/plugin.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/10.plugin.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
 
     
 
@@ -960,18 +1005,18 @@ $('#toc').on('click', 'a', function() {
 
 <p>Before creating your own PicoScenes plugins from scratch, you have seven steps to gradually develop your understanding of the PicoScenes architecture and the coding skillset. During this process, you will learn how to git clone PS-PDK code, compile it, modify it, debug it, and imitate it. You will also have a general understanding of <code class="language-plaintext highlighter-rouge">modern C++</code> development on the Linux platform.</p>
 
-<h2 id="101-prerequisites">10.1. Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <p>PicoScenes Plugin Development Kit (PS-PDK), as a standard C++ library, includes the PicoScenes <code class="language-plaintext highlighter-rouge">C/C++ headers</code> and <code class="language-plaintext highlighter-rouge">libraries</code>. If you have installed PicoScenes software, PS-PDK is already in your system. The headers and the binary library files are installed at <code class="language-plaintext highlighter-rouge">/usr/local/PicoScenes/include/PicoScenes</code> and <code class="language-plaintext highlighter-rouge">/usr/local/PicoScenes/lib</code>, respectively. You may refer to the document <a href="installation.html">installation</a> to ensure your installation.</p>
 
-<h3 id="1011-install-necessary-development-dependencies">10.1.1. Install necessary development dependencies</h3>
+<h3 id="install-necessary-development-dependencies">Install necessary development dependencies</h3>
 
 <p>Run the following command to install the dependencies for PS-PDK development.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> git cmake build-essential libboost-all-dev libssl-dev libcpprest-dev libsodium-dev libfmt-dev libuhd-dev libopenblas-dev libfftw3-dev pkg-config
 </code></pre></div></div>
 
-<h3 id="1012-clone-build-and-install-picoscenes-pdk-project">10.1.2. Clone, build and install PicoScenes PDK project</h3>
+<h3 id="clone-build-and-install-picoscenes-pdk-project">Clone, build and install PicoScenes PDK project</h3>
 
 <p>Run the following command to <code class="language-plaintext highlighter-rouge">git clone</code> the PicoScenes-PDK project</p>
 
@@ -1000,13 +1045,13 @@ cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</spa
 
 <p>If everything goes fine, the above command rebuilds and reinstalls the latest PS-PDK repository.</p>
 
-<h3 id="1013-optional-feature-prerequisites">10.1.3. Optional Feature Prerequisites</h3>
+<h3 id="optional-feature-prerequisites">Optional Feature Prerequisites</h3>
 
 <p>We recommand JetBrains <strong>CLion</strong> as the IDE for PicoScenes plugin development.</p>
 
-<h2 id="102-developing-picoscenes-plugins">10.2. Developing PicoScenes Plugins</h2>
+<h2 id="developing-picoscenes-plugins">Developing PicoScenes Plugins</h2>
 
-<h3 id="1021-picoscenes-plugin-overview">10.2.1. PicoScenes Plugin Overview</h3>
+<h3 id="picoscenes-plugin-overview">PicoScenes Plugin Overview</h3>
 
 <p>The following image illustrates the relationship between PicoScenes-plugin and PicoScenes.</p>
 
@@ -1026,7 +1071,7 @@ cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</spa
   <p><strong>Hint:</strong> You can learn how to write plugins step by step following the tutorial, or you can view the complete code in the <a href="https://github.com/wifisensing/PicoScenes-PDK/">repository</a>.</p>
 </blockquote>
 
-<h3 id="1022-picoscenes-plugin-folder-structure">10.2.2. PicoScenes Plugin folder structure</h3>
+<h3 id="picoscenes-plugin-folder-structure">PicoScenes Plugin folder structure</h3>
 
 <p>The entire PS-PDK project is managed by <code class="language-plaintext highlighter-rouge">CMake</code> and contains three working plugins, a Demo plugin, the EchoProbe, and UDP-forwarder.</p>
 
@@ -1142,7 +1187,7 @@ cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</spa
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="1023-how-to-parse-commands">10.2.3. How to parse commands</h3>
+<h3 id="how-to-parse-commands">How to parse commands</h3>
 
 <p>Add the following content in <code class="language-plaintext highlighter-rouge">DemoPlugin.cxx</code></p>
 
@@ -1249,7 +1294,7 @@ cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</spa
   <li><code class="language-plaintext highlighter-rouge">vm["demo"].as&lt;std::string&gt;()</code>: Get parameters “HelloPicoScenes”</li>
 </ul>
 
-<h3 id="1024-how-to-receive-packages">10.2.4. How to receive packages</h3>
+<h3 id="how-to-receive-packages">How to receive packages</h3>
 
 <p>You have now learned how to define a command and parse it. In the upcoming example, you will learn how to make a receive/send plugin.</p>
 
@@ -1338,7 +1383,7 @@ cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</spa
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>17:34:09.811501] <span class="o">[</span>Platform] <span class="o">[</span>Debug] This is my rxframe: RxFrame:<span class="o">{</span>RxSBasic:[device<span class="o">=</span>USRP<span class="o">(</span>SDR<span class="o">)</span>, <span class="nv">center</span><span class="o">=</span>2412, <span class="nv">control</span><span class="o">=</span>2412, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">format</span><span class="o">=</span>HT, <span class="nv">Pkt_CBW</span><span class="o">=</span>20, <span class="nv">MCS</span><span class="o">=</span>0, <span class="nv">numSTS</span><span class="o">=</span>1, <span class="nv">GI</span><span class="o">=</span>0.8us, UsrIdx/NUsr<span class="o">=(</span>0/1<span class="o">)</span>, <span class="nv">timestamp</span><span class="o">=</span>1288, <span class="nv">system_ns</span><span class="o">=</span>1704015249809485863, <span class="nv">NF</span><span class="o">=</span><span class="nt">-78</span>, <span class="nv">RSS</span><span class="o">=</span><span class="nt">-7</span><span class="o">]</span>, RxExtraInfo:[len<span class="o">=</span>24, <span class="nv">ver</span><span class="o">=</span>0x2, <span class="nv">sf</span><span class="o">=</span>20.000000 MHz, <span class="nv">cfo</span><span class="o">=</span>0.000000 kHz, <span class="nv">sfo</span><span class="o">=</span>0 Hz], SDRExtra:[scrambler<span class="o">=</span>39, <span class="nv">packetStartInternal</span><span class="o">=</span>25761, <span class="nv">rxIndex</span><span class="o">=</span>25760, <span class="nv">rxTime</span><span class="o">=</span>0.001288, <span class="nv">decodingDelay</span><span class="o">=</span>0.0620708466, <span class="nv">lastTxTime</span><span class="o">=</span>0, <span class="nv">sigEVM</span><span class="o">=</span>2.4], <span class="o">(</span>HT<span class="o">)</span>CSI:[device<span class="o">=</span>USRP<span class="o">(</span>SDR<span class="o">)</span>, <span class="nv">format</span><span class="o">=</span>HT, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">cf</span><span class="o">=</span>2412.000000 MHz, <span class="nv">sf</span><span class="o">=</span>20.000000 MHz, <span class="nv">subcarrierBW</span><span class="o">=</span>312.500000 kHz, dim<span class="o">(</span>nTones,nSTS,nESS,nRx,nCSI<span class="o">)=(</span>56,1,0,1,1<span class="o">)</span>, <span class="nv">raw</span><span class="o">=</span>0B], LegacyCSI:[device<span class="o">=</span>USRP<span class="o">(</span>SDR<span class="o">)</span>, <span class="nv">format</span><span class="o">=</span>NonHT, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">cf</span><span class="o">=</span>2412.000000 MHz, <span class="nv">sf</span><span class="o">=</span>20.000000 MHz, <span class="nv">subcarrierBW</span><span class="o">=</span>312.500000 kHz, dim<span class="o">(</span>nTones,nSTS,nESS,nRx,nCSI<span class="o">)=(</span>52,1,0,1,2<span class="o">)</span>, <span class="nv">raw</span><span class="o">=</span>0B], BasebandSignal:[<span class="o">(</span>float<span class="o">)</span> 3045x1], MACHeader:[type<span class="o">=[</span>MF]Reserved_14, <span class="nv">dest</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nv">src</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nb">seq</span><span class="o">=</span>8, <span class="nv">frag</span><span class="o">=</span>0, <span class="nv">mfrags</span><span class="o">=</span>0], PSFHeader:[ver<span class="o">=</span>0x20201110, <span class="nv">device</span><span class="o">=</span>QCA9300, <span class="nv">numSegs</span><span class="o">=</span>1, <span class="nb">type</span><span class="o">=</span>10, <span class="nv">taskId</span><span class="o">=</span>55742, <span class="nv">txId</span><span class="o">=</span>0], TxExtraInfo:[len<span class="o">=</span>8, <span class="nv">ver</span><span class="o">=</span>0x2], MPDU:[num<span class="o">=</span>1, <span class="nv">total</span><span class="o">=</span>75B]<span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="1025-how-to-transmit-packages">10.2.5. How to transmit packages</h3>
+<h3 id="how-to-transmit-packages">How to transmit packages</h3>
 
 <p>The process of frame transmitting is similar to frame receiving.</p>
 
@@ -1444,7 +1489,7 @@ cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</spa
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>18:15:35.993309] <span class="o">[</span>SDR     <span class="o">]</span> <span class="o">[</span>Debug] virtualsdr<span class="o">(</span>Virtual<span class="o">(</span>SDR<span class="o">))</span><span class="nt">--</span><span class="o">&gt;</span>TxFrame:<span class="o">{</span>MACHeader:[type<span class="o">=[</span>MF]Reserved_14, <span class="nv">dest</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nv">src</span><span class="o">=</span>00:16:ea:12:34:56, <span class="nb">seq</span><span class="o">=</span>0, <span class="nv">frag</span><span class="o">=</span>0, <span class="nv">mfrags</span><span class="o">=</span>0], PSFHeader:[ver<span class="o">=</span>0x20201110, <span class="nv">device</span><span class="o">=</span>QCA9300, <span class="nv">numSegs</span><span class="o">=</span>0, <span class="nb">type</span><span class="o">=</span>0, <span class="nv">taskId</span><span class="o">=</span>33196, <span class="nv">txId</span><span class="o">=</span>0], tx_param[preset<span class="o">=</span>DEFAULT, <span class="nb">type</span><span class="o">=</span>HT, <span class="nv">CBW</span><span class="o">=</span>20, <span class="nv">MCS</span><span class="o">=</span>0, <span class="nv">numSTS</span><span class="o">=</span>1, <span class="nv">Coding</span><span class="o">=</span>BCC, <span class="nv">GI</span><span class="o">=</span>0.8us, <span class="nv">numESS</span><span class="o">=</span> , sounding<span class="o">(</span>11n<span class="o">)=</span>1]<span class="o">}</span> | PPDU: 2480
 </code></pre></div></div>
 
-<h2 id="103-debug-picoscenes-plugins">10.3. Debug PicoScenes plugins</h2>
+<h2 id="debug-picoscenes-plugins">Debug PicoScenes plugins</h2>
 
 <p>Since the plugin .so file cannot run by itself, a tricky problem of plugin development emerges, <code class="language-plaintext highlighter-rouge">how to debug a plugin?</code></p>
 
@@ -1478,7 +1523,7 @@ cmake .. <span class="o">&amp;&amp;</span> make package <span class="nt">-j</spa
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
-<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 4, 2025 <br />
+<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 5, 2025 <br />
 <p><img src="images/company_logo.png" alt="Company logo"/></p>
                 </div>
             </div>

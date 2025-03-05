@@ -43,6 +43,51 @@
 
 <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
 
+<!-- 标题自动编号脚本 -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取文档编号，如果未设置则默认为0
+        var docNumber = 6;
+        
+        var headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6');
+        var counters = [docNumber, 0, 0, 0, 0, 0]; // 使用文档编号初始化第一级计数器
+        
+        headings.forEach(function(heading) {
+            if (heading.classList.contains('no-number')) {
+                return;
+            }
+            
+            var level = parseInt(heading.tagName.charAt(1)) - 1;
+            
+            // 如果是h1，使用文档编号
+            if (level === 0) {
+                numberStr = docNumber + '. ';
+            } else {
+                // 更新当前级别的计数器
+                counters[level]++;
+                
+                // 重置所有更低级别的计数器
+                for (var i = level + 1; i < 6; i++) {
+                    counters[i] = 0;
+                }
+                
+                // 生成编号字符串
+                var numberStr = '';
+                for (var i = 0; i <= level; i++) {
+                    numberStr += counters[i] + (i < level ? '.' : '. ');
+                }
+            }
+            
+            var span = document.createElement('span');
+            span.className = 'heading-number';
+            span.textContent = numberStr;
+            
+            heading.insertBefore(span, heading.firstChild);
+        });
+    });
+</script>
+
 
 
     <script>
@@ -952,7 +997,7 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/scenarios.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/6.scenarios.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
 
     
 
@@ -978,15 +1023,15 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Hint</strong>: 如果您不想费劲地看英文，请开启浏览器的翻译功能，省脑子。</p>
 </blockquote>
 
-<h2 id="61-before-getting-started-some-fundamentals">6.1. Before Getting Started: Some Fundamentals</h2>
+<h2 id="before-getting-started-some-fundamentals">Before Getting Started: Some Fundamentals</h2>
 
 <p>Here we introduce two fundamentals <a href="#611-device-naming">Device Naming</a> and <a href="#612-basic-facts-of-wi-fi-channelization">Basic Facts of Wi-Fi Channelization</a>.</p>
 
-<h3 id="611-device-naming">6.1.1. Device Naming</h3>
+<h3 id="device-naming">Device Naming</h3>
 
 <p>In order to mult-frontend operation, we devise an simply device naming protocol, which is elaborated in the follow section.</p>
 
-<h4 id="6111-device-naming-for-commercial-wi-fi-nics">6.1.1.1. Device Naming for Commercial Wi-Fi NICs</h4>
+<h4 id="device-naming-for-commercial-wi-fi-nics">Device Naming for Commercial Wi-Fi NICs</h4>
 
 <p>PicoScenes provides a script named <code class="language-plaintext highlighter-rouge">array_status</code>, which lists all the <strong>PCI-E based Wi-Fi NICs</strong>. A sample output is as below:</p>
 
@@ -1021,11 +1066,11 @@ $('#toc').on('click', 'a', function() {
   </tbody>
 </table>
 
-<h4 id="6112-device-naming-for-sdr">6.1.1.2. Device Naming for SDR</h4>
+<h4 id="device-naming-for-sdr">Device Naming for SDR</h4>
 
 <p>Device naming for SDR devices has three subtypes: <a href="#61121-device-naming-for-ni-usrp">Device Naming for NI USRP</a>, <a href="#61122-device-naming-for-hackrf-one">Device Naming for HackRF One</a>, and <a href="#61123-device-naming-for-virtual-sdr">Device Naming for Virtual SDR</a>.</p>
 
-<h5 id="61121-device-naming-for-ni-usrp">6.1.1.2.1. Device Naming for NI USRP</h5>
+<h5 id="device-naming-for-ni-usrp">Device Naming for NI USRP</h5>
 
 <p>We devise a simple and scalable naming protocol for USRP devices. It has four forms:</p>
 
@@ -1036,19 +1081,19 @@ $('#toc').on('click', 'a', function() {
   <li><code class="language-plaintext highlighter-rouge">usrp&lt;IPADDRESS0_IPADDRESS1&gt;,[multiple &lt;IPADDRESS0_IPADDRESS1&gt;]</code>: Used in case of combining the two 10GbE connections of one or multiple USRP X310 devices. Assume you have two USRP X310 devices connected. The first USRP X310 device has two 10GbE connections with IP addresses of 192.168.30.2 and 192.168.40.2, and the second USRP X310 device has two 10GbE connections with IP addresses of 192.168.70.2 and 192.168.80.2. The combination of the two channels of the first X310 can be represented by <code class="language-plaintext highlighter-rouge">usrp192.168.30.2_192.168.40.2</code>. The combination of the all four channels can be represented by <code class="language-plaintext highlighter-rouge">usrp192.168.30.2_192.168.40.2,192.168.70.2_192.168.80.2</code>. The combination of the first two and the last one can be represented by <code class="language-plaintext highlighter-rouge">usrp192.168.30.2_192.168.40.2,192.168.80.2</code>.</li>
 </ul>
 
-<h5 id="61122-device-naming-for-hackrf-one">6.1.1.2.2. Device Naming for HackRF One</h5>
+<h5 id="device-naming-for-hackrf-one">Device Naming for HackRF One</h5>
 
 <p>All HackRF One devices are named as <code class="language-plaintext highlighter-rouge">hackrf&lt;Device_Number&gt;</code>, <em>e.g.</em>, <code class="language-plaintext highlighter-rouge">hackrf0</code> or <code class="language-plaintext highlighter-rouge">hackrf1</code>. The starting device number is <code class="language-plaintext highlighter-rouge">0</code>, and the device number with is the same order as the command <code class="language-plaintext highlighter-rouge">SoapySDRUtil --find="driver=hackrf"</code> lists.</p>
 
-<h5 id="61123-device-naming-for-virtual-sdr">6.1.1.2.3. Device Naming for Virtual SDR</h5>
+<h5 id="device-naming-for-virtual-sdr">Device Naming for Virtual SDR</h5>
 
 <p>The Virtual SDR device adopts the naming pattern of <code class="language-plaintext highlighter-rouge">virtualsdr&lt;ANY_GIVEN_ID&gt;</code>, <em>e.g.</em>, <code class="language-plaintext highlighter-rouge">virtualsdr0</code>, <code class="language-plaintext highlighter-rouge">virtualsdr_astringId</code> or the simplest <code class="language-plaintext highlighter-rouge">virtualsdr</code>.</p>
 
-<h3 id="612-basic-facts-of-wi-fi-channelization">6.1.2. Basic Facts of Wi-Fi Channelization</h3>
+<h3 id="basic-facts-of-wi-fi-channelization">Basic Facts of Wi-Fi Channelization</h3>
 
 <p>Many PicoScenes users are confused about how to correctly specify Wi-Fi channels for COTS NICs and SDR devices. We create a big table <a href="channels.html">Wi-Fi Channelization</a> for reference.</p>
 
-<h2 id="62-isac-research-using-ni-usrp-or-hackrf-one-sdr">6.2. ISAC Research using NI USRP or HackRF One SDR</h2>
+<h2 id="isac-research-using-ni-usrp-or-hackrf-one-sdr">ISAC Research using NI USRP or HackRF One SDR</h2>
 
 <p>PicoScenes can drive SDR devices to transmit 802.11a/g/n/ac/ax/be format frames, receive frames, and measure the CSI data in real-time. In the following sections, we explore four major topics:</p>
 
@@ -1061,9 +1106,9 @@ $('#toc').on('click', 'a', function() {
   <li>Some advanced features by <a href="#626-advanced-features">Advanced Features</a></li>
 </ol>
 
-<h3 id="621-listening-to-wi-fi-traffic-and-measuring-csi-for-80211agnacaxbe-format-frame">6.2.1. Listening to Wi-Fi Traffic and Measuring CSI for 802.11a/g/n/ac/ax/be-Format Frame</h3>
+<h3 id="listening-to-wi-fi-traffic-and-measuring-csi-for-80211agnacaxbe-format-frame">Listening to Wi-Fi Traffic and Measuring CSI for 802.11a/g/n/ac/ax/be-Format Frame</h3>
 
-<h4 id="6211-listening-to-20-mhz-bandwidth-channels">6.2.1.1. Listening to 20 MHz Bandwidth Channels</h4>
+<h4 id="listening-to-20-mhz-bandwidth-channels">Listening to 20 MHz Bandwidth Channels</h4>
 
 <p>In the simplest form, if you want to listen to the Wi-Fi traffic of a 20 MHz bandwidth channel centered at 2412 MHz using an SDR device with the ID <code class="language-plaintext highlighter-rouge">SDR_ID</code> (see <a href="#6112-device-naming-for-sdr">Device Naming for SDR </a> for <code class="language-plaintext highlighter-rouge">SDR_ID</code>), you can use the following command:</p>
 
@@ -1083,7 +1128,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Hint</strong>: PicoScenes sets many Rx parameters by default, such as using the <em>RX_CBW_20</em> preset, using the Tx/Rx antenna port, using the normalized 0.65 Rx gain, etc. See <a href="#6214-rx-gain-control-manual-gc-and-agc">Rx Gain Control: Manual GC and AGC</a> for Rx Gain control.</p>
 </blockquote>
 
-<h4 id="6212-listening-to-4080160320-mhz-bandwidth-channels">6.2.1.2. Listening to 40/80/160/320 MHz Bandwidth Channels</h4>
+<h4 id="listening-to-4080160320-mhz-bandwidth-channels">Listening to 40/80/160/320 MHz Bandwidth Channels</h4>
 
 <p>In this case, if you want to listen to the Wi-Fi traffic on a 40 MHz bandwidth channel centered at 5190 MHz (or “5180 HT40+” or “5200 HT40-“) using an SDR device with the ID <code class="language-plaintext highlighter-rouge">SDR_ID</code> (see <a href="#6112-device-naming-for-sdr">Device Naming for SDR </a> for <code class="language-plaintext highlighter-rouge">SDR_ID</code>), you can use the following command:</p>
 
@@ -1114,7 +1159,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Important</strong>: Not all SDR devices support the 40/80/160 MHz sampling rate. For example, HackRF One with a maximum of 20 MHz sampling rate does not support 40 MHz or wider sampling rate. While the NI USRP X3x0 Series or other advanced models have a maximum of over 200 MHz sampling rate, supporting the 40/80/160 MHz bandwidth channels.</p>
 </blockquote>
 
-<h4 id="6213-antenna-selection-only-for-ni-usrp-device">6.2.1.3. Antenna Selection (Only for NI USRP Device)</h4>
+<h4 id="antenna-selection-only-for-ni-usrp-device">Antenna Selection (Only for NI USRP Device)</h4>
 
 <p>NI USRP features two antenna ports for each RF channel, <strong>TX/RX</strong> and <strong>RX2</strong>. PicoScenes provides a pair of options for Tx/Rx antenna selection: <code class="language-plaintext highlighter-rouge">--tx-ant</code> and <code class="language-plaintext highlighter-rouge">--rx-ant</code>. For example, if you want to use the RX2 antenna port for signal receiving, you can add <code class="language-plaintext highlighter-rouge">--rx-ant</code> to the above command:</p>
 
@@ -1125,7 +1170,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Important</strong>: PicoScenes uses the TX/RX port of each RF channel by default.</p>
 </blockquote>
 
-<h4 id="6214-rx-gain-control-manual-gc-and-agc">6.2.1.4. Rx Gain Control: Manual GC and AGC</h4>
+<h4 id="rx-gain-control-manual-gc-and-agc">Rx Gain Control: Manual GC and AGC</h4>
 
 <p>Proper Rx gain, or Rx signal amplification level, is crucial for Rx decoding performance and CSI measurement quality. Depending on the distance and strength of the transmitted signal, you may need to adjust the Rx gain. PicoScenes provides two ways to specify the Rx gain: using the <strong>absolute gain value</strong> or the <strong>normalized gain value</strong>.</p>
 
@@ -1161,7 +1206,7 @@ $('#toc').on('click', 'a', function() {
 </code></pre></div>    </div>
 
     <p>This command enables AGC for the SDR device with the ID A_B210_SDR.</p>
-    <h4 id="6215-multi-channel-rx-by-single-ni-usrp-device">6.2.1.5. Multi-Channel Rx by Single NI USRP Device</h4>
+    <h4 id="multi-channel-rx-by-single-ni-usrp-device">Multi-Channel Rx by Single NI USRP Device</h4>
   </li>
 </ol>
 
@@ -1202,11 +1247,11 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ol>
 
-<h4 id="6216-multi-channel-rx-by-multiple-ni-usrp-devices">6.2.1.6. Multi-Channel Rx by Multiple NI USRP Devices</h4>
+<h4 id="multi-channel-rx-by-multiple-ni-usrp-devices">Multi-Channel Rx by Multiple NI USRP Devices</h4>
 
 <p>PicoScenes supports combining multiple NI USRP devices of the same model into a single, virtual device, providing a higher level of MIMO and larger cross-antenna phase coherency. Taking the NI USRP X310 as an example, if you have two X310 devices and each is equipped with dual UBX-160 daughterboards, <strong>we can achieve four-channel phase coherent Rx if they are properly combined and synchronized</strong>.</p>
 
-<h5 id="62161-clock-synchronization-across-multiple-usrp-devices">6.2.1.6.1. Clock Synchronization across Multiple USRP Devices</h5>
+<h5 id="clock-synchronization-across-multiple-usrp-devices">Clock Synchronization across Multiple USRP Devices</h5>
 
 <p>We recommend two options to achieve clock synchronization across multiple USRP devices:</p>
 
@@ -1219,7 +1264,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ol>
 
-<h5 id="62162-combining-multiple-usrp-devices">6.2.1.6.2. Combining Multiple USRP Devices</h5>
+<h5 id="combining-multiple-usrp-devices">Combining Multiple USRP Devices</h5>
 
 <p>Assume you have two NI USRP X3x0 devices each equipped with two UBX-160 daughterboards, and with IP Addresses of 192.168.30.2 and 192.168.70.2, respectively. And also assume you have physically synchronized these two devices by either solution of <a href="#62161-clock-synchronization-across-multiple-usrp-devices">Clock Synchronization across Multiple USRP Devices</a>, you can achieve four-channel coherent Rx by the following command:</p>
 
@@ -1231,7 +1276,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Important</strong>: The order of the IP addresses affects the order of the TX/RX channels! For example, the 0th and 3rd channels of the combined USRP <code class="language-plaintext highlighter-rouge">usrp192.168.40.2,192.168.41.2</code> refer to the first and the second channel of the devices with the IP addresses of 192.168.40.2 and 192.168.41.2, respectively.</p>
 </blockquote>
 
-<h5 id="62163-combining-multiple-usrp-devices-plus-dual-10gbe-connection">6.2.1.6.3. Combining Multiple USRP Devices plus Dual-10GbE Connection</h5>
+<h5 id="combining-multiple-usrp-devices-plus-dual-10gbe-connection">Combining Multiple USRP Devices plus Dual-10GbE Connection</h5>
 
 <p>Assuming you have two NI USRP X3x0 devices each equipped with two UBX-160 daughterboards, and assume each X3x0 device is dual-10GbE connected with IP Addresses of 192.168.30.2 and 192.168.31.2 for the first and 192.168.70.2 and 192.168.71.2 for the second, respectively. And also assume you have physically synchronized these two devices by either solution of <a href="#62161-clock-synchronization-across-multiple-usrp-devices">Clock Synchronization across Multiple USRP Devices</a>, you can achieve four-channel coherent Rx for a 160 MHz Wi-Fi channel by the following command:</p>
 
@@ -1239,13 +1284,13 @@ $('#toc').on('click', 'a', function() {
 </code></pre></div></div>
 <p>Please pay special attention to the comma (<strong>,</strong>) and underline (<strong>_</strong>) in the option <code class="language-plaintext highlighter-rouge">-i usrp192.168.30.2_192.168.31.2,192.168.70.2_192.168.71.2</code>. It means to use the dual 10GbE connection plus combining multiple USRP devices. You can refer to <a href="#61121-device-naming-for-ni-usrp">Device Naming for NI USRP</a> for the complete naming protocols for NI USRP devices.</p>
 
-<h3 id="622-transmitting-80211agnacaxbe-protocol-frames-using-sdr-devices">6.2.2. Transmitting 802.11a/g/n/ac/ax/be Protocol Frames using SDR Devices</h3>
+<h3 id="transmitting-80211agnacaxbe-protocol-frames-using-sdr-devices">Transmitting 802.11a/g/n/ac/ax/be Protocol Frames using SDR Devices</h3>
 
-<h4 id="6221-single-device-tx-with-rich-low-level-controls">6.2.2.1. Single-Device Tx with Rich Low-Level Controls</h4>
+<h4 id="single-device-tx-with-rich-low-level-controls">Single-Device Tx with Rich Low-Level Controls</h4>
 
 <p>In the following examples, we demonstrate how to use PicoScenes to drive SDR device to transmit Wi-Fi packets with gradually enriched low-level controls. We assume your SDR ID is <code class="language-plaintext highlighter-rouge">SDR_ID</code> and your SDR supports sufficiently high sampling rate, like 200 MSPS or higher.</p>
 
-<h5 id="62211-transmitting-20-mhz-bandwidth-80211n-format-frames">6.2.2.1.1. Transmitting 20 MHz Bandwidth 802.11n Format Frames</h5>
+<h5 id="transmitting-20-mhz-bandwidth-80211n-format-frames">Transmitting 20 MHz Bandwidth 802.11n Format Frames</h5>
 
 <p>If you just want to transmit some 802.11n rate, 20 MHz bandwidth frames at 5900 MHz channel for CSI measurement, you can use the following command:</p>
 
@@ -1256,7 +1301,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Hint</strong>: PicoScenes uses 802.11n format for packet injection by default.</p>
 </blockquote>
 
-<h5 id="62212-transmitting-4080160320-mhz-bandwidth-80211agnacaxbe-format-frames">6.2.2.1.2. Transmitting 40/80/160/320 MHz Bandwidth 802.11a/g/n/ac/ax/be Format Frames</h5>
+<h5 id="transmitting-4080160320-mhz-bandwidth-80211agnacaxbe-format-frames">Transmitting 40/80/160/320 MHz Bandwidth 802.11a/g/n/ac/ax/be Format Frames</h5>
 
 <p>You can use the powerful <code class="language-plaintext highlighter-rouge">--preset</code> options to specify bandwidth and format, like:</p>
 
@@ -1269,7 +1314,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Hint</strong>: You can refer to the <a href="presets.html">PicoScenes Presets</a> for a full list of presets.</p>
 </blockquote>
 
-<h5 id="62213-tx-gain-control">6.2.2.1.3. Tx Gain Control</h5>
+<h5 id="tx-gain-control">Tx Gain Control</h5>
 
 <p>PicoScenes uses the <code class="language-plaintext highlighter-rouge">--txpower</code> option for Tx power specification. Similar to <code class="language-plaintext highlighter-rouge">--rx-gain</code> exemplified in <a href="#6214-rx-gain-control-manual-gc-and-agc">Rx Gain Control: Manual GC and AGC</a>, <code class="language-plaintext highlighter-rouge">--txpower</code> also has two modes: <strong>absolute Tx gain value</strong> and <strong>normalized Tx gain value</strong>.</p>
 
@@ -1287,13 +1332,13 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Hint</strong>: PicoScenes specifies <code class="language-plaintext highlighter-rouge">--txpower 0.7</code> by default.</p>
 </blockquote>
 
-<h4 id="6222-multi-channel-rf-chain-and-mimo-tx-with-ni-usrp-devices">6.2.2.2. Multi-Channel (RF Chain) and MIMO Tx with NI USRP Devices</h4>
+<h4 id="multi-channel-rf-chain-and-mimo-tx-with-ni-usrp-devices">Multi-Channel (RF Chain) and MIMO Tx with NI USRP Devices</h4>
 
 <p>PicoScenes supports multi-channel transmission using NI USRP devices, either by a single device or by combining multiple devices.</p>
 
 <p>The device naming and synchronization are identical to that of multi-channel signal receiving mentioned in <a href="#6215-multi-channel-rx-by-single-ni-usrp-device">Multi-Channel Rx by Single NI USRP Device</a>, <a href="#6216-multi-channel-rx-by-multiple-ni-usrp-devices">Multi-Channel Rx by Multiple NI USRP Devices</a>, and <a href="#61121-device-naming-for-ni-usrp">Device Naming for NI USRP</a>.</p>
 
-<h5 id="62221-multi-channel-rf-chain-tx-for-1-sts-frame-with-ni-usrp-device">6.2.2.2.1. Multi-Channel (RF Chain) Tx for 1-STS Frame with NI USRP Device</h5>
+<h5 id="multi-channel-rf-chain-tx-for-1-sts-frame-with-ni-usrp-device">Multi-Channel (RF Chain) Tx for 1-STS Frame with NI USRP Device</h5>
 
 <p>In this scenario, assuming your USRP device IDs are <code class="language-plaintext highlighter-rouge">usrp192.168.30.2</code> and <code class="language-plaintext highlighter-rouge">usrp192.168.70.2</code>, you can use the following command to transmit a 1-STS frame using multiple antennas:</p>
 
@@ -1305,7 +1350,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Hint</strong>: Due to the cyclic shift delay (CSD) requirement of the 802.11 standard, even for a 1-STS frame, the signals transmitted on each Tx channel are different and cyclically delayed among the antennas.</p>
 </blockquote>
 
-<h5 id="62222-multi-channel-rf-chain-tx-for-mimo-frame-with-ni-usrp-device">6.2.2.2.2. Multi-Channel (RF Chain) Tx for MIMO Frame with NI USRP Device</h5>
+<h5 id="multi-channel-rf-chain-tx-for-mimo-frame-with-ni-usrp-device">Multi-Channel (RF Chain) Tx for MIMO Frame with NI USRP Device</h5>
 
 <p>In this scenario, assume your USRP device ID is <code class="language-plaintext highlighter-rouge">usrp192.168.30.2,192.168.70.2</code>, you can use the following command to transmit a MIMO frame by multiple antennas:</p>
 
@@ -1314,11 +1359,11 @@ $('#toc').on('click', 'a', function() {
 
 <p>In this command, the <code class="language-plaintext highlighter-rouge">--sts 4</code> specifies (N_{STS}=4) (or 4x4 MIMO transmission) to transmit the frames.</p>
 
-<h3 id="623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format">6.2.3. Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format</h3>
+<h3 id="wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format">Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format</h3>
 
 <p>PicoScenes radar mode transmits and receives Wi-Fi signals using one single NI USRP device (or a virtual combination of multiple NI USRP devices). Since both the Tx and Rx ends share the same baseband/RF clock, the carrier frequency offset (CFO) and sampling frequency offset (SFO) are fundamentally eliminated. We believe the radar mode is most ideal approach for Wi-Fi sensing research.</p>
 
-<h4 id="6231-wi-fi-radar-80211bf-mono-static-sensing-siso-mode">6.2.3.1. Wi-Fi Radar (802.11bf Mono-Static Sensing) SISO mode</h4>
+<h4 id="wi-fi-radar-80211bf-mono-static-sensing-siso-mode">Wi-Fi Radar (802.11bf Mono-Static Sensing) SISO mode</h4>
 <p>Wi-Fi radar mode can work on all NI USRP devices, which have at least one Full-Duplex Tx/Rx chain. As the radar word implies, PicoScenes, in radar mode, uses the Tx port of a RF chain to transmits the Wi-Fi frames, whilst using the Rx port of the same RF chain to receive the signals and then decode the frames. The following command shows how to use the radar mode with Wi-Fi 7 40 MHz CBW frames injection and receiving.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PicoScenes <span class="s2">"-d debug; -i usrp --freq 5955 --mode radar --tx-ant TX/RX --rx-ant RX2 --preset TR_CBW_40_EHTSU --repeat 1e9 --delay 5e3 --txpower 0.1 --delayed-start 3 --plot;"</span>
 </code></pre></div></div>
@@ -1336,7 +1381,7 @@ $('#toc').on('click', 'a', function() {
   <p><strong>Hint</strong>: See how we <a href="https://github.com/wifisensing/PicoScenes-PDK/-/commit/ee0242a6837dabfc259a26236799ddd9b1eb893c">implement the Radar mode in less than 30 lines of code</a>?</p>
 </blockquote>
 
-<h4 id="6232-wi-fi-radar-80211bf-mono-static-sensing-simo-mode">6.2.3.2. Wi-Fi Radar (802.11bf Mono-Static Sensing) SIMO mode</h4>
+<h4 id="wi-fi-radar-80211bf-mono-static-sensing-simo-mode">Wi-Fi Radar (802.11bf Mono-Static Sensing) SIMO mode</h4>
 <p>For NI USRP devices with multiple RF channels, Wi-Fi radar can operate in 1-transmission-multiple-reception, or SIMO mode. The following command shows how to use a multi-chain USRP, e.g., NI USRP B210 or X310, to perform the Wi-Fi radar SIMO measurement:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PicoScenes <span class="s2">"-d debug; -i usrp --freq 5955 --mode radar --txcm 1 --rxcm 3 --tx-ant TX/RX --rx-ant RX2 --preset TR_CBW_40_EHTSU --repeat 1e9 --delay 5e3 --txpower 0.1 --delayed-start 3 --plot;"</span>
 </code></pre></div></div>
@@ -1350,7 +1395,7 @@ $('#toc').on('click', 'a', function() {
   <li>We recommend to wait a few seconds before transmission, as the <code class="language-plaintext highlighter-rouge">--delayed-start 3</code> option indicates to wait 3 seconds before transmission.</li>
 </ul>
 
-<h4 id="6233-wi-fi-radar-80211bf-mono-static-sensing-mimo-mode">6.2.3.3. Wi-Fi Radar (802.11bf Mono-Static Sensing) MIMO Mode</h4>
+<h4 id="wi-fi-radar-80211bf-mono-static-sensing-mimo-mode">Wi-Fi Radar (802.11bf Mono-Static Sensing) MIMO Mode</h4>
 
 <p>For NI USRP devices with multiple RF channels, Wi-Fi radar can operate in multiple-transmission-multiple-reception (NT-NR), or MIMO mode. The following command shows how to use a multi-chain USRP, e.g., NI USRP B210 or X310, to perform the Wi-Fi radar MIMO mode measurement:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PicoScenes <span class="s2">"-d debug; -i usrp --freq 5955 --mode radar --txcm 3 --rxcm 3 --tx-ant TX/RX --rx-ant RX2 --sts 2 --preset TR_CBW_40_EHTSU --repeat 1e9 --delay 5e3 --txpower 0.1 --delayed-start 3 --plot;"</span>
@@ -1366,7 +1411,7 @@ $('#toc').on('click', 'a', function() {
   <li>We recommend to wait a few seconds before transmission, as the <code class="language-plaintext highlighter-rouge">--delayed-start 3</code> option indicates to wait 3 seconds before transmission.</li>
 </ul>
 
-<p>#### 6.2.3.4. Wi-Fi Radar (802.11bf Mono-Static Sensing) MIMO Mode using Multiple USRP Devices</p>
+<h4 id="wi-fi-radar-80211bf-mono-static-sensing-mimo-mode-using-multiple-usrp-devices">Wi-Fi Radar (802.11bf Mono-Static Sensing) MIMO Mode using Multiple USRP Devices</h4>
 
 <p>Since multiple USRP can be combined into one virtual and large USRP, the radar mode can also utilize multiple RF chains to build a Wi-Fi MIMO radar. Assuming two NI USRP X310 is dual-10GbE connected with IP address of 192.168.30.2 and 192.168.40.2, you can use the following command to perform a 4x4 Wi-Fi MIMO radar measurement:</p>
 
@@ -1375,7 +1420,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>To synchronize both X310 devices, we use the <code class="language-plaintext highlighter-rouge">--clock-source external</code> options, which you may refer to <a href="#62161-clock-synchronization-across-multiple-usrp-devices">Clock Synchronization across Multiple USRP Devices</a>.</p>
 
-<h3 id="624-transmission-reception-and-csi-measurement-with-non-standard-channel-and-bandwidth">6.2.4. Transmission, Reception, and CSI Measurement with Non-Standard Channel and Bandwidth</h3>
+<h3 id="transmission-reception-and-csi-measurement-with-non-standard-channel-and-bandwidth">Transmission, Reception, and CSI Measurement with Non-Standard Channel and Bandwidth</h3>
 
 <blockquote>
   <p><strong>Warning</strong>: It is essential to comply with the RF spectrum regulations of your country/location. PicoScenes platform is a research-purpose software. You are responsible for ensuring compliance with all applicable laws.</p>
@@ -1383,7 +1428,7 @@ $('#toc').on('click', 'a', function() {
 
 <p>In previous two sections <a href="#621-listening-to-wi-fi-traffic-and-measuring-csi-for-80211agnacaxbe-format-frame">Listening to Wi-Fi Traffic and Measuring CSI for 802.11a/g/n/ac/ax/be-Format Frame</a> and <a href="#622-transmitting-80211agnacaxbe-protocol-frames-using-sdr-devices">Transmitting 802.11a/g/n/ac/ax/be protocol frames using SDR Devices</a>, all Tx/Rx parameters were compatible with the official Wi-Fi <em>numerology</em>, ensuring interoperability between SDR devices and commercial off-the-shelf (COTS) NICs. This allows users to transmit frames with SDR and measure CSI with COTS NICs, or vice versa, see <a href="#65-interoperability-among-sdr-and-cots-nics">Interoperability among SDR and COTS NICs</a> for details. To maintain this interoperability, we use the <code class="language-plaintext highlighter-rouge">--preset</code> option to specify various low-level parameters for SDR. In this section, we will demonstrate several commonly used non-standard cases and explain some key parameters.</p>
 
-<h4 id="6241-changing-baseband-bandwidth-sampling-rate-with-ni-usrp-b2x0-series">6.2.4.1. Changing Baseband Bandwidth (Sampling Rate) with NI USRP B2x0 Series</h4>
+<h4 id="changing-baseband-bandwidth-sampling-rate-with-ni-usrp-b2x0-series">Changing Baseband Bandwidth (Sampling Rate) with NI USRP B2x0 Series</h4>
 
 <p>The NI USRP B2x0 Series features a fractional baseband clocking architecture, which means the baseband sampling rate can take any value within its clocking range. Suppose you want to increase the standard 20 MHz channel to 30 MHz (50% more bandwidth or sampling rate) at a 5955 MHz channel. In that case, you can use the following commands:</p>
 
@@ -1397,7 +1442,7 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5955 --rate 30e6 --mode inj
   <p><strong>Hint</strong>: By default, PicoScenes sets <code class="language-plaintext highlighter-rouge">--rate</code> to 20 MHz. If the <code class="language-plaintext highlighter-rouge">--preset</code> option is used, it will override the defaults. If both <code class="language-plaintext highlighter-rouge">--preset</code> and <code class="language-plaintext highlighter-rouge">--rate</code> are explicitly provided, the <code class="language-plaintext highlighter-rouge">--rate</code> option will take precedence over <code class="language-plaintext highlighter-rouge">--preset</code>.</p>
 </blockquote>
 
-<h4 id="6242-non-standard-txrx-with-ni-usrp-n2x0x3x0n3x0-series">6.2.4.2. Non-Standard Tx/Rx with NI USRP N2x0/X3x0/N3x0 Series</h4>
+<h4 id="non-standard-txrx-with-ni-usrp-n2x0x3x0n3x0-series">Non-Standard Tx/Rx with NI USRP N2x0/X3x0/N3x0 Series</h4>
 <p>There are two reasons that complicate arbitrary bandwidth changing for the N2x0/X3x0/N3x0 Series devices:</p>
 
 <ul>
@@ -1430,7 +1475,7 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5250 --rate 200e6 --tx-resa
   <p><strong>Hint</strong>: In-baseband Digital Resampling is a computationally intensive task. It may lower performance and overall throughput.</p>
 </blockquote>
 
-<h3 id="625-concurrent-multi-sdr-operation-on-a-single-computer">6.2.5. Concurrent Multi-SDR Operation on a Single Computer</h3>
+<h3 id="concurrent-multi-sdr-operation-on-a-single-computer">Concurrent Multi-SDR Operation on a Single Computer</h3>
 
 <p>There are two ways to enable PicoScenes to control multiple SDR devices on a single computer:</p>
 
@@ -1461,9 +1506,9 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5250 --rate 200e6 --tx-resa
   <p><strong>Hint</strong>: For a more comprehensive explanation of this multi-line format, refer to the <a href="parameters.html#71-picoscenes-command-line-interface">PicoScenes Command Line Interface</a> section.</p>
 </blockquote>
 
-<h3 id="626-advanced-features">6.2.6. Advanced Features</h3>
+<h3 id="advanced-features">Advanced Features</h3>
 
-<h4 id="6261-signal-recording-and-replaying-both-tx-and-rx-ends">6.2.6.1. Signal Recording and Replaying (Both Tx and Rx Ends)</h4>
+<h4 id="signal-recording-and-replaying-both-tx-and-rx-ends">Signal Recording and Replaying (Both Tx and Rx Ends)</h4>
 <ul>
   <li>Signal Recording: PicoScenes provides intuitive options, <code class="language-plaintext highlighter-rouge">--tx-to-file</code> and <code class="language-plaintext highlighter-rouge">--rx-to-file</code>, allowing users to save the I/Q baseband signals to be transmitted or received into a “<em>.bbsignals</em>” file.</li>
   <li>Signal Replaying: PicoScenes offers another set of options, <code class="language-plaintext highlighter-rouge">--tx-from-file</code> and <code class="language-plaintext highlighter-rouge">--rx-from-file</code>, enabling users to transmit the signals stored in a “<em>.bbsignals</em>” file or use the signals stored in a “<em>.bbsignals</em>” file as the signals received in real-time.</li>
@@ -1471,7 +1516,7 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5250 --rate 200e6 --tx-resa
 
 <p>Proper combinations of these four options can greatly facilitate ISAC research. Here, we present two of the most useful cases.</p>
 
-<h5 id="62611-case-1-overcoming-packet-loss-by-live-recording--offline-replaying">6.2.6.1.1. Case 1: Overcoming Packet Loss by Live Recording + Offline Replaying</h5>
+<h5 id="case-1-overcoming-packet-loss-by-live-recording--offline-replaying">Case 1: Overcoming Packet Loss by Live Recording + Offline Replaying</h5>
 
 <p>PicoScenes’ software baseband implementation, while highly performant, may still encounter significant packet loss in high-bandwidth and multi-channel scenarios. However, this issue can be overcome by utilizing a signal recording and offline analysis approach. For instance, users can record 160 MHz CBW signals using the following command. Press Ctrl+C to stop.</p>
 
@@ -1485,7 +1530,7 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5250 --rate 200e6 --tx-resa
   <p><strong>Hint</strong>: PicoScenes MATLAB Toolbox Core (PMT-Core) also provides a decoder for .bbsignals files. You can simply drag and drop the .bbsignals file into the MATLAB Command Window to open it.</p>
 </blockquote>
 
-<h5 id="62612-case-2-signal-level-tx-and-rx-control">6.2.6.1.2. Case 2: Signal-Level Tx and Rx Control</h5>
+<h5 id="case-2-signal-level-tx-and-rx-control">Case 2: Signal-Level Tx and Rx Control</h5>
 <p>You can utilize MATLAB to open the saved .bbsignals file, manipulate the signals as desired, and then save the modified signals back into a .bbsignals file. The modified signals can then be replayed using the <code class="language-plaintext highlighter-rouge">--tx-from-file</code> or <code class="language-plaintext highlighter-rouge">--rx-from-file</code> command.</p>
 
 <p>This capability grants users complete control over the Tx or Rx signals, opening up a wide range of potential applications that can be explored.</p>
@@ -1494,11 +1539,11 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5250 --rate 200e6 --tx-resa
   <p><strong>Note</strong>: To save signals back into a .bbsignals file, you can utilize the <code class="language-plaintext highlighter-rouge">writeBBSignals</code> commands provided by PMT-Core.</p>
 </blockquote>
 
-<h4 id="6262-multiple-csi-measurements-per-frame">6.2.6.2. Multiple CSI Measurements per Frame</h4>
+<h4 id="multiple-csi-measurements-per-frame">Multiple CSI Measurements per Frame</h4>
 
 <p>PicoScenes supports two standard-compatible approaches for multiple CSI measurements per frame: the 802.11ax High Doppler-format frame and the 802.11n frame with Extra Spatial Sounding (ESS) fields.</p>
 
-<h5 id="62621-80211ax-high-doppler-format-frames">6.2.6.2.1. 802.11ax High Doppler-Format Frames</h5>
+<h5 id="80211ax-high-doppler-format-frames">802.11ax High Doppler-Format Frames</h5>
 
 <p>In order to combating the high-doppler effect in moving scenarios, the High Doppler-format inserts additional <em>midamble HE-LTFs</em> into the data part of a HE-SU format frame every 10 or 20 data OFDM symbols. PicoScenes implements the encoding and decoding of this feature. Once the frame is long enough (via A-MPDU), up to 39 CSI measurements can be measured by a single frame. Users can enable this feature by <code class="language-plaintext highlighter-rouge">--high-doppler</code> option like the following command:</p>
 
@@ -1510,7 +1555,7 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5250 --rate 200e6 --tx-resa
   <p><strong>Note</strong>: High Doppler-format is an optional feature of 802.11ax standard. AX210/AX200 doesn’t support this mode.</p>
 </blockquote>
 
-<h5 id="62622-80211n-extra-spatial-sounding-ess-frames">6.2.6.2.2. 802.11n Extra Spatial Sounding (ESS) Frames</h5>
+<h5 id="80211n-extra-spatial-sounding-ess-frames">802.11n Extra Spatial Sounding (ESS) Frames</h5>
 
 <p>The ESS feature can insert &lt;3 HT-LTFs immediately after the normal HT-LTFs, allowing the receiving end (Rx) to measure more CSI than the number of spatial streams :math:N_{sts}. You can enable this feature using the <code class="language-plaintext highlighter-rouge">--ess</code> option like shown in the following command:</p>
 
@@ -1523,13 +1568,13 @@ PicoScenes <span class="s2">"-d debug -i usrp --freq 5250 --rate 200e6 --tx-resa
   <p><strong>Note</strong>: ESS is an optional feature of the 802.11n standard. It is supported by QCA9300 and IWL5300, but not by AX210/AX200.</p>
 </blockquote>
 
-<h4 id="6263-channel-impairment-simulation">6.2.6.3. Channel Impairment Simulation</h4>
+<h4 id="channel-impairment-simulation">Channel Impairment Simulation</h4>
 
 <blockquote>
   <p><strong>Todo</strong>: need to be verified.</p>
 </blockquote>
 
-<h4 id="6264-dual-channel-spectrum-splitting-and-stitching-experimental">6.2.6.4. Dual-Channel Spectrum Splitting and Stitching (Experimental)</h4>
+<h4 id="dual-channel-spectrum-splitting-and-stitching-experimental">Dual-Channel Spectrum Splitting and Stitching (Experimental)</h4>
 
 <p>PicoScenes supports the combination of two channels operating at different frequencies with the same bandwidth, which achieves a similar effect to doubling the sampling rate of a single channel. This method allows overcoming the limitation of the maximum hardware sampling rate, such as achieving an equivalent 400 MHz sampling rate using the NI USRP X310, which has a maximum sampling rate of 200 MHz.</p>
 
@@ -1558,7 +1603,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
   <p><strong>Note</strong>: The 320 MHz sampling rate, along with <em>In-baseband Digital Resampling</em>, is extremely CPU intensive. Users should expect a very high packet loss rate.</p>
 </blockquote>
 
-<h4 id="6265-multi-thread-rx-decoding-experimental">6.2.6.5. Multi-Thread Rx Decoding (Experimental)</h4>
+<h4 id="multi-thread-rx-decoding-experimental">Multi-Thread Rx Decoding (Experimental)</h4>
 
 <p>The PicoScenes Rx baseband decoder includes an experimental multi-threading capability, which can potentially increase the decoding performance by up to :math:<code class="language-plaintext highlighter-rouge">N_{CPU}</code> times. Enabling this feature is straightforward, as demonstrated in the following example:</p>
 
@@ -1567,7 +1612,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
 
 <p>The <code class="language-plaintext highlighter-rouge">--mt 5</code> option specifies that the Rx decoder should utilize 5 threads for parallel decoding.</p>
 
-<h2 id="63-csi-measurement-using-ax210ax200-nics">6.3. CSI Measurement using AX210/AX200 NICs</h2>
+<h2 id="csi-measurement-using-ax210ax200-nics">CSI Measurement using AX210/AX200 NICs</h2>
 
 <p>CSI extraction on Intel AX210/AX200, including the 6 GHz band access, is one of the exclusive features of the PicoScenes platform. In this section, we will explore several commonly used research scenarios for ISAC:</p>
 
@@ -1580,7 +1625,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
   <li><a href="#636-concurrent-multi-nic-operation-on-a-single-computer">Concurrent Multi-NIC Operation on a Single Computer</a></li>
 </ol>
 
-<h3 id="631-csi-measurement-from-associated-wi-fi-ap">6.3.1. CSI Measurement from Associated Wi-Fi AP</h3>
+<h3 id="csi-measurement-from-associated-wi-fi-ap">CSI Measurement from Associated Wi-Fi AP</h3>
 
 <p>The AX210/AX200 NIC can measure CSI for the 802.11a/g/n/ac/ax frames transmitted by the associated Wi-Fi AP. By generating sufficient Wi-Fi traffic, such as using the <em>ping</em> command, we can obtain CSI measurements.</p>
 
@@ -1605,7 +1650,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
 
 <p>The logged CSI data is stored in a file named <code class="language-plaintext highlighter-rouge">rx_&lt;PHYPath&gt;_&lt;Time&gt;.csi</code>, located in the <em>present working directory</em>. To analyze the data, open MATLAB, drag the .csi file into the <em>Command Window</em>, and the file will be parsed and stored as a MATLAB variable named <code class="language-plaintext highlighter-rouge">rx_&lt;PHYPath&gt;_&lt;Time&gt;</code>.</p>
 
-<h3 id="632-fully-passive-csi-measurement-in-monitor-mode">6.3.2. Fully-Passive CSI Measurement in Monitor Mode</h3>
+<h3 id="fully-passive-csi-measurement-in-monitor-mode">Fully-Passive CSI Measurement in Monitor Mode</h3>
 
 <p>The AX210/AX200 NIC is capable of measuring CSI for 802.11a/g/n/ac/ax frames observed in monitor mode. In this mode, the AX210/AX200 can passively measure CSI for all frames transmitted on the same channel, enabling association-free and injection-free fully passive CSI measurement.</p>
 
@@ -1625,7 +1670,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
 
 <p>The logged CSI data is stored in a file named <code class="language-plaintext highlighter-rouge">rx_&lt;Id&gt;_&lt;Time&gt;.csi</code>, located in the <em>present working directory</em>. To analyze the data, open MATLAB, drag the .csi file into the <em>Command Window</em>, and the file will be parsed and stored as a MATLAB variable named <code class="language-plaintext highlighter-rouge">rx_&lt;Id&gt;_&lt;Time&gt;</code>.</p>
 
-<h3 id="633-packet-injection-based-csi-measurement-tx-with-80211agnacax-format-and-204080160-mhz-cbw">6.3.3. Packet Injection-Based CSI Measurement (Tx with 802.11a/g/n/ac/ax Format and 20/40/80/160 MHz CBW)</h3>
+<h3 id="packet-injection-based-csi-measurement-tx-with-80211agnacax-format-and-204080160-mhz-cbw">Packet Injection-Based CSI Measurement (Tx with 802.11a/g/n/ac/ax Format and 20/40/80/160 MHz CBW)</h3>
 
 <p>The PicoScenes Driver enables AX210/AX200 to <em>packet-inject</em> frames in 802.11a/g/n/ac/ax format with bandwidths of 20/40/80/160 MHz and up to 2x2 MIMO. By combining this capability with the CSI measurement functionality discussed in the <a href="#632-fully-passive-csi-measurement-in-monitor-mode">Fully-Passive CSI Measurement in Monitor Mode</a> section, PicoScenes provides precise, fine-grained control for CSI measurement.</p>
 
@@ -1674,7 +1719,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
   <p><strong>Hint</strong>: You can refer to <a href="presets.html">PicoScenes Presets</a> for a full list of presets.</p>
 </blockquote>
 
-<h3 id="634-packet-injection-with-mcs-setting-and-antenna-selection">6.3.4. Packet Injection with MCS Setting and Antenna Selection</h3>
+<h3 id="packet-injection-with-mcs-setting-and-antenna-selection">Packet Injection with MCS Setting and Antenna Selection</h3>
 
 <p>PicoScenes allows users to specify the MCS (Modulation and Coding Scheme) value and Tx/Rx antenna selection for AX210/AX200 NICs. To demonstrate this, we will modify the commands for the <a href="#633-packet-injection-based-csi-measurement-tx-with-80211agnacax-format-and-204080160-mhz-cbw">Packet Injection-Based CSI Measurement (Tx with 802.11a/g/n/ac/ax Format and 20/40/80/160 MHz CBW)</a> scenario.</p>
 
@@ -1703,7 +1748,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
 </code></pre></div></div>
 <p>The additional <code class="language-plaintext highlighter-rouge">--sts 2</code> option sets the number of Space-Time Streams <code class="language-plaintext highlighter-rouge">N_{STS}=2</code> to 2, indicating the use of two antennas to transmit 2x2 MIMO frames.</p>
 
-<h3 id="635-specifying-channel-and-bandwidth-in-real-time">6.3.5. Specifying Channel and Bandwidth in Real-time</h3>
+<h3 id="specifying-channel-and-bandwidth-in-real-time">Specifying Channel and Bandwidth in Real-time</h3>
 
 <p>PicoScenes provides the <code class="language-plaintext highlighter-rouge">--channel</code> option to change channel settings in real-time, without re-execution of the <code class="language-plaintext highlighter-rouge">array_prepare_for_picoscenes</code> command. For example, assuming you have an AX210/AX200 NIC with ID &lt;3&gt; working at an 80 MHz CBW channel “5180 80 5210” (refer to <a href="channels.html">Wi-Fi Channelization</a> for details), and you want to change the NIC to listen on a 160 MHz CBW channel “5955 160 6025”, you can directly run the command:</p>
 
@@ -1712,7 +1757,7 @@ PicoScenes <span class="s2">"-d debug -i usrp192.168.40.2_192.168.41.2 --freq 55
 
 <p>The <code class="language-plaintext highlighter-rouge">--channel '5955 160 6025'</code> option directly changes the channels without requiring the <code class="language-plaintext highlighter-rouge">array_prepare_for_picoscenes</code> script to be executed again.</p>
 
-<h3 id="636-concurrent-multi-nic-operation-on-a-single-computer">6.3.6. Concurrent Multi-NIC Operation on a Single Computer</h3>
+<h3 id="concurrent-multi-nic-operation-on-a-single-computer">Concurrent Multi-NIC Operation on a Single Computer</h3>
 
 <p>PicoScenes supports the installation and control of multiple Wi-Fi NICs on a single computer. To set up a multi-NIC configuration, please refer to the <a href="installation.html#511-installation-of-multiple-commercial-wi-fi-nics">Installation of (Multiple) Commercial Wi-Fi NICs</a> section. Assuming you have installed two or more AX210 or AX200 NICs on your computer and you want to use one NIC for transmission (Tx) and the rest for reception (Rx) and CSI measurement, you can use the following commands:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array_prepare_for_picoscenes <span class="s2">"3 4 5"</span> <span class="s2">"5955 160 6025"</span>
@@ -1743,7 +1788,7 @@ PicoScenes <span class="s2">"-d debug;
   <p><strong>Hint</strong>: For a more comprehensive explanation of this multi-line format, please refer to the <a href="parameters.html#71-picoscenes-command-line-interface">PicoScenes Command Line Interface</a> section.</p>
 </blockquote>
 
-<h2 id="64-csi-measurement-using-qca9300-and-iwl5300-nics">6.4. CSI Measurement using QCA9300 and IWL5300 NICs</h2>
+<h2 id="csi-measurement-using-qca9300-and-iwl5300-nics">CSI Measurement using QCA9300 and IWL5300 NICs</h2>
 
 <p>The IWL5300 and QCA9300 are Wi-Fi NICs that were released a decade ago. Prior to the introduction of AX210/AX200, significant effort was invested in integrating these NICs into the PicoScenes platform. In this section, we will cover the following key topics:</p>
 
@@ -1754,7 +1799,7 @@ PicoScenes <span class="s2">"-d debug;
   <li><a href="#645-qca9300-operating-with-non-standard-channel-bandwidth-and-manual-rx-gain">QCA9300 Operating with Non-Standard Channel, Bandwidth, and Manual Rx Gain</a></li>
 </ol>
 
-<h3 id="641-csi-measurement-from-associated-ap-by-iwl5300">6.4.1 CSI Measurement from Associated AP by IWL5300</h3>
+<h3 id="csi-measurement-from-associated-ap-by-iwl5300">CSI Measurement from Associated AP by IWL5300</h3>
 
 <p>The IWL5300 NIC also has the capability to measure CSI for the 802.11n frames transmitted by the connected Wi-Fi AP. If you have already connected the IWL5300 NIC to an 802.11n compatible Wi-Fi AP, you can follow these three steps to measure CSI using IWL5300:</p>
 
@@ -1795,7 +1840,7 @@ PicoScenes <span class="s2">"-d debug;
   </ul>
 </blockquote>
 
-<h3 id="642-packet-injection-based-csi-measurement">6.4.2. Packet Injection based CSI Measurement</h3>
+<h3 id="packet-injection-based-csi-measurement">Packet Injection based CSI Measurement</h3>
 
 <p>PicoScenes supports packet injection functionality using either QCA9300 or IWL5300, similar to AX210/AX200, for CSI measurement purposes. Users can refer to the guide <a href="#633-packet-injection-based-csi-measurement-tx-with-80211agnacax-format-and-204080160-mhz-cbw">Packet Injection-Based CSI Measurement (Tx with 802.11a/g/n/ac/ax Format and 20/40/80/160 MHz CBW)</a> to perform packet injection-based CSI measurement using QCA9300 and IWL5300. There are two important points to consider:</p>
 
@@ -1804,17 +1849,17 @@ PicoScenes <span class="s2">"-d debug;
   <li>It’s worth noting that there are <em>asymmetric interoperability issues</em> among QCA9300, IWL5300, AX210/AX200, and SDR devices. Refer to the <a href="#65-interoperability-among-sdr-and-cots-nics">Interoperability among SDR and COTS NICs</a> section for more information on this topic.</li>
 </ul>
 
-<h3 id="643-specifying-tx-and-rx-chains">6.4.3. Specifying Tx and Rx Chains</h3>
+<h3 id="specifying-tx-and-rx-chains">Specifying Tx and Rx Chains</h3>
 
 <p>Users can use <code class="language-plaintext highlighter-rouge">--txcm</code> and <code class="language-plaintext highlighter-rouge">--rxcm</code> options  to specify the Tx and Rx chainmask for QCA9300 and IWL5300.</p>
 
 <p>The options <code class="language-plaintext highlighter-rouge">--txcm</code> and <code class="language-plaintext highlighter-rouge">--rxcm</code> are universal for all types of frontends supported by PicoScenes, as described in <a href="#6215-multi-channel-rx-by-single-ni-usrp-device">Multi-Channel Rx by Single NI USRP Device</a> and <a href="#6222-multi-channel-rf-chain-and-mimo-tx-with-ni-usrp-devices">Multi-Channel (RF Chain) and MIMO Tx with NI USRP Devices</a>.</p>
 
-<h3 id="644-concurrent-multi-nic-operation-for-qca9300-and-iwl5300">6.4.4. Concurrent Multi-NIC Operation for QCA9300 and IWL5300</h3>
+<h3 id="concurrent-multi-nic-operation-for-qca9300-and-iwl5300">Concurrent Multi-NIC Operation for QCA9300 and IWL5300</h3>
 
 <p>Similar to AX210/AX200, PicoScenes also supports concurrent multi-NIC operation for both the QCA9300 and IWL5300 models. Users can follow the guide <a href="#636-concurrent-multi-nic-operation-on-a-single-computer">Concurrent Multi-NIC Operation on a Single Computer</a> to perform multi-NIC CSI measurement using QCA9300 and IWL5300. Please note the interoperability issue mentioned in the <a href="#642-packet-injection-based-csi-measurement">Packet Injection based CSI Measurement</a> section.</p>
 
-<h3 id="645-qca9300-operating-with-non-standard-channel-bandwidth-and-manual-rx-gain">6.4.5. QCA9300 Operating with Non-Standard Channel, Bandwidth, and Manual Rx Gain</h3>
+<h3 id="qca9300-operating-with-non-standard-channel-bandwidth-and-manual-rx-gain">QCA9300 Operating with Non-Standard Channel, Bandwidth, and Manual Rx Gain</h3>
 
 <p>PicoScenes provides low-level controls for the QCA9300, allowing users to adjust the carrier frequency, sampling rate, and manual Rx-gain.</p>
 
@@ -1825,7 +1870,7 @@ PicoScenes <span class="s2">"-d debug;
   <li>AGC: Users can re-activate the AGC for the QCA9300 by using the <code class="language-plaintext highlighter-rouge">--agc</code> option.</li>
 </ul>
 
-<h2 id="65-interoperability-among-sdr-and-cots-nics">6.5. Interoperability among SDR and COTS NICs</h2>
+<h2 id="interoperability-among-sdr-and-cots-nics">Interoperability among SDR and COTS NICs</h2>
 
 <p>The table below illustrates the interoperability between the devices supported by PicoScenes. Each grid represents the transmission formats that can trigger frame reception and CSI measurement.</p>
 
@@ -1896,7 +1941,7 @@ PicoScenes <span class="s2">"-d debug;
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
-<span>Page last updated:</span> Dec. 3, 2023<br/> Site last generated: Mar 4, 2025 <br />
+<span>Page last updated:</span> Dec. 3, 2023<br/> Site last generated: Mar 5, 2025 <br />
 <p><img src="images/company_logo.png" alt="Company logo"/></p>
                 </div>
             </div>

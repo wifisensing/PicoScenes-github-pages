@@ -11,10 +11,32 @@
 
   
   
+  <url>
+    <loc>http://localhost:4000/gallery.html</loc>
+  </url>
+  
   
   
   <url>
-    <loc>http://localhost:4000/credits.html</loc>
+    <loc>http://localhost:4000/plugin.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4000/status.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4000/resources.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4000/troubleshooting.html</loc>
   </url>
   
   
@@ -26,13 +48,19 @@
   
   
   <url>
-    <loc>http://localhost:4000/features_pricing.html</loc>
+    <loc>http://localhost:4000/credits.html</loc>
   </url>
   
   
   
   <url>
-    <loc>http://localhost:4000/gallery.html</loc>
+    <loc>http://localhost:4000/ni.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4000/users.html</loc>
   </url>
   
   
@@ -44,8 +72,10 @@
   
   
   <url>
-    <loc>http://localhost:4000/index.html</loc>
+    <loc>http://localhost:4000/features_pricing.html</loc>
   </url>
+  
+  
   
   
   
@@ -56,7 +86,31 @@
   
   
   <url>
+    <loc>http://localhost:4000/scenarios.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4000/parameters.html</loc>
+  </url>
+  
+  
+  
+  <url>
     <loc>http://localhost:4000/matlab.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4000/utilities.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>http://localhost:4000/index.html</loc>
   </url>
   
   
@@ -69,12 +123,6 @@
   
   <url>
     <loc>http://localhost:4000/news_archive.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost:4000/ni.html</loc>
   </url>
   
   
@@ -224,38 +272,11 @@
   
   
   <url>
-    <loc>http://localhost:4000/parameters.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost:4000/plugin.html</loc>
-  </url>
-  
-  
-  
-  <url>
     <loc>http://localhost:4000/reshaping-wifi-isac.html</loc>
   </url>
   
   
   
-  <url>
-    <loc>http://localhost:4000/resources.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost:4000/scenarios.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost:4000/status.html</loc>
-  </url>
   
   
   
@@ -275,27 +296,6 @@
   
   
   
-  
-  
-  
-  
-  
-  
-  <url>
-    <loc>http://localhost:4000/troubleshooting.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost:4000/users.html</loc>
-  </url>
-  
-  
-  
-  <url>
-    <loc>http://localhost:4000/utilities.html</loc>
-  </url>
   
   
 </urlset>

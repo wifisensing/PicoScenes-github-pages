@@ -43,6 +43,51 @@
 
 <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
 
+<!-- 标题自动编号脚本 -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取文档编号，如果未设置则默认为0
+        var docNumber = 2;
+        
+        var headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6');
+        var counters = [docNumber, 0, 0, 0, 0, 0]; // 使用文档编号初始化第一级计数器
+        
+        headings.forEach(function(heading) {
+            if (heading.classList.contains('no-number')) {
+                return;
+            }
+            
+            var level = parseInt(heading.tagName.charAt(1)) - 1;
+            
+            // 如果是h1，使用文档编号
+            if (level === 0) {
+                numberStr = docNumber + '. ';
+            } else {
+                // 更新当前级别的计数器
+                counters[level]++;
+                
+                // 重置所有更低级别的计数器
+                for (var i = level + 1; i < 6; i++) {
+                    counters[i] = 0;
+                }
+                
+                // 生成编号字符串
+                var numberStr = '';
+                for (var i = 0; i <= level; i++) {
+                    numberStr += counters[i] + (i < level ? '.' : '. ');
+                }
+            }
+            
+            var span = document.createElement('span');
+            span.className = 'heading-number';
+            span.textContent = numberStr;
+            
+            heading.insertBefore(span, heading.firstChild);
+        });
+    });
+</script>
+
 
 
     <script>
@@ -952,11 +997,11 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/users.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/2.users.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
 
     
 
-   <h2 id="published_papers">2.1. Published Papers by PicoScenes Users</h2>
+   <h2 id="published_papers">Published Papers by PicoScenes Users</h2>
 
 <ul>
   <li>Viktor Erdélyi, Kazuki Miyao, Akira Uchiyama, Tomoki Murakami, <a href="https://dl.acm.org/doi/abs/10.1145/3643832.3661396">“Poster: Activity Recognition Using CSI Backscatter with Commodity Wi-Fi”</a>, 2024, MobiSys.</li>
@@ -981,7 +1026,7 @@ $('#toc').on('click', 'a', function() {
   <li>Xiaoyu Ma, Hui He, Hui Zhang, Wei Xi, Zuhao Chen, Jizhong Zhao, <a href="https://ieeexplore.ieee.org/abstract/document/9763705">“Measuring and Modeling Multipath of Wi-Fi to Locate People in Indoor Environments”</a>, 2021 IEEE 27th International Conference on Parallel and Distributed Systems (ICPADS).</li>
 </ul>
 
-<h2 id="community">2.2. Affiliations using PicoScenes</h2>
+<h2 id="community">Affiliations using PicoScenes</h2>
 
 <p>The following grid lists the affiliations that use PicoScenes platform in their latest research.</p>
 
@@ -1251,7 +1296,7 @@ $('#toc').on('click', 'a', function() {
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
- Site last generated: Mar 4, 2025 <br />
+ Site last generated: Mar 5, 2025 <br />
 <p><img src="images/company_logo.png" alt="Company logo"/></p>
                 </div>
             </div>

@@ -4,6 +4,7 @@ keywords: Reshaping Wi-Fi ISAC, High-Coherence Hardware Capabilities, IEEE Commu
 last_updated: Mar. 12, 2024
 sidebar: mydoc_sidebar
 permalink: reshaping-wifi-isac.html
+disables_heading_numbers: true
 --- 
 
 ## Context of This Page

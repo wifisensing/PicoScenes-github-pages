@@ -43,6 +43,51 @@
 
 <link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
 
+<!-- 标题自动编号脚本 -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 获取文档编号，如果未设置则默认为0
+        var docNumber = 13;
+        
+        var headings = document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6');
+        var counters = [docNumber, 0, 0, 0, 0, 0]; // 使用文档编号初始化第一级计数器
+        
+        headings.forEach(function(heading) {
+            if (heading.classList.contains('no-number')) {
+                return;
+            }
+            
+            var level = parseInt(heading.tagName.charAt(1)) - 1;
+            
+            // 如果是h1，使用文档编号
+            if (level === 0) {
+                numberStr = docNumber + '. ';
+            } else {
+                // 更新当前级别的计数器
+                counters[level]++;
+                
+                // 重置所有更低级别的计数器
+                for (var i = level + 1; i < 6; i++) {
+                    counters[i] = 0;
+                }
+                
+                // 生成编号字符串
+                var numberStr = '';
+                for (var i = 0; i <= level; i++) {
+                    numberStr += counters[i] + (i < level ? '.' : '. ');
+                }
+            }
+            
+            var span = document.createElement('span');
+            span.className = 'heading-number';
+            span.textContent = numberStr;
+            
+            heading.insertBefore(span, heading.firstChild);
+        });
+    });
+</script>
+
 
 
     <script>
@@ -952,15 +997,15 @@ $('#toc').on('click', 'a', function() {
 
     
 
-    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/troubleshooting.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
+    <!-- <a target="_blank" rel="noopener" href="https://github.com/tomjoht/documentation-theme-jekyll/blob/gh-pages/pages/mydoc/13.troubleshooting.md" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit me</a> -->
 
     
 
-   <h2 id="131-troubleshooting">13.1. Troubleshooting</h2>
+   <h2 id="troubleshooting">Troubleshooting</h2>
 
 <p>The following shows some of the most frequently seen errors and their solutions for quick reference. For other issues that happened during the installation, upgrading or later usage, you may seek <a href="#132-technical-support">technical support</a> by submitting a bug report to PicoScenes Issues Tracker.</p>
 
-<h3 id="1311-errors-during-installation--daily-update">13.1.1. Errors during installation &amp; daily update</h3>
+<h3 id="errors-during-installation--daily-update">Errors during installation &amp; daily update</h3>
 
 <ul>
   <li>
@@ -985,7 +1030,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h3 id="1312-runtime-errors">13.1.2. Runtime errors</h3>
+<h3 id="runtime-errors">Runtime errors</h3>
 
 <ul>
   <li>
@@ -1007,7 +1052,7 @@ $('#toc').on('click', 'a', function() {
   </li>
 </ul>
 
-<h3 id="1313-matlab-toolbox-errors">13.1.3. MATLAB Toolbox errors</h3>
+<h3 id="matlab-toolbox-errors">MATLAB Toolbox errors</h3>
 
 <ul>
   <li>
@@ -1018,15 +1063,15 @@ Thanks <em>Jinen Li</em> from Shenzhen University (SZU) for providing this bug f
   </li>
 </ul>
 
-<h2 id="132-technical-support">13.2. Technical Support</h2>
+<h2 id="technical-support">Technical Support</h2>
 
-<h3 id="1321-picoscenes-issues-tracker-picoscenes官方交流问答">13.2.1. PicoScenes Issues Tracker (PicoScenes官方交流问答)</h3>
+<h3 id="picoscenes-issues-tracker-picoscenes官方交流问答">PicoScenes Issues Tracker (PicoScenes官方交流问答)</h3>
 
 <p>We provide the official and public technical support via <a href="https://github.com/wifisensing/PicoScenes-Issue-Tracker/issues">PicoScenes Issues Tracker</a>. You may post software bugs, encountered problems and suggestions to the issue tracker. Once you post an issue, GitHub will notify us and we will reach it as soon as possible.</p>
 
 <p><strong>对于中文用户</strong>：如果您不想咬文嚼字用英语交流，没问题！ 您中文提问，我们中文回复：）</p>
 
-<h3 id="1322-picoscenes微信群picoscenes-wechat-group">13.2.2. PicoScenes微信群(PicoScenes WeChat group)</h3>
+<h3 id="picoscenes微信群picoscenes-wechat-group">PicoScenes微信群(PicoScenes WeChat group)</h3>
 
 <p>If WeChat is one of your favorite IM APPs, you may join the PicoScenes WeChat Group by contacting Zhiping Jiang “jiangzhiping” in WeChat. As the group has exceeded 200 people, you can only be invited to the group.</p>
 
@@ -1053,7 +1098,7 @@ Thanks <em>Jinen Li</em> from Shenzhen University (SZU) for providing this bug f
             <div class="row">
                 <div class="col-lg-12 footer">
                &copy;2025 Copyright 2021 Google LLC. All rights reserved. <br />
-<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 4, 2025 <br />
+<span>Page last updated:</span> Nov. 16, 2023<br/> Site last generated: Mar 5, 2025 <br />
 <p><img src="images/company_logo.png" alt="Company logo"/></p>
                 </div>
             </div>
