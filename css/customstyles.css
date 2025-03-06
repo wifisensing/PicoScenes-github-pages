@@ -199,10 +199,10 @@ p.post-meta {font-size: 80%; color: #777;}
     font-size: 12px;
     background-color: white;
     position: absolute;
-    top: 40px; /* if you change anything about the nav, you'll prob. need to reset the top and left values here.*/
+    top: 45px; /* if you change anything about the nav, you'll prob. need to reset the top and left values here.*/
     left: 20px;
     z-index: -1;
-    width:223px;
+    width:289px;
     border-left: 1px solid #dedede;
 }
 
@@ -227,7 +227,7 @@ ul#results-container a:hover {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin-top:10px;
+    margin-top:6px;
 }
 /* end search */
 
@@ -1460,3 +1460,20 @@ blockquote {
         font-size: 15px;
     }
 } */
+
+/* 搜索结果样式 */
+#results-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* 搜索结果中的高亮文本 */
+.search-highlight {
+    font-weight: bold;
+    color: #000;
+}
+
+/* 搜索结果中的活动项 */
+#results-container li a.active {
+    background-color: #f0f0f0;
+}
