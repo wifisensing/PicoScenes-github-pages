@@ -111,7 +111,7 @@ description: "Intended as a documentation theme based on Jekyll for technical wr
 
 # needed for sitemap.xml file only
 url: "https://wifisensing.github.io"
-baseurl: "PicoScenes-github-pages"
+# baseurl: "PicoScenes-github-pages"
 
 
 github: [metadata]

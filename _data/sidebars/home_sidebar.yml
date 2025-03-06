@@ -8,8 +8,8 @@ entries:
   - title: Products
     output: web
     folderitems:
-    - title: News
-      url: /news.html
+    - title: X410
+      url: /x410-get-started.html
       output: web
 
 # Copyright 2021 Google LLC
