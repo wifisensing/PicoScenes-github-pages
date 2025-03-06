@@ -3,24 +3,28 @@
 topnav:
 - title: Topnav
   items:
-    - title: GitHub
-      external_url: https://github.com/wifisensing
+    - title: Documentation
+      url: /index.html
+    
     - title: AppNotes
       url: /x410-get-started.html
 
-#Topnav dropdowns
-topnav_dropdowns:
-- title: Topnav dropdowns
-  folders:
-    - title: PicoScenes Help
-      folderitems:
-        - title: github issues Leave a message
-          external_url: https://github.com/wifisensing
-    - title: Products
-      folderitems:
-        - title: PicoScenes Ubuntu 22.04
-          url: /installation.html
-        - title: PicoScenes Win11
-          url: /installation.html
+    - title: GitHub
+      external_url: https://github.com/wifisensing
+
+# #Topnav dropdowns
+# topnav_dropdowns:
+# - title: Topnav dropdowns
+#   folders:
+#     - title: PicoScenes Help
+#       folderitems:
+#         - title: github issues Leave a message
+#           external_url: https://github.com/wifisensing
+#     - title: Products
+#       folderitems:
+#         - title: PicoScenes Ubuntu 22.04
+#           url: /installation.html
+#         - title: PicoScenes Win11
+#           url: /installation.html
 
 # Copyright 2021 Google LLC
