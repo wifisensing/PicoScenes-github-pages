@@ -8,4 +8,4 @@ PicoScenes is a Wi-Fi PHY-layer software that enhances modern Wi-Fi integrated s
 * **Rich PHY-Layer Information**: Delivers detailed information such as raw I/Q data, OFDM symbols, and SFO/CFO/STO on a per-packet basis.
 * **Powerful Control**: Offers Python bindings and C++ plugin mechanism, enabling complex hardware control, data-analysis, and Tx/Rx operations in real-time.
 * **Easy-To-Use and Time Saving**: Supports Ubuntu, macOS, and Windows platforms, SDR devices Plug'n'Play, accompanied by the PicoScenes-MATLAB/Python-Toolbox, live data display, UDP forwarding, and an easy-to-use GUI control.
-* **Elevated Research Starting Point**: Offers out-of-the-box Python bindings for deep learning and data science, fully open-sourced RTT-style Wi-Fi ranging, AoA/ToF estimation, and SISO/MIMO Wi-Fi radar capabilities.
+* **Elevated Research Starting Point**: Offers out-of-the-box Python bindings for deep learning and data science, fully open-sourced RTT-style Wi-Fi ranging, AoA/ToF estimation, multi-purposed DSP library, and SISO/MIMO Wi-Fi radar capabilities.
