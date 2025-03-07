@@ -1,13 +1,23 @@
 ---
 title: Getting Started with NI USRP X410
 keywords: NI USRP X410, setup, initialization
-last_updated: Mar. 5, 2025
+last_updated: Mar. 7, 2025
 summary: "This guide outlines the unboxing and initial configuration process for the NI USRP X410 device."
 sidebar: appnotes_sidebar
 permalink: x410-get-started.html
 folder: appnotes
 doc_number: 1
 ---
+
+This document outlines the complete process from unboxing to high-performance application of the NI USRP X410 device, presented in several stages. Currently, the exploration of the X410 is ongoing, and this document is not yet comprehensive.
+
+This document is structured into several key stages to guide you through setting up and utilizing the NI USRP X410 device effectively:
+
+1. [Connect The Device to the Internet via the 1GbE Port](#connect-the-device-to-the-internet-via-the-1gbe-port)
+2. [Upgrade X4x0 Filesystem](#upgrade-x4x0-filesystem)
+3. [Initial Verification via the 1GbE Port](#initial-verification-via-the-1gbe-port)
+
+We have just finished first two sections. and subsequent sections are still under development. Please stay tuned.
 
 ## Connect The Device to the Internet via the 1GbE Port
 
@@ -26,19 +36,41 @@ The NI USRP X4x0 is equipped with two QSFP28+ interfaces and one 1GbE Ethernet i
 
 This solution is straightforward but inconvinent due the additional router.
 
-**Solution 2: Direct PC Connection + Internet Sharing (Convinient yet Less Reliable)**
+**Solution 2: Direct PC Connection + Internet Sharing (Convenient yet Less Reliable)**
 
-If a router is not available, you can set up the X4x0 using the **Internet Sharing** feature directly from your Mac/PC.
+If a router is not available, you can set up the X4x0 using the **Internet Sharing** feature directly from your Mac, Ubuntu, or Windows machine.
 
-- **Key Steps**:
-  1. Enable the **Internet Sharing** feature on the Mac/PC.
-  2. Connect the X4x0's 1GbE interface directly to the Mac/PC using an Ethernet cable.
-  3. Designate the port connected to the X4x0 on the Mac/PC to provide internet sharing (e.g., `USB 10/100/1000 LAN`).
-  4. Install the USRP driver (UHD), and run the `uhd_find_devices` command to locate the X4x0 devices.
-  5. The X410 acquires an IP address and access to the internet.
-  6. *For users with limited internet access*, install a proxy software with LAN Sharing capabilities on the Mac/PC.
+### Key Steps for Mac:
+1. Connect the X4x0's 1GbE interface directly to the Mac using an Ethernet cable.
+2. Go to System Preferences, search 'Sharing', select "Internet Sharing" from the search results.
+3. Choose the connection you want to share from the "*Share your connection from*" menu, usually your Wi-Fi network.
+4. In the "*To computers using*" list below, choose the Ethernet port which the X4x0 is connected.
+5. In a minute or less, the X410 acquires an IP address and access to the internet.
+6. Install the USRP driver (UHD), and run the `uhd_find_devices` command to find the X4x0 devices.
+   - How to install USRP driver?
+      - Install [brew package manager](https://brew.sh), then run `brew install uhd`
+7. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Mac.
 
-This solution is more convinent, however, less reliable than dedicated hardware router.
+### Key Steps for Ubuntu:
+1. Connect the X4x0's 1GbE interface directly to the Ubuntu machine using an Ethernet cable.
+2. Go to System Preferences, and Network
+3. Choose the Ethernet Connection which connects the X4x0, and edit this connection.
+4. Go to the IPv4 Settings tab, select "Shared to other computers", Click Save.
+5. In a minute or less, the X410 acquires an IP address and access to the internet.
+6. Install the USRP driver (UHD), and run the `uhd_find_devices` command to locate the X4x0 devices. 
+   - **[Install PicoScenes](installation.html##picoscenes-software-installation) software, and it auto-installs the latest USRP driver from the USRP offical repo.**
+7. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Ubuntu machine.
+
+### Key Steps for Windows:
+1. Connect the X4x0's 1GbE interface directly to the PC using an Ethernet cable.
+2. Open Control Panel > Network and Sharing Center > Change adapter settings.
+3. Right-click the connection you want to share (e.g., WiFi), and select "Properties".
+4. Go to the Sharing tab, and check "Allow other network users to connect through this computer's Internet connection".
+5. Select the Ethernet network connection used by the X4x0 from the dropdown menu under "Home networking connection".
+6. Click OK to enable Internet Sharing.
+7. Install the USRP driver (UHD), and run the `uhd_find_devices` command to locate the X4x0 devices.
+8. The X410 acquires an IP address and access to the internet.
+9. For users with limited internet access, install proxy software with LAN Sharing capabilities on the PC.
 
 ### Validate Connectivity
 
