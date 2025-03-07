@@ -520,7 +520,7 @@ button.cursorNorm {
 }
 
 a.dropdown-toggle, .navbar-inverse .navbar-nav > li > a  {
-    margin-left: 10px;
+    margin-left: 50px;
 }
 
 .navbar a:focus {

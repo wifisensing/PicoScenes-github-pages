@@ -2,8 +2,6 @@
 
 entries:
 - title: sidebar
-  product: Documentation
-  # version: 1.0
   folders:
 
   - title:
