@@ -1,15 +1,34 @@
 # This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
 
 entries:
-- title: Sidebar
-  levels: one
+- title: sidebar
   folders:
 
-  - title: Products
-    output: web
+  - title:
+    output: pdf
+    type: frontmatter
     folderitems:
-    - title: X410
-      url: /x410-setup.html
-      output: web
+    - title:
+      url: /titlepage.html
+      output: pdf
+      type: frontmatter
+    - title:
+      url: /tocpage.html
+      output: pdf
+      type: frontmatter
+
+  - title: Hardware Setup Guides
+    output: web, pdf
+    folderitems:
+
+    - title: SDR Device Setup
+      output: web, pdf
+      subfolders:
+      - title: SDR Guides
+        output: web, pdf
+        subfolderitems:
+        - title: Getting Started with NI USRP X410
+          url: /x410-get-started.html
+          output: web, pdf
 
 # Copyright 2021 Google LLC
