@@ -6,6 +6,17 @@ layout: default
    <h1 class="post-title-main">{{ page.title }}</h1>
 </div>
 
+<!-- Translation Widget -->
+<div class="translation-widget">
+    <label for="language-select">Translate to:</label>
+    <select id="language-select" aria-label="Select language"></select>
+    <label for="translation-service">Using:</label>
+    <select id="translation-service" aria-label="Select translation service"></select>
+    <button id="translate-btn" aria-label="Translate content">Translate</button>
+    <span id="translation-status"></span>
+    <div id="service-compatibility-warning" class="compatibility-warning"></div>
+</div>
+
 {% if page.simple_map == true %}
 
 <script>

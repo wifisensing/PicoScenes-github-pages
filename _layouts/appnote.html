@@ -326,6 +326,9 @@
             }
         }
     </style>
+    
+    <!-- Translation Script -->
+    <script src="{{ "js/translation.js" | relative_url }}"></script>
 </head>
 <body>
 {% include topnav.html %}
@@ -355,6 +358,18 @@
             <!-- Page Header with Title, Date and Summary -->
             <div class="page-header">
                 <h1>{{ page.title }}</h1>
+                
+                <!-- Translation Widget -->
+                <div class="translation-widget">
+                    <label for="language-select">Translate to:</label>
+                    <select id="language-select" aria-label="Select language"></select>
+                    <label for="translation-service">Using:</label>
+                    <select id="translation-service" aria-label="Select translation service"></select>
+                    <button id="translate-btn" aria-label="Translate content">Translate</button>
+                    <span id="translation-status"></span>
+                    <div id="service-compatibility-warning" class="compatibility-warning"></div>
+                </div>
+                
                 <div class="page-metadata">
                     {% if page.date %}
                     <span><i class="fa fa-calendar"></i> {{ page.date | date: "%B %d, %Y" }}</span>
