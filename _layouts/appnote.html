@@ -48,6 +48,47 @@
                 $("#tg-sb-icon").toggleClass('fa-toggle-on');
                 $("#tg-sb-icon").toggleClass('fa-toggle-off');
             });
+            
+            // Toggle TOC visibility
+            $("#toc-toggle").click(function(e) {
+                e.preventDefault();
+                $("#toc-content").toggle();
+                $(this).find("i.toggle-icon").toggleClass("fa-chevron-up fa-chevron-down");
+                $(this).attr("title", $("#toc-content").is(":visible") ? "Collapse contents" : "Expand contents");
+                $(this).attr("aria-label", $("#toc-content").is(":visible") ? "Collapse contents" : "Expand contents");
+                
+                // On small screens, scroll to top when toggling TOC
+                if ($(window).width() < 992) {
+                    $('html, body').animate({
+                        scrollTop: $("#toc-sidebar").offset().top - 20
+                    }, 300);
+                }
+            });
+            
+            // Check screen size on load and resize
+            function checkScreenSize() {
+                if ($(window).width() < 992) {
+                    // On small screens, hide TOC by default
+                    $("#toc-content").hide();
+                    $("#toc-toggle").find("i.toggle-icon").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+                    $("#toc-toggle").attr("title", "Expand contents");
+                    $("#toc-toggle").attr("aria-label", "Expand contents");
+                } else {
+                    // On large screens, show TOC by default
+                    $("#toc-content").show();
+                    $("#toc-toggle").find("i.toggle-icon").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+                    $("#toc-toggle").attr("title", "Collapse contents");
+                    $("#toc-toggle").attr("aria-label", "Collapse contents");
+                }
+            }
+            
+            // Run on page load
+            checkScreenSize();
+            
+            // Run on window resize
+            $(window).resize(function() {
+                checkScreenSize();
+            });
         });
     </script>
     <style>
@@ -61,10 +102,16 @@
             max-height: calc(100vh - 70px);
             overflow-y: auto;
         }
-        .toc-sidebar h3 {
-            margin-top: 0;
-            padding-bottom: 10px;
+        .toc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
             border-bottom: 2px solid #337ab7;
+            padding-bottom: 10px;
+        }
+        .toc-header h3 {
+            margin: 0;
             color: #337ab7;
         }
         .toc-sidebar ul {
@@ -130,6 +177,29 @@
             padding-left: 5px;
         }
         
+        /* TOC Toggle Button */
+        #toc-toggle {
+            background: none;
+            border: none;
+            color: #337ab7;
+            padding: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        #toc-toggle:hover {
+            background-color: rgba(51, 122, 183, 0.1);
+            color: #23527c;
+        }
+        #toc-toggle i {
+            font-size: 1.2em;
+        }
+        
         /* Page Header Styles */
         .page-header {
             margin-bottom: 30px;
@@ -183,9 +253,40 @@
             border-top: 1px solid #eee;
         }
         
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .toc-sidebar {
+                position: relative;
+                top: 0;
+                max-height: none;
+                margin-bottom: 20px;
+                border-right: none;
+                border: 1px solid #e7e7e7;
+                border-radius: 4px;
+                width: 100%;
+                float: none;
+            }
+            .col-md-9 {
+                width: 100%;
+                float: none;
+            }
+            
+            /* Ensure content doesn't get overlaid */
+            .row {
+                display: flex;
+                flex-direction: column;
+            }
+            .toc-sidebar {
+                order: 1;
+            }
+            #tg-sb-content {
+                order: 2;
+            }
+        }
+        
         /* Print Styles */
         @media print {
-            .toc-sidebar, .back-to-top, .navbar {
+            .toc-sidebar, .back-to-top, .navbar, #toc-toggle {
                 display: none !important;
             }
             #tg-sb-content {
@@ -235,10 +336,17 @@
     <div class="row">
         <!-- Sidebar Column with TOC -->
         <div class="col-md-3 toc-sidebar" id="toc-sidebar">
-            <h3>Contents</h3>
-            <div id="toc"></div>
-            <div class="back-to-top">
-                <a href="#top">Back to Top</a>
+            <div class="toc-header">
+                <h3>Contents</h3>
+                <button id="toc-toggle" class="btn-link" title="Collapse contents" aria-label="Collapse contents">
+                    <i class="fa fa-chevron-up toggle-icon"></i>
+                </button>
+            </div>
+            <div id="toc-content">
+                <div id="toc"></div>
+                <div class="back-to-top">
+                    <a href="#top">Back to Top</a>
+                </div>
             </div>
         </div>
 
@@ -248,18 +356,24 @@
             <div class="page-header">
                 <h1>{{ page.title }}</h1>
                 <div class="page-metadata">
-                    {% if page.last_updated %}
-                    <span class="last-updated"><i class="fa fa-calendar"></i> Last updated: {{ page.last_updated }}</span>
+                    {% if page.date %}
+                    <span><i class="fa fa-calendar"></i> {{ page.date | date: "%B %d, %Y" }}</span>
                     {% endif %}
-                    {% if page.keywords %}
-                    <span class="keywords"><i class="fa fa-tags"></i> 
-                        {% assign keywords = page.keywords | split: "," %}
-                        {% for keyword in keywords %}
-                            <span class="keyword">{{ keyword | strip }}</span>
-                        {% endfor %}
-                    </span>
+                    {% if page.author %}
+                    <span><i class="fa fa-user"></i> {{ page.author }}</span>
+                    {% endif %}
+                    {% if page.category %}
+                    <span><i class="fa fa-folder-open"></i> {{ page.category }}</span>
                     {% endif %}
                 </div>
+                {% if page.keywords %}
+                <div class="page-metadata">
+                    <i class="fa fa-tags"></i>
+                    {% for keyword in page.keywords %}
+                    <span class="keyword">{{ keyword }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 {% if page.summary %}
                 <div class="page-summary">
                     <p>{{ page.summary }}</p>
@@ -269,109 +383,80 @@
             <hr>
             {{content}}
         </div>
+    </div>
     <!-- /.row -->
+  </div>
+  <!-- /#main -->
 </div>
 <!-- /.container -->
-</div>
-<!-- /#main -->
-    </div>
 
+<!-- TOC Generation Script -->
 <script>
-    $(document).ready(function() {
-        // Generate TOC
-        var toc = "";
-        var level = 0;
-        var levels = {};
-        var headings = [];
-        var pageTitle = $(".page-header h1").text().trim();
-        
-        $("#tg-sb-content h1, #tg-sb-content h2, #tg-sb-content h3, #tg-sb-content h4").each(function(i) {
-            // Skip the page title in TOC
-            if ($(this).text().trim() === pageTitle || $(this).closest('.page-header').length > 0) {
-                return true; // Skip this iteration (continue)
-            }
-            
-            var anchor = $(this).attr("id");
-            var tagName = $(this).prop("tagName").toLowerCase();
-            var levelNum = parseInt(tagName.substring(1));
-            
-            if (!anchor) {
-                // If no ID exists, create one from the text
-                anchor = $(this).text().trim().toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
-                $(this).attr("id", anchor);
-            }
-            
-            // Store heading for scroll tracking
-            headings.push({
-                id: anchor,
-                top: $(this).offset().top,
-                elem: $(this)
-            });
-            
-            if (levels[levelNum]) {
-                levels[levelNum] += 1;
-            } else {
-                levels[levelNum] = 1;
-            }
-            
-            if (level > 0 && levelNum > level) {
-                toc += "<ul>";
-            } else if (level > 0 && levelNum < level) {
-                for (var i = 0; i < (level - levelNum); i++) {
-                    toc += "</ul>";
-                }
-            }
-            
-            level = levelNum;
-            
-            toc += "<li><a class='toc-" + tagName + "' href='#" + anchor + "' data-target='" + anchor + "'>" + $(this).text() + "</a></li>";
-        });
-        
-        if (level > 0) {
-            for (var i = 0; i < level; i++) {
-                toc += "</ul>";
-            }
+$(document).ready(function() {
+    // Generate TOC
+    var toc = "";
+    var level = 0;
+    var maxLevel = 4; // Maximum heading level to include
+    var headingCount = 0;
+    
+    $("#tg-sb-content").find("h1, h2, h3, h4").each(function(i) {
+        // Skip the page title (first h1)
+        if (i === 0 && $(this).is("h1")) {
+            return true;
         }
         
-        if (toc === "") {
-            $("#toc-sidebar").hide();
-            $("#tg-sb-content").removeClass("col-md-9").addClass("col-md-12");
-        } else {
-            $("#toc").html(toc);
+        headingCount++;
+        
+        var anchor = "toc-" + headingCount;
+        $(this).attr("id", anchor);
+        
+        var tagName = $(this).prop("tagName").toLowerCase();
+        var headingLevel = parseInt(tagName.substring(1));
+        
+        if (headingLevel <= maxLevel) {
+            if (headingLevel > level) {
+                toc += (new Array(headingLevel - level + 1)).join("<ul>");
+            } else if (headingLevel < level) {
+                toc += (new Array(level - headingLevel + 1)).join("</ul>");
+            }
             
-            // Add scroll tracking
-            $(window).scroll(function() {
-                var scrollPosition = $(window).scrollTop() + 100; // Add offset
-                
-                // Find the current heading
-                var currentHeading = null;
-                for (var i = 0; i < headings.length; i++) {
-                    if (scrollPosition >= headings[i].top) {
-                        currentHeading = headings[i];
-                    } else {
-                        break;
-                    }
-                }
-                
-                if (currentHeading) {
-                    // Remove active class from all links
-                    $("#toc a").removeClass("active");
-                    
-                    // Add active class to current link
-                    $("#toc a[data-target='" + currentHeading.id + "']").addClass("active");
-                }
-            });
+            level = headingLevel;
             
-            // Trigger scroll event on page load
-            $(window).scroll();
+            toc += "<li><a class='toc-" + tagName + "' href='#" + anchor + "'>" + $(this).text() + "</a></li>";
         }
     });
+    
+    if (level > 0) {
+        toc += (new Array(level + 1)).join("</ul>");
+    }
+    
+    if (headingCount > 0) {
+        $("#toc").html(toc);
+    } else {
+        $("#toc").html("<p>No headings found in this document.</p>");
+    }
+    
+    // Highlight active TOC item on scroll
+    $(window).scroll(function() {
+        var scrollPosition = $(window).scrollTop();
+        
+        $("#tg-sb-content").find("h1, h2, h3, h4").each(function() {
+            var currentId = $(this).attr("id");
+            var currentElement = $(this);
+            var currentElementOffset = currentElement.offset().top;
+            
+            if (scrollPosition >= currentElementOffset - 100) {
+                $("#toc a").removeClass("active");
+                $("#toc a[href='#" + currentId + "']").addClass("active");
+            }
+        });
+    });
+});
 </script>
 
+{% include footer.html %}
+
 </body>
-{% if site.google_analytics %}
-{% include google_analytics.html %}
-{% endif %}
 </html>
 
 {% comment %} Copyright 2021 Google LLC {% endcomment %} 
