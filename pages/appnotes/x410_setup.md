@@ -19,7 +19,7 @@ This document is structured into several key stages to guide you through setting
 
 We have just finished first two sections. and subsequent sections are still under development. Please stay tuned.
 
-## Connect The Device to the Internet via the 1GbE Port
+# Connect The Device to the Internet via the 1GbE Port
 
 The NI USRP X4x0 is equipped with two QSFP28+ interfaces and one 1GbE Ethernet interface. The 1GbE interface is used for firmware updates, upgrades, and remote control of the built-in Linux system. Unlike the traditional N2x0/X3x0 series devices that use static IP addresses, the 1GbE interface on the X4x0 is configured to automatically acquire an IP address using the **DHCP protocol**. This requires a device that provides DHCP services, typically a router, to allocate an IP address. Additionally, the initialization, upgrading, or resetting of the X4x0 requires an internet connection, meaning the router must have internet access. A significant challenge arises during the initialization, upgrading, or resetting processes due to the dependency on accessing GitHub, which can be problematic for users in networks with restricted access. Below are two recommended networking solutions for the X4x0:
 
@@ -112,7 +112,7 @@ For users with limited internet access, the `ping github.com` command might fail
    ```
     This command will attempt to download the page from github.com but will only fetch the header part to confirm connectivity.
 
-## Upgrade X4x0 Filesystem 
+# Upgrade X4x0 Filesystem 
 
 1. SSH into the X4x0 device using its previously mentioned IP address.
 

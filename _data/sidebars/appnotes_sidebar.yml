@@ -9,7 +9,7 @@ entries:
     output: web
     folderitems:
     - title: X410
-      url: /x410-get-started.html
+      url: /x410-setup.html
       output: web
 
 # Copyright 2021 Google LLC
