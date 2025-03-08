@@ -20,11 +20,11 @@ This document is structured into several key stages to guide you through setting
 
 We have just finished first two sections. and subsequent sections are still under development. Please stay tuned.
 
-# Connect The Device to the Internet via the 1GbE Port
+## Connect The Device to the Internet via the 1GbE Port
 
 The NI USRP X4x0 is equipped with two QSFP28+ interfaces and one 1GbE Ethernet interface. The 1GbE interface is used for firmware updates, upgrades, and remote control of the built-in Linux system. Unlike the traditional N2x0/X3x0 series devices that use static IP addresses, the 1GbE interface on the X4x0 is configured to automatically acquire an IP address using the **DHCP protocol**. This requires a device that provides DHCP services, typically a router, to allocate an IP address. Additionally, the initialization, upgrading, or resetting of the X4x0 requires an internet connection, meaning the router must have internet access. A significant challenge arises during the initialization, upgrading, or resetting processes due to the dependency on accessing GitHub, which can be problematic for users in networks with restricted access. Below are two recommended networking solutions for the X4x0:
 
-**Solution 1: Router with Internet Access (Straightforward yet Inconvinient)**
+### **Solution 1: Router with Internet Access (Straightforward yet Inconvinient)**
 
 - **Key Steps**:
   1. Ensure the router is connected to the internet.
@@ -37,11 +37,11 @@ The NI USRP X4x0 is equipped with two QSFP28+ interfaces and one 1GbE Ethernet i
 
 This solution is straightforward but inconvinent due the additional router.
 
-**Solution 2: Direct PC Connection + Internet Sharing (Convenient yet Less Reliable)**
+### **Solution 2: Direct PC Connection + Internet Sharing (Convenient yet Less Reliable)**
 
 If a router is not available, you can set up the X4x0 using the **Internet Sharing** feature directly from your Mac, Ubuntu, or Windows machine.
 
-### Key Steps for Mac:
+#### Key Steps for Mac:
 1. Connect the X4x0's 1GbE interface directly to the Mac using an Ethernet cable.
 2. Go to System Preferences, search 'Sharing', select "Internet Sharing" from the search results.
 3. Choose the connection you want to share from the "*Share your connection from*" menu, usually your Wi-Fi network.
@@ -52,7 +52,7 @@ If a router is not available, you can set up the X4x0 using the **Internet Shari
       - Install [brew package manager](https://brew.sh), then run `brew install uhd`
 7. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Mac.
 
-### Key Steps for Ubuntu:
+#### Key Steps for Ubuntu:
 1. Connect the X4x0's 1GbE interface directly to the Ubuntu machine using an Ethernet cable.
 2. Go to System Preferences, and Network
 3. Choose the Ethernet Connection which connects the X4x0, and edit this connection.
@@ -62,7 +62,7 @@ If a router is not available, you can set up the X4x0 using the **Internet Shari
    - **[Install PicoScenes](installation.html##picoscenes-software-installation) software, and it auto-installs the latest USRP driver from the USRP offical repo.**
 7. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Ubuntu machine.
 
-### Key Steps for Windows:
+#### Key Steps for Windows:
 1. Connect the X4x0's 1GbE interface directly to the PC using an Ethernet cable.
 2. Open Control Panel > Network and Sharing Center > Change adapter settings.
 3. Right-click the connection you want to share (e.g., WiFi), and select "Properties".
@@ -113,7 +113,7 @@ For users with limited internet access, the `ping github.com` command might fail
    ```
     This command will attempt to download the page from github.com but will only fetch the header part to confirm connectivity.
 
-# Upgrade X4x0 Filesystem 
+## Upgrade X4x0 Filesystem 
 
 1. SSH into the X4x0 device using its previously mentioned IP address.
 
