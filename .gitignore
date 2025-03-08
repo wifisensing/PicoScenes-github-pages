@@ -8,3 +8,4 @@ theme: jekyll-theme-minimal
 _site/
 
 .jekyll-cache/
+Gemfile.lock
