@@ -360,14 +360,20 @@
                 <h1>{{ page.title }}</h1>
                 
                 <!-- Translation Widget -->
-                <div class="translation-widget">
-                    <label for="language-select">Translate to:</label>
-                    <select id="language-select" aria-label="Select language"></select>
-                    <label for="translation-service">Using:</label>
-                    <select id="translation-service" aria-label="Select translation service"></select>
-                    <button id="translate-btn" aria-label="Translate content">Translate</button>
-                    <span id="translation-status"></span>
-                    <div id="service-compatibility-warning" class="compatibility-warning"></div>
+                <div class="translation-widget" style="margin-bottom: 20px; padding: 12px 15px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; display: flex; align-items: center; flex-wrap: wrap; width: 100%;">
+                    <label for="language-select" style="margin-right: 12px; font-weight: 600; display: flex; align-items: center;">
+                        Translate to:
+                    </label>
+                    <select id="language-select" aria-label="Select language" style="margin-right: 12px; padding: 6px 12px; border: 1px solid #ced4da; border-radius: 4px; background-color: white; min-width: 180px; flex-grow: 2;"></select>
+                    <label for="translation-service" style="margin-right: 12px; margin-left: 10px; font-weight: 600; display: flex; align-items: center;">
+                        Using:
+                    </label>
+                    <select id="translation-service" aria-label="Select translation service" style="margin-right: 12px; padding: 6px 12px; border: 1px solid #ced4da; border-radius: 4px; background-color: white; min-width: 160px; flex-grow: 1;"></select>
+                    <button id="translate-btn" aria-label="Translate content" style="padding: 6px 16px; background-color: #337ab7; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; display: flex; align-items: center; min-width: 120px;">
+                        Translate
+                    </button>
+                    <span id="translation-status" style="margin-left: 12px; color: #6c757d; font-size: 0.9em; display: flex; align-items: center; flex-grow: 1; justify-content: flex-end;"></span>
+                    <div id="service-compatibility-warning" class="compatibility-warning" style="display: none; width: 100%; margin-top: 10px; padding: 8px 12px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px; color: #856404; font-size: 0.9em;"></div>
                 </div>
                 
                 <div class="page-metadata">
