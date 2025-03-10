@@ -15,4 +15,5 @@ Explore our extensive library of application notes and technical tutorials desig
 # Hardware Setup Guides
 
 ## SDR Device Setup
+- **[Connecting NI USRP Devices](connect-usrp)**: Detailed and recommended approaches for connecting various NI USRP devices, including B2x0, N210, X3x0, N300/N310, N320/N321, and X4xx models, with specific cable, interface, and firmware considerations.
 - **[Getting Started with NI USRP X410](x410-get-started)**: A comprehensive guide for setting up and configuring the NI USRP X410 device, including network configuration, filesystem upgrades, and initial verification steps.
