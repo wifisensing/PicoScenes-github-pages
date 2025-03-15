@@ -3,7 +3,6 @@ title: Getting Started with NI USRP X410
 keywords: NI USRP X410, setup, initialization
 last_updated: Mar. 7, 2025
 summary: "This guide outlines the unboxing and initial configuration process for the NI USRP X410 device."
-layout: appnote
 permalink: x410-get-started
 folder: appnotes
 toc: true

@@ -3,7 +3,6 @@ title: Connecting NI USRP Devices
 keywords: NI USRP, connection guide, setup
 last_updated: Mar. 10, 2025
 summary: "This document lists the recommended connection approach to various NI USRP models, including B2x0/N2x0/E3x0/N3x0/X3x0/X4x0."
-layout: appnote
 permalink: connect-usrp
 folder: appnotes
 toc: true
