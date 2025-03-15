@@ -41,25 +41,25 @@ array_prepare_for_picoscenes NIC_ID "5180 160 5250" #<- Don't miss the quotation
 
 ### For SDR Devices
 
-1. If you want to user SDR <SDR_ID> to receive frames at a 20 MHz bandwidth channel, for example 2412 MHz:
+1. If you want to use SDR <SDR_ID> to receive frames at a 20 MHz bandwidth channel, for example 2412 MHz:
 
 ```bash
 PicoScenes "-d debug -i SDR_ID --freq 2412 -preset RX_CBW_20 --mode logger"
 ```
 
-2. If you want to user SDR <SDR_ID> to receive frames at a 40 MHz bandwidth channel, for example the 5180 MHz channel centered at 5190 MHz:
+2. If you want to use SDR <SDR_ID> to receive frames at a 40 MHz bandwidth channel, for example the 5180 MHz channel centered at 5190 MHz:
 
 ```bash
 PicoScenes "-d debug -i SDR_ID --freq 5190 -preset RX_CBW_40 --mode logger"
 ```
 
-3. If you want to user SDR <SDR_ID> to receive frames at a 80 MHz bandwidth channel, for example the 5180 MHz channel centered at 5210 MHz:
+3. If you want to use SDR <SDR_ID> to receive frames at a 80 MHz bandwidth channel, for example the 5180 MHz channel centered at 5210 MHz:
 
 ```bash
 PicoScenes "-d debug -i SDR_ID --freq 5210 -preset RX_CBW_80 --mode logger"
 ```
 
-4. If you want to user SDR <SDR_ID> to receive frames at a 160 MHz bandwidth channel, for example the 5180 MHz channel centered at 5250 MHz:
+4. If you want to use SDR <SDR_ID> to receive frames at a 160 MHz bandwidth channel, for example the 5180 MHz channel centered at 5250 MHz:
 
 ```bash
 PicoScenes "-d debug -i SDR_ID --freq 5250 -preset RX_CBW_160 --mode logger"
@@ -67,19 +67,19 @@ PicoScenes "-d debug -i SDR_ID --freq 5250 -preset RX_CBW_160 --mode logger"
 
 > **Note**: See [naming_for_usrp] for <SDR_ID>.
 
-## The Big Wi-Fi Channelization Table
+## The Wi-Fi Channelization Reference Table
 
-The following *Wi-Fi Channelization* table has 9 columns. Their meanings are:
+The following *Wi-Fi Channelization* table has 9 columns:
 
 - #: The channel number
 - Primary 20 MHz Channel: The center frequency of a 20 MHz bandwidth Wi-Fi channel.
-- Center Freq. of 40 MHz Channel: The center frequency of a 40 MHz bandwidth Wi-Fi channel. Wi-Fi 40 MHz bandwidth channel are realized by combining two adjacent 20 MHz channels, thus, the center frequencies of 40 MHz channels are the middles of two 20 MHz channels. One thing worth noting is that the 40 MHz channels are allocated to be non-overlapping, therefore, each 20 MHz channel only belongs to one 40 MHz channel.
-- Center Freq. of 80 MHz Channel: The center frequency of a 80 MHz bandwidth Wi-Fi channel. Like 40 MHz bandwidth channel, 80 MHz are realized by combining two adjacent 40 MHz channels, thus, the center frequencies of 80 MHz channels are the middles of two 40 MHz channels. One thing worth noting is that the 80 MHz channels are allocated to be non-overlapping, therefore, each 20 MHz channel only belongs to one 80 MHz channel.
-- Center Freq. of 160 MHz Channel: The center frequency of a 160 MHz bandwidth Wi-Fi channel. Like 40 MHz bandwidth channel, 160 MHz are realized by combining two adjacent 80 MHz channels, thus, the center frequencies of 160 MHz channels are the middles of two 80 MHz channels. One thing worth noting is that the 80 MHz channels are allocated to be non-overlapping, therefore, each 20 MHz channel only belongs to one 160 MHz channel.
-- Channel String of 20 MHz Channel: The channel string used to denote this 20 MHz channel, used for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands.
-- Channel String of 40 MHz Channel: The channel string used to denote this 40 MHz channel, used for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands. The "HT40+" means that the extension channel is towards the higher frequency, while "HT40-" means that the extension channel is towards the lower frequency.
-- Channel String of 80 MHz Channel: The channel string used to denote this 80 MHz channel, used for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands. The three numbers are primary channel freq., channel bandwidth, and center channel freq.
-- Channel String of 160 MHz Channel: The channel string used to denote this 160 MHz channel, used for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands. The three numbers are primary channel freq., channel bandwidth, and center channel freq.
+- Center Freq. of 40 MHz Channel: The center frequency of a 40 MHz bandwidth Wi-Fi channel. These channels are formed by combining two adjacent 20 MHz channels. The center frequency is positioned at the midpoint between the two 20 MHz channels. Each 40 MHz channel is designed to be non-overlapping, so each 20 MHz channel belongs to only one 40 MHz channel.
+- Center Freq. of 80 MHz Channel: The center frequency of an 80 MHz bandwidth Wi-Fi channel. Similar to 40 MHz channels, these are formed by combining two adjacent 40 MHz channels. The center frequency is positioned at the midpoint between the two 40 MHz channels. These channels are also non-overlapping, so each 20 MHz channel belongs to only one 80 MHz channel.
+- Center Freq. of 160 MHz Channel: The center frequency of a 160 MHz bandwidth Wi-Fi channel. These are formed by combining two adjacent 80 MHz channels. The center frequency is positioned at the midpoint between the two 80 MHz channels. These channels are non-overlapping, so each 20 MHz channel belongs to only one 160 MHz channel.
+- Channel String of 20 MHz Channel: The command string used to specify a 20 MHz channel for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands.
+- Channel String of 40 MHz Channel: The command string used to specify a 40 MHz channel for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands. "HT40+" indicates the extension channel is at a higher frequency, while "HT40-" indicates it's at a lower frequency.
+- Channel String of 80 MHz Channel: The command string used to specify an 80 MHz channel for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands. The format is: primary channel frequency, channel bandwidth, and center channel frequency.
+- Channel String of 160 MHz Channel: The command string used to specify a 160 MHz channel for Linux *iw* and PicoScenes *array_prepare_for_picoscenes* commands. The format is: primary channel frequency, channel bandwidth, and center channel frequency.
 
 | # | Primary 20 MHz Channel (MHz) | Center Freq. of 40 MHz Channel (MHz) | Center Freq. of 80 MHz Channel (MHz) | Center Freq. of 160 MHz Channel (MHz) | Channel String of 20 MHz Channel | Channel String of 40 MHz Channel | Channel String of 80 MHz Channel | Channel String of 160 MHz Channel |
 |---|------------------------------|--------------------------------------|--------------------------------------|---------------------------------------|----------------------------------|----------------------------------|----------------------------------|-----------------------------------|
