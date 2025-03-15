@@ -79,7 +79,7 @@ Remember to flash the `XG` firmware to the USRP to enable 10GbE streaming.
 
 ### PCIe Interface?
 
-We strongly advise **AGAINST** using the PCIe interface. The PCIe interface and its associated cables are prohibitively expensive. Additionally, this interface does not support multi-USRP combination.
+The NI USRP X3x0 also has a PCIe port for signal streaming. We strongly advise **AGAINST** this. **This interface does NOT support multi-USRP combination**. Additionaly, the special PCIe cable and host-side card are prohibitively expensive.
 
 ## NI USRP E320
 
