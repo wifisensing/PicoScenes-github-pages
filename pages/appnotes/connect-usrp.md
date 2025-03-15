@@ -11,7 +11,7 @@ disable_heading_numbers: true
 
 ## NI USRP B2x0
 
-Ensure the B2x0 device is connected using a **USB 3.0 cable**. 
+Ensure the B2x0 device is connected using a **USB 3.0 cable**. It is important to note that USB 3.0 cables can be identified by their blue-colored "tongue" and the presence of five additional contacts inside the connector compared to USB 2.0.
 
 <div style="text-align: center;">
   <img src="images/usrp/usb3.png" style="max-height: 180px">
@@ -21,7 +21,7 @@ Ensure the B2x0 device is connected using a **USB 3.0 cable**.
 
 ## NI USRP N210
 
-The NI USRP N210 utilizes an **1GbE Ethernet** port for connectivity with the host computer. Simply use a standard Ethernet cable to connect the RJ45 ports of both the N210 and your host computer.
+The NI USRP N210 utilizes an **1GbE Ethernet** port for connectivity with the host computer. Simply use a Cat 6 Ethernet cable to connect the RJ45 ports of both the N210 and your host computer.
 
 
 <div style="text-align: center;">
