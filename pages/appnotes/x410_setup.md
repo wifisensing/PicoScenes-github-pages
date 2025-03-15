@@ -6,7 +6,7 @@ summary: "This guide outlines the unboxing and initial configuration process for
 permalink: x410-get-started
 folder: appnotes
 toc: true
-doc_number: 1
+disable_heading_numbers: true
 ---
 
 This document outlines the complete process from unboxing to high-performance application of the NI USRP X410 device, presented in several stages. Currently, the exploration of the X410 is ongoing, and this document is not yet comprehensive.

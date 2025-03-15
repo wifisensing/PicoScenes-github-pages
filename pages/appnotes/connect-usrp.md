@@ -30,7 +30,7 @@ The NI USRP N210 utilizes an **1GbE Ethernet** port for connectivity with the ho
 </div>
 
 
-## NI USRP X3x0
+## NI USRP X3x0 series (X300/X310)
 
 The NI USRP X3x0 uses **dual SFP+ interfaces** for signal streaming, supporting up to **Dual-10GbE** connection. With this dual-10GbE connection, the X3x0 can transmit and receive I/Q streams from dual channels with up to 200 MSPS rate.
 
@@ -57,7 +57,7 @@ Alternatives (not recommended):
 
 ### 10GbE Ethernet NIC (Desktop)
 
-For desktop setups, we utilize the **Intel X710-DA4 Quad-Port 10GbE** Ethernet NIC. This NIC has been tested to simultaneously operate two USRP X310 devices (or a single X410 device), supporting four channels with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 1.9 GB/s for both sending and receiving data.
+For desktop setups, we utilize the **Intel X710-DA4 Quad-Port 10GbE** Ethernet NIC. This NIC has been tested to simultaneously operate two USRP X3x0 devices (or a single X410 device), supporting four channels with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 1.9 GB/s for both sending and receiving data.
 
 <div style="text-align: center;">
   <img src="images/usrp/x710-nic.png" style="max-height: 180px">
@@ -68,7 +68,7 @@ Remember to flash the `XG` firmware to the USRP to enable 10GbE streaming.
 
 ### 10GbE Ethernet NIC (Laptop)
 
-For laptop setups, we utilize the **QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+** NIC. This NIC has been tested to operate one USRP X310 device (or a single X410 device), supporting one channel with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 480 MB/s for both sending and receiving data.
+For laptop setups, we utilize the **QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+** NIC. This NIC has been tested to operate one USRP X3x0 device (or a single X410 device), supporting one channel with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 480 MB/s for both sending and receiving data.
 
 <div style="text-align: center;">
   <img src="images/usrp/QNA-T310G1S.png" style="max-height: 180px">
@@ -83,15 +83,15 @@ The NI USRP X3x0 also has a PCIe port for signal streaming. We strongly advise *
 
 ## NI USRP E320
 
-The E320 model utilizes a single **SFP+ interface** for signal streaming, supporting up to **10GbE** connection. This setup aligns with the connectivity approach used for the X310 model. For details, refer to the [NI USRP X310 section](#ni-usrp-x3x0).
+The E320 model utilizes a single **SFP+ interface** for signal streaming, supporting up to **10GbE** connection. This setup aligns with the connectivity approach used for the X3x0 model. For details, refer to the [NI USRP X3x0 section](#ni-usrp-x3x0-series-x300x310).
 
 ## NI USRP N300/N310
 
-The N300 and N310 models feature the same **dual SFP+ interfaces** as the X310 for signal streaming, supporting up to **Dual-10GbE** connections. For details, refer to the [NI USRP X310 section](#ni-usrp-x3x0).
+The N300 and N310 models feature the same **dual SFP+ interfaces** as the X3x0 for signal streaming, supporting up to **Dual-10GbE** connections. For details, refer to the [NI USRP X3x0 section](#ni-usrp-x3x0-series-x300x310).
 
 ## NI USRP N320/N321
 
-The N320/N321 models feature **dual SFP+ interfaces** and **a QSFP+ interface**. For dual SFP+ interfaces, refer to the [NI USRP X310 section](#ni-usrp-x3x0). Regardless of the connection type used, it is necessary to flash the `XG` firmware to achieve 10GbE connections.
+The N320/N321 models feature **dual SFP+ interfaces** and **a QSFP+ interface**. For dual SFP+ interfaces, refer to the [NI USRP X3x0 section](#ni-usrp-x3x0-series-x300x310). Regardless of the connection type used, it is necessary to flash the `XG` firmware to achieve 10GbE connections.
 
 ### QSFP+ Cable
 
@@ -104,7 +104,7 @@ We use **QSFP+ to 4x SFP+ Breakout Cable** to connect N320/321 to the host multi
   <p style="font-style: italic; margin-top: 10px;">QSFP+ to 4x SFP+ Breakout Cable for connecting N320/321 to multi-port 10GbE NIC</p>
 </div>
 
-## NI USRP X4xx
+## NI USRP X4xx Series (X410/X440)
 
 The X4xx series is equipped with **dual QSFP28 interfaces**, supporting up to **Dual-100GbE** connections. When paired with the `CG_400` firmware, the X410 supports simultaneous 500 MSPS Tx and Rx across four channels. When paired with the `CG_1600` firmware, the X440 supports up to 2GSPS Tx and Rx on a single channel. 
 
