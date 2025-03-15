@@ -2,7 +2,7 @@
 title: Connecting NI USRP Devices
 keywords: USRP, connection guide, SFP+, 10GbE, 100GbE, firmware
 last_updated: Mar. 15, 2025
-summary: "This guide provides an overview of the necessary bandwidth for signal transmission and details the connection methods for various NI USRP models, including B2x0/N2x0/E3x0/N3x0/X3x0/X4x0."
+summary: "This guide provides the bandwidth estimation for signal streaming and details the connection methods for various NI USRP models, including B2x0/N2x0/E3x0/N3x0/X3x0/X4x0."
 permalink: connect-usrp
 folder: appnotes
 toc: true
@@ -41,7 +41,7 @@ Ensure the B2x0 device is connected using a **USB 3.0 cable**. It is important t
   <p style="font-style: italic; margin-top: 10px;">USB 3.0 cable for connecting NI USRP B2x0 devices</p>
 </div>
 
-{% include note.html content="As described in [Bandwidth Computation](#prelogue-how-much-transfer-bandwidth-needed-for-signal-streaming), the USB 3.0 connection significantly limits the B2x0's maximum sampling rate, specifically to 28 MHz sampling rate for two channels, or 56 MHz for a single channel. To fully utilize the performance of the AD9361 frontend, consider the [NI USRP E320](#ni-usrp-e320), which avoids this limitation with a 10GbE connection." %}
+{% include note.html content="The USB 3.0 connection significantly limits the B2x0's maximum sampling rate, specifically to 28 MHz sampling rate for two channels, or 56 MHz for a single channel. To fully utilize the performance of the AD9361 frontend, consider the [NI USRP E320](#ni-usrp-e320), which avoids this limitation with a 10GbE connection." %}
 
 
 ## NI USRP N2x0
