@@ -101,6 +101,8 @@ For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S 
   <p style="font-style: italic; margin-top: 10px;">QNAP QNA-T310G1S adapter for Thunderbolt 3+ laptops</p>
 </div>
 
+{% include note.html content="We have tested that you CANNOT achieve dual-10GbE streaming by just using two seperate adapters." %}
+
 #### For Laptop **with** Thunderbolt 3+ Port - Dual 10GbE 
 
 The **Sonnet Twin10G SFP28 Thunderbolt Adapter** is a possible solution. This adapter provides two SFP+ ports through a single Thunderbolt connection, potentially enabling the operation of a dual-channel USRP X3x0 device at full capacity.
