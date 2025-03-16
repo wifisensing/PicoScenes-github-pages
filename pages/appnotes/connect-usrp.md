@@ -101,7 +101,7 @@ For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S 
   <p style="font-style: italic; margin-top: 10px;">QNAP QNA-T310G1S adapter for Thunderbolt 3+ laptops</p>
 </div>
 
-{% include note.html content="We have tested that you CANNOT achieve dual-10GbE streaming by just using two seperate adapters." %}
+{% include warning.html content="We have tested that you CANNOT achieve dual-10GbE streaming by just using two seperate adapters." %}
 
 #### For Laptop **with** Thunderbolt 3+ Port - Dual 10GbE 
 
@@ -112,7 +112,7 @@ The **Sonnet Twin10G SFP28 Thunderbolt Adapter** is a possible solution. This ad
   <p style="font-style: italic; margin-top: 10px;">Sonnet Twin10G SFP28 Thunderbolt Adapter for dual 10GbE connections</p>
 </div>
 
-{% include warning.html content="Use with caution! We have not personally tested this solution." %}
+{% include note.html content="We have not tested this solution ourselves. If you have successfully achieved dual-10GbE streaming using this device, please let us know and we will update this page." %}
 
 #### For Laptop **without** Thunderbolt 3+ Port
 
@@ -126,7 +126,7 @@ For laptops without Thunderbolt 3+ ports, an **M.2-to-10GbE adapter** is maybe t
   <p style="font-style: italic; margin-top: 10px;">M.2-to-10GbE adapter - use with caution</p>
 </div>
 
-{% include warning.html content="We have not tested this solution ourselves. For serious USRP-based R&D, we strongly recommend using either a desktop computer or a laptop with Thunderbolt 3+ port." %}
+{% include warning.html content="We have not tested this solution ourselves. For serious USRP-based R&D, we strongly recommend using either a desktop computer or a laptop with Thunderbolt 3+ port. If you have successfully achieved 10GbE streaming with this solution, please let us know all the details and we will update this page." %}
 
 ### Can 1GbE Work? Yes, But Not Recommended
 
