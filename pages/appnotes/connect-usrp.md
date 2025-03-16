@@ -81,26 +81,42 @@ Alternatives (not recommended):
 
 3. **SFP+ AOC Cable**: Similar to the DAC cable, the SFP+ AOC (Active Optical Cable) incorporates fiber optics, which makes it more costly and more prone to physical damage.
 
-### 10GbE Ethernet NIC (Desktop)
+### 10GbE NIC Solution
 
-For desktop setups, we utilize the **Intel X710-DA4 Quad-Port 10GbE** Ethernet NIC. This NIC has been tested to simultaneously operate two USRP X3x0 devices (or a single X410 device), supporting four channels with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 1.9 GB/s for both sending and receiving data.
+#### For Desktop Computer
+
+For desktop computer, we utilize the **Intel X710-DA4 Quad-Port 10GbE** Ethernet NIC. This NIC has been tested to simultaneously operate two USRP X3x0 devices (or a single X410 device), supporting four channels with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 1.9 GB/s for both sending and receiving data.
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/x710-nic.png" style="max-height: 180px">
-  <p style="font-style: italic; margin-top: 10px;">Intel X710-DA4 Quad-Port 10GbE NIC for connecting desktop computer to USRP devices with SFP+ ports</p>
+  <p style="font-style: italic; margin-top: 10px;">Intel X710-DA4 Quad-Port 10GbE NIC for desktop computers</p>
 </div>
 
-### 10GbE Ethernet NIC (Laptop)
+#### For Laptop **with** Thunderbolt 3+ Port
 
-For laptop setups, we utilize the **QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+** NIC. This NIC has been tested to operate one USRP X3x0 device (or a single X410 device), supporting one channel with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 480 MB/s for both sending and receiving data.
+For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+** NIC. This NIC has been tested to operate one USRP X3x0 device (or a single X410 device), supporting one channel with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 480 MB/s for both sending and receiving data.
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/QNA-T310G1S.png" style="max-height: 180px">
-  <p style="font-style: italic; margin-top: 10px;">QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+ NIC for connecting laptop to USRP devices with SFP+ ports</p>
+  <p style="font-style: italic; margin-top: 10px;">QNAP QNA-T310G1S adapter for Thunderbolt 3+ laptops</p>
 </div>
 
-#### Can this approach support Dual-10GbE connection? NO.
+##### Can this approach support Dual-10GbE connection? NO.
 We have tried multiple QNA-T310G1S adapters for combining multiple X3x0 devices, however, none works.
+
+#### For Laptop **without** Thunderbolt 3+ Port
+
+For laptops without Thunderbolt 3+ ports, an **M.2-to-10GbE adapter** is maybe the last available solution. However, this approach has serious limitations:
+
+1. **M.2 Slot Usage**: Requires one M.2 slot, typically used for SSD storage
+2. **Physical Risk**: Cannot properly close the laptop's back panel, risking physical damage
+
+<div style="text-align: center; margin: 20px 0;">
+  <img src="images/usrp/m2-to-10gbe.png" style="max-height: 180px">
+  <p style="font-style: italic; margin-top: 10px;">M.2-to-10GbE adapter - use with caution</p>
+</div>
+
+{% include warning.html content="We have not tested this solution ourselves. For serious USRP-based R&D, we strongly recommend using either a desktop computer or a laptop with Thunderbolt 3+ port." %}
 
 ### Can 1GbE Work? Yes, But Not Recommended
 
@@ -126,7 +142,7 @@ The N320/N321 models feature **dual-SFP+ interfaces** and **a QSFP+ interface**.
 
 Although the QSFP+ interface (literally quad-lane SFP+) supports 4x10GbE, the N320/321 models only utilize two lanes, making it equivalent to a dual-10GbE connection.
 
-We use a **QSFP+ to 4x SFP+ Breakout Cable** to connect N320/321 to the [host-side Intel X710 NIC](#10gbe-ethernet-nic-desktop).
+We use a **QSFP+ to 4x SFP+ Breakout Cable** to connect N320/321 to the [host-side Intel X710 NIC](#for-desktop-computer).
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/qsfp+breakout.png" style="max-height: 180px">
@@ -148,7 +164,7 @@ For more details, refer to [FPGA Image Flavors](https://files.ettus.com/manual/p
 
 ### Connection Solution for `X4_200` FPGA Images
 
-These images downgrade QSFP28 Port 0 to a QSFP port, i.e., from 100GbE to 40GbE. We then use a **QSFP+ to 4x SFP+ Breakout Cable** to connect QSFP28 Port 0 to the **Intel X710-DA4 Quad-Port 10GbE** NIC. Refer to [10GbE Ethernet NIC (Desktop)](#10gbe-ethernet-nic-desktop) and [QSFP+ Cable](#qsfp-cable).
+These images downgrade QSFP28 Port 0 to a QSFP port, i.e., from 100GbE to 40GbE. We then use a **QSFP+ to 4x SFP+ Breakout Cable** to connect QSFP28 Port 0 to the **Intel X710-DA4 Quad-Port 10GbE** NIC. Refer to [10GbE Ethernet NIC (Desktop)](#for-desktop-computer) and [QSFP+ Cable](#qsfp-cable).
 
 ### Connection Solution for `UC_200/CG_400/CG_1600` FPGA Images
 
