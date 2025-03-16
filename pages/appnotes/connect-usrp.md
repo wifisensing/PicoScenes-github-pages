@@ -92,7 +92,7 @@ For desktop computer, we utilize the **Intel X710-DA4 Quad-Port 10GbE** Ethernet
   <p style="font-style: italic; margin-top: 10px;">Intel X710-DA4 Quad-Port 10GbE NIC for desktop computers</p>
 </div>
 
-#### For Laptop **with** Thunderbolt 3+ Port
+#### For Laptop **with** Thunderbolt 3+ Port - Single 10GbE
 
 For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+** NIC. This NIC has been tested to operate one USRP X3x0 device (or a single X410 device), supporting one channel with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 480 MB/s for both sending and receiving data.
 
@@ -101,8 +101,16 @@ For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S 
   <p style="font-style: italic; margin-top: 10px;">QNAP QNA-T310G1S adapter for Thunderbolt 3+ laptops</p>
 </div>
 
-##### Can this approach support Dual-10GbE connection? NO.
-We have tried multiple QNA-T310G1S adapters for combining multiple X3x0 devices, however, none works.
+#### For Laptop **with** Thunderbolt 3+ Port - Dual 10GbE 
+
+The **Sonnet Twin10G SFP28 Thunderbolt Adapter** is a possible solution. This adapter provides two SFP+ ports through a single Thunderbolt connection, potentially enabling the operation of a dual-channel USRP X3x0 device at full capacity.
+
+<div style="text-align: center; margin: 20px 0;">
+  <img src="images/usrp/twin10g.png" style="max-height: 180px">
+  <p style="font-style: italic; margin-top: 10px;">Sonnet Twin10G SFP28 Thunderbolt Adapter for dual 10GbE connections</p>
+</div>
+
+{% include warning.html content="Use with caution! We have not personally tested this solution." %}
 
 #### For Laptop **without** Thunderbolt 3+ Port
 
