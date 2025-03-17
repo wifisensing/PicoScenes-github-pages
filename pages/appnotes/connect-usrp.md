@@ -163,29 +163,41 @@ We use a **QSFP+ to 4x SFP+ Breakout Cable** to connect N320/321 to the [host-si
 
 The X4xx series is equipped with **dual QSFP28 interfaces**, supporting up to **dual-100GbE** connections. When paired with the `CG_400` firmware, the X410 supports simultaneous 500 MSPS Tx and Rx across four channels. When paired with the `CG_1600` firmware, the X440 supports up to 2GSPS Tx and Rx on a single channel. 
 
-### Choose the Correct FPGA Image
-Selecting the appropriate FPGA image is crucial for the X4x0 series, as this series does not maintain backward compatibility with high-performance FPGA images. Taking the X410 model as an example:
+### Host-Side Network Solutions
 
-* The `X4_200` and `UC_200` firmware support a maximum channel sampling rate of 250 MSPS, which is half of the maximum 500 MSPS. However, they can work with the built-in Integer-N synthesizer, producing multiple baseband sampling rates such as 250, 125, 83.333, 62.5, 50, 25, and 12.5 MHz. 
+We provide two proven solutions for connecting X4xx devices, each suited for different performance requirements.
 
-* The high-performance `CG_400` firmware operates exclusively at frequencies of 491.52 or 500 MHz and does not support fractional sampling rates or decimation. Using this firmware indiscriminately for any application is extremely computationally intensive, leading to a very high packet loss rate or frequent buffer overflows.
+#### Solution 1: Dual-100GbE Connection (Recommended)
 
-For more details, refer to [FPGA Image Flavors](https://files.ettus.com/manual/page_usrp_x4xx.html#x4xx_updating_fpga_types).
-
-### Connection Solution for `X4_200` FPGA Images
-
-These images downgrade QSFP28 Port 0 to a QSFP port, i.e., from 100GbE to 40GbE. We then use a **QSFP+ to 4x SFP+ Breakout Cable** to connect QSFP28 Port 0 to the **Intel X710-DA4 Quad-Port 10GbE** NIC. Refer to [10GbE Ethernet NIC (Desktop)](#for-desktop-computer) and [QSFP+ Cable](#qsfp-cable).
-
-### Connection Solution for `UC_200/CG_400/CG_1600` FPGA Images
-
-These images all utilize one or dual 100GbE connections. We use the **Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CDAT)**, a **dual-100GbE NIC**, to connect the X410. For the cable, we use two **QSFP28 DAC cables**.
+Our recommended solution utilizes the **Mellanox/NVIDIA ConnectX-5 EX (MCX516A-CDAT)** network card. This dual-port QSFP28 card supports both 40GbE and 100GbE modes through its PCIe Gen4 x16 interface, offering maximum performance and future-proofing capabilities.
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/mcx516a.png" style="max-height: 180px">
-  <p style="font-style: italic; margin-top: 10px;">Mellanox/NVIDIA ConnectX-5 EX 100 GbE NIC (MCX516A-CDAT) for connecting USRP X4xx devices</p>
+  <p style="font-style: italic; margin-top: 10px;">Mellanox/NVIDIA ConnectX-5 EX dual-port 100GbE NIC</p>
 </div>
+
+For connectivity, we recommend using **QSFP28 DAC (Direct Attach Copper) cables**. The number of cables needed depends on your FPGA image: the standard performance images use one cable, while the high-performance images require both ports for maximum throughput.
+
+{% include note.html content="Solution 1 is recommended for high-performance applications but is exclusive to X4xx devices." %}
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/qsfp28+.png" style="max-height: 180px">
-  <p style="font-style: italic; margin-top: 10px;">QSFP28+ cable for connecting USRP X4xx devices</p>
+  <p style="font-style: italic; margin-top: 10px;">QSFP28 DAC cable for 100GbE connections</p>
 </div>
+
+#### Solution 2: Quad-10GbE Connection
+
+We reuse the [**Intel X710-DA4 Quad-Port 10GbE** NIC](#for-desktop-computer) for this solution. This approach is particularly valuable for labs working with multiple USRP generations, as the same NIC can be used with X3x0 and N3x0 devices. The connection requires a [**QSFP+ to 4x SFP+ breakout cable**](#qsfp-cable), which connects the USRP's QSFP28 Port 0 (operating in 40GbE mode) to the NIC's four SFP+ ports.
+
+{% include note.html content="Solution 2 is limited to 250 MSPS per channel but offers compatibility with X3x0 and N3xx devices." %}
+
+### FPGA Image Considerations
+
+The choice of FPGA image determines both the device's capabilities and its network requirements:
+
+The standard performance images (`UC_200` and `X4_200`) support sampling rates up to 250 MSPS per channel. These images include Digital Up/Down Conversion (DUC/DDC), enabling multiple baseband sampling rates: 250, 125, 83.333, 62.5, 50, 25, and 12.5 MHz. Note that `UC_200` works exclusively with Solution 1, while `X4_200` only works with Solution 2.
+
+The high-performance images (`CG_400` and `CG_1600`) require Solution 1's dual-100GbE connectivity. The `CG_400` enables 500 MSPS operation across four channels on the X410, while the `CG_1600` supports up to 2GSPS on a single channel of the X440. These images bypass the DUC/DDC to achieve maximum throughput, operating only at their nominal sampling rates.
+
+{% include warning.html content="High-performance images are extremely computationally intensive. Use them only when sampling rates above 250 MSPS are required." %}
+
