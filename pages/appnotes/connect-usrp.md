@@ -22,9 +22,9 @@ Where:
 - $B$ is the total bandwidth required (bits/s)
 - $F_S$ is the sampling rate (number of I/Q samples/s)
 - $N_{ch}$ is the number of channels (This is hardware channel. Don't confuse with the *Wi-Fi channels*.)
-- $b_{WT}$ is the bits per I/Q sample. $b_{WT}$ can be two values:
-  - 32-bit: Most USRPs use 16-bit I/Q transfer format, i.e., 2 bytes for I and 2 bytes for Q;
-  - 16-bit: N2x0 also supports 8-bit I/Q transfer format, however, this degrades the signal quality.
+- $b_{WT}$ is the number of bits per I/Q sample. $b_{WT}$ can be two values:
+  - 32-bit: Most USRPs use 16-bit I/Q wire-transfer format, i.e., 2 bytes for I and 2 bytes for Q;
+  - 16-bit: N2x0 also supports 8-bit I/Q wire-transfer format, however, this degrades the signal quality.
 
 For example:
 - The N2x0's master clock rate (MCR) is 100 MHz, however, sampling at 100 MHz sampling rate requires: $B = 100\text{M} \times 1 \times 32 = 3.2 \text{ Gbps}$, which is far beyond the capacity of a 1GbE connection.
