@@ -6,6 +6,7 @@ summary: "This guide provides the bandwidth estimation for signal streaming and 
 permalink: connect-usrp
 folder: appnotes
 toc: true
+disable_heading_numbers: true
 ---
 
 
