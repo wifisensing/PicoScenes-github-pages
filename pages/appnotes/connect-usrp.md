@@ -1,16 +1,15 @@
 ---
 title: Connecting NI USRP Devices
 keywords: USRP, connection guide, SFP+, 10GbE, 100GbE, firmware
-last_updated: Mar. 15, 2025
+last_updated: Mar. 17, 2025
 summary: "This guide provides the bandwidth estimation for signal streaming and details the connection methods for various NI USRP models, including B2x0/N2x0/E3x0/N3x0/X3x0/X4x0."
 permalink: connect-usrp
 folder: appnotes
 toc: true
-disable_heading_numbers: true
 ---
 
 
-## Prelogue: How Much Transfer Bandwidth Needed for Signal Streaming
+## Prelogue: How Much Network Bandwidth Is Needed for USRP Signal Streaming?
 
 Understanding the bandwidth required for transmitting I/Q signals is crucial for comprehending why USRP devices continually upgrade their network interfaces, as well as understanding why *mismatched connections can trigger various transmission issues*.
 
@@ -64,7 +63,7 @@ The following is our recommended solution based on our long-term practice, balan
 
 ### Cable & Connector for 10GbE Connection
 
-**SFP+ DAC Cable** is our preferred choice. It features integrated SFP+ connectors on both ends, which enhances robustness and minimizes the risk of disconnection. It is both cost-effective and highly reliable.
+**SFP+ DAC (Direct Attach Copper) Cable** is our preferred choice. It features integrated SFP+ connectors on both ends, which enhances robustness and minimizes the risk of physical damage. It is both cost-effective and highly reliable.
 
 
 <div style="text-align: center; margin: 20px 0;">
@@ -83,18 +82,18 @@ Alternatives (not recommended):
 
 ### 10GbE NIC Solution
 
-#### For Desktop Computer
+#### Quad-10GbE Connectivity for Desktop Computer
 
-For desktop computer, we utilize the **Intel X710-DA4 Quad-Port 10GbE** Ethernet NIC. This NIC has been tested to simultaneously operate two USRP X3x0 devices (or a single X410 device), supporting four channels with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 1.9 GB/s for both sending and receiving data.
+For desktop computers, we utilize the **Intel X710-DA4 Quad-Port 10GbE** Ethernet NIC. This NIC has been tested to simultaneously operate two USRP X3x0 devices (or a single X410 device), supporting four channels with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 1.9 GB/s for both sending and receiving data.
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/x710-nic.png" style="max-height: 180px">
   <p style="font-style: italic; margin-top: 10px;">Intel X710-DA4 Quad-Port 10GbE NIC for desktop computers</p>
 </div>
 
-#### For Laptop **with** Thunderbolt 3+ Port - Single 10GbE
+#### Single 10GbE Connectivity for Laptop with Thunderbolt 3+ Port
 
-For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+** NIC. This NIC has been tested to operate one USRP X3x0 device (or a single X410 device), supporting one channel with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 480 MB/s for both sending and receiving data.
+For laptops equipped with Thunderbolt 3+ ports, we utilize the **QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+** NIC. This NIC has been tested to operate one USRP X3x0 device (or a single X410 device), supporting one channel with a 200 MSPS rate (250 MSPS for the X410) for both transmission and reception. The system can achieve peak throughput rates of up to 480 MB/s for both sending and receiving data.
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/QNA-T310G1S.png" style="max-height: 180px">
@@ -103,7 +102,7 @@ For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S 
 
 {% include warning.html content="We have tested that you CANNOT achieve dual-10GbE streaming by just using two such adapters." %}
 
-#### For Laptop **with** Thunderbolt 3+ Port - Dual 10GbE 
+#### Dual 10GbE Connectivity for Laptop **with** Thunderbolt 3+ Port
 
 The **Sonnet Twin10G SFP28 Thunderbolt Adapter** is a possible solution. This adapter provides two SFP+ ports through a single Thunderbolt connection, potentially enabling the operation of a dual-channel USRP X3x0 device at full capacity.
 
@@ -114,9 +113,9 @@ The **Sonnet Twin10G SFP28 Thunderbolt Adapter** is a possible solution. This ad
 
 {% include note.html content="We have not tested this solution ourselves. If you have successfully achieved dual-10GbE streaming using this device, please let us know and we will update this page." %}
 
-#### For Laptop **without** Thunderbolt 3+ Port
+#### Single 10GbE Connectivity for Laptop without Thunderbolt 3+ Port
 
-For laptops without Thunderbolt 3+ ports, an **M.2-to-10GbE adapter** is maybe the last available solution. However, this approach has serious limitations:
+For laptops without Thunderbolt 3+ ports, an **M.2-to-10GbE adapter** is perhaps the last available solution. However, this approach has serious limitations:
 
 1. **M.2 Slot Usage**: Requires one M.2 slot, typically used for SSD storage
 2. **Physical Risk**: Cannot properly close the laptop's back panel, risking physical damage
@@ -126,13 +125,13 @@ For laptops without Thunderbolt 3+ ports, an **M.2-to-10GbE adapter** is maybe t
   <p style="font-style: italic; margin-top: 10px;">M.2-to-10GbE adapter - use with caution</p>
 </div>
 
-{% include warning.html content="We have not tested this solution ourselves. For serious USRP-based R&D, we strongly recommend using either a desktop computer or a laptop with Thunderbolt 3+ port. If you have successfully achieved 10GbE streaming with this solution, please let us know all the details and we will update this page." %}
+{% include warning.html content="We have not tested this solution ourselves. For serious USRP development, we strongly recommend using either a desktop computer or a laptop with Thunderbolt 3+ ports. If you have successfully implemented this solution, please share your experience and configuration details." %}
 
 ### Can 1GbE Work? Yes, But Not Recommended
 
-Using a **1GbE connection severely limits the performance** of the X3x0 series, and it is only recommended for initial hardware unboxing and connectivity testing phases.
+As analyzed in [Network Bandwidth Calculation](#prelogue-how-much-network-bandwidth-is-needed-for-usrp-signal-streaming), **1GbE connection severely limits the performance** of the X3x0 series, and it is only recommended for initial hardware unboxing and connectivity test.
 
-### PCIe Interface? NO!
+### PCIe Interface? Not Recommended!
 
 The NI USRP X3x0 also has a PCIe port for signal streaming. We strongly advise **AGAINST** using it. **This interface does NOT support multi-USRP combination**. Additionally, the special PCIe cable and host-side card are prohibitively expensive.
 
@@ -161,7 +160,7 @@ We use a **QSFP+ to 4x SFP+ Breakout Cable** to connect N320/321 to the [host-si
 
 ## NI USRP X4xx Series (X410/X440)
 
-The X4xx series is equipped with **dual QSFP28 interfaces**, supporting up to **dual-100GbE** connections. When paired with the `CG_400` firmware, the X410 supports simultaneous 500 MSPS Tx and Rx across four channels. When paired with the `CG_1600` firmware, the X440 supports up to 2GSPS Tx and Rx on a single channel. 
+The X4xx series is equipped with **dual QSFP28 interfaces**, supporting up to **dual-100GbE** connections. When paired with the `CG_400` firmware, the X410 supports simultaneous 500 MSPS Tx and Rx across four channels. When paired with the `CG_1600` firmware, the X440 supports up to 2 GSPS Tx and Rx on a single channel. 
 
 ### Host-Side Network Solutions
 
@@ -176,7 +175,7 @@ Our recommended solution utilizes the **Mellanox/NVIDIA ConnectX-5 EX (MCX516A-C
   <p style="font-style: italic; margin-top: 10px;">Mellanox/NVIDIA ConnectX-5 EX dual-port 100GbE NIC</p>
 </div>
 
-For connectivity, we recommend using **QSFP28 DAC (Direct Attach Copper) cables**. The number of cables needed depends on your FPGA image: the standard performance images use one cable, while the high-performance images require both ports for maximum throughput.
+For connectivity, we recommend using **QSFP28 DAC cables**. The number of cables needed depends on your FPGA image: the standard performance images use one cable, while the high-performance images require both ports for maximum throughput.
 
 {% include note.html content="Solution 1 is recommended for high-performance applications but is exclusive to X4xx devices." %}
 
