@@ -17,7 +17,7 @@ This document is structured into several key stages to guide you through setting
 2. [Upgrade X4x0 Filesystem](#upgrade-x4x0-filesystem)
 3. [Initial Verification via the 1GbE Port](#initial-verification-via-the-1gbe-port)
 
-We have just finished first two sections. and subsequent sections are still under development. Please stay tuned.
+We have just finished the first two sections, and subsequent sections are still under development. Please stay tuned.
 
 ## Connect The Device to the Internet via the 1GbE Port
 
@@ -34,7 +34,7 @@ The NI USRP X4x0 is equipped with two QSFP28+ interfaces and one 1GbE Ethernet i
     - Option 1 (Hard): Configure the router to have full internet access
     - Option 2 (**Easy**): Install proxy software on the host computer and enable LAN Sharing.
 
-This solution is straightforward but inconvinent due the additional router.
+This solution is straightforward but inconvenient due to the additional router.
 
 ### **Solution 2: Direct PC Connection + Internet Sharing (Convenient yet Less Reliable)**
 
@@ -53,8 +53,8 @@ If a router is not available, you can set up the X4x0 using the **Internet Shari
 
 #### Key Steps for Ubuntu:
 1. Connect the X4x0's 1GbE interface directly to the Ubuntu machine using an Ethernet cable.
-2. Go to System Preferences, and Network
-3. Choose the Ethernet Connection which connects the X4x0, and edit this connection.
+2. Go to System Preferences > Network
+3. Choose the Ethernet connection which connects the X4x0, and edit this connection.
 4. Go to the IPv4 Settings tab, select "Shared to other computers", Click Save.
 5. In a minute or less, the X410 acquires an IP address and access to the internet.
 6. Install the USRP driver (UHD), and run the `uhd_find_devices` command to locate the X4x0 devices. 
@@ -148,19 +148,19 @@ To properly receive Wi-Fi signals through the 1GbE interface, it is necessary to
 
 ### Run UHD Commands
 
-   ```bash
-   uhd_find_devices
-   ```
-   This command verifies if the USRP device is detected by the host system.
+```bash
+uhd_find_devices
+```
+This command verifies if the USRP device is detected by the host system.
 
-   ```bash
-   uhd_usrp_probe
-   ```
-   This command initiates a communication session with the USRP to ensure there are no errors in connectivity or configuration.
+```bash
+uhd_usrp_probe
+```
+This command initiates a communication session with the USRP to ensure there are no errors in connectivity or configuration.
 
-   ```bash
-   uhd_fft --args="addr=192.168.10.2" --freq 2412e6 --rate 20e6
-   ```
+```bash
+uhd_fft --args="addr=192.168.10.2" --freq 2412e6 --rate 20e6
+```
 This command configures the USRP to receive signals at 2412 MHz with a sample rate of 20 MHz, and displays the spectrum.
 
 ### Run PicoScenes
