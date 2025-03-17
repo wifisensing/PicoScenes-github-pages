@@ -101,7 +101,7 @@ For laptop equipped with Thunderbolt 3+ port, we utilize the **QNAP QNA-T310G1S 
   <p style="font-style: italic; margin-top: 10px;">QNAP QNA-T310G1S adapter for Thunderbolt 3+ laptops</p>
 </div>
 
-{% include warning.html content="We have tested that you CANNOT achieve dual-10GbE streaming by just using two seperate adapters." %}
+{% include warning.html content="We have tested that you CANNOT achieve dual-10GbE streaming by just using two such adapters." %}
 
 #### For Laptop **with** Thunderbolt 3+ Port - Dual 10GbE 
 
@@ -189,7 +189,7 @@ For connectivity, we recommend using **QSFP28 DAC (Direct Attach Copper) cables*
 
 We reuse the [**Intel X710-DA4 Quad-Port 10GbE** NIC](#for-desktop-computer) for this solution. This approach is particularly valuable for labs working with multiple USRP generations, as the same NIC can be used with X3x0 and N3x0 devices. The connection requires a [**QSFP+ to 4x SFP+ breakout cable**](#qsfp-cable), which connects the USRP's QSFP28 Port 0 (operating in 40GbE mode) to the NIC's four SFP+ ports.
 
-{% include note.html content="Solution 2 is limited to 250 MSPS per channel but offers compatibility with X3x0 and N3xx devices." %}
+{% include note.html content="Solution 2 is limited to 250 MSPS per channel but offers compatibility with dual-10GbE connected X3x0 and N3xx devices." %}
 
 ### FPGA Image Considerations
 
