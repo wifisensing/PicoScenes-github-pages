@@ -14,13 +14,15 @@ disable_heading_numbers: true
 This guide is organized into the following sections:
 
 1. [Bandwidth Requirements](#bandwidth-requirement-for-signal-streaming) - Explains the bandwidth calculation for I/Q signal streaming
-2. [Connect NI USRP B2x0](#ni-usrp-b2x0) - USB 3.0 connection guide
-3. [Connect NI USRP N2x0](#ni-usrp-n2x0) - 1GbE connection guide
-4. [Connect NI USRP X3x0 Series](#ni-usrp-x3x0-series) - Dual-10GbE connection guide
-5. [Connect NI USRP E320](#ni-usrp-e320) - Single 10GbE connection guide
-6. [Connect NI USRP N300/N310](#ni-usrp-n3xx-series-n300-and-n310) - Dual-10GbE connection guide
-7. [Connect NI USRP N320/N321](#ni-usrp-n3xx-series-n320-and-n321) - Dual-10GbE and QSFP+ connection guide
-8. [Connect NI USRP X4xx Series](#ni-usrp-x4xx-series) - Dual-100GbE connection guide
+2. [NI USRP B2x0](#ni-usrp-b2x0) - USB 3.0 connectivity
+3. [NI USRP N2x0](#ni-usrp-n2x0) - 1GbE connectivity
+4. [NI USRP X3x0 Series](#ni-usrp-x3x0-series) - dual-10GbE connectivity
+5. [NI USRP N3xx Series](#ni-usrp-n3xx-series)
+   - [N300 and N310](#n300-and-n310) - Dual-10GbE connectivity
+   - [N320 and N321](#n320-and-n321) - Dual-10GbE or QSFP+ connectivity
+6. [NI USRP E320](#ni-usrp-e320) - 10GbE connectivity
+7. [NI USRP X4xx Series](#ni-usrp-x4xx-series) - Dual-100GbE connectivity
+8. [Commons of MPM Architecture Devices](#commons-of-mpm-architecture-devices-e320n3xxx4xx) - RJ45 and USB Console JTag ports of E320, N3xx and X4xx
 
 Each section provides detailed information about the connection methods, required hardware, and performance considerations for the respective USRP model.
 
@@ -150,19 +152,17 @@ The 1GbE mode (SFP+ Port 0 under `HG` firmware), which comes enabled by default 
 
 Besides Ethernet connectivity, the NI USRP X3x0 series also provides a direct PCIe connection option through the "PCIe Connectivity Kit". However, we strongly advise **AGAINST** using this solution. The PCIe cable and host-side card are prohibitively expensive, and most importantly, **this interface does NOT support multi-USRP combination**.
 
-## NI USRP E320
+## NI USRP N3xx Series 
 
-The E320 model utilizes a single **SFP+ interface** for signal streaming, supporting up to **10GbE** connection. This setup aligns with the connectivity approach used for the X3x0 model. For details, refer to the [NI USRP X3x0 section](#ni-usrp-x3x0-series).
-
-## NI USRP N3xx Series (N300 and N310)
+### N300 and N310
 
 The N300 and N310 models feature the same **dual-SFP+ interfaces** as the X3x0 for signal streaming, supporting up to **dual-10GbE** connections. For details, refer to the [NI USRP X3x0 section](#ni-usrp-x3x0-series).
 
-## NI USRP N3xx Series (N320 and N321)
+### N320 and N321
 
 The N320 and N321 models feature **dual-SFP+ interfaces** and an additional **QSFP+ interface**. For dual-SFP+ interfaces, refer to the [NI USRP X3x0 section](#ni-usrp-x3x0-series). Regardless of the connection type used, it is necessary to flash the `XG` firmware to achieve dual-10GbE connections.
 
-### QSFP+ based Connectivity
+#### QSFP+ based Connectivity
 
 Although the QSFP+ interface (literally quad-lane SFP+) supports 4 $\times$ 10GbE, the N320 and N321 models only utilize two lanes, making it equivalent to a dual-10GbE connection.
 
@@ -172,6 +172,19 @@ We use a **QSFP+ to 4x SFP+ Breakout Cable** to connect N320 and N321 to the [ho
   <img src="images/usrp/qsfp+breakout.png" style="max-height: 180px">
   <p style="font-style: italic; margin-top: 10px;">QSFP+ to 4x SFP+ Breakout Cable for connecting NI USRP N320 and N321</p>
 </div>
+
+
+### MPM Architecture
+
+The N3xx utilizes the MPM (Modular Peripheral Manager) architecture. For details on properly using its high-speed SFP+/QSFP+ ports, RJ45 port, and USB Console JTAG port, please refer to the [Commons of MPM Architecture Devices](#commons-of-mpm-architecture-devices-e320n3xxx4xx) section.
+
+
+## NI USRP E320
+
+The E320 model utilizes a single **SFP+ interface** for signal streaming, supporting up to **10GbE** connection. This setup aligns with the connectivity approach used for the X3x0 model. For details, refer to the [NI USRP X3x0 section](#ni-usrp-x3x0-series).
+
+The E320 utilizes the MPM (Modular Peripheral Manager) architecture. For details on properly using its high-speed 10GbE port, RJ45 port, and USB Console JTAG port, please refer to the [Commons of MPM Architecture Devices](#commons-of-mpm-architecture-devices-e320n3xxx4xx) section.
+
 
 ## NI USRP X4xx Series
 
@@ -215,3 +228,34 @@ The high-performance images (`CG_400` and `CG_1600`) require Solution 1's dual-1
 
 {% include warning.html content="High-performance images place extreme computational demands on the host computer. Using them indiscriminately will lead to severe performance bottlenecks. Only use `CG_400` or `CG_1600` images when sampling rates above 250 MSPS are *truly needed* for your application." %}
 
+
+### MPM Architecture
+
+The X4xx utilizes the MPM (Modular Peripheral Manager) architecture. For details on properly using its high-speed QSFP28+ ports, RJ45 port, and USB Console JTAG port, please refer to the [Commons of MPM Architecture Devices](#commons-of-mpm-architecture-devices-e320n3xxx4xx) section.
+
+## Commons of MPM Architecture Devices (E320/N3xx/X4xx)
+
+The E320, N3xx, and X4xx series devices employ an advanced architecture known as the Modular Peripheral Manager (MPM). This architecture integrates two key components:
+
+1. **Processing System (PS)**: An ARM-based Linux system that handles device management, configuration, and control
+2. **Programmable Logic (PL)**: An FPGA that processes the I/Q signals and handles high-speed data streaming
+
+This dual-system design provides robust device management capabilities while maintaining high-performance signal processing. However, it also introduces some important considerations regarding device connectivity and management.
+
+### RJ45 Port: Only for Management and Connectivity Test
+
+The RJ45 port provides direct access to the embedded Linux system (PS), enabling users to perform essential device management tasks such as firmware updates, network configuration, system monitoring, and initial setup verification.
+
+While this port can technically handle signal streaming, we **strongly recommend against using it for data transmission** for several critical reasons:
+
+1. **Bandwidth Constraints**: The 1GbE RJ45 connection significantly limits throughput, preventing the device from reaching its full potential
+2. **Increased Latency**: Data must traverse through the Linux system (PS) before reaching the FPGA (PL), adding substantial processing delays
+3. **Degraded Performance**: The data path between PS and PL creates performance bottlenecks, leading to timing inconsistencies and reduced data rates
+
+### USB Console JTAG: Emergency Recovery Interface
+
+The USB Console JTAG port enables **direct serial communication with the embedded Linux system**. While users typically interact with the device via SSH over Ethernet during normal operation, this port serves as a **critical recovery mechanism** in situations where SSH connectivity becomes unavailable.
+
+### DANGER: Never Use SFP+/QSFP+/QSFP28+ for Device Management!
+
+**Never attempt device management operations through SFP+/QSFP+/QSFP28+ ports**. These high-speed interfaces are designed exclusively for signal streaming, and using them for device management tasks can lead to serious consequences including abrupt connection termination, failed updates, device bricking, or permanent hardware damage. For all device management operations, always use the dedicated RJ45 port or USB Console JTAG interface.
