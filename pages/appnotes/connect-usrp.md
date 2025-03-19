@@ -166,7 +166,7 @@ The N320 and N321 models feature **dual-SFP+ interfaces** and an additional **QS
 
 Although the QSFP+ interface (literally quad-lane SFP+) supports 4 $\times$ 10GbE, the N320 and N321 models only utilize two lanes, making it equivalent to a dual-10GbE connection.
 
-We use a **QSFP+ to 4x SFP+ Breakout Cable** to connect N320 and N321 to the [host-side Intel X710 NIC](#for-desktop-computer).
+We use a **QSFP+ to 4x SFP+ Breakout Cable** to connect N320 and N321 to the [host-side Intel X710 NIC](#quad-10gbe-connectivity-for-desktop-computer).
 
 <div style="text-align: center; margin: 20px 0;">
   <img src="images/usrp/qsfp+breakout.png" style="max-height: 180px">
@@ -201,7 +201,7 @@ For connectivity, we recommend using **QSFP28 DAC cables**. The number of cables
 
 #### Solution 2: Quad-10GbE Connection
 
-We reuse the [**Intel X710-DA4 Quad-Port 10GbE** NIC](#for-desktop-computer) for this solution. This approach is particularly valuable for working with multiple USRP generations, as the same NIC can be used with X3x0 and N3x0 devices. The connection requires a [**QSFP+ to 4x SFP+ breakout cable**](#qsfp-cable), which connects the X4xx's QSFP28 Port 0 (operating in 40GbE with `X4_200` FPGA image) to the NIC's four SFP+ ports.
+We reuse the [**Intel X710-DA4 Quad-Port 10GbE**](#quad-10gbe-connectivity-for-desktop-computer) NIC for this solution. This approach is particularly valuable for working with multiple USRP generations, as the same NIC can be used with X3x0 and N3x0 devices. The connection requires a [**QSFP+ to 4x SFP+ breakout cable**](#qsfp-based-connectivity), which connects the X4xx's QSFP28 Port 0 (operating in 40GbE with `X4_200` FPGA image) to the NIC's four SFP+ ports.
 
 {% include note.html content="Although limited to 250 MSPS per channel, Solution 2 is more convenient for working with other USRP models, like E320, X3x0 and N3xx." %}
 
