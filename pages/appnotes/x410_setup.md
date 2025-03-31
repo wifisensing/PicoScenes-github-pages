@@ -9,15 +9,16 @@ toc: true
 disable_heading_numbers: true
 ---
 
-This document outlines the complete process from unboxing to high-performance application of the NI USRP X410 device, presented in several stages. Currently, the exploration of the X410 is ongoing, and this document is not yet comprehensive.
+## Document Structure
 
 This document is structured into several key stages to guide you through setting up and utilizing the NI USRP X410 device effectively:
-
 1. [Connect The Device to the Internet via the 1GbE Port](#connect-the-device-to-the-internet-via-the-1gbe-port)
-2. [Upgrade X4x0 Filesystem](#upgrade-x4x0-filesystem)
-3. [Initial Verification via the 1GbE Port](#initial-verification-via-the-1gbe-port)
-
-We have just finished the first two sections, and subsequent sections are still under development. Please stay tuned.
+2. [Device Discovery](#device-discovery)
+3. [Test Internet Connection](#test-internet-connection)
+4. [Configure Proxy Settings](#configure-proxy-settings)
+5. [Upgrade X4x0 Filesystem](#upgrade-x4x0-filesystem)
+7. [Flash FPGA Image](#flash-fpga-image)
+8. [Next Steps](#next-steps)
 
 ## Connect The Device to the Internet via the 1GbE Port
 
@@ -51,13 +52,13 @@ The NI USRP X4x0 device features two QSFP28+ interfaces and a single 1GbE Ethern
 7. Within a minute, the X410 should acquire an IP address and internet access.
 8. For users with limited internet access, install proxy software with LAN Sharing capabilities on your PC.
 
-## Find Device
+## Device Discovery
 
 After setting up the network sharing as described above, the X4x0 device should have obtained an IP address. You can verify this by running the `uhd_find_devices` command on your host computer. This command should display the detected X4x0 device with its IP address.
 
 {% include note.html content="The `uhd_find_devices` command is provided by the USRP Hardware Driver (UHD). For PicoScenes users, the UHD driver will be automatically installed during the PicoScenes installation process. For detailed installation instructions, please refer to the [Installation](installation.html#picoscenes-software-installation) section." %}
 
-## Validate the Internet Connection
+## Test Internet Connection
 
 1. SSH into the device using its IP address (using 192.168.2.2 as an example):
    ```
@@ -75,9 +76,9 @@ After setting up the network sharing as described above, the X4x0 device should 
    ping github.com
    ```
 
-## Validate Connectivity (for Users with Restricted Internet Access)
+## Configure Proxy Settings
 
-If you have restricted internet access, the `ping github.com` command may fail. To enable internet access on the X4x0 device, follow these steps:
+If your network environment has restricted internet access, the `ping github.com` command may fail. To enable full internet access on the X4x0 device, follow these steps:
 
 1. On your host computer, enable the **LAN Sharing** feature in your VPN/proxy software.
 
