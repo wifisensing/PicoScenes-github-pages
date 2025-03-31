@@ -122,3 +122,11 @@ The following steps demonstrate how to flash the FPGA image, using the `X4_200` 
     This command flashes the device to use the 'x4_200' FPGA image.
 
 3. Reboot the system using the `reboot` command.
+
+## Next Steps
+
+Congratulations! You have now completed the initial setup of your X4x0 device. For the next steps, you may want to:
+
+1. Learn about dual QSFP28 port connections by referring to the [Connecting NI USRP Devices](connect-usrp) documentation.
+2. Explore using PicoScenes to drive the X4x0 device for Wi-Fi ISAC research by checking out the [CSI Measurement using PicoScenes
+](scenarios) documentation. 
