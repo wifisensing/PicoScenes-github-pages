@@ -1,7 +1,7 @@
 ---
 title: Connecting NI USRP Devices
 keywords: USRP, connection guide, SFP+, 10GbE, 100GbE, firmware
-last_updated: Mar. 17, 2025
+last_updated: Mar. 31, 2025
 summary: "This guide provides the bandwidth estimation for signal streaming and details the connection methods for various NI USRP models, including B2x0/N2x0/E3x0/N3x0/X3x0/X4x0."
 permalink: connect-usrp
 folder: appnotes
@@ -218,6 +218,16 @@ We reuse the [**Intel X710-DA4 Quad-Port 10GbE**](#quad-10gbe-connectivity-for-d
 
 {% include note.html content="Although limited to 250 MSPS per channel, Solution 2 is more convenient for working with other USRP models, like E320, X3x0 and N3xx." %}
 
+#### Solution 3: Single/Dual-10GbE Connection for Laptop
+
+For laptops with Thunderbolt 3+ ports, we recommend using the same solutions as described in the [NI USRP X3x0 section](#ni-usrp-x3x0-series):
+
+1. **Single 10GbE Connection**: Use the [**QNAP QNA-T310G1S Thunderbolt 3 to 10GbE SFP+**](#single-10gbe-connectivity-for-laptop-with-thunderbolt-3-port) NIC. This setup supports one channel with a 250 MSPS rate (with `X4_200` FPGA image) for both transmission and reception.
+
+2. **Dual 10GbE Connection**: The [**Sonnet Twin10G SFP28 Thunderbolt Adapter**](#dual-10gbe-connectivity-for-laptop-with-thunderbolt-3-port) is a *possible* solution for dual-channel operation. However, we have not tested this configuration ourselves.
+
+{% include warning.html content="For laptops without Thunderbolt 3+ ports, we strongly recommend using a desktop computer instead of attempting to use M.2-to-10GbE adapters. The performance limitations and physical risks associated with M.2 adapters make them unsuitable for serious USRP development." %}
+
 ### Choose FPGA Image
 
 The choice of FPGA image determines both the device's capabilities and its network requirements:
@@ -258,4 +268,4 @@ The USB Console JTAG port enables **direct serial communication with the embedde
 
 ### DANGER: Never Use SFP+/QSFP+/QSFP28+ for Device Management!
 
-**Never attempt device management operations through SFP+/QSFP+/QSFP28+ ports**. These high-speed interfaces are designed exclusively for signal streaming, and using them for device management tasks can lead to serious consequences including abrupt connection termination, failed updates, device bricking, or permanent hardware damage. For all device management operations, always use the dedicated RJ45 port or USB Console JTAG interface.
+**Never attempt device management operations through SFP+/QSFP+/QSFP28+ ports**. These high-speed interfaces are designed exclusively for signal streaming, and using them for device management tasks can lead to serious consequences including abrupt connection termination, failed updates, device bricking, or permanent hardware damage. For all device management operations, **always use the dedicated RJ45 port or USB Console JTAG interface**.
