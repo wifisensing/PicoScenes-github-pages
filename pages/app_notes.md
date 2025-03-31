@@ -1,7 +1,7 @@
 ---
 title: Application Notes
 keywords: PicoScenes, tutorials, application notes, technical details
-last_updated: Mar. 31, 2024
+last_updated: Mar. 31, 2025
 summary: "A comprehensive collection of application notes and technical tutorials for PicoScenes platform."
 permalink: app_notes
 folder: pages
