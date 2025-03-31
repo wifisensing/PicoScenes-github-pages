@@ -194,7 +194,7 @@ The X4xx series devices, X410 and X440, are equipped with **dual QSFP28 interfac
 
 We provide two proven solutions for connecting X4xx devices, each suited for different performance requirements.
 
-#### Solution 1: Dual-100GbE Connection (Recommended)
+#### Solution 1: Dual-100GbE Connection for Desktop (Recommended)
 
 Our recommended solution utilizes the **Mellanox/NVIDIA ConnectX-5 EX (MCX516A-CDAT)** NIC. This dual-port QSFP28 card supports both 40GbE and 100GbE modes through its PCIe Gen4 x16 interface, offering maximum performance and future-proofing capabilities. This NIC has been *officially tested by NI to achieve the maximum performance* claimed by X4xx devices.
 
@@ -212,7 +212,7 @@ For connectivity, we recommend using **QSFP28 DAC cables**. The number of cables
   <p style="font-style: italic; margin-top: 10px;">QSFP28 DAC cable for 100GbE connections</p>
 </div>
 
-#### Solution 2: Quad-10GbE Connection
+#### Solution 2: Quad-10GbE Connection for Desktop
 
 We reuse the [**Intel X710-DA4 Quad-Port 10GbE**](#quad-10gbe-connectivity-for-desktop-computer) NIC for this solution. This approach is particularly valuable for working with multiple USRP generations, as the same NIC can be used with X3x0 and N3x0 devices. The connection requires a [**QSFP+ to 4x SFP+ breakout cable**](#qsfp-based-connectivity), which connects the X4xx's QSFP28 Port 0 (operating in 40GbE with `X4_200` FPGA image) to the NIC's four SFP+ ports.
 

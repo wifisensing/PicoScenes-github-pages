@@ -21,96 +21,77 @@ We have just finished the first two sections, and subsequent sections are still 
 
 ## Connect The Device to the Internet via the 1GbE Port
 
-The NI USRP X4x0 is equipped with two QSFP28+ interfaces and one 1GbE Ethernet interface. The 1GbE interface is used for firmware updates, upgrades, and remote control of the built-in Linux system. Unlike the traditional N2x0/X3x0 series devices that use static IP addresses, the 1GbE interface on the X4x0 is configured to automatically acquire an IP address using the **DHCP protocol**. This requires a device that provides DHCP services, typically a router, to allocate an IP address. Additionally, the initialization, upgrading, or resetting of the X4x0 requires an internet connection, meaning the router must have internet access. A significant challenge arises during the initialization, upgrading, or resetting processes due to the dependency on accessing GitHub, which can be problematic for users in networks with restricted access. Below are two recommended networking solutions for the X4x0:
+The NI USRP X4x0 device features two QSFP28+ interfaces and a single 1GbE Ethernet interface. The 1GbE port, primarily used for device management, is configured to obtain its IP address via the **DHCP protocol**. An internet connection is also required for this port to facilitate hardware initialization and firmware updates. The typical approach is to use a router with internet connectivity; however, this adds extra hardware and cables. More importantly, users who are subject to network access restrictions may find that a router doesn't provide full internet access. Therefore, we recommend establishing a direct connection between the 1GbE port and a host computer which shares its full-access internet connection. Below, we provide connection solutions for Mac, Ubuntu, and Windows platforms:
 
-### **Solution 1: Router with Internet Access (Straightforward yet Inconvinient)**
-
-- **Key Steps**:
-  1. Ensure the router is connected to the internet.
-  2. Connect the X4x0's 1GbE interface to the router via a LAN port.
-  3. The router automatically provides the X4x0 with an IP address and internet access.
-  4. Connect another computer to the same LAN with the USRP driver (UHD) installed. Run the `uhd_find_devices` command to locate the X4x0 devices.
-  5. *For users with limited internet access*, additional VPN/proxy setup is necessary:
-    - Option 1 (Hard): Configure the router to have full internet access
-    - Option 2 (**Easy**): Install proxy software on the host computer and enable LAN Sharing.
-
-This solution is straightforward but inconvenient due to the additional router.
-
-### **Solution 2: Direct PC Connection + Internet Sharing (Convenient yet Less Reliable)**
-
-If a router is not available, you can set up the X4x0 using the **Internet Sharing** feature directly from your Mac, Ubuntu, or Windows machine.
-
-#### Key Steps for Mac:
-1. Connect the X4x0's 1GbE interface directly to the Mac using an Ethernet cable.
+### Key Steps for Mac:
+1. Connect the X4x0's 1GbE interface directly to the Mac
 2. Go to System Preferences, search 'Sharing', select "Internet Sharing" from the search results.
 3. Choose the connection you want to share from the "*Share your connection from*" menu, usually your Wi-Fi network.
 4. In the "*To computers using*" list below, choose the Ethernet port which the X4x0 is connected.
 5. In a minute or less, the X410 acquires an IP address and access to the internet.
-6. Install the USRP driver (UHD), and run the `uhd_find_devices` command to find the X4x0 devices.
-   - How to install USRP driver?
-      - Install [brew package manager](https://brew.sh), then run `brew install uhd`
-7. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Mac.
+6. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Mac.
 
-#### Key Steps for Ubuntu:
-1. Connect the X4x0's 1GbE interface directly to the Ubuntu machine using an Ethernet cable.
+### Key Steps for Ubuntu:
+1. Connect the X4x0's 1GbE interface directly to the Ubuntu machine
 2. Go to System Preferences > Network
 3. Choose the Ethernet connection which connects the X4x0, and edit this connection.
 4. Go to the IPv4 Settings tab, select "Shared to other computers", Click Save.
 5. In a minute or less, the X410 acquires an IP address and access to the internet.
-6. Install the USRP driver (UHD), and run the `uhd_find_devices` command to locate the X4x0 devices. 
-   - **[Install PicoScenes](installation.html##picoscenes-software-installation) software, and it auto-installs the latest USRP driver from the USRP offical repo.**
-7. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Ubuntu machine.
+6. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Ubuntu machine.
 
-#### Key Steps for Windows:
-1. Connect the X4x0's 1GbE interface directly to the PC using an Ethernet cable.
+### Key Steps for Windows:
+1. Connect the X4x0's 1GbE interface directly to the PC
 2. Open Control Panel > Network and Sharing Center > Change adapter settings.
 3. Right-click the connection you want to share (e.g., WiFi), and select "Properties".
 4. Go to the Sharing tab, and check "Allow other network users to connect through this computer's Internet connection".
 5. Select the Ethernet network connection used by the X4x0 from the dropdown menu under "Home networking connection".
 6. Click OK to enable Internet Sharing.
-7. Install the USRP driver (UHD), and run the `uhd_find_devices` command to locate the X4x0 devices.
-8. The X410 acquires an IP address and access to the internet.
-9. For users with limited internet access, install proxy software with LAN Sharing capabilities on the PC.
+7. The X410 acquires an IP address and access to the internet.
+8. For users with limited internet access, install proxy software with LAN Sharing capabilities on the PC.
 
-### Validate Connectivity
+## Find Device
 
-#### Validate the LAN Connection
+After setting up the network sharing as described above, the X4x0 device should have obtained an IP address. You can verify this by running the `uhd_find_devices` command on your host computer. This command should display the detected X4x0 device with its IP address.
 
-1. Ensure the host computer is connected to the same LAN and has the USRP driver (UHD) installed. Execute the `uhd_find_devices` command to locate the X4x0 devices.
+{% include note.html content="The `uhd_find_devices` command is provided by the USRP Hardware Driver (UHD). For PicoScenes users, the UHD driver will be automatically installed during the PicoScenes installation process. For detailed installation instructions, please refer to the [Installation](installation.html#picoscenes-software-installation) section." %}
 
-2. Optionally, you can further test the connectivity using the `ping` command, for example, `ping 192.168.2.2`.
+## Validate the Internet Connection
 
-#### Validate the Internet Connection
-
-1. SSH into the device using its IP address with the following command:
+1. SSH into the device using its IP address with the following command (using 192.168.2.2 as an example):
    ```
-   ssh root@192.168.2.2  # <-- 192.168.2.2 is the IP address of the X4x0
+   ssh root@192.168.2.2
    ```
-   *The X4x0 does not have ssh password by default*; simply press Enter to proceed through the login process.
+   *The X4x0 device has no default SSH password*; simply press Enter when prompted to continue the login process.
 
-2. Within the SSH session, test the backward connectivity to the host computer by `ping 192.168.2.1`.
+2. Once connected via SSH, verify connectivity back to your host computer (192.168.2.1 as an example) by running:
+   ```
+   ping 192.168.2.1
+   ```
 
-3. Still within the SSH session, test the internet connectivity to github.com by `ping github.com`.
+3. Next, test internet connectivity by pinging an external domain:
+   ```
+   ping github.com
+   ```
 
-### Validate Connectivity (for Users with Limited Internet Access)
+## Validate Connectivity (for Users with Restricted Internet Access)
 
-For users with limited internet access, the `ping github.com` command might fail. Follow these steps to configure a network proxy on the X4x0 device to obtain full internet access:
+If you have restricted internet access, the `ping github.com` command may fail. To enable internet access on the X4x0 device, follow these steps:
 
-1. Enable the **LAN Sharing** feature of the VPN/proxy software on the host computer.
+1. On your host computer, enable the **LAN Sharing** feature in your VPN/proxy software.
 
-2. SSH into the X4x0 device using its IP address like the above.
+2. SSH into the X4x0 device using its IP address.
 
-3. Execute the following script:
+3. Specify the proxy for X4x0 device by running:
    ```bash
-   export https_proxy=http://<PROXY_SHARING_IP_PORT> http_proxy=http://<PROXY_SHARING_IP_PORT> all_proxy=socks5://<PROXY_SHARING_IP_PORT>
+   export https_proxy=http://<PROXY_SHARING_IP_AND_PORT> http_proxy=http://<PROXY_SHARING_IP_AND_PORT> all_proxy=socks5://<PROXY_SHARING_IP_AND_PORT>
    ```
-   Replace `<PROXY_SHARING_IP_PORT>` with the IP/Port of your VPN/Proxy sharing port, e.g., 198.168.2.1:1234.
+   Replace `<PROXY_SHARING_IP_AND_PORT>` with your VPN/proxy sharing port (e.g., 198.168.2.1:1234).
 
-4. The `ping` command, which relies on the ICMP protocol and is not proxied by the above script, is expected to fail. Use alternative methods such as `wget` or `curl` to verify connectivity. For instance, check connectivity to github.com with the `wget` command:
+4. Since the `ping` command uses ICMP protocol (which isn't proxied), it will still fail. Instead, use `wget` to verify connectivity:
    ```bash
    wget --method=HEAD -S github.com
    ```
-    This command will attempt to download the page from github.com but will only fetch the header part to confirm connectivity.
+   This command checks if you can reach github.com by attempting to download just the page header.
 
 ## Upgrade X4x0 Filesystem 
 
@@ -126,15 +107,11 @@ For users with limited internet access, the `ping github.com` command might fail
 
 6. Reboot the system again using the `reboot` command.
 
-## Initial Verification via the 1GbE Port
+## Flash FPGA Image
 
-After completing the steps above, the X4x0 is preliminarily ready for use. To verify, utilize PicoScenes to measure CSI through the 1GbE connection.
+Before flashing the FPGA image, you need to determine which image to use based on your device connection method and signal measurement requirements. For detailed information, please refer to [NI USRP X4xx Series](connect-usrp#ni-usrp-x4xx-series). 
 
-  *Note: PicoScenes does not currently support the X440 model; therefore, the X410 model is used as an example in this section.*
-
-### Flash the 'x4_200' FPGA Image
-
-To properly receive Wi-Fi signals through the 1GbE interface, it is necessary to flash the 'x4_200' FPGA image. Follow these steps to flash the 'x4_200' FPGA image:
+The following steps demonstrate how to flash the FPGA image, using the `X4_200` image as an example:
 
 1. SSH into the X4x0 device as previously described.
 
@@ -145,30 +122,3 @@ To properly receive Wi-Fi signals through the 1GbE interface, it is necessary to
     This command flashes the device to use the 'x4_200' FPGA image.
 
 3. Reboot the system using the `reboot` command.
-
-### Run UHD Commands
-
-```bash
-uhd_find_devices
-```
-This command verifies if the USRP device is detected by the host system.
-
-```bash
-uhd_usrp_probe
-```
-This command initiates a communication session with the USRP to ensure there are no errors in connectivity or configuration.
-
-```bash
-uhd_fft --args="addr=192.168.10.2" --freq 2412e6 --rate 20e6
-```
-This command configures the USRP to receive signals at 2412 MHz with a sample rate of 20 MHz, and displays the spectrum.
-
-### Run PicoScenes
-
-After flashing the FPGA image, execute the following command on the host computer to start PicoScenes in debug mode, logging CSI data at 2.412 GHz and plotting the results:
-
-```bash
-PicoScenes '-d debug -i usrp --mode logger --freq 2412 --plot'
-```
-You can tune '2412' to other **control frequency** of the BSSID spatially nearby, and PicoScenes should display CSI 
-measurement plots.
