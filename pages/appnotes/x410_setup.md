@@ -1,7 +1,7 @@
 ---
 title: Getting Started with NI USRP X410
 keywords: NI USRP X410, setup, initialization
-last_updated: Mar. 7, 2025
+last_updated: Mar. 31, 2025
 summary: "This guide outlines the unboxing and initial configuration process for the NI USRP X410 device."
 permalink: x410-get-started
 folder: appnotes
@@ -21,33 +21,35 @@ We have just finished the first two sections, and subsequent sections are still 
 
 ## Connect The Device to the Internet via the 1GbE Port
 
-The NI USRP X4x0 device features two QSFP28+ interfaces and a single 1GbE Ethernet interface. The 1GbE port, primarily used for device management, is configured to obtain its IP address via the **DHCP protocol**. An internet connection is also required for this port to facilitate hardware initialization and firmware updates. The typical approach is to use a router with internet connectivity; however, this adds extra hardware and cables. More importantly, users who are subject to network access restrictions may find that a router doesn't provide full internet access. Therefore, we recommend establishing a direct connection between the 1GbE port and a host computer which shares its full-access internet connection. Below, we provide connection solutions for Mac, Ubuntu, and Windows platforms:
+The NI USRP X4x0 device features two QSFP28+ interfaces and a single 1GbE Ethernet interface. The 1GbE port serves as the primary management interface, configured to obtain its IP address via the **DHCP protocol**. This port requires an internet connection for hardware initialization and firmware updates. While using a router with internet connectivity is a common approach, it adds unnecessary hardware and cables. More importantly, users with network access restrictions may find that a router doesn't provide full internet access. Therefore, we recommend establishing a direct connection between the 1GbE port and a host computer that shares its full-access internet connection. Below, we provide connection solutions for Mac, Ubuntu, and Windows platforms:
 
 ### Key Steps for Mac:
-1. Connect the X4x0's 1GbE interface directly to the Mac
-2. Go to System Preferences, search 'Sharing', select "Internet Sharing" from the search results.
-3. Choose the connection you want to share from the "*Share your connection from*" menu, usually your Wi-Fi network.
-4. In the "*To computers using*" list below, choose the Ethernet port which the X4x0 is connected.
-5. In a minute or less, the X410 acquires an IP address and access to the internet.
-6. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Mac.
+1. Connect the X4x0's 1GbE interface directly to your Mac using an Ethernet cable.
+2. Open System Preferences and search for 'Sharing'.
+3. Select "Internet Sharing" from the search results.
+4. Choose your Wi-Fi network from the "*Share your connection from*" menu.
+5. Select the Ethernet port connected to the X4x0 in the "*To computers using*" list.
+6. Within a minute, the X410 should acquire an IP address and internet access.
+7. For users with limited internet access, install proxy software with LAN Sharing capabilities on your Mac.
 
 ### Key Steps for Ubuntu:
-1. Connect the X4x0's 1GbE interface directly to the Ubuntu machine
-2. Go to System Preferences > Network
-3. Choose the Ethernet connection which connects the X4x0, and edit this connection.
-4. Go to the IPv4 Settings tab, select "Shared to other computers", Click Save.
-5. In a minute or less, the X410 acquires an IP address and access to the internet.
-6. For users with limited internet access, install proxy software with LAN Sharing capabilities on the Ubuntu machine.
+1. Connect the X4x0's 1GbE interface directly to your Ubuntu machine using an Ethernet cable.
+2. Open System Preferences and navigate to Network settings.
+3. Select the Ethernet connection that connects to the X4x0.
+4. Go to the IPv4 Settings tab and select "Shared to other computers".
+5. Click Save to apply the changes.
+6. Within a minute, the X410 should acquire an IP address and internet access.
+7. For users with limited internet access, install proxy software with LAN Sharing capabilities on your Ubuntu machine.
 
 ### Key Steps for Windows:
-1. Connect the X4x0's 1GbE interface directly to the PC
-2. Open Control Panel > Network and Sharing Center > Change adapter settings.
-3. Right-click the connection you want to share (e.g., WiFi), and select "Properties".
-4. Go to the Sharing tab, and check "Allow other network users to connect through this computer's Internet connection".
-5. Select the Ethernet network connection used by the X4x0 from the dropdown menu under "Home networking connection".
+1. Connect the X4x0's 1GbE interface directly to your PC using an Ethernet cable.
+2. Open Control Panel and navigate to Network and Sharing Center > Change adapter settings.
+3. Right-click your internet connection (e.g., WiFi) and select "Properties".
+4. Go to the Sharing tab and check "Allow other network users to connect through this computer's Internet connection".
+5. Select the Ethernet connection used by the X4x0 from the dropdown menu under "Home networking connection".
 6. Click OK to enable Internet Sharing.
-7. The X410 acquires an IP address and access to the internet.
-8. For users with limited internet access, install proxy software with LAN Sharing capabilities on the PC.
+7. Within a minute, the X410 should acquire an IP address and internet access.
+8. For users with limited internet access, install proxy software with LAN Sharing capabilities on your PC.
 
 ## Find Device
 
@@ -57,18 +59,18 @@ After setting up the network sharing as described above, the X4x0 device should 
 
 ## Validate the Internet Connection
 
-1. SSH into the device using its IP address with the following command (using 192.168.2.2 as an example):
+1. SSH into the device using its IP address (using 192.168.2.2 as an example):
    ```
    ssh root@192.168.2.2
    ```
-   *The X4x0 device has no default SSH password*; simply press Enter when prompted to continue the login process.
+   *Note: The X4x0 device has no default SSH password*; simply press Enter when prompted to continue the login process.
 
-2. Once connected via SSH, verify connectivity back to your host computer (192.168.2.1 as an example) by running:
+2. Once connected via SSH, verify connectivity to your host computer (192.168.2.1 as an example):
    ```
    ping 192.168.2.1
    ```
 
-3. Next, test internet connectivity by pinging an external domain:
+3. Test internet connectivity by pinging an external domain:
    ```
    ping github.com
    ```
@@ -81,7 +83,7 @@ If you have restricted internet access, the `ping github.com` command may fail. 
 
 2. SSH into the X4x0 device using its IP address.
 
-3. Specify the proxy for X4x0 device by running:
+3. Configure the proxy settings by running:
    ```bash
    export https_proxy=http://<PROXY_SHARING_IP_AND_PORT> http_proxy=http://<PROXY_SHARING_IP_AND_PORT> all_proxy=socks5://<PROXY_SHARING_IP_AND_PORT>
    ```
@@ -95,17 +97,29 @@ If you have restricted internet access, the `ping github.com` command may fail. 
 
 ## Upgrade X4x0 Filesystem 
 
-1. SSH into the X4x0 device using its previously mentioned IP address.
+1. SSH into the X4x0 device using its IP address.
 
-2. Execute the command `usrp_update_fs -t master` to upgrade to the latest file system.
+2. Run the following command to upgrade to the latest file system:
+   ```bash
+   usrp_update_fs -t master
+   ```
 
-3. Reboot the system by issuing the `reboot` command.
+3. Reboot the system:
+   ```bash
+   reboot
+   ```
 
-4. SSH into the X4x0 device once more.
+4. After the reboot, SSH into the X4x0 device again.
 
-5. Execute `mender commit` to save the changes to the filesystem.
+5. Save the filesystem changes:
+   ```bash
+   mender commit
+   ```
 
-6. Reboot the system again using the `reboot` command.
+6. Reboot the system one final time:
+   ```bash
+   reboot
+   ```
 
 ## Flash FPGA Image
 
@@ -115,18 +129,20 @@ The following steps demonstrate how to flash the FPGA image, using the `X4_200` 
 
 1. SSH into the X4x0 device as previously described.
 
-2. Execute the following command:
+2. Run the following command to flash the FPGA image:
     ```bash
     uhd_image_loader --args='type=x4xx,mgmt_addr=127.0.0.1,fpga=X4_200'
     ```
     This command flashes the device to use the 'x4_200' FPGA image.
 
-3. Reboot the system using the `reboot` command.
+3. Reboot the system:
+    ```bash
+    reboot
+    ```
 
 ## Next Steps
 
 Congratulations! You have now completed the initial setup of your X4x0 device. For the next steps, you may want to:
 
 1. Learn about dual QSFP28 port connections by referring to the [Connecting NI USRP Devices](connect-usrp) documentation.
-2. Explore using PicoScenes to drive the X4x0 device for Wi-Fi ISAC research by checking out the [CSI Measurement using PicoScenes
-](scenarios) documentation. 
+2. Explore using PicoScenes to drive the X4x0 device for Wi-Fi ISAC research by checking out the [CSI Measurement using PicoScenes](scenarios) documentation. 
