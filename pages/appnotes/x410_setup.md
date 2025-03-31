@@ -1,13 +1,15 @@
 ---
-title: Getting Started with NI USRP X410
-keywords: NI USRP X410, setup, initialization
+title: Getting Started with NI USRP X4x0 Series
+keywords: NI USRP X4x0, X410, X420, X440, MPM Architecture, E320, N3xx
 last_updated: Mar. 31, 2025
-summary: "This guide outlines the unboxing and initial configuration process for the NI USRP X410 device."
+summary: "This guide outlines the unboxing and initial configuration process for the NI USRP X4x0 series device and other MPM architecture devices."
 permalink: x410-get-started
 folder: appnotes
 toc: true
 disable_heading_numbers: true
 ---
+
+{% include tip.html content="Although this guide is specifically written for the X4x0 series, the procedures described here are fully compatible with all USRP devices using the MPM (Modular Peripheral Manager) architecture, including the E320 and N3xx series." %}
 
 ## Document Structure
 
