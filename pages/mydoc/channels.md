@@ -1,15 +1,17 @@
 ---
-title: "Wi-Fi Channelization"
-sidebar: mydoc_sidebar
-permalink: channels.html
-disables_heading_numbers: true
+title: Wi-Fi Channelization
+keywords: Wi-Fi, channels, frequency, bandwidth, 2.4GHz, 5GHz, 6GHz
+last_updated: Mar. 31, 2025
+summary: "This note explains Wi-Fi channel specifications and how to correctly set channels for PicoScenes with both COTS NICs and SDR devices. Multiple examples are provided for different channel widths (20MHz, 40MHz, 80MHz, 160MHz) and frequency bands (2.4GHz, 5GHz, 6GHz)."
+permalink: channels
+folder: appnotes
+toc: true
+disable_heading_numbers: true
 ---
 
-Many PicoScenes users are confused by how to correctly set channel for `array_prepare_for_picoscenes` and `PicoScenes` commands. In this page, we first give some examples, then we present a full Wi-Fi channel table for reference.
+Many PicoScenes users are confused about how to correctly set channels for `array_prepare_for_picoscenes` and `PicoScenes` commands. On this page, we provide some examples, then we present a full Wi-Fi channel table for reference.
 
-## Examples on How to Specify Wi-Fi Channels for COTS NICs and SDR Devices 
-
-### For COTS NICs
+## Examples of Specifiying Channel for COTS NICs
 
 Some example commands for *array_prepare_for_picoscenes* are:
 
@@ -39,7 +41,7 @@ array_prepare_for_picoscenes NIC_ID "5180 160 5250" #<- Don't miss the quotation
 
 > **Note**: See [naming_for_nics] for <NIC_ID>.
 
-### For SDR Devices
+## Examples of Specifiying Channel for SDR
 
 1. If you want to user SDR <SDR_ID> to receive frames at a 20 MHz bandwidth channel, for example 2412 MHz:
 
