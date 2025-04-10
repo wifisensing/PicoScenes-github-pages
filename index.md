@@ -10,22 +10,22 @@ disable_heading_numbers: true
 
 ## News! {#news}
 
-- **May 12, 2024** PicoScenes Radar mode now supports SISO, SIMO, MIMO and MIMO across multiple devices measurements, see [Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format](scenarios.html#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format).
-- **Mar. 19, 2024** PicoScenes now provides a UDP forwarding/receiving utility! See [UDP-Forwarder Plugin & UDPRemoteLogger](utilities.html#91-udp-forwarder-plugin--udpremotelogger).
-- **Mar. 19, 2024** PicoScenes now officially supports Ubuntu 22.04! See [PicoScenes Software Installation](installation.html#52-picoscenes-software-installation).
+- **May 12, 2024** PicoScenes Radar mode now supports SISO, SIMO, MIMO and MIMO across multiple devices measurements, see [Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format](scenarios.html#wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format).
+- **Mar. 19, 2024** PicoScenes now provides a UDP forwarding/receiving utility! See [UDP-Forwarder Plugin & UDPRemoteLogger](utilities.html#udp-forwarder-plugin--udpremotelogger).
+- **Mar. 19, 2024** PicoScenes now officially supports Ubuntu 22.04! See [PicoScenes Software Installation](installation.html#picoscenes-software-installation).
 - **Mar. 12, 2024** We are pleased to announce that our research, "**Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities**", has been accepted by **IEEE Communication Magazine (IF=11.2)**. For More information, please visit its online supplementary materials [Online supplementaries for "Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities"](reshaping-wifi-isac.html).
 - **Jan. 20, 2024** [Developing Your PicoScenes Plugins](plugin.html) page is completely rewritten. Thanks to Tian Teng for his brilliant work!
 - **Dec. 26, 2023** Revise the [Selling NI USRP Devices (与NI合作销售USRP系列产品)](ni.html) page.
 - **Dec. 20, 2023** Initiating the Ubuntu 22.04 (and soon 24.04) transition of PicoScenes system (client program and CI server).
-- **Dec. 3, 2023** Add Radar and MIMO-Radar modes for SDR frontend, see [Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format.](scenarios.html#623-wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format).
+- **Dec. 3, 2023** Add Radar and MIMO-Radar modes for SDR frontend, see [Wi-Fi Radar (802.11bf Mono-Static Sensing Mode) with 802.11a/g/n/ac/ax/be Frame Format.](scenarios.html#wi-fi-radar-80211bf-mono-static-sensing-mode-with-80211agnacaxbe-frame-format).
 - **Dec. 2, 2023** Major update to license: all limitations for COTS NICS (6 GHz band, 11ax 80/160 MHz CBW packet injection and more) removed! More than 10 SDR-only limitations are removed (unlimited channel/bandwidth access, Wi-Fi 7 Tx and Rx, up to 320 MHz CBW and more). See [Features & License](features_pricing.html) for more details. (**Upgrade to latest version to validate**!)
 - **Nov. 29, 2023** Add a new page [Selling NI USRP Devices (与NI合作销售USRP系列产品)](ni.html) describing how we collaborate with NI selling USRP hardware. This program is exclusively available in mainland China.
 - **Nov. 28, 2023** Add a new page [Features & License](features_pricing.html) replacing the old PSLP page.
 - **Nov. 20, 2023** page [CSI Measurement using PicoScenes](scenarios.html) is completely rewritten. Readability is significantly improved.
-- **Nov. 18, 2023** Add docs for two experimental features: [Dual-Channel Spectrum Splitting and Stitching (Experimental)](scenarios.html#6264-dual-channel-spectrum-splitting-and-stitching-experimental) and [Multi-Thread Rx Decoding (Experimental)](scenarios.html#6265-multi-thread-rx-decoding-experimental).
+- **Nov. 18, 2023** Add docs for two experimental features: [Dual-Channel Spectrum Splitting and Stitching (Experimental)](scenarios.html#dual-channel-spectrum-splitting-and-stitching-experimental) and [Multi-Thread Rx Decoding (Experimental)](scenarios.html#multi-thread-rx-decoding-experimental).
 - **Nov. 17, 2023** Add two quick reference pages: [Wi-Fi Channelization](channels.html) and [PicoScenes Presets](presets.html).
 - **Nov. 16, 2023** Page revised [Supported Hardware](hardware.html), [PicoScenes Installation & Upgrade](installation.html), [CSI Measurement using PicoScenes](scenarios.html), and [Utility Programs and Bash Scripts](utilities.html).
-- **Nov. 1, 2023** **PicoScenes adds Wi-Fi 7 (EHT-SU) support for SDR frontends.** PicoScenes is currently the only platform support Wi-Fi 7 based ISAC research. See our Wi-Fi 7 examples [Transmitting 802.11a/g/n/ac/ax/be protocol frames using SDR Devices](scenarios.html#622-transmitting-80211agnacaxbe-protocol-frames-using-sdr-devices).
+- **Nov. 1, 2023** **PicoScenes adds Wi-Fi 7 (EHT-SU) support for SDR frontends.** PicoScenes is currently the only platform support Wi-Fi 7 based ISAC research. See our Wi-Fi 7 examples [Transmitting 802.11a/g/n/ac/ax/be protocol frames using SDR Devices](scenarios.html#transmitting-80211agnacaxbe-protocol-frames-using-sdr-devices).
 
 ## What is PicoScenes? {#what_is_picoscenes}
 
