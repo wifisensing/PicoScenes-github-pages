@@ -1,7 +1,7 @@
 import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
-  { text: "User Manual", icon: "java", link: "/home.md" },
+  { text: "User Manual", icon: "about", link: "/home.md" },
   { text: "Application Notes", icon: "book", link: "/appnotes/appnotes.md" },
   { text: "GitHub", icon: "github", link: "https://github.com/wifisensing" },
   {
