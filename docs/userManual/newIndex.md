@@ -1,0 +1,11 @@
+PicoScenes is a Wi-Fi PHY-layer software that enhances modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research across several crucial areas:
+
+* **Channel State Information (CSI) Measurement**: Facilitates CSI measurement using SDR devices (NI USRP and HackRF One) and commercial Wi-Fi NICs (Intel AX210, Intel 5300, and Qualcomm 9300).
+* **Advanced and Standard-Compliant Transceiving**: Guarantees high-performance, standard-compliant transmission and reception of 802.11a/g/n/ac/ax/be frames using SDR and Wi-Fi NICs. PicoScenes ensures full interoperability with commercial Wi-Fi NICs, enabling highly reciprocal transceiving capabilities.
+    - With SDR devices, it supports up to 8x8 MIMO/MU-MIMO, punctured-OFDMA, 320-MHz channel bandwidth (CBW), and 4096-QAM modulation.
+    - With Wi-Fi NICs, specifically the Intel AX210 NIC, it fully supports the Wi-Fi 6E standard, including 802.11ax, 160-MHz CBW, and the complete 6-GHz band access.
+* **Full PHY-Layer Control**: Provides arbitrary control over carrier frequency, bandwidth, and per-antenna Tx/Rx gain, nanosecond-level precise timing for Tx/Rx, hardware impairment simulation (CFO, SFO, I/Q imbalance), Tx precoding or beamforming (per-subcarrier/antenna/spatial-stream), and various baseband modem controls.
+* **Rich PHY-Layer Information**: Delivers detailed information such as raw I/Q data, OFDM symbols, and SFO/CFO/STO on a per-packet basis.
+* **Powerful Control**: Offers Python bindings and C++ plugin mechanism, enabling complex hardware control, data-analysis, and Tx/Rx operations in real-time.
+* **Easy-To-Use and Time Saving**: Supports Ubuntu, macOS, and Windows platforms, SDR devices Plug'n'Play, accompanied by the PicoScenes-MATLAB/Python-Toolbox, live data display, UDP forwarding, and an easy-to-use GUI control.
+* **Elevated Research Starting Point**: Offers out-of-the-box Python bindings for deep learning and data science, fully open-sourced RTT-style Wi-Fi ranging, AoA/ToF estimation, multi-purposed DSP library, and SISO/MIMO Wi-Fi radar capabilities.
