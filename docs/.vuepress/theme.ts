@@ -47,6 +47,8 @@ export default hopeTheme({
     math: true,
   },
 
+  toc: true,
+
   plugins: {
     blog: true,
 
