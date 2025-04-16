@@ -7,7 +7,7 @@ export default sidebar({
   "/appnotes/": appnotes,
   "/": [
     {
-      text: "User Manual",
+      text: "Overview",
       icon: "star",
       link: "home.md",
       // collapsible: true,
