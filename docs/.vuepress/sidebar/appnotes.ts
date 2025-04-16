@@ -2,11 +2,11 @@ import { arraySidebar } from "vuepress-theme-hope";
 
 export const appnotes = arraySidebar([
     {
-      text: "Connect USRP",
+      text: "Connecting NI USRP Devices",
       link: "connect-usrp",
     },
     {
-      text: "x410 set up",
+      text: "Getting Started with NI USRP X4x0 Series",
       link: "x410-setup",
     },
   ]);
