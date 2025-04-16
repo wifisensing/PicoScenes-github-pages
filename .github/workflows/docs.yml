@@ -28,10 +28,16 @@ jobs:
           # cache deps for pnpm
           cache: pnpm
 
+      - name: Clean and install deps
+        run: |
+            rm -rf node_modules pnpm-lock.yaml
+            pnpm install
+      
       - name: Install deps
         run: | 
           pnpm install --frozen-lockfile
-          pnpm add @vuepress/client@next vuepress@next --save-dev
+          pnpm remove @vuepress/client
+          pnpm add @vuepress/client@2.0.0-rc.19 -D -E
 
       # run build script
       - name: Build VuePress site

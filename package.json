@@ -4,7 +4,7 @@
   "private": true,
   "description": "picoscenes",
   "license": "MIT",
-  "author": "Guide",
+  "author": "Zhiping Jiang",
   "scripts": {
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.19",
+    "@vuepress/client": "2.0.0-rc.19",
     "@vuepress/plugin-feed": "2.0.0-rc.70",
     "@vuepress/plugin-search": "2.0.0-rc.70",
     "husky": "9.1.7",

@@ -13,7 +13,7 @@ export default hopeTheme({
 
   author: {
     name: "Zhiping Jiang",
-    url: "https://faculty.xidian.edu.cn/zpj/zh_CN/index.htm",
+    // url: "https://faculty.xidian.edu.cn/zpj/zh_CN/index.htm",
   },
 
   repo: "https://github.com/",
