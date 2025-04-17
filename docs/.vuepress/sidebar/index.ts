@@ -4,7 +4,7 @@ import { appnotes } from "./appnotes.js";
 
 export default sidebar({
   // 应该把更精确的路径放置在前边
-  "/appnotes/": appnotes,
+  "/appnotes/": [],
   "/": [
     {
       text: "Overview",

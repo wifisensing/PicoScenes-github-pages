@@ -6,7 +6,7 @@ startNumber: 11
 
 PicoScenes is *still* under *very active* development. We are adding new features, new controls, and fix bugs. Checkout the changelogs for the latest progress.
 
-[PicoScenes Platform Changelog](https://zpj.io/PicoScenes/platform-changelog)
+[PicoScenes Platform Changelog](https://ps2204.zpj.io/PicoScenes/22.04/x86_64/platform-changelog)
 
 [PicoScenes Plugin Development Kit (PDK) Changelog](https://github.com/wifisensing/PicoScenes-PDK/-/blob/master/changelog.html)
 
