@@ -2,8 +2,8 @@
   --navbar-height: 3.6rem;
   --sidebar-width: 16rem; /* 根据你的侧边栏实际宽度调整 */
   --toc-width: 16rem; /* 目录宽度 */
-  --toc-right-margin: 2rem; /* 目录距离内容区的间距 */
-  --content-max-width: 740px; /* 假设内容区域最大宽度 */
+  --toc-right-margin: 2rem; /* 增加目录距离内容区的间距 (原为2rem) */
+  --content-max-width: 800px; /* 假设内容区域最大宽度 */
 }
 
 /* 强制显示滚动条，避免宽度跳动 */
@@ -20,14 +20,6 @@ h4,
 h5,
 h6 {
   scroll-margin-top: calc(var(--navbar-height) + 1rem);
-}
-
-/* 在大屏幕上为内容区域预留目录空间 */
-@media (min-width: 1301px) {
-  .theme-container .page {
-    /* 计算右侧padding，确保内容不与固定TOC重叠 */
-    padding-right: calc(var(--toc-width) + var(--toc-right-margin) + 1rem);
-  }
 }
 
 body {
