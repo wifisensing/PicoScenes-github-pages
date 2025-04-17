@@ -1,27 +1,29 @@
 <template>
   <div class="custom-toc" v-if="headers.length">
     <div class="toc-header">目录</div>
-    <ul class="toc-list">
-      <li 
-        v-for="header in headers" 
-        :key="header.slug"
-        class="toc-item level-2"
-        :class="{ 'active': activeLink === `#${header.slug}` }"
-      >
-        <a :href="`#${header.slug}`" :title="header.title">{{ header.title }}</a>
-        <!-- 显示三级子标题 -->
-        <ul v-if="header.children && header.children.length" class="sub-list">
-          <li 
-            v-for="child in header.children" 
-            :key="child.slug"
-            class="toc-item level-3"
-            :class="{ 'active': activeLink === `#${child.slug}` }"
-          >
-            <a :href="`#${child.slug}`" :title="child.title">{{ child.title }}</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <div class="toc-container">
+      <ul class="toc-list">
+        <li 
+          v-for="header in headers" 
+          :key="header.slug"
+          class="toc-item level-2"
+          :class="{ 'active': activeLink === `#${header.slug}` }"
+        >
+          <a :href="`#${header.slug}`" :title="header.title">{{ header.title }}</a>
+          <!-- 显示三级子标题 -->
+          <ul v-if="header.children && header.children.length" class="sub-list">
+            <li 
+              v-for="child in header.children" 
+              :key="child.slug"
+              class="toc-item level-3"
+              :class="{ 'active': activeLink === `#${child.slug}` }"
+            >
+              <a :href="`#${child.slug}`" :title="child.title">{{ child.title }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -37,6 +39,7 @@ export default {
     const headers = ref([])
     const activeLink = ref('')
     const allHeaders = ref([]) // 存储展平后的所有标题
+    const mainContentWidth = ref(0)
 
     const resolveHeaders = () => {
       // 获取所有二级标题
@@ -80,12 +83,30 @@ export default {
       }
     }
 
+    // 定位目录到内容区域右侧
+    const positionToc = () => {
+      if (typeof document === 'undefined') return
+      
+      // 查找主内容区域元素
+      const mainContent = document.querySelector('.theme-hope-content') || 
+                           document.querySelector('.theme-default-content') || 
+                           document.querySelector('main')
+      
+      if (!mainContent) return
+      
+      // 获取主内容区域的宽度和右侧位置
+      const contentRect = mainContent.getBoundingClientRect()
+      mainContentWidth.value = contentRect.width
+    }
+
     onMounted(() => {
       resolveHeaders()
       
       nextTick(() => {
         updateActiveLink()
+        positionToc()
         window.addEventListener('scroll', updateActiveLink)
+        window.addEventListener('resize', positionToc)
       })
     })
 
@@ -95,18 +116,22 @@ export default {
     watch(() => page.value.path, () => {
       if (typeof window !== 'undefined') {
         window.removeEventListener('scroll', updateActiveLink)
+        window.removeEventListener('resize', positionToc)
         
         nextTick(() => {
           resolveHeaders()
           updateActiveLink()
+          positionToc()
           window.addEventListener('scroll', updateActiveLink)
+          window.addEventListener('resize', positionToc)
         })
       }
     })
 
     return {
       headers,
-      activeLink
+      activeLink,
+      mainContentWidth
     }
   }
 }
@@ -114,32 +139,44 @@ export default {
 
 <style scoped>
 .custom-toc {
-  position: fixed;
-  right: 2rem;
-  top: 10rem;
+  position: sticky;
+  top: 6rem;
+  float: right;
+  margin-right: -20rem;
   width: 16rem;
-  max-height: calc(100vh - 15rem);
+  max-height: calc(100vh - 12rem);
   overflow-y: auto;
-  border-left: 1px solid #eaecef;
-  padding-left: 1rem;
-  z-index: 0;
+  border: 1px solid #eaecef;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  z-index: 10;
 }
 
 .toc-header {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.7rem 1rem;
+  background-color: #f3f5f7;
+  border-bottom: 1px solid #eaecef;
+}
+
+.toc-container {
+  padding: 0.5rem 0;
+  background-color: #fff;
 }
 
 .toc-list {
   list-style: none;
-  padding-left: 0;
+  padding: 0 1rem;
   margin: 0;
 }
 
 .sub-list {
   list-style: none;
-  padding-left: 1rem;
+  padding-left: 1.2rem;
   margin: 0.25rem 0 0.5rem;
+  border-left: 1px solid #eaecef;
 }
 
 .toc-item {
@@ -148,17 +185,19 @@ export default {
 }
 
 .level-2 {
-  padding-left: 0;
+  font-weight: 500;
+  margin-top: 0.3rem;
 }
 
 .level-3 {
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 
 .toc-item a {
   color: #2c3e50;
   text-decoration: none;
   transition: color 0.3s;
+  display: inline-block;
 }
 
 .toc-item a:hover,

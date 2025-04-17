@@ -1,6 +1,7 @@
 ---
 title: Connecting NI USRP Devices
 ---
+<CustomToc />
 
 ## Document Structure
 
