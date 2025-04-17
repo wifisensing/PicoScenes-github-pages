@@ -187,34 +187,38 @@ export default {
   margin-right: -20rem;
   width: 16rem;
   max-height: calc(100vh - 12rem);
-  border: 1px solid #eaecef;
+  border: 1px solid var(--c-border);
   border-radius: 6px;
-  background-color: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  background-color: var(--c-bg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   z-index: 10;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .toc-header {
   font-weight: 600;
   font-size: 1.1rem;
   padding: 0.7rem 1rem;
-  background-color: #f3f5f7;
-  border-bottom: 1px solid #eaecef;
+  background-color: var(--c-bg-lighter);
+  border-bottom: 1px solid var(--c-border);
   position: sticky;
   top: 6rem;
   z-index: 2;
+  color: var(--c-text);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .toc-container {
   padding: 0.5rem 0;
-  background-color: #fff;
+  background-color: var(--c-bg);
   overflow-y: auto;
   max-height: calc(100vh - 15rem);
   scrollbar-width: thin;
-  scrollbar-color: #e0e0e0 transparent;
+  scrollbar-color: var(--c-border) transparent;
   scroll-behavior: smooth;
+  transition: background-color 0.3s;
 }
 
 .toc-container::-webkit-scrollbar {
@@ -226,7 +230,7 @@ export default {
 }
 
 .toc-container::-webkit-scrollbar-thumb {
-  background-color: #e0e0e0;
+  background-color: var(--c-border);
   border-radius: 3px;
 }
 
@@ -240,7 +244,8 @@ export default {
   list-style: none;
   padding-left: 1.2rem;
   margin: 0.25rem 0 0.5rem;
-  border-left: 1px solid #eaecef;
+  border-left: 1px solid var(--c-border);
+  transition: border-color 0.3s;
 }
 
 .toc-item {
@@ -258,7 +263,7 @@ export default {
 }
 
 .toc-item a {
-  color: #2c3e50;
+  color: var(--c-text);
   text-decoration: none;
   transition: color 0.3s;
   display: inline-block;
@@ -266,7 +271,7 @@ export default {
 
 .toc-item a:hover,
 .toc-item.active > a {
-  color: #3eaf7c;
+  color: var(--c-brand);
   font-weight: 600;
 }
 
@@ -282,7 +287,7 @@ export default {
   transform: translateY(-50%);
   width: 3px;
   height: 1em;
-  background-color: #3eaf7c;
+  background-color: var(--c-brand);
   border-radius: 0 2px 2px 0;
 }
 
