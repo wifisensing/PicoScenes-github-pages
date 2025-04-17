@@ -41,3 +41,17 @@ h4 {
 [data-numbering="1"] h4:before {
   content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) "." counter(h4counter) ". ";
 }
+
+/* 自定义TOC样式 */
+.custom-toc {
+  .toc-item.active > a {
+    color: var(--c-brand);
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 959px) {
+  .custom-toc {
+    display: none;
+  }
+}

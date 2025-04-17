@@ -1,5 +1,6 @@
 import { h, onMounted, watch } from 'vue'
 import { defineClientConfig, usePageData, useRouter } from '@vuepress/client'
+import CustomToc from './components/CustomToc.vue'
 
 const NumberingSetter = {
   setup() {
@@ -55,6 +56,7 @@ const NumberingSetter = {
 export default defineClientConfig({
   enhance({ app }) {
     app.component('NumberingSetter', NumberingSetter)
+    app.component('CustomToc', CustomToc)
   },
-  rootComponents: [NumberingSetter]
+  rootComponents: [NumberingSetter, CustomToc]
 })
