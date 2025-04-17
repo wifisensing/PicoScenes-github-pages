@@ -1,7 +1,7 @@
 <template>
   <div class="custom-toc" v-if="headers.length">
     <div class="toc-header">
-      <span>On this page</span>
+      <span>Current page content</span>
       <button class="print-button" @click="printPage" title="打印页面">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 6 2 18 2 18 9"></polyline>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { ref, onMounted, watch, nextTick } from 'vue'
+import { ref, onMounted, watch, nextTick, onBeforeUnmount } from 'vue'
 import { usePageData, usePageFrontmatter } from '@vuepress/client'
 
 export default {
@@ -49,13 +49,12 @@ export default {
     const activeLink = ref('')
     const prevActiveLink = ref('')
     const allHeaders = ref([]) // 存储展平后的所有标题
-    const mainContentWidth = ref(0)
+    let scrollDebounceTimer = null
+    let resizeDebounceTimer = null
+    let tocScrollTimer = null // 用于目录内部滚动
 
     const resolveHeaders = () => {
-      // 获取所有二级标题
       headers.value = page.value.headers
-      
-      // 将所有标题(包括子标题)展平为一个数组，用于滚动监听
       const flattened = []
       headers.value.forEach(h => {
         flattened.push(h)
@@ -64,12 +63,9 @@ export default {
         }
       })
       allHeaders.value = flattened
-      
-      console.log('标题结构:', headers.value)
-      console.log('展平的所有标题:', allHeaders.value)
     }
 
-    // 滚动活动项到视图中央
+    // 滚动目录项到视图中央
     const scrollActiveItemToCenter = () => {
       if (typeof document === 'undefined' || !activeLink.value || activeLink.value === prevActiveLink.value) return
       
@@ -77,21 +73,23 @@ export default {
       
       // 等待DOM更新完成
       nextTick(() => {
-        const activeLinkId = activeLink.value.slice(1) // 移除#前缀
-        const activeItem = document.querySelector(`.toc-item.active`)
+        const activeItem = document.querySelector(`.toc-item a[href="${activeLink.value}"]`)
         const tocContainer = document.querySelector('.toc-container')
         
         if (!activeItem || !tocContainer) return
         
-        // 计算目标滚动位置 - 将活动项居中
+        const activeItemElement = activeItem.closest('.toc-item')
+        if (!activeItemElement) return
+
         const containerHeight = tocContainer.clientHeight
-        const itemTop = activeItem.offsetTop
-        const itemHeight = activeItem.clientHeight
-        
-        // 目标位置是项目顶部减去容器一半高度，再加上项目一半高度
+        const itemTop = activeItemElement.offsetTop
+        const itemHeight = activeItemElement.clientHeight
         const scrollTarget = itemTop - (containerHeight / 2) + (itemHeight / 2)
         
-        // 平滑滚动到目标位置
+        // 清除旧的定时器
+        if(tocScrollTimer) clearTimeout(tocScrollTimer)
+        
+        // 使用平滑滚动，但给一个稍长的时间
         tocContainer.scrollTo({
           top: Math.max(0, scrollTarget),
           behavior: 'smooth'
@@ -99,98 +97,110 @@ export default {
       })
     }
 
+    // 更新激活链接（由滚动或页面加载触发）
     const updateActiveLink = () => {
       if (allHeaders.value.length === 0 || typeof document === 'undefined') return
 
-      // 获取所有标题元素
-      const headerLinks = allHeaders.value.map(header => ({
-        id: header.slug,
-        top: document.getElementById(header.slug)?.getBoundingClientRect().top || 0
-      }))
+      const topOffset = 80 // 距离视口顶部的偏移量
+      let currentActiveSlug = ''
 
-      // 找到第一个在视口顶部以下的标题
-      const currentHeaderLink = headerLinks
-        .filter(link => link.top > 80)
-        .sort((a, b) => a.top - b.top)[0]
-
-      // 如果找不到在视口内的标题，则使用第一个标题
-      if (currentHeaderLink) {
-        activeLink.value = `#${currentHeaderLink.id}`
-      } else if (headerLinks.length > 0) {
-        // 如果所有标题都在视口顶部以上，则选择最后一个标题
-        const lastLink = headerLinks.sort((a, b) => b.top - a.top)[0]
-        activeLink.value = `#${lastLink.id}`
+      // 倒序遍历标题，找到最后一个满足条件的
+      for (let i = allHeaders.value.length - 1; i >= 0; i--) {
+        const header = allHeaders.value[i]
+        const element = document.getElementById(header.slug)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= topOffset) {
+            currentActiveSlug = header.slug
+            break // 找到第一个顶部在偏移量之上的元素
+          }
+        }
       }
       
-      // 滚动目录使活动项居中
-      scrollActiveItemToCenter()
+      // 如果没有找到满足条件的（例如页面顶部），则尝试取第一个标题
+      if (!currentActiveSlug && allHeaders.value.length > 0) {
+         const firstHeader = allHeaders.value[0]
+         const firstElement = document.getElementById(firstHeader.slug)
+         // 确保第一个元素实际存在且可见（或部分可见）
+         if (firstElement && firstElement.getBoundingClientRect().top < window.innerHeight) {
+             currentActiveSlug = firstHeader.slug
+         }
+      }
+
+      const newActiveLink = `#${currentActiveSlug}`
+      if (newActiveLink !== '#' && newActiveLink !== activeLink.value) {
+        activeLink.value = newActiveLink
+      }
     }
 
-    // 定位目录到内容区域右侧
-    const positionToc = () => {
-      if (typeof document === 'undefined') return
-      
-      // 查找主内容区域元素
-      const mainContent = document.querySelector('.theme-hope-content') || 
-                           document.querySelector('.theme-default-content') || 
-                           document.querySelector('main')
-      
-      if (!mainContent) return
-      
-      // 获取主内容区域的宽度和右侧位置
-      const contentRect = mainContent.getBoundingClientRect()
-      mainContentWidth.value = contentRect.width
+    // 滚动事件防抖处理
+    const debouncedScrollHandler = () => {
+      if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer)
+      scrollDebounceTimer = setTimeout(updateActiveLink, 150) // 稍微增加延迟
     }
-
+    
+    // 调整大小事件防抖处理
+    const debouncedResizeHandler = () => {
+       // 调整大小时可能需要重新计算TOC的位置（如果不是纯fixed）
+       // 在fixed定位下，这个可能不需要，但保留以防万一
+    }
+    
     // 打印当前页面
     const printPage = () => {
-      if (typeof window !== 'undefined') {
-        window.print()
-      }
+      if (typeof window !== 'undefined') window.print()
+    }
+    
+    // 初始化或页面切换后的处理
+    const initializeToc = () => {
+       resolveHeaders()
+       // 延迟执行，等待页面渲染和可能的锚点跳转完成
+       setTimeout(() => {
+         if (typeof window !== 'undefined' && window.location.hash) {
+           activeLink.value = window.location.hash
+         } else {
+           updateActiveLink() // 根据当前滚动位置设置
+         }
+         // 滚动目录到激活项
+         setTimeout(scrollActiveItemToCenter, 100) 
+       }, 300) // 增加延迟确保浏览器滚动完成
     }
 
     onMounted(() => {
-      resolveHeaders()
-      
-      nextTick(() => {
-        updateActiveLink()
-        positionToc()
-        window.addEventListener('scroll', updateActiveLink)
-        window.addEventListener('resize', positionToc)
-      })
+      initializeToc()
+      window.addEventListener('scroll', debouncedScrollHandler)
+      window.addEventListener('resize', debouncedResizeHandler)
+    })
+    
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', debouncedScrollHandler)
+      window.removeEventListener('resize', debouncedResizeHandler)
+      if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer)
+      if (resizeDebounceTimer) clearTimeout(resizeDebounceTimer)
+      if (tocScrollTimer) clearTimeout(tocScrollTimer)
     })
 
-    watch(() => page.value.headers, resolveHeaders)
-
-    // 页面切换时清除滚动监听
+    // 监听路由变化
     watch(() => page.value.path, () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('scroll', updateActiveLink)
-        window.removeEventListener('resize', positionToc)
-        
-        nextTick(() => {
-          resolveHeaders()
-          prevActiveLink.value = '' // 重置上一个活动链接
-          updateActiveLink()
-          positionToc()
-          window.addEventListener('scroll', updateActiveLink)
-          window.addEventListener('resize', positionToc)
-        })
-      }
+      // 移除旧监听器
+      window.removeEventListener('scroll', debouncedScrollHandler)
+      window.removeEventListener('resize', debouncedResizeHandler)
+      prevActiveLink.value = ''
+      activeLink.value = '' // 重置激活链接
+      // 重新初始化
+      initializeToc()
+      // 重新添加监听器
+      window.addEventListener('scroll', debouncedScrollHandler)
+      window.addEventListener('resize', debouncedResizeHandler)
     })
 
-    // 监听activeLink变化
-    watch(() => activeLink.value, (newVal, oldVal) => {
-      if (newVal !== oldVal) {
-        scrollActiveItemToCenter()
-      }
-    })
+    // 监听activeLink变化，滚动目录
+    watch(activeLink, scrollActiveItemToCenter)
 
     return {
       headers,
       activeLink,
-      mainContentWidth,
-      printPage
+      printPage,
+      // 不再需要导出 handleTocClick，使用默认锚点行为
     }
   }
 }
@@ -198,11 +208,11 @@ export default {
 
 <style scoped>
 .custom-toc {
-  position: sticky;
+  position: fixed;
+  /* 定位到内容区域右侧，考虑内容最大宽度和视口宽度 */
+  right: max(var(--toc-right-margin), calc((100vw - var(--content-max-width)) / 2 - var(--toc-width) - var(--sidebar-width, 0rem)));
   top: 6rem;
-  float: right;
-  margin-right: -20rem;
-  width: 16rem;
+  width: var(--toc-width);
   max-height: calc(100vh - 12rem);
   border: none;
   border-radius: 0;
@@ -222,21 +232,52 @@ export default {
   padding: 0.7rem 1rem 0.7rem 0.5rem;
   background-color: transparent;
   border-bottom: 1px solid var(--c-border);
-  position: sticky;
-  top: 6rem;
+  position: sticky; /* Header内部sticky是好的 */
+  top: 0; /* 相对于.custom-toc顶部 */
   z-index: 2;
   color: var(--c-text);
   transition: color 0.3s, border-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.print-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  color: var(--c-text-lighter);
+  border-radius: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.print-button:hover {
+  color: var(--c-brand);
+  background-color: var(--c-bg-lighter);
+}
+
+.print-button:focus {
+  outline: none;
+}
+
+.print-button svg {
+  width: 16px;
+  height: 16px;
 }
 
 .toc-container {
   padding: 0.5rem 0;
   background-color: transparent;
   overflow-y: auto;
-  max-height: calc(100vh - 15rem);
+  /* 减去header的高度 */
+  max-height: calc(100% - 3rem);
   scrollbar-width: thin;
   scrollbar-color: var(--c-border) transparent;
-  scroll-behavior: smooth;
 }
 
 .toc-container::-webkit-scrollbar {
@@ -307,6 +348,13 @@ export default {
   height: 1em;
   background-color: var(--c-brand);
   border-radius: 0 2px 2px 0;
+}
+
+/* 打印样式 */
+@media print {
+  .custom-toc {
+    display: none;
+  }
 }
 
 @media (max-width: 1300px) {

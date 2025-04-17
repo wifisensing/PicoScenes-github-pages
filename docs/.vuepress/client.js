@@ -58,5 +58,5 @@ export default defineClientConfig({
     app.component('NumberingSetter', NumberingSetter)
     app.component('CustomToc', CustomToc)
   },
-  rootComponents: [NumberingSetter, CustomToc]
+  rootComponents: [NumberingSetter]
 })
