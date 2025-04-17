@@ -3,6 +3,7 @@ title: Development Status
 autoNumbering: true
 startNumber: 11
 --- 
+<CustomToc />
 
 PicoScenes is *still* under *very active* development. We are adding new features, new controls, and fix bugs. Checkout the changelogs for the latest progress.
 

@@ -1,6 +1,7 @@
 ---
 title: Open Source Software Licenses
 ---
+<CustomToc />
 
 # PicoScenes Presets
 

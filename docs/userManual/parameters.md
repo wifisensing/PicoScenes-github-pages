@@ -3,6 +3,7 @@ title: Command Line Interface and Program Option Reference
 autoNumbering: true
 startNumber: 7
 ---
+<CustomToc />
 
 ## PicoScenes Command Line Interface 
 

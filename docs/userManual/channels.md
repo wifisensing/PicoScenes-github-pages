@@ -1,6 +1,7 @@
 ---
 title: Wi-Fi Channelization
 ---
+<CustomToc />
 
 Many PicoScenes users are confused about how to correctly set channels for `array_prepare_for_picoscenes` and `PicoScenes` commands. On this page, we provide some examples, then we present a full Wi-Fi channel table for reference.
 

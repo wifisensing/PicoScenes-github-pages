@@ -3,6 +3,7 @@ title: PicoScenes MATLAB Toolbox Core
 autoNumbering: true
 startNumber: 8
 ---
+<CustomToc />
 
 ## Prerequisites
 

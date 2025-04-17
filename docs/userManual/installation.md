@@ -3,6 +3,7 @@ title: PicoScenes Installation & Upgrade
 autoNumbering: true
 startNumber: 5
 ---
+<CustomToc />
 
 ::: tip
 如果您不想费劲地看英文，请开启浏览器的翻译功能，省脑子。

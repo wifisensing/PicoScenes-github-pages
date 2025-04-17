@@ -3,6 +3,7 @@ title: Useful Resources
 autoNumbering: true
 startNumber: 12
 ---
+<CustomToc />
 
 ## The academic paper of PicoScenes
 

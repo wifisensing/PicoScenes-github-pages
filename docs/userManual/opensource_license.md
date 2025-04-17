@@ -1,6 +1,7 @@
 ---
 title: Open Source Software Licenses
 ---
+<CustomToc />
 
 ## The 3-Clause BSD License
 

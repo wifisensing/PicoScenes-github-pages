@@ -3,6 +3,7 @@ title: Supported Hardware
 autoNumbering: true
 startNumber: 3
 ---
+<CustomToc />
 
  Exclusive for China mainland users: PicoScenes团队很荣幸得到NI的认可与支持，获得NI USRP授权销售资格([与NI中国合作赠送 PSLP-PRO-DBL许可证 (Gifting PSLP-PRO-DBL Licenses in Collaboration with NI China)](features_pricing.md#与ni中国合作赠送-pslp-pro-dbl许可证-gifting-pslp-pro-dbl-licenses-in-collaboration-with-ni-china))。您可以在这个页面查看我们的NI USRP销售方案，[Selling NI USRP Devices (与NI合作销售USRP系列产品)](ni.md)。
 

@@ -1,6 +1,7 @@
 ---
 title: Getting Started with NI USRP X4x0 Series
 ---
+<CustomToc />
 
 ::: tip
 Although this guide is specifically written for the X4x0 series, the procedures described here are fully compatible with all USRP devices using the MPM (Modular Peripheral Manager) architecture, including the E320 and N3xx series.

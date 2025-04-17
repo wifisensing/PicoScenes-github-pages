@@ -3,6 +3,7 @@ title: Features & License
 autoNumbering: true
 startNumber: 4
 ---
+<CustomToc />
 
 PicoScenes is a feature-rich, powerful, and user-friendly middleware for Wi-Fi ISAC research. This page outlines the notable features of PicoScenes and provides links to their usage and explanations.
 

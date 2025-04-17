@@ -3,6 +3,7 @@ title: Utility Programs and Bash Scripts
 autoNumbering: true
 startNumber: 9 
 ---
+<CustomToc />
 
 ## UDP-Forwarder Plugin & UDPRemoteLogger
 

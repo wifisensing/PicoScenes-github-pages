@@ -1,6 +1,7 @@
 ---
 title: Application Notes
 ---
+<CustomToc />
 
 Explore our extensive library of application notes and technical tutorials designed to enhance your understanding and use of the PicoScenes platform.
 

@@ -1,6 +1,6 @@
 <template>
   <div class="custom-toc" v-if="headers.length">
-    <div class="toc-header">目录</div>
+    <div class="toc-header">On this page</div>
     <div class="toc-container">
       <ul class="toc-list">
         <li 

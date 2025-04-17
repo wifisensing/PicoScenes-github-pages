@@ -3,6 +3,7 @@ title: Troubleshooting & Support
 autoNumbering: true
 startNumber: 13
 --- 
+<CustomToc />
 
 ## Troubleshooting
 

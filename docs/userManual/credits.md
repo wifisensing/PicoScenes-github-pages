@@ -3,6 +3,7 @@ title: Credits
 autoNumbering: true
 startNumber: 15
 ---
+<CustomToc />
 
 ## Development Team
 
