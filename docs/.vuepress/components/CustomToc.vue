@@ -38,6 +38,7 @@ export default {
     const frontmatter = usePageFrontmatter()
     const headers = ref([])
     const activeLink = ref('')
+    const prevActiveLink = ref('')
     const allHeaders = ref([]) // 存储展平后的所有标题
     const mainContentWidth = ref(0)
 
@@ -57,6 +58,36 @@ export default {
       
       console.log('标题结构:', headers.value)
       console.log('展平的所有标题:', allHeaders.value)
+    }
+
+    // 滚动活动项到视图中央
+    const scrollActiveItemToCenter = () => {
+      if (typeof document === 'undefined' || !activeLink.value || activeLink.value === prevActiveLink.value) return
+      
+      prevActiveLink.value = activeLink.value
+      
+      // 等待DOM更新完成
+      nextTick(() => {
+        const activeLinkId = activeLink.value.slice(1) // 移除#前缀
+        const activeItem = document.querySelector(`.toc-item.active`)
+        const tocContainer = document.querySelector('.toc-container')
+        
+        if (!activeItem || !tocContainer) return
+        
+        // 计算目标滚动位置 - 将活动项居中
+        const containerHeight = tocContainer.clientHeight
+        const itemTop = activeItem.offsetTop
+        const itemHeight = activeItem.clientHeight
+        
+        // 目标位置是项目顶部减去容器一半高度，再加上项目一半高度
+        const scrollTarget = itemTop - (containerHeight / 2) + (itemHeight / 2)
+        
+        // 平滑滚动到目标位置
+        tocContainer.scrollTo({
+          top: Math.max(0, scrollTarget),
+          behavior: 'smooth'
+        })
+      })
     }
 
     const updateActiveLink = () => {
@@ -81,6 +112,9 @@ export default {
         const lastLink = headerLinks.sort((a, b) => b.top - a.top)[0]
         activeLink.value = `#${lastLink.id}`
       }
+      
+      // 滚动目录使活动项居中
+      scrollActiveItemToCenter()
     }
 
     // 定位目录到内容区域右侧
@@ -120,11 +154,19 @@ export default {
         
         nextTick(() => {
           resolveHeaders()
+          prevActiveLink.value = '' // 重置上一个活动链接
           updateActiveLink()
           positionToc()
           window.addEventListener('scroll', updateActiveLink)
           window.addEventListener('resize', positionToc)
         })
+      }
+    })
+
+    // 监听activeLink变化
+    watch(() => activeLink.value, (newVal, oldVal) => {
+      if (newVal !== oldVal) {
+        scrollActiveItemToCenter()
       }
     })
 
@@ -145,12 +187,13 @@ export default {
   margin-right: -20rem;
   width: 16rem;
   max-height: calc(100vh - 12rem);
-  overflow-y: auto;
   border: 1px solid #eaecef;
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   z-index: 10;
+  display: flex;
+  flex-direction: column;
 }
 
 .toc-header {
@@ -159,11 +202,32 @@ export default {
   padding: 0.7rem 1rem;
   background-color: #f3f5f7;
   border-bottom: 1px solid #eaecef;
+  position: sticky;
+  top: 6rem;
+  z-index: 2;
 }
 
 .toc-container {
   padding: 0.5rem 0;
   background-color: #fff;
+  overflow-y: auto;
+  max-height: calc(100vh - 15rem);
+  scrollbar-width: thin;
+  scrollbar-color: #e0e0e0 transparent;
+  scroll-behavior: smooth;
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.toc-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0;
+  border-radius: 3px;
 }
 
 .toc-list {
@@ -204,6 +268,22 @@ export default {
 .toc-item.active > a {
   color: #3eaf7c;
   font-weight: 600;
+}
+
+.toc-item.active {
+  position: relative;
+}
+
+.toc-item.active::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 1em;
+  background-color: #3eaf7c;
+  border-radius: 0 2px 2px 0;
 }
 
 @media (max-width: 1300px) {
