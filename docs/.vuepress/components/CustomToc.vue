@@ -3,11 +3,23 @@
     <div class="toc-header">目录</div>
     <ul class="toc-list">
       <li 
-        v-for="(header, index) in headers" 
-        :key="index" 
-        :class="['toc-item', `level-${header.level}`, { 'active': activeLink === `#${header.slug}` }]"
+        v-for="header in headers" 
+        :key="header.slug"
+        class="toc-item level-2"
+        :class="{ 'active': activeLink === `#${header.slug}` }"
       >
         <a :href="`#${header.slug}`" :title="header.title">{{ header.title }}</a>
+        <!-- 显示三级子标题 -->
+        <ul v-if="header.children && header.children.length" class="sub-list">
+          <li 
+            v-for="child in header.children" 
+            :key="child.slug"
+            class="toc-item level-3"
+            :class="{ 'active': activeLink === `#${child.slug}` }"
+          >
+            <a :href="`#${child.slug}`" :title="child.title">{{ child.title }}</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
@@ -24,18 +36,31 @@ export default {
     const frontmatter = usePageFrontmatter()
     const headers = ref([])
     const activeLink = ref('')
+    const allHeaders = ref([]) // 存储展平后的所有标题
 
     const resolveHeaders = () => {
-      // 只处理 h2 和 h3 标题
-      const headersToUse = page.value.headers.filter(header => header.level === 2 || header.level === 3)
-      headers.value = headersToUse
+      // 获取所有二级标题
+      headers.value = page.value.headers
+      
+      // 将所有标题(包括子标题)展平为一个数组，用于滚动监听
+      const flattened = []
+      headers.value.forEach(h => {
+        flattened.push(h)
+        if (h.children && h.children.length) {
+          h.children.forEach(child => flattened.push(child))
+        }
+      })
+      allHeaders.value = flattened
+      
+      console.log('标题结构:', headers.value)
+      console.log('展平的所有标题:', allHeaders.value)
     }
 
     const updateActiveLink = () => {
-      if (headers.value.length === 0 || typeof document === 'undefined') return
+      if (allHeaders.value.length === 0 || typeof document === 'undefined') return
 
       // 获取所有标题元素
-      const headerLinks = headers.value.map(header => ({
+      const headerLinks = allHeaders.value.map(header => ({
         id: header.slug,
         top: document.getElementById(header.slug)?.getBoundingClientRect().top || 0
       }))
@@ -111,9 +136,23 @@ export default {
   margin: 0;
 }
 
+.sub-list {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
 .toc-item {
   padding: 0.25rem 0;
   line-height: 1.5;
+}
+
+.level-2 {
+  padding-left: 0;
+}
+
+.level-3 {
+  font-size: 0.9em;
 }
 
 .toc-item a {
@@ -122,17 +161,10 @@ export default {
   transition: color 0.3s;
 }
 
-.toc-item a:hover {
+.toc-item a:hover,
+.toc-item.active > a {
   color: #3eaf7c;
-}
-
-.level-2 {
-  padding-left: 0;
-}
-
-.level-3 {
-  padding-left: 1rem;
-  font-size: 0.9em;
+  font-weight: 600;
 }
 
 @media (max-width: 1300px) {
