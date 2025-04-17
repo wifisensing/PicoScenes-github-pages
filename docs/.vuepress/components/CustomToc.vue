@@ -187,42 +187,43 @@ export default {
   margin-right: -20rem;
   width: 16rem;
   max-height: calc(100vh - 12rem);
-  border: 1px solid var(--c-border);
-  border-radius: 6px;
-  background-color: var(--c-bg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
   z-index: 10;
   display: flex;
   flex-direction: column;
   transition: background-color 0.3s, border-color 0.3s;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--c-border);
 }
 
 .toc-header {
   font-weight: 600;
   font-size: 1.1rem;
-  padding: 0.7rem 1rem;
-  background-color: var(--c-bg-lighter);
+  padding: 0.7rem 1rem 0.7rem 0.5rem;
+  background-color: transparent;
   border-bottom: 1px solid var(--c-border);
   position: sticky;
   top: 6rem;
   z-index: 2;
   color: var(--c-text);
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition: color 0.3s, border-color 0.3s;
 }
 
 .toc-container {
   padding: 0.5rem 0;
-  background-color: var(--c-bg);
+  background-color: transparent;
   overflow-y: auto;
   max-height: calc(100vh - 15rem);
   scrollbar-width: thin;
   scrollbar-color: var(--c-border) transparent;
   scroll-behavior: smooth;
-  transition: background-color 0.3s;
 }
 
 .toc-container::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 .toc-container::-webkit-scrollbar-track {
@@ -231,12 +232,12 @@ export default {
 
 .toc-container::-webkit-scrollbar-thumb {
   background-color: var(--c-border);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 .toc-list {
   list-style: none;
-  padding: 0 1rem;
+  padding: 0 1rem 0 0.5rem;
   margin: 0;
 }
 
@@ -263,7 +264,7 @@ export default {
 }
 
 .toc-item a {
-  color: var(--c-text);
+  color: var(--c-text-lighter);
   text-decoration: none;
   transition: color 0.3s;
   display: inline-block;
@@ -282,7 +283,7 @@ export default {
 .toc-item.active::before {
   content: '';
   position: absolute;
-  left: -1rem;
+  left: -0.5rem;
   top: 50%;
   transform: translateY(-50%);
   width: 3px;
