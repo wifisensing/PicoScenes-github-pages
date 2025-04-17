@@ -1,6 +1,15 @@
 <template>
   <div class="custom-toc" v-if="headers.length">
-    <div class="toc-header">On this page</div>
+    <div class="toc-header">
+      <span>On this page</span>
+      <button class="print-button" @click="printPage" title="打印页面">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+      </button>
+    </div>
     <div class="toc-container">
       <ul class="toc-list">
         <li 
@@ -133,6 +142,13 @@ export default {
       mainContentWidth.value = contentRect.width
     }
 
+    // 打印当前页面
+    const printPage = () => {
+      if (typeof window !== 'undefined') {
+        window.print()
+      }
+    }
+
     onMounted(() => {
       resolveHeaders()
       
@@ -173,7 +189,8 @@ export default {
     return {
       headers,
       activeLink,
-      mainContentWidth
+      mainContentWidth,
+      printPage
     }
   }
 }
