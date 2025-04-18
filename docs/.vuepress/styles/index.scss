@@ -6,17 +6,6 @@
   --content-max-width: 800px; /* 假设内容区域最大宽度 */
 }
 
-// ody {
-//   font-family: 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-//   font-size: 16px;
-//   line-height: 1.6;
-//   color: #333;
-// }
-
-// h1, h2, h3, h4, h5, h6 {
-//   font-family: 'Georgia', serif;
-// }
-
 /* 强制显示滚动条，避免宽度跳动 */
 html {
   overflow-y: scroll;
@@ -31,6 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   counter-reset: h1counter var(--start-number, 0);
+  color: black;
   @media (min-width: 1440px) {
     font-size: 18px;
   }

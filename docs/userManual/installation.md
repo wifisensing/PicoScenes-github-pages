@@ -11,9 +11,9 @@ startNumber: 5
 
 ## Hardware Installation
 
-PicoScenes currently supports 4 commercial Wi-Fi NIC models and SDR devices, including the AX200 (or AX201), AX210(or AX211), QCA9300 and IWL5300, all models of USRP devices, and the HackRF One.
+PicoScenes currently supports four commercial Wi-Fi NIC models and SDR devices, including the AX200 (or AX201), AX210 (or AX211), QCA9300, IWL5300, all models of USRP devices, and the HackRF One.
 
-The most welcomed feature of PicoScenes is the concurrent operation of multiple RF frontends, i.e., simultaneous CSI measurement or packet injection using a commercial Wi-Fi NIC/SDR array. To help you get the hardware ready, we share some hardware preparation experience, mainly focusing on the multi-devices setup.
+The most popular feature of PicoScenes is the concurrent operation of multiple RF frontends, i.e., simultaneous CSI measurement or packet injection using a commercial Wi-Fi NIC/SDR array. To help you get the hardware ready, we share some hardware preparation experience, mainly focusing on the multi-device setup.
 
 ### Installation of (Multiple) Commercial Wi-Fi NICs
 
@@ -52,7 +52,7 @@ The installation, usage, and optimization of USRP are much more complex than tha
 
 #### Installing PicoScenes Software 
 
-Before setting up the USRP hardware, you should install the PicoScenes software first. Please follow the instructions in the [PicoScenes Software Installation](#picoscenes-software-installation) section to install PicoScenes. Please note that PicoScenes depends on specific version of UHD. If you have previously installed your own compiled version of UHD, please uninstall it before proceeding.
+Before setting up the USRP hardware, you should install the PicoScenes software first. Please follow the instructions in the [PicoScenes Software Installation](#picoscenes-software-installation) section to install PicoScenes. Please note that PicoScenes depends on a specific version of UHD. If you have previously installed your own compiled version of UHD, please uninstall it before proceeding.
 
 ::: tip
 The driver installation or build process listed on the USRP Official site can be complicated and prone to errors. To simplify this process, we have built and packaged the PicoScenes software using the USRP driver shipped with the Ubuntu system. Therefore, by installing PicoScenes software, you will also be installing the USRP driver.
@@ -71,7 +71,7 @@ You should set up your hardware according to the USRP official [Devices & Usage 
 - [Multiple USRP configuration](https://files.ettus.com/manual/page_multiple.html)
 
 ::: tip
-The PicoScenes software installer installs the UHD software. So, you skip the UHD installation or source code building steps.
+The PicoScenes software installer installs the UHD software. So, you can skip the UHD installation or source code building steps.
 :::
 
 ##### Suggestions for NI USRP Hardware Setup
@@ -80,7 +80,7 @@ Based on our experience, we have the following suggestions for setting up USRP h
 
 - X3x0 Series: It is **not recommended to use a PCI-E cable-based connection** due to inefficiency in both hardware and cost. This method has two major drawbacks. Firstly, the PCI-E-based connection is hardware-inefficient as it requires one cable or extension card for each X3x0 device. This can be very expensive and may not be feasible for a desktop PC with limited spare PCI-E slots. Secondly, the UHD software does not support a hybrid combination of the PCI-E-based link and the GbE/10GbE-based link, further limiting its application.
 
-- X3x0 and N3x0 Series: We highly **recommend using 10GbE connection and the Intel X710 Quad Port 10 Gb Ethernet Adapter**. This is a reasonable and cost-effective solution for connecting multiple X3x0 and N3x0 devices. It occupies only one full-size PCI-E slot but provides four 10GbE ports, allowing you to connect up to four X3x0 or N3x0 devices.
+- X3x0 and N3x0 Series: We highly **recommend using a 10GbE connection and the Intel X710 Quad Port 10 Gb Ethernet Adapter**. This is a reasonable and cost-effective solution for connecting multiple X3x0 and N3x0 devices. It occupies only one full-size PCI-E slot but provides four 10GbE ports, allowing you to connect up to four X3x0 or N3x0 devices.
 
 - N2x0 Series: Consider using MIMO cables to achieve MIMO and phased array capabilities. However, note that MIMO cables have a narrow bandwidth.
 
@@ -114,7 +114,7 @@ Open a terminal and execute the following command:
 uhd_usrp_probe
 ```
 
-The uhd_usrp_probe command prints the hardware details of all connected devices and checks whether the devices’ firmware versions are consistent with the UHD software installed on the host computer. If any inconsistencies are detected, you can use the uhd_image_loader command to flash the latest firmware to the USRP.
+The uhd_usrp_probe command prints the hardware details of all connected devices and checks whether the devices' firmware versions are consistent with the UHD software installed on the host computer. If any inconsistencies are detected, you can use the uhd_image_loader command to flash the latest firmware to the USRP.
 
 To update the firmware for USRP N2x0 devices, run the following command:
 

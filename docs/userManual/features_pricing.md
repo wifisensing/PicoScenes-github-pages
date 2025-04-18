@@ -27,7 +27,7 @@ We categorize the distinctive features of the PicoScenes platform into three tab
 |---------|-------------|------|-----|
 | Rich Hardware Support | PicoScenes supports COTS NICs (AX210/AX200, QCA9300, and IWL5300) and SDR Devices (NI USRP Series and Hack RF One). See [Supported Hardware](hardware.md) | **✓** | **✓** |
 | Hardware Interoperability | Frame transmission and CSI measurement among heterogeneous hardware. See [Interoperability among SDR and COTS NICs](scenarios.md#interoperability-among-sdr-and-cots-nics). | **✓** | **✓** |
-| Easy Installation | Out-of-box experience. Easy installation on Ubuntu 22.04 in less than 10 mins. No kernel or driver compilations. Debian *apt* based upgrading. See [PicoScenes Installation & Upgrade](installation.md). | **✓** | **✓** |
+| Easy Installation | Out-of-box experience. Easy installation on Ubuntu 22.04 in less than 10 minutes. No kernel or driver compilations. Debian *apt* based upgrading. See [PicoScenes Installation & Upgrade](installation.md). | **✓** | **✓** |
 | PicoScenes MATLAB Toolbox | Parsing the .csi files in MATLAB via Drag'n'Drop. See [PicoScenes MATLAB Toolbox Core](matlab.md). | **✓** | **✓** |
 | Plugins Development | Allowing users to implement their own ISAC measurement protocols, like round-trip CSI measurements or spectrum scanning. See [Developing Your PicoScenes Plugins](plugin.md) | **✓** | **✓** |
 | Best in class Documentation | https://ps.zpj.io | **✓** | **✓** |
@@ -40,7 +40,7 @@ We categorize the technical features based on the underlying hardware: [Support 
 
 ### SDR Support: NI USRP Hardware and HackRF One
 
-One of the major highlights of the PicoScenes platform is its built-in high-performance software baseband implementation of the 802.11 PHY, which *supports the 802.11a/g/n/ac/ax/be protocols, 4096-QAM, up to 320 MHz CBW, and LDPC codecs*. Developed in C++, it leverages the multi-threading, BLAS library, and AVX2 instruction set for accelerated processing.
+One of the major highlights of the PicoScenes platform is its built-in high-performance software baseband implementation of the 802.11 PHY, which *supports the 802.11a/g/n/ac/ax/be protocols, 4096-QAM, up to 320 MHz CBW, and LDPC codecs*. Developed in C++, it leverages multi-threading, the BLAS library, and the AVX2 instruction set for accelerated processing.
 
 | Feature | Description | Free | Pro |
 |---------|-------------|------|-----|
@@ -55,7 +55,7 @@ One of the major highlights of the PicoScenes platform is its built-in high-perf
 | Operating in Non-Standard Channel | Operating at any hardware-supported frequency range. See [Transmission, Reception, and CSI Measurement with Non-Standard Channel and Bandwidth](scenarios.md#transmission-reception-and-csi-measurement-with-non-standard-channel-and-bandwidth). | **✓** | **✓** |
 | Operating with Non-Standard Bandwidth | Operating with any hardware-supported sampling rate. See [Transmission, Reception, and CSI Measurement with Non-Standard Channel and Bandwidth](scenarios.md#transmission-reception-and-csi-measurement-with-non-standard-channel-and-bandwidth).| **✓** | **✓** |
 | Record and Replay Tx/Rx Baseband Signals | Record Tx and Rx baseband signals, and replay them during offline analysis. See [Signal Recording and Replaying (Both Tx and Rx Ends)](scenarios.md#signal-recording-and-replaying-both-tx-and-rx-ends) | **✓** (Only Rx Record and Replay) | **✓** |
-| Tx/Rx Resampling | Realizing arbitrary bandwidth Tx/Rx on USPRs with fixed master clock rate, e.g., achieving 320 MHz CBW with 400 MHz fix-rate NI USRP X410. See [Non-Standard Tx/Rx with NI USRP N2x0/X3x0/N3x0 Series](scenarios.md#non-standard-txrx-with-ni-usrp-n2x0x3x0n3x0-series). | **✓** | **✓** |
+| Tx/Rx Resampling | Realizing arbitrary bandwidth Tx/Rx on USPRs with fixed master clock rate, e.g., achieving 320 MHz CBW with 400 MHz fixed-rate NI USRP X410. See [Non-Standard Tx/Rx with NI USRP N2x0/X3x0/N3x0 Series](scenarios.md#non-standard-txrx-with-ni-usrp-n2x0x3x0n3x0-series). | **✓** | **✓** |
 | Support External Clock Source | Realizing Multi-USRP clock/phase synchronization. See [Clock Synchronization across Multiple USRP Devices](scenarios.md#clock-synchronization-across-multiple-usrp-devices) | | **✓** |
 | Multi-USRP Combination | Combining multiple USRP devices into a virtual and larger USRP with more synchronized channels, e.g., achieving up to 8x8 MIMO using four NI USRP X310. See [Multi-Channel Rx by Single NI USRP Device](scenarios.md#multi-channel-rx-by-single-ni-usrp-device), [Multi-Channel Rx by Multiple NI USRP Devices](scenarios.md#multi-channel-rx-by-multiple-ni-usrp-devices), and [Multi-Channel (RF Chain) and MIMO Tx with NI USRP Devices](scenarios.md#multi-channel-rf-chain-and-mimo-tx-with-ni-usrp-devices) | **✓** (Up to 2 devices) | **✓** |
 | Multi-Channel Splitting and Stitching | Combining two half-rate sampling channels into a full-rate channel, e.g., achieving up to 400 MHz bandwidth with a single NI USRP X310 (200 MHz rate max.). See [Dual-Channel Spectrum Splitting and Stitching (Experimental)](scenarios.md#dual-channel-spectrum-splitting-and-stitching-experimental) | **✓** | **✓** |
@@ -66,7 +66,7 @@ One of the major highlights of the PicoScenes platform is its built-in high-perf
 
 ### COTS NIC: AX210 and AX200
 
-PicoScenes is the exclusive platform that supports the packet injection (Tx), receiving, and CSI measurement on Intel AX210/AX200 NIC. All features below are free of charge.
+PicoScenes is the exclusive platform that supports packet injection (Tx), receiving, and CSI measurement on Intel AX210/AX200 NIC. All features below are free of charge.
 
 | Feature | Description | Free | Pro |
 |---------|-------------|------|-----|
@@ -101,7 +101,7 @@ PicoScenes Licensing Plan (PSLP) has two tiers: Free License and Pro License. Th
 - **Free License (PSLP-FL)**: PSLP-FL is free of charge but comes with limited access to advanced features.
 - **Pro License (PSLP-PRO)**: PSLP-PRO users pay a license fee and gain full access to all PicoScenes features along with timely technical support. It has two subtypes:
     - **Transferable License (PSLP-PRO-TL)**: It allows users to activate and use the license on a single computer. Users can conveniently transfer the license between computers as needed, providing flexibility for multi-device usage scenarios.
-    - **Device-Bound License (PSLP-PRO-DBL)**: This option **ties a untransferable Pro license to a newly-bought NI USRP device.** Compared to PSLP-PRO-TL, PSLP-PRO-DBL users can enjoy immediate and full access to the licensed features without explicit activation and online validation. This model is suitable for researches on newly-bought NI USRP hardware, offering faster program start, and long-term offline operation. This option is exclusively available in mainland China, as discussed in [与NI中国合作赠送 PSLP-PRO-DBL许可证 (Gifting PSLP-PRO-DBL Licenses in Collaboration with NI China)](#与ni中国合作赠送-pslp-pro-dbl许可证-gifting-pslp-pro-dbl-licenses-in-collaboration-with-ni-china).
+    - **Device-Bound License (PSLP-PRO-DBL)**: This option **ties an untransferable Pro license to a newly-bought NI USRP device.** Compared to PSLP-PRO-TL, PSLP-PRO-DBL users can enjoy immediate and full access to the licensed features without explicit activation and online validation. This model is suitable for research on newly-bought NI USRP hardware, offering faster program start, and long-term offline operation. This option is exclusively available in mainland China, as discussed in [与NI中国合作赠送 PSLP-PRO-DBL许可证 (Gifting PSLP-PRO-DBL Licenses in Collaboration with NI China)](#与ni中国合作赠送-pslp-pro-dbl许可证-gifting-pslp-pro-dbl-licenses-in-collaboration-with-ni-china).
 
 | PSLP Option | Pros | Cons |
 |-------------|------|------|

@@ -596,13 +596,12 @@ To measure CSI from the AX210/AX200, follow these three steps:
     PicoScenes "-d debug -i 3 --mode logger --plot"
     ```
     The command mentioned above consists of four program options: *"-d debug -i 3 --mode logger --plot"*. These options can be interpreted as follows:
-
         - ``-d debug``: Modifies the display level of the logging service to debug.
         - ``-i 3 --mode logger``: Switches the device with ID 3 to CSI logger mode.
         - ``--plot``: Live-plots the CSI measurements.
 
     For more detailed explanations, please refer to the [Command Line Interface and Program Option Reference](parameters.md) section.
-3. Once you have collected sufficient CSI data, exit PicoScenes by pressing Ctrl+C. 
+3. Once you have collected sufficient CSI data, exit PicoScenes by pressing ``Ctrl+C``. 
 
 The logged CSI data is stored in a file named ``rx_<PHYPath>_<Time>.csi``, located in the *present working directory*. To analyze the data, open MATLAB, drag the .csi file into the *Command Window*, and the file will be parsed and stored as a MATLAB variable named ``rx_<PHYPath>_<Time>``.
 

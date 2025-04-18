@@ -9,7 +9,7 @@ export default sidebar({
     {
       text: "Overview",
       icon: "star",
-      link: "home.md",
+      link: "README.md",
       // collapsible: true,
       prefix: "userManual/",
       children: [
