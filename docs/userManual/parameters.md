@@ -7,7 +7,7 @@ startNumber: 7
 
 ## PicoScenes Command Line Interface 
 
-As shown in the [scenarios](scenarios.md), multiple command options can be written in one single command string, which is surrounded by quotation marks. This section uses the following example commands to describe how PicoScenes parses the program options.
+As shown in the [scenarios](scenarios.md), multiple command options can be written in a single command string, which is surrounded by quotation marks. This section uses the following example commands to describe how PicoScenes parses the program options.
 
 ```bash
 PicoScenes "-d debug;
@@ -17,14 +17,14 @@ PicoScenes "-d debug;
                 -q"
 ```
 
-The first step of command parsing is to segment the long string into several ``;`` ended `command sentences`. The second command sentence starts with ``//`` or ``#``, it is recognized as a line of comment and is skipped. The remaining command sentences are:
+The first step of command parsing is to segment the long string into several `;` ended `command sentences`. The second command sentence starts with `//` or `#`, it is recognized as a line of comment and is skipped. The remaining command sentences are:
 
 1. `-d debug`
-2. ``-i 4 --freq 2412e6 --rate 20e6 --mode responder --rxcm 3 --cbw 40 --sts 2 --txcm 5 -ess 1 --txpower 15 --coding ldpc``;
-3. ``-i 3 --freq 2412e6 --rate 20e6 --mode initiator --repeat 100 --delay 5000 --cf 2412e6:5e6:2484e6 --sf 20e6:5e6:40e6 --cbw 20 --sts 2 --mcs 0 --gi 400 --txcm 3 --ack-mcs 3  --ack-type header``;
-4. ``-q``
+2. `-i 4 --freq 2412e6 --rate 20e6 --mode responder --rxcm 3 --cbw 40 --sts 2 --txcm 5 -ess 1 --txpower 15 --coding ldpc`;
+3. `-i 3 --freq 2412e6 --rate 20e6 --mode initiator --repeat 100 --delay 5000 --cf 2412e6:5e6:2484e6 --sf 20e6:5e6:40e6 --cbw 20 --sts 2 --mcs 0 --gi 400 --txcm 3 --ack-mcs 3  --ack-type header`;
+4. `-q`
 
-Each command sentence composes of one or multiple `program options`. Each program option usually starts with ``--``. For some frequently used options, we provide shortcuts, like ``-i`` is for ``--interface``, ``-q`` is for ``--quit`` and ``-d`` is for ``--log-display-level``. Each program option consists of the option name and zero or more parameters, for example ``--no-hp`` doesn't require a parameter, and user may provide multiple parameters for ``--tx-channel``, like ``--tx-channel 0,1,2,3``.
+Each command sentence is composed of one or multiple `program options`. Each program option usually starts with `--`. For some frequently used options, we provide shortcuts, like `-i` is for `--interface`, `-q` is for `--quit` and `-d` is for `--log-display-level`. Each program option consists of the option name and zero or more parameters, for example `--no-hp` doesn't require a parameter, and users may provide multiple parameters for `--tx-channel`, like `--tx-channel 0,1,2,3`.
 
 **PicoScenes parses and executes the command sentence in input order**. For the program options within one command sentence, PicoScenes invokes **four levels of program option parsers to parse them**; therefore, the order of the program options does not matter. The four levels of parsers, in their hierarchical order, are Platform Startup Options, Platform Options, Frontend Level Options, and Per-Plugin Level Options. They are detailed in the following Program Options Hierarchy. Platform Startup Options and Platform Options are frontend-irrelevant, and the other two levels of parsers are frontend-related.
 
@@ -32,30 +32,30 @@ The following process simulates the real parsing process of the above command se
 
 1. For the first command sentence `-d debug`:
 
-    1.  Platform Startup Option parser recognizes the `-d debug` option, and set the debug message display level to `debug`.
+    1.  Platform Startup Option parser recognizes the `-d debug` option, and sets the debug message display level to `debug`.
     2.  Platform Option parser recognizes nothing.      
     3.  As no frontend is specified, Frontend Option parser and Per-Plugin Option parsers are skipped.
-2. For the second command sentence ``-i 4 --freq 2412e6 --rate 20e6 --mode responder --rxcm 3 --cbw 40 --sts 2 --txcm 5 -ess 1 --txpower 15 --coding ldpc``:
+2. For the second command sentence `-i 4 --freq 2412e6 --rate 20e6 --mode responder --rxcm 3 --cbw 40 --sts 2 --txcm 5 -ess 1 --txpower 15 --coding ldpc`:
 
     1. Platform Startup Option parser recognizes nothing.
-    2. Platform Option parser recognizes ``-i 3``, indicating that the rest of the program options within this command sentence are all for NIC ``3``.
-    3. Frontend Option parser recognizes 5 hardware-tuning options: ``--freq 2412e6``, ``--rate 20e6``, ``--rxcm 3`` ``--txcm 5``, and ``--txpower 16``. All these controls are for NIC ``3``, and Frontend Option parser doesn't perform the hardware tuning but delegates these parameters to the FrontEnd class.
-    4. Each PicoScenes plugin has the ability to parse command sentence, and PicoScenes enumerates all the active plugin instances of NIC ``3`` and let them parse the current command sentence. In the above example, the program option parser of EchoProbe plugin recognizes 5 options, namely, ``--mode responder``, ``--cbw 40``, ``--sts 2``, ``--ess 1`` and ``--coding ldpc``. The `responder mode` of EchoProbe plugin is not a thread-blocking mode, therefore, the parser of EchoProbe plugin will save the parameters and exit.
-    5. PicoScenes continues to enumerate the rest of the plugins (if there are) and let them parse the same command sentence.
-    6. All four level of parsers finish their jobs, PicoScenes continues to next command sentence.
-3. For the third command sentence ``-i 3 --freq 2412e6 --rate 20e6 --mode initiator --repeat 100 --delay 5000 --cf 2412e6:5e6:2484e6 --sf 20e6:5e6:40e6 --cbw 20 --sts 2 --mcs 0 --gi 400 --txcm 3 --ack-mcs 3  --ack-type header``:
+    2. Platform Option parser recognizes `-i 3`, indicating that the rest of the program options within this command sentence are all for NIC `3`.
+    3. Frontend Option parser recognizes 5 hardware-tuning options: `--freq 2412e6`, `--rate 20e6`, `--rxcm 3` `--txcm 5`, and `--txpower 16`. All these controls are for NIC `3`, and Frontend Option parser doesn't perform the hardware tuning but delegates these parameters to the FrontEnd class.
+    4. Each PicoScenes plugin has the ability to parse command sentences, and PicoScenes enumerates all the active plugin instances of NIC `3` and lets them parse the current command sentence. In the above example, the program option parser of EchoProbe plugin recognizes 5 options, namely, `--mode responder`, `--cbw 40`, `--sts 2`, `--ess 1` and `--coding ldpc`. The `responder mode` of EchoProbe plugin is not a thread-blocking mode, therefore, the parser of EchoProbe plugin will save the parameters and exit.
+    5. PicoScenes continues to enumerate the rest of the plugins (if there are) and lets them parse the same command sentence.
+    6. All four levels of parsers finish their jobs, PicoScenes continues to the next command sentence.
+3. For the third command sentence `-i 3 --freq 2412e6 --rate 20e6 --mode initiator --repeat 100 --delay 5000 --cf 2412e6:5e6:2484e6 --sf 20e6:5e6:40e6 --cbw 20 --sts 2 --mcs 0 --gi 400 --txcm 3 --ack-mcs 3  --ack-type header`:
 
     1. Platform Startup Option parser recognizes nothing.
-    2. Platform Option parser recognizes ``-i 4``, indicating this the rest of the program options are all for NIC ``4``.
-    3. Frontend Option parser recognizes 3 program options ``--freq 2412e6``, ``--rate 20e6``, ``--txcm 3``. All these controls are for NIC ``4``, and Frontend Option parser doesn't perform the hardware tuning but delegates these parameters to the FrontEnd class. 
-    4. PicoScenes enumerates all the active plugin instances of NIC ``4`` and let them parse the current command sentence. The program option parser of EchoProbe plugin recognizes 11 options, namely, ``–mode initiator``, ``–-repeat 100``, ``-–delay 5000``, ``-–cf 2412e6:5e6:2484e6``, ``-–sf 20e6:5e6:40e6`` ``-–cbw 20``, ``-–sts 2``, ``-–mcs 0``, ``-–gi 400``,  ``-–ack-mcs 3`` and ``-–ack-type header``. The `initiator mode` of EchoProbe plugin is a blocking mode.  NIC ``4``'s EchoProbe plugin instance will perform the round-trip and spectrum-scanning CSI measurement. When the measurement finishes or fails, EchoProbe will exit the blocking state.
-    5. PicoScenes continue to enumerate the rest of the plugins (if there are) and let them parse the same command sentence.
-    6. All four level of parsers finish their jobs, PicoScenes continues to next command sentence.
+    2. Platform Option parser recognizes `-i 4`, indicating this the rest of the program options are all for NIC `4`.
+    3. Frontend Option parser recognizes 3 program options `--freq 2412e6`, `--rate 20e6`, `--txcm 3`. All these controls are for NIC `4`, and Frontend Option parser doesn't perform the hardware tuning but delegates these parameters to the FrontEnd class. 
+    4. PicoScenes enumerates all the active plugin instances of NIC `4` and lets them parse the current command sentence. The program option parser of EchoProbe plugin recognizes 11 options, namely, `–mode initiator`, `–-repeat 100`, `-–delay 5000`, `-–cf 2412e6:5e6:2484e6`, `-–sf 20e6:5e6:40e6` `-–cbw 20`, `-–sts 2`, `-–mcs 0`, `-–gi 400`,  `-–ack-mcs 3` and `-–ack-type header`. The `initiator mode` of EchoProbe plugin is a blocking mode.  NIC `4`'s EchoProbe plugin instance will perform the round-trip and spectrum-scanning CSI measurement. When the measurement finishes or fails, EchoProbe will exit the blocking state.
+    5. PicoScenes continues to enumerate the rest of the plugins (if there are) and lets them parse the same command sentence.
+    6. All four levels of parsers finish their jobs, PicoScenes continues to the next command sentence.
 
-4. For the fourth command sentence ``-q``:
+4. For the fourth command sentence `-q`:
 
     1. Platform Startup Option parser recognizes nothing.
-    2. Platform Option parser recognizes ``-q`` and trigger PicoScenes shutdown sequence.
+    2. Platform Option parser recognizes `-q` and triggers PicoScenes shutdown sequence.
 
 ## Program Options Hierarchy
 
@@ -135,7 +135,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - For QCA9300, its frequency synthesizer supports ranges of [2.2-2.9] GHz and [4.4 - 6.1] GHz in the 2.4 and 5 GHz bands, respectively. You can specify any carrier frequency within the ranges.
     - For IWL5300, you can only specify the standard channel frequencies, e.g., 2412e6, 2432e6, 5815e6, etc.
   - Notes: 
-    - We have observed the decline of Tx/Rx performance caused by the cross-band tuning, e.g., 2412e6->5200e6. We recommend to use `array_prepare_for_picoscenes` to performance the cross-band tuning.
+    - We have observed the decline of Tx/Rx performance caused by the cross-band tuning, e.g., 2412e6->5200e6. We recommend using `array_prepare_for_picoscenes` to perform the cross-band tuning.
     - When operating in `HT40+/-` channel modes, this option, which always refers to the real carrier frequency, is not equal to the center frequency of `HT40+/-`'s primary channel, e.g., if you want to communicate with a `5200 HT40-` channel, you should tune your carrier frequency to 5190e6 or 5200e6 with 40 or 20 MHz channel bandwidth (CBW), respectively.
   - Example: `--freq 5200e6`
 
@@ -145,16 +145,16 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Value Range: 
     - For QCA9300, the available rates under `HT20` channel mode are [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 25, 30, 35, 40] MHz; for `HT40+/-` channel modes the supported rates are [5, 10, 15, 20, 25, 30, 35 40, 45, 50, 55, 60, 65, 70, 75, 80] MHz.
     - For IWL5300, the driver does NOT support bandwidth arbitrary tuning, so this option only supports 20 or 40 MHz.
-  - Notes: When HT20 mode communicate with `HT40+/-` modes with a non-standard bandwidth, you should tune the carrier frequency of the `HT20` side to the correct value. For example, with 20 MHz real bandwidth, `HT40-` channel mode at the 5190 MHz can ONLY communicate with a `HT20` mode with 5195 MHz carrier frequency.
+  - Notes: When HT20 mode communicates with `HT40+/-` modes with a non-standard bandwidth, you should tune the carrier frequency of the `HT20` side to the correct value. For example, with 20 MHz real bandwidth, `HT40-` channel mode at the 5190 MHz can ONLY communicate with a `HT20` mode with 5195 MHz carrier frequency.
   - Example: `--rate 20e6`
 
 - `--txcm arg`
-  - Description: Specify the transmit chain(s) for the QCA9300 and IWL5300 NICs. The mask are in 3-bit format,i.e., 1/2/4 for the 1st/2nd/3rd chain, 3 for both the 1st and 2nd chains and 7 for all three chains.
+  - Description: Specify the transmit chain(s) for the QCA9300 and IWL5300 NICs. The mask is in 3-bit format,i.e., 1/2/4 for the 1st/2nd/3rd chain, 3 for both the 1st and 2nd chains and 7 for all three chains.
   - Default: This value is 7 by default and is persistent until the next NIC reset.
   - Value Range: [1, 2, 3, 4, 7]
   - Notes: 
     - When the number of the transmit chains(s), N_{tx}, is smaller than the number of transmit spatial-time streams, N_{sts}, the transmission is invalid.
-    - Value 5 and 6 are not valid for both QCA9300 and IWL5300.
+    - Values 5 and 6 are not valid for both QCA9300 and IWL5300.
   - Example: `--txcm 1`
 
 - `--rxcm arg`
@@ -163,7 +163,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Value Range: 1, 2, 3, 4, 7
   - Notes: 
     - When the number of the receive chains(s), N_{rx}, is smaller than N_{sts} of the transmitted packets, the receiver cannot decode the frame.
-    - Value 5 and 6 are not valid for both QCA9300 and IWL5300.
+    - Values 5 and 6 are not valid for both QCA9300 and IWL5300.
   - Example: `--rxcm 1`
 
 - `--txpower arg`
@@ -180,18 +180,18 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Notes: 
     - `chansel` refers to the direct tuning of the RF frequency synthesizer via hardware registers. Since this policy tunes ONLY the synthesizer and bypasses many other settings, this is the fastest but also the least reliable policy.
     - `fastcc` refers to the FAST Channel Change protocol in ath9k driver. This is the default policy in both the ath9k driver and PicoScenes. In ath9k driver, `fastcc` handles the non-crossband channel change scenarios.
-    - `reset` refers to the longer and more complete channel channel protocol in ath9k driver, which includes hardware reset. In ath9k driver `reset` handels the cross band channel change.
+    - `reset` refers to the longer and more complete channel change protocol in ath9k driver, which includes hardware reset. In ath9k driver `reset` handles the cross band channel change.
   - Example: `-p chansel`
 
 ### USRP frontend options
 - `--freq arg`
   - Description: Specify the carrier frequency for SDR frontend. This option supports the scientific notation like 2412e6 or 2.412e9.
   - Default: This option has NO default value and is not persistent. You should specify it every time.
-  - Value Range: Hardware decide the range.
+  - Value Range: Hardware decides the range.
   - Notes: 
     - The value range is based on your hardware. For example, UBX-40/160 daughterboard supports a range of 10-6000MHz. 
     - This option sets the same carrier frequency for both the Tx and Rx chains, though the hardware supports setting different frequencies for them.
-    - For multi-channel configurations (the both channels of X310, or multiple USRPs synchronized by the MIMO cable or external clock source), this option will set the same frequency for all channels.
+    - For multi-channel configurations (both channels of X310, or multiple USRPs synchronized by the MIMO cable or external clock source), this option will set the same frequency for all channels.
   - Example: `--freq 5200e6`
 - `--rate arg`
   - Description: Specify the baseband sampling rate (or bandwidth) for SDR frontend. This option supports the scientific notation like 25e6 or 40e6.
@@ -203,19 +203,19 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - Different hardware has different tuning granularity. For example, you can only specify 200/INT_N MHz sampling rate where INT_N is a positive integer.
   - Example: `--rate 20e6`
 - `--tx-resample-ratio arg`
-  - Description: Specify the Tx resampling ratio. This is a software-based Tx resampling mechanism to enable arbitrary channel bandwidth. For example, X310 cannot tune the baseband sampling rate to 80 MHz. To overcome this issues, we can tune the hardware to 100 MHz (by `--rate 100e6`) and then resample the Tx signal by 0.8 (by `--tx-resample-ratio 0.8`).
+  - Description: Specify the Tx resampling ratio. This is a software-based Tx resampling mechanism to enable arbitrary channel bandwidth. For example, X310 cannot tune the baseband sampling rate to 80 MHz. To overcome this issue, we can tune the hardware to 100 MHz (by `--rate 100e6`) and then resample the Tx signal by 0.8 (by `--tx-resample-ratio 0.8`).
   - Default: 1.0
   - Value Range: 0 ~ 1.0
   - Notes: 
-    - This option is implemented by zero-order interpolation in software side, i.e., generate the signal by 80 MHz then interpolate the signal to 100 MHz.
+    - This option is implemented by zero-order interpolation on the software side, i.e., generate the signal by 80 MHz then interpolate the signal to 100 MHz.
     - This interpolation is implemented by software, therefore the performance decline should be expected.
   - Example: `--tx-resample-ratio 0.8`
 - `--rx-resample-ratio arg`
-  - Description: Specify the Rx resampling ratio. This is a software-based Rx resampling mechanism to enable arbitrary channel bandwidth. For example, X310 cannot tune the baseband sampling rate to 80 MHz. To overcome this issues, we can tune the hardware to 100 MHz (by `--rate 100e6`) and then resample the Rx signal by 0.8 (by `--rx-resample-ratio 0.8`).
+  - Description: Specify the Rx resampling ratio. This is a software-based Rx resampling mechanism to enable arbitrary channel bandwidth. For example, X310 cannot tune the baseband sampling rate to 80 MHz. To overcome this issue, we can tune the hardware to 100 MHz (by `--rate 100e6`) and then resample the Rx signal by 0.8 (by `--rx-resample-ratio 0.8`).
   - Default: 1.0
   - Value Range: 0 ~ 1.0
   - Notes: 
-    - This option is implemented by uniform signal dropping in software side, i.e., receive the signal by 100 MHz rate then decimate the signal to 80 MHz.
+    - This option is implemented by uniform signal dropping on the software side, i.e., receive the signal by 100 MHz rate then decimate the signal to 80 MHz.
     - This resample is implemented by software, therefore the performance decline should be expected.
   - Example: `--rx-resample-ratio 1.0`
 - `--clock-source arg`
@@ -243,7 +243,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Notes: N/A
   - Example: `--master-clock-rate 100e6`
 - `--tx-channel arg`
-  - Description: Specify the Tx channel(s) for SDR frontend. The default value is 0, which mean 0-th channel. Multiple channel numbers are separated by a comma `,`. In multi-channel configurations, taking two combined X310s for example, you can specify `0,1,2,3` to use all 4 channels for Tx. You can also skip some of them, such as `0,2,3` which specify the 0-th, 1st and 3rd antenna for Tx.
+  - Description: Specify the Tx channel(s) for SDR frontend. The default value is 0, which means 0-th channel. Multiple channel numbers are separated by a comma `,`. In multi-channel configurations, taking two combined X310s for example, you can specify `0,1,2,3` to use all 4 channels for Tx. You can also skip some of them, such as `0,2,3` which specify the 0-th, 1st and 3rd antenna for Tx.
   - Default: `0`
   - Value Range: N/A
   - Notes: 
@@ -251,7 +251,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - The physical mapping between the channel number and antenna is ordered. For example, assuming that we combine two X310s together with `-i usrp192.168.40.2,192.168.41.2`, 0-th and 1st antennas correspond to the left and right daughterboards of the X310 with IP address 192.168.40.2; and 2nd and 3rd antennas correspond to the left and right daughterboards of the X310 with IP address 192.168.41.2.
   - Example: `--tx-channel 0,1`
 - `--rx-channel arg`
-  - Description: Specify the Tx channel(s) for SDR frontend. The default value is 0, which mean 0-th channel. Multiple channel numbers are separated by a comma `,`. This option has the identical format as `--tx-channel`.
+  - Description: Specify the Tx channel(s) for SDR frontend. The default value is 0, which means 0-th channel. Multiple channel numbers are separated by a comma `,`. This option has the identical format as `--tx-channel`.
   - Default: `0`
   - Value Range: N/A
   - Notes: N/A
@@ -263,7 +263,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Notes: In order to receive and correctly decode the packet transmitted in HT20/HT40/VHT80/VHT160 formats, you must specify Rx CBW to 20/40/80/160, respectively.
   - Example: `--rx-cbw 40`
 - `--rx-ant arg`
-  - Description: Specify to use which RX antenna
+  - Description: Specify which RX antenna to use.
   - Default: `RX2`
   - Value Range: `TX/RX`, `RX2`
   - Notes: For USRP UBX/CBX/SBX daughterboard, TX/RX or RX2
@@ -287,13 +287,13 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Notes: N/A
   - Example: N/A
 - `--tx-to-file arg`
-  - Description: Supply a file name (without extension, just the name), `PicoScenes` will save all the Tx signals to file. The signals will be save to a `.bbsignals` file with the specified file name.
+  - Description: Supply a file name (without extension, just the name), `PicoScenes` will save all the Tx signals to a file. The signals will be saved to a `.bbsignals` file with the specified file name.
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `tx-to-file demo`
 - `--tx-from-file arg`
-  - Description: Supply a file name (without extension, just the name), PicoScenes will replay the signal save in the `.bbsignals` file as if the signal is generated from the baseband.
+  - Description: Supply a file name (without extension, just the name), PicoScenes will replay the signal saved in the `.bbsignals` file as if the signal is generated from the baseband.
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
@@ -323,7 +323,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Notes: N/A
   - Example: `--rx-sensitivity 10`
 - `--rx-cp-offset arg`
-  - Description: Specify at which position of Cyclic Prefix is regard as the start of OFDM signal (pre-advancement)
+  - Description: Specify at which position of Cyclic Prefix is regarded as the start of OFDM signal (pre-advancement)
   - Default: 0.75
   - Value Range: 0 ~ 1
   - Notes: N/A
@@ -353,7 +353,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
   - Notes: N/A
   - Example: `--enable-loopback`
 - `--enable-hw-acc`
-  - Description: enable/or disable hardware acceleration for Wi-Fi packet detection (enabling requires our special firmware, false as default).
+  - Description: Enable or disable hardware acceleration for Wi-Fi packet detection (enabling requires our special firmware, false as default).
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
