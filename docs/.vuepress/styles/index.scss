@@ -1,9 +1,7 @@
 :root {
   --navbar-height: 3.6rem;
   --sidebar-width: 16rem; /* 根据你的侧边栏实际宽度调整 */
-  --toc-width: 16rem; /* 目录宽度 */
-  --toc-right-margin: 2rem; /* 增加目录距离内容区的间距 (原为2rem) */
-  --content-max-width: 800px; /* 假设内容区域最大宽度 */
+  --toc-width: 18rem; /* 目录宽度 */
 }
 
 /* 强制显示滚动条，避免宽度跳动 */
