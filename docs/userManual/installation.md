@@ -181,7 +181,7 @@ Before installing the PicoScenes software, please make sure you meet the followi
 
 Please ensure that your system meets all the requirements mentioned earlier before proceeding with the installation.
 
-1. **Download and install the PicoScenes Source Updater:**
+*  **Step 1: Download and install the PicoScenes Source Updater**
 
    - For Ubuntu 22.04 platform (or its variants), please click [PicoScenes Source Updater (Ubuntu 22.04 version)](https://ps2204.zpj.io/PicoScenes/22.04/x86_64/pool/main/picoscenes-source-updater.deb) and choose *Open with "GDebi Package Installer"*
    - Click *Install Package*
@@ -190,29 +190,14 @@ Please ensure that your system meets all the requirements mentioned earlier befo
       The PicoScenes Source Updater registers the PicoScenes software repository to your system, enabling you to install and automatically upgrade PicoScenes using the apt command.
    :::
 
-2. **Update the cache of apt repositories:**
+*  **Step 2: Run PicoScene maintainer script**
 
-   Run the following command:
+   Run the following commands:
     
    ```bash
-   sudo apt update
+   MaintainPicoScenes
    ```
-
-   After this command completes, you can verify the result by running `apt list picoscenes-<Press TAB Key>` in the terminal. You should see at least the following packages listed:
-
-   ```bash
-   picoscenes-all   picoscenes-platform   picoscenes-source-updater  picoscenes-driver-modules-XXXX
-   ```
-
-   The presence of these `picoscenes-xxx` packages indicates that the PicoScenes repository has been successfully registered on your system.
-
-3. **Install the PicoScenes software**
-
-   Run the following command:
-        
-   ```bash
-   sudo apt install picoscenes-all
-   ```
+   After running the command, you'll see a menu with several options. Choose option '1 Update/Install PicoScenes' to install the PicoScenes Ubuntu software and driver.
 
    After a few minutes of package downloading, the PicoScenes End User License Agreement (EULA) message will appear in the terminal. Read the EULA and decide if you agree to the listed terms. You can use the up/down arrow keys to view the full content and press TAB to move the cursor to the ```<Ok>``` option. Press ```<Ok>``` to confirm that you have read and agree to the EULA.
 
@@ -226,11 +211,11 @@ Please ensure that your system meets all the requirements mentioned earlier befo
    If you accidentally choose ```<No>```, the installer will provide instructions on how to restart the installation process.
    :::
         
-4. **Reboot your system**
+* **Step 3: Reboot your system**
 
    Reboot your system to ensure that the installation is validated.
 
-5. **The first run**
+*  **Step 4: The first run**
 
    Open a terminal and run the command  `PicoScenes` (**case sensitive!**). After launching PicoScenes, it will crash with an error message saying, "This is a scheduled exception...". Yes, **it IS a planned crash**. Run `PicoScenes` again, and the error should no longer appear.
 
@@ -344,12 +329,13 @@ For Ubuntu GUI Users:
 
 ![Screenshot: Upgrade PicoScenes software via Software Updater](../images/Updater.png)
 
-For Ubuntu CLI users:
-- Open a terminal and run the following command to update the package repository and upgrade all available packages:
+For Ubuntu CLI users, run the PicoScenes Maintainer command:
+    
+   ```bash
+   MaintainPicoScenes
+   ```
+   After running the command, you'll see a menu with several options. Choose option '1 Update/Install PicoScenes' to upgrade the PicoScenes Ubuntu software and driver.
 
-```bash
-sudo apt update && sudo apt upgrade
-```
 
 ### Checking and Upgrading the PMT-Core
 
