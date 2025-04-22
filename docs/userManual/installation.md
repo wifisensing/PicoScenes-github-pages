@@ -347,6 +347,7 @@ PMT-Core is released via git, therefore to upgrade PMT-Core, run `git pull & git
 
 - Run `sudo apt remove picoscenes-driver-modules-<PRESS TAB KEY>` to remove the PicoScenes Drivers.
 - Run `sudo apt remove picoscenes-<PRESS TAB KEY>` to remove PicoScenes platform and plugins.
+- Run `sudo apt autoremove` to remove all the dependencies.
 - Reboot your computer to complete the uninstallation process.
 
 ### Uninstalling the PMT-Core
