@@ -6,7 +6,6 @@ export default defineUserConfig({
   base: "/",
   dest: "./dist",
 
-  title: "PicoScenes",
   description:
     "PicoScenes: Enabling Modern Wi-Fi ISAC Research! ",
   lang: "en-US",
@@ -14,7 +13,7 @@ export default defineUserConfig({
   head: [
     // meta
     ["meta", { name: "robots", content: "all" }],
-    ["meta", { name: "author", content: "Guide" }],
+    ["meta", { name: "author", content: "Zhiping Jiang" }],
     [
       "meta",
       {

@@ -16,7 +16,7 @@ export default hopeTheme({
     // url: "https://faculty.xidian.edu.cn/zpj/zh_CN/index.htm",
   },
 
-  repo: "https://github.com/",
+  // repo: "https://github.com/",
   docsDir: "docs",
   pure: true,
   focus: false,
@@ -24,6 +24,7 @@ export default hopeTheme({
   navbar,
   sidebar,
   displayFooter: true,
+  darkmode: false,
 
   pageInfo: ["Author", "Category", "Tag", "Original", "Word", "ReadingTime"],
 
