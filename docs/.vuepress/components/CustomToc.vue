@@ -86,18 +86,21 @@ export default {
       const newLeft = contentRect.right + tocGap
       
       console.log(`TOC Debug: Content right: ${contentRect.right}, Toc Gap: ${tocGap}, Calculated Left: ${newLeft}, Toc Width: ${tocWidth}, Window Width: ${window.innerWidth}`) 
+
+      tocLeft.value = `${newLeft}px`
+      console.log(`TOC Debug: Setting left to ${tocLeft.value}`) 
       
       // 检查计算结果是否合理
-      if (newLeft > 0 && newLeft + tocWidth < window.innerWidth + 50) { // 加一点容错空间
-         tocLeft.value = `${newLeft}px`
-         console.log(`TOC Debug: Setting left to ${tocLeft.value}`) 
-      } else {
+      //if (newLeft > 0 && newLeft + tocWidth < window.innerWidth + 500) { // 加一点容错空间
+      //   tocLeft.value = `${newLeft}px`
+      //   console.log(`TOC Debug: Setting left to ${tocLeft.value}`) 
+      //} else {
          // 如果计算出的位置不合理（例如内容区太宽或未找到），尝试一个备用定位
          // 例如，固定在视口右侧减去自身宽度和一些边距
-         const fallbackLeft = window.innerWidth - tocWidth - tocGap * 2
-         tocLeft.value = `${fallbackLeft}px`
-         console.log(`TOC Debug: Calculated left unreasonable, using fallback: ${tocLeft.value}`) 
-      }
+      //   const fallbackLeft = window.innerWidth - tocWidth - tocGap * 2
+      //   tocLeft.value = `${fallbackLeft}px`
+      //   console.log(`TOC Debug: Calculated left unreasonable, using fallback: ${tocLeft.value}`) 
+      //}
     }
 
     // 滚动目录项到视图中央
