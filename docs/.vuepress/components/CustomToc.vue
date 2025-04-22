@@ -294,6 +294,8 @@ export default {
   transition: background-color 0.3s, border-color 0.3s, left 0.1s ease-out; /* 添加 left 过渡 */
   padding-left: 0.5rem;
   border-left: 1px solid var(--c-border);
+  color: #3C3C43;
+  font-size: 16px;
 }
 
 .toc-header {
@@ -405,7 +407,7 @@ export default {
 /* 悬停和激活状态 */
 .toc-item a:hover,
 .toc-item.active > a {
-  color: var(--c-brand); 
+  color: #206592; 
   background-color: var(--vp-c-accent-soft, var(--c-brand-light)); /* 使用变量并提供回退 */
   /* font-weight: 600; */ /* 可以取消注释以加粗 */
   text-decoration: none; 
