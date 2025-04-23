@@ -2,6 +2,8 @@
   --navbar-height: 3.6rem;
   --sidebar-width: 16rem; /* 根据你的侧边栏实际宽度调整 */
   --toc-width: 18rem; /* 目录宽度 */
+  --search-input-width: 14rem;
+  
 }
 
 /* 强制显示滚动条，避免宽度跳动 */
@@ -23,6 +25,7 @@ body {
     font-size: 18px;
   }
 }
+
 /* 页面内容容器选择器 */
 [data-numbering="1"] {
   counter-reset: h1counter var(--start-number, 0);
