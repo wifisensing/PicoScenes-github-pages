@@ -78,10 +78,14 @@ jobs:
       - name: Generate Doxygen documentation
         run: |
           cd PicoScenes
+          pwd
+          ls
           doxygen ./docs/Doxyfile
 
       - name: Copy generated HTML to dist
         run: |
+          pwd
+          ls
           cp -r PicoScenes/docs/html/* dist/
 
   deploy:
