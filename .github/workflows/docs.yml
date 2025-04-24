@@ -51,8 +51,9 @@ jobs:
           doxygen ./docs/Doxyfile
 
       - name: Create CNAME file
-        run: echo "ps.zpj.io" > dist/CNAME
-        cp -r PicoScenes/docs/html/* dist/
+        run: | 
+          echo "ps.zpj.io" > dist/CNAME
+          cp -r PicoScenes/docs/html/* dist/
       
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
