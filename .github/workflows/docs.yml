@@ -81,10 +81,6 @@ jobs:
           cd PicoScenes
           doxygen ./docs/Doxyfile
 
-      - name: Copy generated HTML to dist
-        run: |
-          cp -r PicoScenes/docs/html/* dist/
-
   deploy:
     runs-on: ubuntu-latest
     needs: [doxygen]
@@ -93,8 +89,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create CNAME file
-        run: echo "ps.zpj.io" > dist/CNAME
+      - name: Create CNAME file And Copy generated HTML to dist
+        run: |
+          echo "ps.zpj.io" > dist/CNAME
+          cp -r PicoScenes/docs/html/* dist/
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
