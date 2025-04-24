@@ -1,4 +1,4 @@
-name: docs
+name: Build and Deploy
 
 on:
   # trigger deployment on every push to main branch
@@ -43,19 +43,61 @@ jobs:
       - name: Build VuePress site
         run: pnpm docs:build
 
+      # - name: Create CNAME file
+      #   run: echo "ps.zpj.io" > dist/CNAME
+      
+      # # please check out the docs of the workflow for more details
+      # # @see https://github.com/crazy-max/ghaction-github-pages
+      # - name: Deploy to GitHub Pages
+      #   uses: crazy-max/ghaction-github-pages@v4
+      #   with:
+      #     # deploy to gh-pages branch
+      #     target_branch: gh-pages
+      #     # deploy the default output dir of VuePress
+      #     build_dir: ./dist
+      #     cname: ps.zpj.io
+      #   env:
+      #     # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+      #     GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+
+  doxygen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clone PicoScenes repository
+        run: |
+          git clone https://github.com/wifisensing/PicoScenes
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+
+      - name: Generate Doxygen documentation
+        run: |
+          cd PicoScenes
+          doxygen ./docs/Doxyfile
+
+      - name: Copy generated HTML to dist
+        run: |
+          cp -r PicoScenes/html/* dist/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [docs, doxygen]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Create CNAME file
         run: echo "ps.zpj.io" > dist/CNAME
-      
-      # please check out the docs of the workflow for more details
-      # @see https://github.com/crazy-max/ghaction-github-pages
+
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          # deploy to gh-pages branch
           target_branch: gh-pages
-          # deploy the default output dir of VuePress
           build_dir: ./dist
           cname: ps.zpj.io
         env:
-          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
