@@ -71,6 +71,10 @@ jobs:
         run: |
           git clone https://x-access-token:${{ secrets.SSH_TOKEN }}@github.com/wifisensing/PicoScenes.git
 
+      - name: Install Doxygen
+        run: |
+          sudo apt update && sudo apt install doxygen
+      
       - name: Generate Doxygen documentation
         run: |
           cd PicoScenes
