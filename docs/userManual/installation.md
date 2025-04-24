@@ -9,158 +9,18 @@ startNumber: 5
 如果您不想费劲地看英文，请开启浏览器的翻译功能，省脑子。
 :::
 
-## Hardware Installation
+## Document Structure
 
-PicoScenes currently supports four commercial Wi-Fi NIC models and SDR devices, including the AX200 (or AX201), AX210 (or AX211), QCA9300, IWL5300, all models of USRP devices, and the HackRF One.
+This manual is organized according to the typical user workflow and is divided into six sections, providing a systematic guide to the installation, configuration, and management of PicoScenes hardware and software:
 
-The most popular feature of PicoScenes is the concurrent operation of multiple RF frontends, i.e., simultaneous CSI measurement or packet injection using a commercial Wi-Fi NIC/SDR array. To help you get the hardware ready, we share some hardware preparation experience, mainly focusing on the multi-device setup.
+1. Preparation Before Software Installation
+2. Software Installation
+3. Software Upgrade
+4. Software Uninstallation
+5. Installation of Matlab / Python Toolboxes
+6. Hardware Installation
 
-### Installation of (Multiple) Commercial Wi-Fi NICs
-
-We recommend three methods for installing multiple NICs.
-
-1. **PCI-E 1x Adapter-based Multi-NIC Installation**
-
-   With the help of the `Mini PCI-E to PCI-E 1x adapter` or `M.2 to PCI-E 1x adapter`, you can install multiple NICs directly on the motherboard of a desktop PC.
-
-   However, there are usually only 2 or 3 spare PCI-E slots left for the Wi-Fi NICs. To overcome this issue, you may choose **cryptocurrency mining motherboards**, such as the MSI B360-F Pro. These types of motherboards have dozens of PCI-E 1x slots, and you can use **PCI-E slot risers** to install *dozens* of Wi-Fi NICs on a single motherboard.
-
-2. **Multi-Mini PCI-E/M.2 Slots-Based Multi-NIC Installation**
-
-   This is the most convenient approach for installing multiple NICs. The onboard Mini PCI-E or M.2 slots eliminate the need for PCI-E 1x adapters.    
-   With some hardware and software tricks, we modified an old laptop model, the ThinkPad X201, and installed two Mini PCI-E/M.2-based Wi-Fi NICs. Moreover, **the X201 enables you to install three SMA-based external antennas!** The following photo shows our modified ThinkPad X201 equipped with both the QCA9300 and IWL5300 NICs and three external antennas. The laptop can also install an AX210/AX200 using an M.2-to-Mini PCI-E converter.
-
-   ![Modified ThinkPad X201 laptop equipped with two Wi-Fi NICs (QCA9300 and IWL5300) and three external SMA antennas](../images/X201-External-Antennas.jpg)
-
-3. **PCI-E Bridge Adapter-Based Multi-NIC Installation**
-
-   The PCI-E bridge adapter can split one PCI-E connection into multiple connections, similar to a PCI-E hub. Therefore, you can connect multiple NICs to only one of the motherboard's PCI-E slots via the bridge adapter.
-
-   Moreover, you can build a multi-layer hierarchy of bridge adapters and install NICs to all the leaf nodes. In this way, you can theoretically install over 100 Wi-Fi NICs in your system. To validate the feasibility of this approach, we built a 27-NIC Wi-Fi ISAC array using a 3-layer hierarchy of 1-to-3 PCI-E bridge adapters. The figure below shows the picture and layout of the 27-NIC array. The entire array is encapsulated in an IKEA box.    
-
-   ![27-NIC Wi-Fi ISAC array built using 1-to-3 bridge adapters](../images/NICArrayLayout-horizontal.jpg)
-
-::: tip
-1. Do you want to access research-ready hardware out of the box? Do you want to skip the unfamiliar hardware selection, installation, and tricky setup? 
-
-2. Get them from our Taobao shop [PicoScenes软硬件与服务](https://shop235693252.taobao.com/)! Our shop sells the modified ThinkPad X201 and all supported Wi-Fi NICs.
-:::
-
-### Installation of (Multiple) USRP Devices
-
-The installation, usage, and optimization of USRP are much more complex than that of a COTS NIC. Therefore, please follow the steps below to configure and verify the USRP hardware.
-
-#### Installing PicoScenes Software 
-
-Before setting up the USRP hardware, you should install the PicoScenes software first. Please follow the instructions in the [PicoScenes Software Installation](#picoscenes-software-installation) section to install PicoScenes. Please note that PicoScenes depends on a specific version of UHD. If you have previously installed your own compiled version of UHD, please uninstall it before proceeding.
-
-::: tip
-The driver installation or build process listed on the USRP Official site can be complicated and prone to errors. To simplify this process, we have built and packaged the PicoScenes software using the USRP driver shipped with the Ubuntu system. Therefore, by installing PicoScenes software, you will also be installing the USRP driver.
-:::
-
-
-#### Configuring USRP Hardware
-
-You should set up your hardware according to the USRP official [Devices & Usage Manual](https://files.ettus.com/manual/page_devices.html). Read and follow the Get Started sections according to your USRP models.
-
-- [USRP Hardware Driver and USRP Manual: B200/B210/B200mini/B205mini](https://kb.ettus.com/B200/B210/B200mini/B205mini)
-- [USRP Hardware Driver and USRP Manual: USRP2 and N2x0 Series](https://files.ettus.com/manual/page_usrp2.html)
-- [USRP Hardware Driver and USRP Manual: USRP X3x0 Series](https://files.ettus.com/manual/page_usrp_x3x0.html)
-- [USRP Hardware Driver and USRP Manual: USRP N3x0 Series](https://files.ettus.com/manual/page_usrp_n3xx.html)
-- [USRP Hardware Driver and USRP Manual: USRP X4x0 Series](https://files.ettus.com/manual/page_usrp_x4xx.html)
-- [Multiple USRP configuration](https://files.ettus.com/manual/page_multiple.html)
-
-::: tip
-The PicoScenes software installer installs the UHD software. So, you can skip the UHD installation or source code building steps.
-:::
-
-##### Suggestions for NI USRP Hardware Setup
-
-Based on our experience, we have the following suggestions for setting up USRP hardware:
-
-- X3x0 Series: It is **not recommended to use a PCI-E cable-based connection** due to inefficiency in both hardware and cost. This method has two major drawbacks. Firstly, the PCI-E-based connection is hardware-inefficient as it requires one cable or extension card for each X3x0 device. This can be very expensive and may not be feasible for a desktop PC with limited spare PCI-E slots. Secondly, the UHD software does not support a hybrid combination of the PCI-E-based link and the GbE/10GbE-based link, further limiting its application.
-
-- X3x0 and N3x0 Series: We highly **recommend using a 10GbE connection and the Intel X710 Quad Port 10 Gb Ethernet Adapter**. This is a reasonable and cost-effective solution for connecting multiple X3x0 and N3x0 devices. It occupies only one full-size PCI-E slot but provides four 10GbE ports, allowing you to connect up to four X3x0 or N3x0 devices.
-
-- N2x0 Series: Consider using MIMO cables to achieve MIMO and phased array capabilities. However, note that MIMO cables have a narrow bandwidth.
-
-- Multiple USRP Devices: As clearly stated in [Multiple USRP configuration](https://files.ettus.com/manual/page_multiple.html), UHD only supports combining multiple USRP devices of the same model. Currently, the N2x0 and X3x0 series are the only combination-ready models.
-
-- Daughterboard Selection: For both the N2x0 and X3x0 series, it is advisable to consider using the UBX-40/UBX-160 daughterboard. Although these daughterboards are expensive, they are the only ones that support daughterboard-level phase synchronization, which is necessary for PicoScenes to achieve phased-array functionality.
-
-- IP Address Allocation: Pay special attention to the allocation of IP addresses. For network-based connections, the Ethernet NIC port and the connected USRP must be in the same subnet. If they are not in the same subnet, the UHD device discovery program 'uhd_find_devices' may still find the devices, but PicoScenes will not be able to initialize them correctly.
-
-- Clock Synchronization: For clock synchronization, the OctoClock-G from EttusResearch is a cost-effective choice. It can distribute GPS-disciplined clocks to up to eight USRP devices.
-
-#### Verifying Hardware Installation
-
-To ensure that your USRP is ready for PicoScenes, follow the four-stage verification process outlined below.
-
-##### Verifying Hardware Connection
-
-Open a terminal and execute the following command:
-
-```bash
-uhd_find_devices
-```
-
-The uhd_find_devices command is provided by UHD as a device discovery program. It will list all the connected USRP devices. If your device is not displayed, please refer to the USRP manual for troubleshooting steps to check the hardware connection.
-
-##### Verifying Firmware Version
-
-Open a terminal and execute the following command:
-
-```bash
-uhd_usrp_probe
-```
-
-The uhd_usrp_probe command prints the hardware details of all connected devices and checks whether the devices' firmware versions are consistent with the UHD software installed on the host computer. If any inconsistencies are detected, you can use the uhd_image_loader command to flash the latest firmware to the USRP.
-
-To update the firmware for USRP N2x0 devices, run the following command:
-
-```bash
-uhd_image_loader --args="type=usrp2"
-```
-
-For USRP X3x0 devices, use the following command to update the firmware:
-
-```bash
-uhd_image_loader --args="type=x300"
-```
-
-##### Verifying Signal Reception (RX)
-
-To check if your USRP can receive the signal, you can use UHD's `uhd_fft` command. Execute the following command:
-
-```bash
-uhd_fft --args="ADDRESS_STRING" -f 2412e6 -s 20e6
-```
-
-Replace `ADDRESS_STRING` with the USRP identification string. For more details, refer to the [USRP Common Device Identifiers](https://files.ettus.com/manual/page_identification.html#id_identifying_common).
-
-##### Tx/Rx Self-Calibration (for USRP N2x0, X3x0, and N3x0 users)
-
-Uncalibrated daughterboards can introduce `serious` signal distortion. It is recommended to perform calibrations for EACH daughterboard following the instructions in the [Device Calibration](https://files.ettus.com/manual/page_calibration.html) section. Calibrating the frequency range that covers your intended measurements will help achieve the best signal quality.
-
-### Installation of (Multiple) HackRF One
-
-The installation and verification process for HackRF One is relatively simpler compared to USRP. Please follow the steps below to complete the installation and verification.
-
-#### Installing The PicoScenes Software 
-
-Before setting up the HackRF One hardware, you should install the PicoScenes software first. you should follow [PicoScenes Software Installation](#picoscenes-software-installation) section to install the PicoScenes software.
-
-#### Verifying Hardware Connection
-
-The HackRF One is a USB 2.0 interfaced SDR device, so you can simply plug in the device. To check the connection, run the following command:
-
-```bash
-SoapySDRUtil --find="driver=hackrf"
-```
-
-If the connection is successful, you will see the device information displayed.
-
-## PicoScenes Software Installation
+## Software Installation
 
 Before installing the PicoScenes software, please make sure you meet the following prerequisites:
 
@@ -347,10 +207,161 @@ PMT-Core is released via git, therefore to upgrade PMT-Core, run `git pull & git
 
 - Run `sudo apt remove picoscenes-driver-modules-<PRESS TAB KEY>` to remove the PicoScenes Drivers.
 - Run `sudo apt remove picoscenes-<PRESS TAB KEY>` to remove PicoScenes platform and plugins.
-- Run `sudo apt autoremove` to remove all the dependencies.
+- Runsudo apt autoremove 
 - Reboot your computer to complete the uninstallation process.
 
 ### Uninstalling the PMT-Core
 
 - Run `uninstall_PicoScenes_MATLAB_Toolbox` in MATLAB
 - Remove the PMT folder
+
+## Hardware Installation
+
+PicoScenes currently supports four commercial Wi-Fi NIC models and SDR devices, including the AX200 (or AX201), AX210 (or AX211), QCA9300, IWL5300, all models of USRP devices, and the HackRF One.
+
+The most popular feature of PicoScenes is the concurrent operation of multiple RF frontends, i.e., simultaneous CSI measurement or packet injection using a commercial Wi-Fi NIC/SDR array. To help you get the hardware ready, we share some hardware preparation experience, mainly focusing on the multi-device setup.
+
+### Installation of (Multiple) Commercial Wi-Fi NICs
+
+We recommend three methods for installing multiple NICs.
+
+1. **PCI-E 1x Adapter-based Multi-NIC Installation**
+
+   With the help of the `Mini PCI-E to PCI-E 1x adapter` or `M.2 to PCI-E 1x adapter`, you can install multiple NICs directly on the motherboard of a desktop PC.
+
+   However, there are usually only 2 or 3 spare PCI-E slots left for the Wi-Fi NICs. To overcome this issue, you may choose **cryptocurrency mining motherboards**, such as the MSI B360-F Pro. These types of motherboards have dozens of PCI-E 1x slots, and you can use **PCI-E slot risers** to install *dozens* of Wi-Fi NICs on a single motherboard.
+
+2. **Multi-Mini PCI-E/M.2 Slots-Based Multi-NIC Installation**
+
+   This is the most convenient approach for installing multiple NICs. The onboard Mini PCI-E or M.2 slots eliminate the need for PCI-E 1x adapters.    
+   With some hardware and software tricks, we modified an old laptop model, the ThinkPad X201, and installed two Mini PCI-E/M.2-based Wi-Fi NICs. Moreover, **the X201 enables you to install three SMA-based external antennas!** The following photo shows our modified ThinkPad X201 equipped with both the QCA9300 and IWL5300 NICs and three external antennas. The laptop can also install an AX210/AX200 using an M.2-to-Mini PCI-E converter.
+
+   ![Modified ThinkPad X201 laptop equipped with two Wi-Fi NICs (QCA9300 and IWL5300) and three external SMA antennas](../images/X201-External-Antennas.jpg)
+
+3. **PCI-E Bridge Adapter-Based Multi-NIC Installation**
+
+   The PCI-E bridge adapter can split one PCI-E connection into multiple connections, similar to a PCI-E hub. Therefore, you can connect multiple NICs to only one of the motherboard's PCI-E slots via the bridge adapter.
+
+   Moreover, you can build a multi-layer hierarchy of bridge adapters and install NICs to all the leaf nodes. In this way, you can theoretically install over 100 Wi-Fi NICs in your system. To validate the feasibility of this approach, we built a 27-NIC Wi-Fi ISAC array using a 3-layer hierarchy of 1-to-3 PCI-E bridge adapters. The figure below shows the picture and layout of the 27-NIC array. The entire array is encapsulated in an IKEA box.    
+
+   ![27-NIC Wi-Fi ISAC array built using 1-to-3 bridge adapters](../images/NICArrayLayout-horizontal.jpg)
+
+::: tip
+1. Do you want to access research-ready hardware out of the box? Do you want to skip the unfamiliar hardware selection, installation, and tricky setup? 
+
+2. Get them from our Taobao shop [PicoScenes软硬件与服务](https://shop235693252.taobao.com/)! Our shop sells the modified ThinkPad X201 and all supported Wi-Fi NICs.
+:::
+
+### Installation of (Multiple) USRP Devices
+
+The installation, usage, and optimization of USRP are much more complex than that of a COTS NIC. Therefore, please follow the steps below to configure and verify the USRP hardware.
+
+#### Installing PicoScenes Software 
+
+Before setting up the USRP hardware, you should install the PicoScenes software first. Please follow the instructions in the [PicoScenes Software Installation](#picoscenes-software-installation) section to install PicoScenes. Please note that PicoScenes depends on a specific version of UHD. If you have previously installed your own compiled version of UHD, please uninstall it before proceeding.
+
+::: tip
+The driver installation or build process listed on the USRP Official site can be complicated and prone to errors. To simplify this process, we have built and packaged the PicoScenes software using the USRP driver shipped with the Ubuntu system. Therefore, by installing PicoScenes software, you will also be installing the USRP driver.
+:::
+
+
+#### Configuring USRP Hardware
+
+You should set up your hardware according to the USRP official [Devices & Usage Manual](https://files.ettus.com/manual/page_devices.html). Read and follow the Get Started sections according to your USRP models.
+
+- [USRP Hardware Driver and USRP Manual: B200/B210/B200mini/B205mini](https://kb.ettus.com/B200/B210/B200mini/B205mini)
+- [USRP Hardware Driver and USRP Manual: USRP2 and N2x0 Series](https://files.ettus.com/manual/page_usrp2.html)
+- [USRP Hardware Driver and USRP Manual: USRP X3x0 Series](https://files.ettus.com/manual/page_usrp_x3x0.html)
+- [USRP Hardware Driver and USRP Manual: USRP N3x0 Series](https://files.ettus.com/manual/page_usrp_n3xx.html)
+- [USRP Hardware Driver and USRP Manual: USRP X4x0 Series](https://files.ettus.com/manual/page_usrp_x4xx.html)
+- [Multiple USRP configuration](https://files.ettus.com/manual/page_multiple.html)
+
+::: tip
+The PicoScenes software installer installs the UHD software. So, you can skip the UHD installation or source code building steps.
+:::
+
+##### Suggestions for NI USRP Hardware Setup
+
+Based on our experience, we have the following suggestions for setting up USRP hardware:
+
+- X3x0 Series: It is **not recommended to use a PCI-E cable-based connection** due to inefficiency in both hardware and cost. This method has two major drawbacks. Firstly, the PCI-E-based connection is hardware-inefficient as it requires one cable or extension card for each X3x0 device. This can be very expensive and may not be feasible for a desktop PC with limited spare PCI-E slots. Secondly, the UHD software does not support a hybrid combination of the PCI-E-based link and the GbE/10GbE-based link, further limiting its application.
+
+- X3x0 and N3x0 Series: We highly **recommend using a 10GbE connection and the Intel X710 Quad Port 10 Gb Ethernet Adapter**. This is a reasonable and cost-effective solution for connecting multiple X3x0 and N3x0 devices. It occupies only one full-size PCI-E slot but provides four 10GbE ports, allowing you to connect up to four X3x0 or N3x0 devices.
+
+- N2x0 Series: Consider using MIMO cables to achieve MIMO and phased array capabilities. However, note that MIMO cables have a narrow bandwidth.
+
+- Multiple USRP Devices: As clearly stated in [Multiple USRP configuration](https://files.ettus.com/manual/page_multiple.html), UHD only supports combining multiple USRP devices of the same model. Currently, the N2x0 and X3x0 series are the only combination-ready models.
+
+- Daughterboard Selection: For both the N2x0 and X3x0 series, it is advisable to consider using the UBX-40/UBX-160 daughterboard. Although these daughterboards are expensive, they are the only ones that support daughterboard-level phase synchronization, which is necessary for PicoScenes to achieve phased-array functionality.
+
+- IP Address Allocation: Pay special attention to the allocation of IP addresses. For network-based connections, the Ethernet NIC port and the connected USRP must be in the same subnet. If they are not in the same subnet, the UHD device discovery program 'uhd_find_devices' may still find the devices, but PicoScenes will not be able to initialize them correctly.
+
+- Clock Synchronization: For clock synchronization, the OctoClock-G from EttusResearch is a cost-effective choice. It can distribute GPS-disciplined clocks to up to eight USRP devices.
+
+#### Verifying Hardware Installation
+
+To ensure that your USRP is ready for PicoScenes, follow the four-stage verification process outlined below.
+
+##### Verifying Hardware Connection
+
+Open a terminal and execute the following command:
+
+```bash
+uhd_find_devices
+```
+
+The uhd_find_devices command is provided by UHD as a device discovery program. It will list all the connected USRP devices. If your device is not displayed, please refer to the USRP manual for troubleshooting steps to check the hardware connection.
+
+##### Verifying Firmware Version
+
+Open a terminal and execute the following command:
+
+```bash
+uhd_usrp_probe
+```
+
+The uhd_usrp_probe command prints the hardware details of all connected devices and checks whether the devices' firmware versions are consistent with the UHD software installed on the host computer. If any inconsistencies are detected, you can use the uhd_image_loader command to flash the latest firmware to the USRP.
+
+To update the firmware for USRP N2x0 devices, run the following command:
+
+```bash
+uhd_image_loader --args="type=usrp2"
+```
+
+For USRP X3x0 devices, use the following command to update the firmware:
+
+```bash
+uhd_image_loader --args="type=x300"
+```
+
+##### Verifying Signal Reception (RX)
+
+To check if your USRP can receive the signal, you can use UHD's `uhd_fft` command. Execute the following command:
+
+```bash
+uhd_fft --args="ADDRESS_STRING" -f 2412e6 -s 20e6
+```
+
+Replace `ADDRESS_STRING` with the USRP identification string. For more details, refer to the [USRP Common Device Identifiers](https://files.ettus.com/manual/page_identification.html#id_identifying_common).
+
+##### Tx/Rx Self-Calibration (for USRP N2x0, X3x0, and N3x0 users)
+
+Uncalibrated daughterboards can introduce `serious` signal distortion. It is recommended to perform calibrations for EACH daughterboard following the instructions in the [Device Calibration](https://files.ettus.com/manual/page_calibration.html) section. Calibrating the frequency range that covers your intended measurements will help achieve the best signal quality.
+
+### Installation of (Multiple) HackRF One
+
+The installation and verification process for HackRF One is relatively simpler compared to USRP. Please follow the steps below to complete the installation and verification.
+
+#### Installing The PicoScenes Software 
+
+Before setting up the HackRF One hardware, you should install the PicoScenes software first. you should follow [PicoScenes Software Installation](#picoscenes-software-installation) section to install the PicoScenes software.
+
+#### Verifying Hardware Connection
+
+The HackRF One is a USB 2.0 interfaced SDR device, so you can simply plug in the device. To check the connection, run the following command:
+
+```bash
+SoapySDRUtil --find="driver=hackrf"
+```
+
+If the connection is successful, you will see the device information displayed.
