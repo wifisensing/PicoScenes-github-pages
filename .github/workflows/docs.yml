@@ -71,7 +71,7 @@ jobs:
         run: |
           git clone git@github.com:wifisensing/PicoScenes.git
         env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SSH_TOKEN }}
 
       - name: Generate Doxygen documentation
         run: |
