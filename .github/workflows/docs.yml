@@ -73,15 +73,18 @@ jobs:
 
       - name: Install Doxygen
         run: |
+          pwd
           sudo apt update && sudo apt install doxygen
       
       - name: Generate Doxygen documentation
         run: |
+          pwd
           cd PicoScenes
           doxygen ./docs/Doxyfile
 
       - name: Copy generated HTML to dist
         run: |
+          pwd
           cp -r PicoScenes/html/* dist/
 
   deploy:
