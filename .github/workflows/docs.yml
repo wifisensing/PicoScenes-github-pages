@@ -53,7 +53,8 @@ jobs:
       - name: Create CNAME file
         run: | 
           echo "ps.zpj.io" > dist/CNAME
-          cp -r PicoScenes/docs/html/* dist/
+          mkdir dist/html
+          cp -r PicoScenes/docs/html/* dist/html
       
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
