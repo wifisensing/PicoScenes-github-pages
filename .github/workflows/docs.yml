@@ -43,10 +43,18 @@ jobs:
       - name: Build VuePress site
         run: pnpm docs:build
 
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      
       - name: Build Doxygen site
         run: |
-          git clone --recursive https://x-access-token:${{ secrets.SSH_TOKEN }}@github.com/wifisensing/PicoScenes.git
-          sudo apt-get install && sudo apt-get install -y doxygen graphviz
+          git clone --recursive git@github.com:wifisensing/PicoScenes.git
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
           cd PicoScenes
           doxygen ./docs/Doxyfile
 
