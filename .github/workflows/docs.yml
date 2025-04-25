@@ -48,8 +48,9 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          ssh-keygen -l -f ~/.ssh/id_rsa || echo "Invalid SSH key format"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-      
+
       - name: Build Doxygen site
         run: |
           git clone --recursive git@github.com:wifisensing/PicoScenes.git
