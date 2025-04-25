@@ -45,7 +45,7 @@ jobs:
 
       - name: Build Doxygen site
         run: |
-          git clone https://x-access-token:${{ secrets.SSH_TOKEN }}@github.com/wifisensing/PicoScenes.git
+          git clone --recursive https://x-access-token:${{ secrets.SSH_TOKEN }}@github.com/wifisensing/PicoScenes.git
           sudo apt-get install && sudo apt-get install -y doxygen graphviz
           cd PicoScenes
           doxygen ./docs/Doxyfile
