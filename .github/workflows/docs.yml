@@ -63,7 +63,7 @@ jobs:
         run: | 
           echo "ps.zpj.io" > dist/CNAME
           mkdir dist/html
-          cp -r PicoScenes/docs/html/* dist/html
+          cp -r PicoScenes/docs/html/* dist/api_docs
       
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
