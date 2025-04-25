@@ -43,13 +43,13 @@ jobs:
       - name: Build VuePress site
         run: pnpm docs:build
 
-      - name: Set up SSH access
+      - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh-keygen -l -f ~/.ssh/id_rsa || echo "Invalid SSH key format"
+          git config --global url."git@github.com:".insteadOf "https://github.com/"
 
       - name: Build Doxygen site
         run: |
