@@ -10,7 +10,7 @@ Explore our extensive library of application notes and technical tutorials desig
 
 ## Wi-Fi Knowledge
 
-- **[Wi-Fi Channelization](../userManual/channels.md)**: A detailed explanation of Wi-Fi channel specifications for both COTS NICs and SDR devices, including examples of how to correctly set channels for `array_prepare_for_picoscenes` and `PicoScenes` commands.
+- **[Wi-Fi Channelization](../manual/channels.md)**: A detailed explanation of Wi-Fi channel specifications for both COTS NICs and SDR devices, including examples of how to correctly set channels for `array_prepare_for_picoscenes` and `PicoScenes` commands.
 
 ## Hardware Guides
 

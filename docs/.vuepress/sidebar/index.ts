@@ -11,7 +11,7 @@ export default sidebar({
       icon: "star",
       link: "README.md",
       // collapsible: true,
-      prefix: "userManual/",
+      prefix: "manual/",
       children: [
         "gallery", 
         "users",

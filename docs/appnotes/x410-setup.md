@@ -55,7 +55,7 @@ The NI USRP X4x0 device features two QSFP28+ interfaces and a single 1GbE Ethern
 After setting up the network sharing as described above, the X4x0 device should have obtained an IP address. You can verify this by running the `uhd_find_devices` command on your host computer. This command should display the detected X4x0 device with its IP address.
 
 ::: info
-The `uhd_find_devices` command is provided by the USRP Hardware Driver (UHD). For PicoScenes users, the UHD driver will be automatically installed during the PicoScenes installation process. For detailed installation instructions, please refer to the [Installation](../userManual/installation.md#picoscenes-software-installation) section.
+The `uhd_find_devices` command is provided by the USRP Hardware Driver (UHD). For PicoScenes users, the UHD driver will be automatically installed during the PicoScenes installation process. For detailed installation instructions, please refer to the [Installation](../manual/installation.md#picoscenes-software-installation) section.
 :::
 
 ## Test Internet Connection
