@@ -1,0 +1,13 @@
+<map id="headers/SDRFrontEndConfigurations.hxx" name="headers/SDRFrontEndConfigurations.hxx">
+<area shape="rect" id="Node000001" title=" " alt="" coords="253,5,537,31"/>
+<area shape="rect" id="Node000002" href="$AbstractSDRFrontEnd_8hxx.html" title=" " alt="" coords="299,79,491,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="398,44,398,79,393,79,393,44"/>
+<area shape="rect" id="Node000003" href="$SDRNIC_8hxx.html" title=" " alt="" coords="5,174,161,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="315,125,126,177,124,171,313,120"/>
+<area shape="rect" id="Node000004" href="$SoapySDRAbstractFrontEnd_8hxx.html" title=" " alt="" coords="185,167,384,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="361,129,311,169,308,164,358,125"/>
+<area shape="rect" id="Node000005" href="$USRPFrontEnd_8hxx.html" title=" " alt="" coords="408,174,607,199"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="433,125,493,171,490,176,429,129"/>
+<area shape="rect" id="Node000006" href="$VirtualSDRFrontEnd_8hxx.html" title=" " alt="" coords="631,174,864,199"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="486,119,701,171,700,177,485,124"/>
+</map>

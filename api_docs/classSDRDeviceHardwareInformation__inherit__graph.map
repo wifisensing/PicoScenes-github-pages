@@ -1,0 +1,11 @@
+<map id="SDRDeviceHardwareInformation" name="SDRDeviceHardwareInformation">
+<area shape="rect" id="Node000001" title="Class providing comprehensive hardware information for SDR devices." alt="" coords="170,5,403,31"/>
+<area shape="rect" id="Node000002" href="$classAbstractSDRFrontEnd.html" title="The shared abstract frontend for SDR devices only." alt="" coords="207,79,367,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="289,44,289,79,284,79,284,44"/>
+<area shape="rect" id="Node000003" href="$classSoapySDRAbstractFrontEnd.html" title="A class representing an abstract front end for SoapySDR devices." alt="" coords="5,152,205,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="246,111,136,154,134,149,244,106"/>
+<area shape="rect" id="Node000004" href="$classUSRPFrontEnd.html" title="Interface class for the USRP Frontend." alt="" coords="229,152,344,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="289,118,289,152,284,152,284,118"/>
+<area shape="rect" id="Node000005" href="$classVirtualSDRFrontEnd.html" title="Interface class for the Virtual SDR Frontend." alt="" coords="368,152,517,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="325,107,418,149,416,154,323,112"/>
+</map>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="https://ps.zpj.io/atom.xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
+  <id>https://ps.zpj.io/</id>
+  <title/>
+  <subtitle>PicoScenes: Enabling Modern Wi-Fi ISAC Research! </subtitle>
+  <icon>https://ps.zpj.io/favicon.ico</icon>
+  <updated>2025-05-08T02:38:42.941Z</updated>
+  <generator>@vuepress/plugin-feed</generator>
+  <link rel="self" href="https://ps.zpj.io/atom.xml"/>
+  <link rel="alternate" href="https://ps.zpj.io/"/>
+  <entry>
+    <title type="text">Python interface of PicoScenes</title>
+    <id>https://ps.zpj.io/manual/pypicoscenes.html</id>
+    <link href="https://ps.zpj.io/manual/pypicoscenes.html"/>
+    <updated>2025-05-08T02:37:48.000Z</updated>
+    <published>2025-05-07T09:11:01.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">PicoScenes: Enabling Modern Wi-Fi ISAC Research!</title>
+    <id>https://ps.zpj.io/</id>
+    <link href="https://ps.zpj.io/"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Application Notes</title>
+    <id>https://ps.zpj.io/appnotes/appnotes.html</id>
+    <link href="https://ps.zpj.io/appnotes/appnotes.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Connecting NI USRP Devices</title>
+    <id>https://ps.zpj.io/appnotes/connect-usrp.html</id>
+    <link href="https://ps.zpj.io/appnotes/connect-usrp.html"/>
+    <updated>2025-04-17T02:59:32.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Getting Started with NI USRP X4x0 Series</title>
+    <id>https://ps.zpj.io/appnotes/x410-setup.html</id>
+    <link href="https://ps.zpj.io/appnotes/x410-setup.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Wi-Fi Channelization</title>
+    <id>https://ps.zpj.io/manual/channels.html</id>
+    <link href="https://ps.zpj.io/manual/channels.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Credits</title>
+    <id>https://ps.zpj.io/manual/credits.html</id>
+    <link href="https://ps.zpj.io/manual/credits.html"/>
+    <updated>2025-05-07T09:11:01.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">PicoScenes Software End User License Agreement</title>
+    <id>https://ps.zpj.io/manual/eula.html</id>
+    <link href="https://ps.zpj.io/manual/eula.html"/>
+    <updated>2025-05-07T09:11:01.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Features &amp; License</title>
+    <id>https://ps.zpj.io/manual/features_pricing.html</id>
+    <link href="https://ps.zpj.io/manual/features_pricing.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Gallery</title>
+    <id>https://ps.zpj.io/manual/gallery.html</id>
+    <link href="https://ps.zpj.io/manual/gallery.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Supported Hardware</title>
+    <id>https://ps.zpj.io/manual/hardware.html</id>
+    <link href="https://ps.zpj.io/manual/hardware.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">PicoScenes Installation &amp; Upgrade</title>
+    <id>https://ps.zpj.io/manual/installation.html</id>
+    <link href="https://ps.zpj.io/manual/installation.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">PicoScenes MATLAB Toolbox Core</title>
+    <id>https://ps.zpj.io/manual/matlab.html</id>
+    <link href="https://ps.zpj.io/manual/matlab.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text"></title>
+    <id>https://ps.zpj.io/manual/newIndex.html</id>
+    <link href="https://ps.zpj.io/manual/newIndex.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <summary type="html"><![CDATA[<p>PicoScenes is a Wi-Fi PHY-layer software that enhances modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research across several crucial areas:</p>
+<ul>
+<li><strong>Channel State Information (CSI) Measurement</strong>: Facilitates CSI measurement using SDR devices (NI USRP and HackRF One) and commercial Wi-Fi NICs (Intel AX210, Intel 5300, and Qualcomm 9300).</li>
+<li><strong>Advanced and Standard-Compliant Transceiving</strong>: Guarantees high-performance, standard-compliant transmission and reception of 802.11a/g/n/ac/ax/be frames using SDR and Wi-Fi NICs. PicoScenes ensures full interoperability with commercial Wi-Fi NICs, enabling highly reciprocal transceiving capabilities.
+<ul>
+<li>With SDR devices, it supports up to 8x8 MIMO/MU-MIMO, punctured-OFDMA, 320-MHz channel bandwidth (CBW), and 4096-QAM modulation.</li>
+<li>With Wi-Fi NICs, specifically the Intel AX210 NIC, it fully supports the Wi-Fi 6E standard, including 802.11ax, 160-MHz CBW, and the complete 6-GHz band access.</li>
+</ul>
+</li>
+<li><strong>Full PHY-Layer Control</strong>: Provides arbitrary control over carrier frequency, bandwidth, and per-antenna Tx/Rx gain, nanosecond-level precise timing for Tx/Rx, hardware impairment simulation (CFO, SFO, I/Q imbalance), Tx precoding or beamforming (per-subcarrier/antenna/spatial-stream), and various baseband modem controls.</li>
+<li><strong>Rich PHY-Layer Information</strong>: Delivers detailed information such as raw I/Q data, OFDM symbols, and SFO/CFO/STO on a per-packet basis.</li>
+<li><strong>Powerful Control</strong>: Offers Python bindings and C++ plugin mechanism, enabling complex hardware control, data-analysis, and Tx/Rx operations in real-time.</li>
+<li><strong>Easy-To-Use and Time Saving</strong>: Supports Ubuntu, macOS, and Windows platforms, SDR devices Plug'n'Play, accompanied by the PicoScenes-MATLAB/Python-Toolbox, live data display, UDP forwarding, and an easy-to-use GUI control.</li>
+<li><strong>Elevated Research Starting Point</strong>: Offers out-of-the-box Python bindings for deep learning and data science, fully open-sourced RTT-style Wi-Fi ranging, AoA/ToF estimation, multi-purposed DSP library, and SISO/MIMO Wi-Fi radar capabilities.</li>
+</ul>]]></summary>
+    <content type="html"><![CDATA[<p>PicoScenes is a Wi-Fi PHY-layer software that enhances modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research across several crucial areas:</p>
+<ul>
+<li><strong>Channel State Information (CSI) Measurement</strong>: Facilitates CSI measurement using SDR devices (NI USRP and HackRF One) and commercial Wi-Fi NICs (Intel AX210, Intel 5300, and Qualcomm 9300).</li>
+<li><strong>Advanced and Standard-Compliant Transceiving</strong>: Guarantees high-performance, standard-compliant transmission and reception of 802.11a/g/n/ac/ax/be frames using SDR and Wi-Fi NICs. PicoScenes ensures full interoperability with commercial Wi-Fi NICs, enabling highly reciprocal transceiving capabilities.
+<ul>
+<li>With SDR devices, it supports up to 8x8 MIMO/MU-MIMO, punctured-OFDMA, 320-MHz channel bandwidth (CBW), and 4096-QAM modulation.</li>
+<li>With Wi-Fi NICs, specifically the Intel AX210 NIC, it fully supports the Wi-Fi 6E standard, including 802.11ax, 160-MHz CBW, and the complete 6-GHz band access.</li>
+</ul>
+</li>
+<li><strong>Full PHY-Layer Control</strong>: Provides arbitrary control over carrier frequency, bandwidth, and per-antenna Tx/Rx gain, nanosecond-level precise timing for Tx/Rx, hardware impairment simulation (CFO, SFO, I/Q imbalance), Tx precoding or beamforming (per-subcarrier/antenna/spatial-stream), and various baseband modem controls.</li>
+<li><strong>Rich PHY-Layer Information</strong>: Delivers detailed information such as raw I/Q data, OFDM symbols, and SFO/CFO/STO on a per-packet basis.</li>
+<li><strong>Powerful Control</strong>: Offers Python bindings and C++ plugin mechanism, enabling complex hardware control, data-analysis, and Tx/Rx operations in real-time.</li>
+<li><strong>Easy-To-Use and Time Saving</strong>: Supports Ubuntu, macOS, and Windows platforms, SDR devices Plug'n'Play, accompanied by the PicoScenes-MATLAB/Python-Toolbox, live data display, UDP forwarding, and an easy-to-use GUI control.</li>
+<li><strong>Elevated Research Starting Point</strong>: Offers out-of-the-box Python bindings for deep learning and data science, fully open-sourced RTT-style Wi-Fi ranging, AoA/ToF estimation, multi-purposed DSP library, and SISO/MIMO Wi-Fi radar capabilities.</li>
+</ul>
+]]></content>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Selling NI USRP Devices</title>
+    <id>https://ps.zpj.io/manual/ni.html</id>
+    <link href="https://ps.zpj.io/manual/ni.html"/>
+    <updated>2025-05-07T09:11:01.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Open Source Software Licenses</title>
+    <id>https://ps.zpj.io/manual/opensource_license.html</id>
+    <link href="https://ps.zpj.io/manual/opensource_license.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Command Line Interface and Program Option Reference</title>
+    <id>https://ps.zpj.io/manual/parameters.html</id>
+    <link href="https://ps.zpj.io/manual/parameters.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Developing Your PicoScenes Plugins</title>
+    <id>https://ps.zpj.io/manual/plugin.html</id>
+    <link href="https://ps.zpj.io/manual/plugin.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Open Source Software Licenses</title>
+    <id>https://ps.zpj.io/manual/presets.html</id>
+    <link href="https://ps.zpj.io/manual/presets.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Online Supplementaries for &amp;quot;Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities&amp;quot;</title>
+    <id>https://ps.zpj.io/manual/reshaping-wifi-isac.html</id>
+    <link href="https://ps.zpj.io/manual/reshaping-wifi-isac.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Useful Resources</title>
+    <id>https://ps.zpj.io/manual/resources.html</id>
+    <link href="https://ps.zpj.io/manual/resources.html"/>
+    <updated>2025-05-07T09:11:01.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">CSI Measurement using PicoScenes</title>
+    <id>https://ps.zpj.io/manual/scenarios.html</id>
+    <link href="https://ps.zpj.io/manual/scenarios.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Development Status</title>
+    <id>https://ps.zpj.io/manual/status.html</id>
+    <link href="https://ps.zpj.io/manual/status.html"/>
+    <updated>2025-05-07T09:11:01.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Troubleshooting &amp; Support</title>
+    <id>https://ps.zpj.io/manual/troubleshooting.html</id>
+    <link href="https://ps.zpj.io/manual/troubleshooting.html"/>
+    <updated>2025-05-07T09:11:01.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Users</title>
+    <id>https://ps.zpj.io/manual/users.html</id>
+    <link href="https://ps.zpj.io/manual/users.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+  <entry>
+    <title type="text">Utility Programs and Bash Scripts</title>
+    <id>https://ps.zpj.io/manual/utilities.html</id>
+    <link href="https://ps.zpj.io/manual/utilities.html"/>
+    <updated>2025-04-29T04:26:17.000Z</updated>
+    <published>2025-04-15T11:29:45.000Z</published>
+  </entry>
+</feed>
