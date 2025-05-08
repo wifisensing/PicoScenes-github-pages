@@ -23,6 +23,7 @@ export default sidebar({
         "matlab",
         "utilities",
         "plugin",
+        "pypicoscenes",
         "status",
         "resources",
         "troubleshooting",

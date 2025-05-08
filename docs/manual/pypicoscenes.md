@@ -5,12 +5,12 @@ startNumber: 11
 ---
 <CustomToc />
 
-# ​1. PyPicoScenes​​ 
+## ​PyPicoScenes​​ 
 PyPicoScenes is a Python binding library for the C++-based Integrated Sensing and Communication (ISAC) research framework [PicoScenes](https://ps.zpj.io/index.html). Leveraging Cppyy's dynamic binding technology, it achieves seamless encapsulation of the underlying C++ APIs, providing researchers with a Python programming interface that combines high performance and development efficiency. The Python version fully inherits the original platform's hardware compatibility and algorithmic innovation while deeply integrating with the Python ecosystem, significantly lowering the development barriers for Wi-Fi sensing and communication synergy research.
 
-# 2. Installation
+## Installation
 PyPicoScenes relies on Python's cppyy library along with PicoScenes header files and dynamic libraries. Currently supported platforms include Ubuntu, macOS, and Windows.
-## 2.1. Installing PyPicoScenes on Ubuntu
+### Installing PyPicoScenes on Ubuntu
 1. Obtain PyPicoScenes  
 PyPicoScenes can only be `git clone` from it's [git repo](https://github.com/wifisensing/PyPicoScenes).
 2. ​​PicoScenes Installation​  
@@ -35,7 +35,7 @@ Navigate to the PyPicoScenes directory and run `python parse_frame.py`. Successf
     <cppyy.gbl.std.optional<ModularPicoScenesRxFrame> object at 0xeb54fa0>  
 ```
 
-## 2.2. Installing PyPicoScenes on Windows
+### Installing PyPicoScenes on Windows
 1. Obtain PyPicoScenes  
 PyPicoScenes can only be `git clone` from it's [git repo](https://github.com/wifisensing/PyPicoScenes).
 2. PicoScenes Installation​  
@@ -69,7 +69,7 @@ Execute WORK\Scripts\activate to activate the Python environment created in Step
 ```
 
 
-# 3. Cppyy Wrapping for PicoScenes 
+## Cppyy Wrapping for PicoScenes 
 [Cppyy](https://cppyy.readthedocs.io/en/latest/#), built upon the Cling interpreter, is a dynamic runtime Python-C++ bidirectional binding tool that generates efficient interfaces through real-time parsing of C++ code, enabling deep interoperability between the two languages. Its core value lies in zero manual wrapping, high performance, low memory overhead, and support for complex scenarios like cross-language inheritance, template instantiation, and exception mapping. It significantly simplifies the process of calling C++ libraries from Python, making it particularly suitable for large-scale projects and interactive development.   
 ```python
     """
@@ -90,7 +90,7 @@ Execute WORK\Scripts\activate to activate the Python environment created in Step
 ```
 The following explains how to use cppyy to wrap PicoScenes.
 
-## 3.1. Adding PicoScenes to cppyy's Path
+### Adding PicoScenes to cppyy's Path
 Assuming the absolute installation path of PicoScenes is **​​your_picoscenes_path**​​, first add the header files and dynamic libraries to cppyy's path:
 ```python
     import cppyy
@@ -101,7 +101,7 @@ Assuming the absolute installation path of PicoScenes is **​​your_picoscenes
     cppyy.add_library_path("your_picoscenes_path/lib")
 ```
 
-## 3.2. Importing C++ Header Files
+### Importing C++ Header Files
 Use `cppyy.include` to import required header files:
 ```python
     cppyy.include("PicoScenes/SystemTools.hxx")
@@ -112,7 +112,7 @@ Use `cppyy.include` to import required header files:
     # And other required header files
 ```
 
-## 3.3. Loading Dynamic Libraries
+### Loading Dynamic Libraries
 Use `cppyy.load_library` to load required dynamic libraries:
 ```python
     cppyy.load_library("libDSP")
@@ -125,7 +125,7 @@ Use `cppyy.load_library` to load required dynamic libraries:
     # And other required dynamic libraries
 ```
 
-## 3.4. Using C++ APIs
+### Using C++ APIs
 After importing header files and dynamic libraries, all C++ symbols reside in the cppyy.gbl namespace and can be accessed via Python. For example, to retrieve a USRP NIC:
 ```python
     nicName = "usrp"
@@ -140,9 +140,9 @@ After importing header files and dynamic libraries, all C++ symbols reside in th
     nic.stopRxService()
 ```
 
-# 4. Quick Start
+## Quick Start
 PyPicoScenes encapsulates the core APIs of the underlying PicoScenes framework, enabling developers to implement WiFi packet transceiving and CSI measurement through Python interfaces ​​without implementing complex C++ plugins​​. To utilize the transceiver functionalities of NICs (Network Interface Cards) or USRP SDR devices, follow these steps:
-## 4.1. Workflow Overview
+### Workflow Overview
 1. Platform Initialization  
 Execute `picoscenes_start()` to launch the PicoScenes runtime environment.
 2. Hardware Acquisition  
@@ -162,7 +162,7 @@ PyPicoScenes allows registering Python callback functions to process received Wi
 Call `picoscenes_wait` to block the main thread and maintain platform execution.
 8. Platform Termination  
 Deactivate the NIC's transceiver services and invoke `picoscenes_stop()` to shut down the platform (note that `picoscenes_wait()` remains in a blocking state prior to this invocation).
-## 4.2. Key Functionalities
+### Key Functionalities
 * CSI File Parsing  
 * CSI Measurement with SDR​ device
 * WiFi Packet Transmission via SDR device​  
@@ -171,5 +171,5 @@ Deactivate the NIC's transceiver services and invoke `picoscenes_stop()` to shut
 
 
 
-# 5. Important Notes
+## Important Notes
 PyPicoScenes leverages `cppyy`'s dynamic binding technology to ​​efficiently encapsulate​​ PicoScenes' C++ APIs. Developers can directly invoke low-level APIs in Python scripts by including the relevant header files (e.g., `include("PicoScenes/SystemTools.hxx")`) and loading dynamic libraries (e.g., `load_library("libSystemTools")`), enabling core functionalities like `​​wireless signal transmission/reception​`​ and `​​CSI file parsing​`​. The Python APIs are ​​`identical`​​ to their native C++ counterparts, with usage details documented in the [PicoScenes Native API Reference](https://ps.zpj.io/api_docs/). Powered by cppyy's real-time parsing mechanism, Python can directly manipulate hardware control logic (e.g., configuring USRP sampling rates or WiFi channel parameters) while maintaining ​​strict behavioral consistency​​ with the C++ implementation. Developers must validate dynamic library paths and environmental dependencies during cross-platform deployments.
