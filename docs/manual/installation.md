@@ -50,7 +50,7 @@ Please ensure that your system meets all the requirements mentioned earlier befo
       The PicoScenes Source Updater registers the PicoScenes software repository to your system, enabling you to install and automatically upgrade PicoScenes using the apt command.
    :::
 
-*  **Step 2: Run PicoScene maintainer script**
+*  **Step 2: Run PicoScenes maintainer script**
 
    Run the following commands:
     
