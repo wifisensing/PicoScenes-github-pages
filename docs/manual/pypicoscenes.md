@@ -1,18 +1,18 @@
 ---
-title: Python interface of PicoScenes
+title: Python Interface of PicoScenes
 autoNumbering: true
 startNumber: 11
 ---
 <CustomToc />
 
 ## ​PyPicoScenes​​ 
-PyPicoScenes is a Python binding library for the C++-based Integrated Sensing and Communication (ISAC) research framework [PicoScenes](https://ps.zpj.io/index.html). Leveraging Cppyy's dynamic binding technology, it achieves seamless encapsulation of the underlying C++ APIs, providing researchers with a Python programming interface that combines high performance and development efficiency. The Python version fully inherits the original platform's hardware compatibility and algorithmic innovation while deeply integrating with the Python ecosystem, significantly lowering the development barriers for Wi-Fi sensing and communication synergy research.
+PyPicoScenes is a Python binding library for PicoScenes, a C++-based Integrated Sensing and Communication (ISAC) research framework [PicoScenes](https://ps.zpj.io/index.html). By leveraging Cppyy's dynamic binding technology, PyPicoScenes seamlessly encapsulates the underlying C++ APIs, providing researchers with a Python programming interface that combines high performance with development efficiency. This Python version fully inherits PicoScenes' original hardware compatibility and algorithmic innovations, while deeply integrating with the Python ecosystem. This significantly lowers the development barriers for Wi-Fi sensing and communication synergy research.
 
 ## Installation
 PyPicoScenes relies on Python's cppyy library along with PicoScenes header files and dynamic libraries. Currently supported platforms include Ubuntu, macOS, and Windows.
 ### Installing PyPicoScenes on Ubuntu
 1. Obtain PyPicoScenes  
-PyPicoScenes can only be `git clone` from it's [git repo](https://github.com/wifisensing/PyPicoScenes).
+PyPicoScenes can only be obtained by `git clone` from it's [git repo](https://github.com/wifisensing/PyPicoScenes).
 2. ​​PicoScenes Installation​  
 [Refer to the PicoScenes installation guide here](https://ps.zpj.io/installation.html#picoscenes-software-installation).
 3. Anaconda Installation​  
