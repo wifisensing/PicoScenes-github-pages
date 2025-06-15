@@ -1,0 +1,9 @@
+<map id="AbstractNIC" name="AbstractNIC">
+<area shape="rect" id="Node000001" title="Abstract base class for Network Interface Card (NIC) operations." alt="" coords="144,93,243,119"/>
+<area shape="rect" id="Node000003" href="$classMAC80211CSIExtractableNIC.html" title="Network Interface Card class with CSI extraction capabilities for MAC80211 devices." alt="" coords="5,167,216,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,130,126,168,122,164,168,126"/>
+<area shape="rect" id="Node000004" href="$classSDRNIC.html" title="A class representing an SDR Network Interface Card (NIC)." alt="" coords="240,167,312,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="219,126,264,164,261,168,215,130"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="94,5,293,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,59,196,93,191,93,191,59"/>
+</map>

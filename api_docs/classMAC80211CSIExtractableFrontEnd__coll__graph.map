@@ -1,0 +1,9 @@
+<map id="MAC80211CSIExtractableFrontEnd" name="MAC80211CSIExtractableFrontEnd">
+<area shape="rect" id="Node000001" title="Base class for MAC80211&#45;based NICs that support CSI extraction." alt="" coords="5,225,249,251"/>
+<area shape="rect" id="Node000002" href="$classMAC80211InjectionOnlyFrontEnd.html" title="Frontend class for MAC80211&#45;based devices supporting frame injection." alt="" coords="10,152,245,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,191,130,225,125,225,125,191"/>
+<area shape="rect" id="Node000003" href="$classAbstractFrontEnd.html" title="The shared abstract frontend interface for both SDR and NIC." alt="" coords="61,79,194,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,118,130,152,125,152,125,118"/>
+<area shape="rect" id="Node000004" href="$classFrontEndConfigurations.html" title="This class holds the common hardware configuration setters/getters for ALL types of frontend (SDR or ..." alt="" coords="41,5,214,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="130,44,130,79,125,79,125,44"/>
+</map>

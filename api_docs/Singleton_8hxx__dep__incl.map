@@ -1,0 +1,23 @@
+<map id="headers/Singleton.hxx" name="headers/Singleton.hxx">
+<area shape="rect" id="Node000001" title=" " alt="" coords="475,5,642,31"/>
+<area shape="rect" id="Node000002" href="$TaggedThreadPool_8hxx.html" title=" " alt="" coords="446,79,671,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="561,44,561,79,556,79,556,44"/>
+<area shape="rect" id="Node000003" href="$AbstractNIC_8hxx.html" title=" " alt="" coords="467,225,650,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="540,116,528,133,519,153,517,172,524,192,548,224,544,227,520,194,512,173,513,151,523,131,536,113"/>
+<area shape="rect" id="Node000010" href="$AsyncPipeline_8hxx.html" title=" " alt="" coords="528,152,725,177"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="581,112,618,150,614,154,577,116"/>
+<area shape="rect" id="Node000004" href="$MAC80211CSIExtractableNIC_8hxx.html" title=" " alt="" coords="5,299,248,339"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="483,256,231,301,230,296,482,250"/>
+<area shape="rect" id="Node000005" href="$NICPortal_8hxx.html" title=" " alt="" coords="273,306,439,331"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="518,258,386,308,385,303,516,253"/>
+<area shape="rect" id="Node000007" href="$PicoScenesPluginManager_8hxx.html" title=" " alt="" coords="463,299,654,339"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="553,264,554,298,548,299,548,264"/>
+<area shape="rect" id="Node000008" href="$PyPicoScenes_8hxx.html" title=" " alt="" coords="679,306,873,331"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="604,253,745,303,743,308,602,258"/>
+<area shape="rect" id="Node000009" href="$SDRNIC_8hxx.html" title=" " alt="" coords="898,306,1054,331"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="638,250,886,296,922,303,921,309,885,301,637,256"/>
+<area shape="rect" id="Node000006" href="$PicoScenesMessagingService_8hxx.html" title=" " alt="" coords="245,387,467,427"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="359,345,359,386,353,386,353,345"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="565,285,563,251,568,251,570,285"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="608,189,572,227,568,223,604,185"/>
+</map>

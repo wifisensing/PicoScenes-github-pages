@@ -1,0 +1,46 @@
+<map id="headers/FrontEndConfigurations.hxx" name="headers/FrontEndConfigurations.hxx">
+<area shape="rect" id="Node000001" title=" " alt="" coords="911,5,1168,31"/>
+<area shape="rect" id="Node000002" href="$AbstractFrontEnd_8hxx.html" title=" " alt="" coords="793,79,1011,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1007,39,926,81,923,76,1004,34"/>
+<area shape="rect" id="Node000020" href="$SDRFrontEndConfigurations_8hxx.html" title=" " alt="" coords="1035,79,1319,104"/>
+<area shape="poly" id="edge23_Node000001_Node000020" title=" " alt="" coords="1075,34,1155,76,1153,81,1072,39"/>
+<area shape="rect" id="Node000003" href="$AbstractSDRFrontEnd_8hxx.html" title=" " alt="" coords="1081,152,1273,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="956,105,1111,149,1110,154,954,110"/>
+<area shape="rect" id="Node000008" href="$FrontEndFactory_8hxx.html" title=" " alt="" coords="798,159,1006,185"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="905,118,905,159,899,159,899,118"/>
+<area shape="rect" id="Node000015" href="$MAC80211InjectionOnlyFrontEnd_8hxx.html" title=" " alt="" coords="588,240,792,280"/>
+<area shape="poly" id="edge22_Node000002_Node000015" title=" " alt="" coords="861,112,824,131,788,154,741,199,706,241,701,238,737,195,784,150,821,126,859,107"/>
+<area shape="rect" id="Node000004" href="$SDRNIC_8hxx.html" title=" " alt="" coords="1204,335,1360,361"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1111,201,1086,218,1067,241,1060,260,1067,278,1088,290,1131,305,1235,333,1234,338,1130,310,1086,295,1063,282,1055,260,1062,239,1082,215,1108,197"/>
+<area shape="rect" id="Node000005" href="$SoapySDRAbstractFrontEnd_8hxx.html" title=" " alt="" coords="1077,240,1276,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="1179,206,1179,240,1174,240,1174,206"/>
+<area shape="rect" id="Node000006" href="$USRPFrontEnd_8hxx.html" title=" " alt="" coords="1300,247,1499,273"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="1239,194,1371,245,1369,250,1237,199"/>
+<area shape="rect" id="Node000007" href="$VirtualSDRFrontEnd_8hxx.html" title=" " alt="" coords="1523,247,1756,273"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="1287,191,1578,245,1577,250,1286,196"/>
+<area shape="rect" id="Node000009" href="$AbstractNIC_8hxx.html" title=" " alt="" coords="816,247,999,273"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="906,198,909,247,904,247,901,199"/>
+<area shape="poly" id="edge16_Node000008_Node000015" title=" " alt="" coords="862,192,738,242,736,237,860,188"/>
+<area shape="poly" id="edge15_Node000009_Node000004" title=" " alt="" coords="971,273,1233,333,1232,338,970,278"/>
+<area shape="rect" id="Node000010" href="$MAC80211CSIExtractableNIC_8hxx.html" title=" " alt="" coords="741,416,983,456"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="929,282,942,301,953,323,957,346,952,369,930,397,903,418,899,414,927,394,948,367,952,346,948,324,938,303,925,285"/>
+<area shape="rect" id="Node000011" href="$NICPortal_8hxx.html" title=" " alt="" coords="1013,335,1180,361"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="946,276,1072,333,1070,337,944,281"/>
+<area shape="rect" id="Node000013" href="$PicoScenesPluginManager_8hxx.html" title=" " alt="" coords="528,328,719,368"/>
+<area shape="poly" id="edge12_Node000009_Node000013" title=" " alt="" coords="851,279,679,330,678,325,849,274"/>
+<area shape="rect" id="Node000014" href="$PyPicoScenes_8hxx.html" title=" " alt="" coords="743,335,938,361"/>
+<area shape="poly" id="edge14_Node000009_Node000014" title=" " alt="" coords="892,285,852,336,848,333,888,282"/>
+<area shape="rect" id="Node000012" href="$PicoScenesMessagingService_8hxx.html" title=" " alt="" coords="1007,416,1229,456"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1105,374,1116,415,1111,416,1100,375"/>
+<area shape="poly" id="edge13_Node000013_Node000009" title=" " alt="" coords="706,322,875,270,876,275,707,327"/>
+<area shape="rect" id="Node000016" href="$MAC80211CSIExtractableFrontEnd_8hxx.html" title=" " alt="" coords="261,328,503,368"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="610,286,450,331,449,325,609,281"/>
+<area shape="poly" id="edge20_Node000016_Node000010" title=" " alt="" coords="501,368,757,413,756,419,500,373"/>
+<area shape="rect" id="Node000017" href="$IWL5300FrontEnd_8hxx.html" title=" " alt="" coords="253,423,471,449"/>
+<area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="377,382,367,423,362,422,372,381"/>
+<area shape="rect" id="Node000018" href="$IWLMVMFrontEnd_8hxx.html" title=" " alt="" coords="496,423,716,449"/>
+<area shape="poly" id="edge19_Node000016_Node000018" title=" " alt="" coords="445,370,577,421,575,426,443,375"/>
+<area shape="rect" id="Node000019" href="$QCA9300FrontEnd_8hxx.html" title=" " alt="" coords="5,423,228,449"/>
+<area shape="poly" id="edge21_Node000016_Node000019" title=" " alt="" coords="312,375,153,426,151,421,310,370"/>
+<area shape="poly" id="edge24_Node000020_Node000003" title=" " alt="" coords="1179,118,1179,152,1174,152,1174,118"/>
+</map>

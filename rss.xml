@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="https://ps.zpj.io/rss.xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <atom:link href="https://ps.zpj.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <title></title>
+    <link>https://ps.zpj.io/</link>
+    <description>PicoScenes: Enabling Modern Wi-Fi ISAC Research! </description>
+    <language>en-US</language>
+    <pubDate>Sun, 15 Jun 2025 02:07:58 GMT</pubDate>
+    <lastBuildDate>Sun, 15 Jun 2025 02:07:58 GMT</lastBuildDate>
+    <generator>@vuepress/plugin-feed</generator>
+    <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+    <item>
+      <title>PicoSenses Rx MultiPipeline</title>
+      <link>https://ps.zpj.io/manual/MultiPipeline.html</link>
+      <guid>https://ps.zpj.io/manual/MultiPipeline.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">PicoSenses Rx MultiPipeline</source>
+      <description>PicoSenses Rx MultiPipeline This page introduces the PicoScenes Rx-side pipeline and provides a tutorial on multi-pipeline configuration. PicoSenses Pipeline in Signal Processin...</description>
+      <pubDate>Sun, 15 Jun 2025 02:07:05 GMT</pubDate>
+      <content:encoded><![CDATA[
+<p>This page introduces the <strong>PicoScenes Rx-side pipeline</strong> and provides a tutorial on <strong>multi-pipeline</strong> configuration.</p>
+<h2>PicoSenses Pipeline in Signal Processing Workflow</h2>
+<ol>
+<li><strong>Signal Reception</strong>
+<ul>
+<li>The USRP or NIC captures Wi-Fi signals.</li>
+</ul>
+</li>
+<li><strong>Signal Buffering</strong>
+<ul>
+<li>PicoScenes stores the received multi-channel signals in the Rx-side buffer.</li>
+</ul>
+</li>
+<li><strong>Pipeline Processing</strong>
+<ul>
+<li>Pipelines fetch and decode Wi-Fi packets from the buffer.</li>
+<li>Each pipeline can decode signals from a single channel or multiple channels.</li>
+<li>Multiple pipelines work in parallel to decode signals from different channels.</li>
+</ul>
+</li>
+</ol>
+<h2></h2>
+<h2>Why MultiPipeline?</h2>
+<p>One breakthrough in Wi-Fi 7 is <strong>Multi-Link Operation (MLO)</strong>, enabling devices to simultaneously access and use multiple frequency bands (e.g., 2.4 GHz, 5 GHz, 6 GHz). By intelligently scheduling data transmission at the link layer, MLO achieves parallel data transfer, significantly boosting throughput and reducing latency.</p>
+<p>Similarly, PicoScenes provides a flexible framework for multi-pipeline configuration. Users can:</p>
+<ol>
+<li><strong>Process Multiple Channels in Parallel</strong>: Run pipelines simultaneously across different frequencies/channels.</li>
+<li><strong>Customize Pipelines:</strong> adjustable parameters:
+<ul>
+<li><em>Resampling rate</em></li>
+<li><em>Bandwidth</em></li>
+<li><em>Number of decoding threads</em></li>
+<li><em>Carrier frequency offset (CFO) correction</em></li>
+<li><em>Sampling frequency offset (SFO) compensation</em></li>
+</ul>
+</li>
+</ol>
+<h2>How to Config MultiPipeline?</h2>
+<p>PicoScenes provides two command-line methods to set up Multi-Pipeline:</p>
+<ol>
+<li><strong><code>--rx-pipe</code></strong></li>
+</ol>
+<p>Assigns receive (Rx) channels to pipelines.</p>
+<p><strong>Syntax:</strong></p>
+<ul>
+<li>Separate different pipelines with commas <code>,</code></li>
+<li>Assign multiple channels to one pipeline with underscores (<code>_</code>).</li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li>Channel numbers must match those in <code>--rx-channel</code>.</li>
+<li>Cannot be used with <code>--rx-pipe-cfg-file</code> (this will override <code>--rx-pipe</code>).</li>
+<li>Only assigns channels—other parameters (bandwidth, decoding threads, etc.) remain unchanged.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p><strong>Two pipelines, one channel each:</strong></p>
+<div class="language-bash line-numbers-mode" data-highlighter="shiki" data-ext="bash" data-title="bash" style="--shiki-light:#383A42;--shiki-dark:#abb2bf;--shiki-light-bg:#FAFAFA;--shiki-dark-bg:#282c34"><pre class="shiki shiki-themes one-light one-dark-pro vp-code"><code><span class="line"><span style="--shiki-light:#4078F2;--shiki-dark:#61AFEF">PicoScenes</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> -d</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> debug</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> -i</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> usrp</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --mode</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> logger</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rate</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 100e6</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-cbw</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> 40</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-resample-ratio</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> 0.4</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-freq</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 5190,5230</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-channel</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 0,1</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-pipe</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 0,1</span></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><p><strong>Single pipeline, two channels:</strong></p>
+<div class="language-bash line-numbers-mode" data-highlighter="shiki" data-ext="bash" data-title="bash" style="--shiki-light:#383A42;--shiki-dark:#abb2bf;--shiki-light-bg:#FAFAFA;--shiki-dark-bg:#282c34"><pre class="shiki shiki-themes one-light one-dark-pro vp-code"><code><span class="line"><span style="--shiki-light:#4078F2;--shiki-dark:#61AFEF">PicoScenes</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> -d</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> debug</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> -i</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> usrp</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --mode</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> logger</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rate</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 100e6</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-cbw</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> 40</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-resample-ratio</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> 0.4</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-freq</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 5190,5230</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-channel</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 0,1</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-pipe</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 0_1</span></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><ol start="2">
+<li><strong><code>--rx-pipe-cfg-file</code></strong></li>
+</ol>
+<p>Specify the JSON config file path.The config file specify receive (Rx) channel(s) and other property config to each pipeline.</p>
+<p><strong>Format</strong>:</p>
+<ol>
+<li>The file content like:</li>
+</ol>
+<div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#383A42;--shiki-dark:#abb2bf;--shiki-light-bg:#FAFAFA;--shiki-dark-bg:#282c34"><pre class="shiki shiki-themes one-light one-dark-pro vp-code"><code><span class="line"><span>[</span></span>
+<span class="line"><span>  {</span></span>
+<span class="line"><span>  	pipeline1 config</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  {</span></span>
+<span class="line"><span>  	pipeline2 config</span></span>
+<span class="line"><span>  },</span></span>
+<span class="line"><span>  ...</span></span>
+<span class="line"><span>]</span></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
+<li>
+<p>the property :</p>
+<p><code>rx-channel</code> :must be specified,can be single channel number or multi channel number. Specify the pipeline occupied which channels.</p>
+</li>
+</ol>
+<p>​	Other parameters have default value:<code> rx-resample-ratio = 1  rx-cbw = 20  rx-iq-mismatch = [0,0]  mt = 1  sfo = 0  cfo = 0</code></p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash line-numbers-mode" data-highlighter="shiki" data-ext="bash" data-title="bash" style="--shiki-light:#383A42;--shiki-dark:#abb2bf;--shiki-light-bg:#FAFAFA;--shiki-dark-bg:#282c34"><pre class="shiki shiki-themes one-light one-dark-pro vp-code"><code><span class="line"><span style="--shiki-light:#4078F2;--shiki-dark:#61AFEF">PicoScenes</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> -d</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> debug</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> -i</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> usrp</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --mode</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> logger</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rate</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 100e6</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">  --rx-freq</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 5230,5190</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-channel</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> 0,1</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66"> --rx-pipe-cfg-file</span><span style="--shiki-light:#50A14F;--shiki-dark:#98C379"> ~/cfg.json</span></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><p>~/cfg.json: The content bellow specify a pipeline occupies 0,1channel, both use rx-resample-ratio=0.2,mt=8,rx-cbw=20.</p>
+<div class="language-json line-numbers-mode" data-highlighter="shiki" data-ext="json" data-title="json" style="--shiki-light:#383A42;--shiki-dark:#abb2bf;--shiki-light-bg:#FAFAFA;--shiki-dark-bg:#282c34"><pre class="shiki shiki-themes one-light one-dark-pro vp-code"><code><span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">[</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">    {</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">        "rx-channel"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: [</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">1</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">],</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">        "rx-resample-ratio"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0.2</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">        "rx-cbw"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">20</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">        "mt"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">8</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">    }</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">]</span></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>~/cfg.json: The content bellow specify two pipelines occupy channels 0 and 1 respectively,and each has more detailed parameter configurations.</p>
+<div class="language-json line-numbers-mode" data-highlighter="shiki" data-ext="json" data-title="json" style="--shiki-light:#383A42;--shiki-dark:#abb2bf;--shiki-light-bg:#FAFAFA;--shiki-dark-bg:#282c34"><pre class="shiki shiki-themes one-light one-dark-pro vp-code"><code><span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">[</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">  {</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "rx-channel"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "rx-resample-ratio"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0.4</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "rx-cbw"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">40</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "mt"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">8</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "cfo"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "rx-iq-mismatch"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: [</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">]</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">  },</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">  {</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "rx-channel"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">1</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "rx-resample-ratio"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0.4</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "rx-cbw"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">40</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "mt"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">4</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">,</span></span>
+<span class="line"><span style="--shiki-light:#E45649;--shiki-dark:#E06C75">  "sfo"</span><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">: </span><span style="--shiki-light:#986801;--shiki-dark:#D19A66">0</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">  }</span></span>
+<span class="line"><span style="--shiki-light:#383A42;--shiki-dark:#ABB2BF">]</span></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>]]></content:encoded>
+    </item>
+    <item>
+      <title>Python Interface of PicoScenes</title>
+      <link>https://ps.zpj.io/manual/pypicoscenes.html</link>
+      <guid>https://ps.zpj.io/manual/pypicoscenes.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Python Interface of PicoScenes</source>
+      <pubDate>Wed, 07 May 2025 09:11:01 GMT</pubDate>
+    </item>
+    <item>
+      <title>PicoScenes: Enabling Modern Wi-Fi ISAC Research!</title>
+      <link>https://ps.zpj.io/</link>
+      <guid>https://ps.zpj.io/</guid>
+      <source url="https://ps.zpj.io/rss.xml">PicoScenes: Enabling Modern Wi-Fi ISAC Research!</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Application Notes</title>
+      <link>https://ps.zpj.io/appnotes/appnotes.html</link>
+      <guid>https://ps.zpj.io/appnotes/appnotes.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Application Notes</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Connecting NI USRP Devices</title>
+      <link>https://ps.zpj.io/appnotes/connect-usrp.html</link>
+      <guid>https://ps.zpj.io/appnotes/connect-usrp.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Connecting NI USRP Devices</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Getting Started with NI USRP X4x0 Series</title>
+      <link>https://ps.zpj.io/appnotes/x410-setup.html</link>
+      <guid>https://ps.zpj.io/appnotes/x410-setup.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Getting Started with NI USRP X4x0 Series</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Wi-Fi Channelization</title>
+      <link>https://ps.zpj.io/manual/channels.html</link>
+      <guid>https://ps.zpj.io/manual/channels.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Wi-Fi Channelization</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Credits</title>
+      <link>https://ps.zpj.io/manual/credits.html</link>
+      <guid>https://ps.zpj.io/manual/credits.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Credits</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>PicoScenes Software End User License Agreement</title>
+      <link>https://ps.zpj.io/manual/eula.html</link>
+      <guid>https://ps.zpj.io/manual/eula.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">PicoScenes Software End User License Agreement</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Features &amp; License</title>
+      <link>https://ps.zpj.io/manual/features_pricing.html</link>
+      <guid>https://ps.zpj.io/manual/features_pricing.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Features &amp; License</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Gallery</title>
+      <link>https://ps.zpj.io/manual/gallery.html</link>
+      <guid>https://ps.zpj.io/manual/gallery.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Gallery</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Supported Hardware</title>
+      <link>https://ps.zpj.io/manual/hardware.html</link>
+      <guid>https://ps.zpj.io/manual/hardware.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Supported Hardware</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>PicoScenes Installation &amp; Upgrade</title>
+      <link>https://ps.zpj.io/manual/installation.html</link>
+      <guid>https://ps.zpj.io/manual/installation.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">PicoScenes Installation &amp; Upgrade</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>PicoScenes MATLAB Toolbox Core</title>
+      <link>https://ps.zpj.io/manual/matlab.html</link>
+      <guid>https://ps.zpj.io/manual/matlab.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">PicoScenes MATLAB Toolbox Core</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title></title>
+      <link>https://ps.zpj.io/manual/newIndex.html</link>
+      <guid>https://ps.zpj.io/manual/newIndex.html</guid>
+      <source url="https://ps.zpj.io/rss.xml"></source>
+      <description>PicoScenes is a Wi-Fi PHY-layer software that enhances modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research across several crucial areas: Channel State Inform...</description>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+      <content:encoded><![CDATA[<p>PicoScenes is a Wi-Fi PHY-layer software that enhances modern Wi-Fi integrated sensing and communication (Wi-Fi ISAC) research across several crucial areas:</p>
+<ul>
+<li><strong>Channel State Information (CSI) Measurement</strong>: Facilitates CSI measurement using SDR devices (NI USRP and HackRF One) and commercial Wi-Fi NICs (Intel AX210, Intel 5300, and Qualcomm 9300).</li>
+<li><strong>Advanced and Standard-Compliant Transceiving</strong>: Guarantees high-performance, standard-compliant transmission and reception of 802.11a/g/n/ac/ax/be frames using SDR and Wi-Fi NICs. PicoScenes ensures full interoperability with commercial Wi-Fi NICs, enabling highly reciprocal transceiving capabilities.
+<ul>
+<li>With SDR devices, it supports up to 8x8 MIMO/MU-MIMO, punctured-OFDMA, 320-MHz channel bandwidth (CBW), and 4096-QAM modulation.</li>
+<li>With Wi-Fi NICs, specifically the Intel AX210 NIC, it fully supports the Wi-Fi 6E standard, including 802.11ax, 160-MHz CBW, and the complete 6-GHz band access.</li>
+</ul>
+</li>
+<li><strong>Full PHY-Layer Control</strong>: Provides arbitrary control over carrier frequency, bandwidth, and per-antenna Tx/Rx gain, nanosecond-level precise timing for Tx/Rx, hardware impairment simulation (CFO, SFO, I/Q imbalance), Tx precoding or beamforming (per-subcarrier/antenna/spatial-stream), and various baseband modem controls.</li>
+<li><strong>Rich PHY-Layer Information</strong>: Delivers detailed information such as raw I/Q data, OFDM symbols, and SFO/CFO/STO on a per-packet basis.</li>
+<li><strong>Powerful Control</strong>: Offers Python bindings and C++ plugin mechanism, enabling complex hardware control, data-analysis, and Tx/Rx operations in real-time.</li>
+<li><strong>Easy-To-Use and Time Saving</strong>: Supports Ubuntu, macOS, and Windows platforms, SDR devices Plug'n'Play, accompanied by the PicoScenes-MATLAB/Python-Toolbox, live data display, UDP forwarding, and an easy-to-use GUI control.</li>
+<li><strong>Elevated Research Starting Point</strong>: Offers out-of-the-box Python bindings for deep learning and data science, fully open-sourced RTT-style Wi-Fi ranging, AoA/ToF estimation, multi-purposed DSP library, and SISO/MIMO Wi-Fi radar capabilities.</li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Selling NI USRP Devices</title>
+      <link>https://ps.zpj.io/manual/ni.html</link>
+      <guid>https://ps.zpj.io/manual/ni.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Selling NI USRP Devices</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Open Source Software Licenses</title>
+      <link>https://ps.zpj.io/manual/opensource_license.html</link>
+      <guid>https://ps.zpj.io/manual/opensource_license.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Open Source Software Licenses</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Command Line Interface and Program Option Reference</title>
+      <link>https://ps.zpj.io/manual/parameters.html</link>
+      <guid>https://ps.zpj.io/manual/parameters.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Command Line Interface and Program Option Reference</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Developing Your PicoScenes Plugins</title>
+      <link>https://ps.zpj.io/manual/plugin.html</link>
+      <guid>https://ps.zpj.io/manual/plugin.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Developing Your PicoScenes Plugins</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Open Source Software Licenses</title>
+      <link>https://ps.zpj.io/manual/presets.html</link>
+      <guid>https://ps.zpj.io/manual/presets.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Open Source Software Licenses</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Online Supplementaries for &amp;quot;Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities&amp;quot;</title>
+      <link>https://ps.zpj.io/manual/reshaping-wifi-isac.html</link>
+      <guid>https://ps.zpj.io/manual/reshaping-wifi-isac.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Online Supplementaries for &amp;quot;Reshaping Wi-Fi ISAC with High-Coherence Hardware Capabilities&amp;quot;</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Useful Resources</title>
+      <link>https://ps.zpj.io/manual/resources.html</link>
+      <guid>https://ps.zpj.io/manual/resources.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Useful Resources</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>CSI Measurement using PicoScenes</title>
+      <link>https://ps.zpj.io/manual/scenarios.html</link>
+      <guid>https://ps.zpj.io/manual/scenarios.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">CSI Measurement using PicoScenes</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Development Status</title>
+      <link>https://ps.zpj.io/manual/status.html</link>
+      <guid>https://ps.zpj.io/manual/status.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Development Status</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Troubleshooting &amp; Support</title>
+      <link>https://ps.zpj.io/manual/troubleshooting.html</link>
+      <guid>https://ps.zpj.io/manual/troubleshooting.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Troubleshooting &amp; Support</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Users</title>
+      <link>https://ps.zpj.io/manual/users.html</link>
+      <guid>https://ps.zpj.io/manual/users.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Users</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>Utility Programs and Bash Scripts</title>
+      <link>https://ps.zpj.io/manual/utilities.html</link>
+      <guid>https://ps.zpj.io/manual/utilities.html</guid>
+      <source url="https://ps.zpj.io/rss.xml">Utility Programs and Bash Scripts</source>
+      <pubDate>Tue, 15 Apr 2025 11:29:45 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,47,151,87"/>
+<area shape="rect" id="Node000001" href="$classAbstractNIC.html" title="Abstract base class for Network Interface Card (NIC) operations." alt="" coords="245,29,344,55"/>
+<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="164,55,245,45,245,50,165,60"/>
+<area shape="rect" id="Node000004" href="$classPicoScenesPluginManager.html" title="Manager class for PicoScenes plugins." alt="" coords="199,79,391,104"/>
+<area shape="poly" id="edge17_Node000000_Node000004" title=" " alt="" coords="165,74,199,78,198,83,164,80"/>
+<area shape="rect" id="Node000002" href="$classMAC80211CSIExtractableNIC.html" title="Network Interface Card class with CSI extraction capabilities for MAC80211 devices." alt="" coords="439,5,649,31"/>
+<area shape="poly" id="edge15_Node000001_Node000002" title=" " alt="" coords="357,33,438,25,439,31,358,39"/>
+<area shape="rect" id="Node000003" href="$classSDRNIC.html" title="A class representing an SDR Network Interface Card (NIC)." alt="" coords="508,55,580,80"/>
+<area shape="poly" id="edge16_Node000001_Node000003" title=" " alt="" coords="358,46,508,61,508,66,357,51"/>
+</map>

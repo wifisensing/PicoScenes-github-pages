@@ -1,0 +1,5 @@
+<map id="AbstractFrontEnd" name="AbstractFrontEnd">
+<area shape="rect" id="Node000001" title="The shared abstract frontend interface for both SDR and NIC." alt="" coords="25,79,159,104"/>
+<area shape="rect" id="Node000002" href="$classFrontEndConfigurations.html" title="This class holds the common hardware configuration setters/getters for ALL types of frontend (SDR or ..." alt="" coords="5,5,179,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,44,95,79,89,79,89,44"/>
+</map>
