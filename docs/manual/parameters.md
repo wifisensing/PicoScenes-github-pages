@@ -193,6 +193,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - This option sets the same carrier frequency for both the Tx and Rx chains, though the hardware supports setting different frequencies for them.
     - For multi-channel configurations (both channels of X310, or multiple USRPs synchronized by the MIMO cable or external clock source), this option will set the same frequency for all channels.
   - Example: `--freq 5200e6`
+  
 - `--rate arg`
   - Description: Specify the baseband sampling rate (or bandwidth) for SDR frontend. This option supports the scientific notation like 25e6 or 40e6.
   - Default: This option has NO default value and is not persistent. You should specify it every time.
@@ -202,6 +203,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - This option sets the same sampling rate for both the Tx and Rx chains, though the hardware supports setting different sampling rates for them.
     - Different hardware has different tuning granularity. For example, you can only specify 200/INT_N MHz sampling rate where INT_N is a positive integer.
   - Example: `--rate 20e6`
+  
 - `--tx-resample-ratio arg`
   - Description: Specify the Tx resampling ratio. This is a software-based Tx resampling mechanism to enable arbitrary channel bandwidth. For example, X310 cannot tune the baseband sampling rate to 80 MHz. To overcome this issue, we can tune the hardware to 100 MHz (by `--rate 100e6`) and then resample the Tx signal by 0.8 (by `--tx-resample-ratio 0.8`).
   - Default: 1.0
@@ -210,6 +212,7 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - This option is implemented by zero-order interpolation on the software side, i.e., generate the signal by 80 MHz then interpolate the signal to 100 MHz.
     - This interpolation is implemented by software, therefore the performance decline should be expected.
   - Example: `--tx-resample-ratio 0.8`
+  
 - `--rx-resample-ratio arg`
   - Description: Specify the Rx resampling ratio. This is a software-based Rx resampling mechanism to enable arbitrary channel bandwidth. For example, X310 cannot tune the baseband sampling rate to 80 MHz. To overcome this issue, we can tune the hardware to 100 MHz (by `--rate 100e6`) and then resample the Rx signal by 0.8 (by `--rx-resample-ratio 0.8`).
   - Default: 1.0
@@ -218,30 +221,35 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - This option is implemented by uniform signal dropping on the software side, i.e., receive the signal by 100 MHz rate then decimate the signal to 80 MHz.
     - This resample is implemented by software, therefore the performance decline should be expected.
   - Example: `--rx-resample-ratio 1.0`
+  
 - `--clock-source arg`
   - Description: Specify the clock and time source for SDR frontend.
   - Default: `internal`
   - Value Range: `internal`, `external`, `mimo`
   - Notes: You can specify `external` for G-Octoclock based clock source or `mimo` for N210 MIMO-cable based clock source sharing.
   - Example: `--clock-source external`
+  
 - `--cfo arg`
   - Description: Specify the carrier frequency offset for Tx baseband. This option supports the scientific notation like 1e3 (1000 Hz cfo). This option is implemented by Wi-Fi baseband software, therefore the performance decline should be expected.
   - Default: 0.0
   - Value Range: N/A
   - Notes: N/A
   - Example: `--cfo 1e3`
+  
 - `--sfo arg`
   - Description: Specify the sampling rate offset for Tx baseband. This option supports the scientific notation like 1e3 (1000 Hz sfo). This option is implemented by Wi-Fi baseband software, therefore the performance decline should be expected.
   - Default: 0.0
   - Value Range: N/A
   - Notes: N/A
   - Example: `--sfo 1e3`
+  
 - `--master-clock-rate arg`
   - Description: Specify the master clock rate of USRP. For Wi-Fi communication
   - Default: For N210 and X310, the default value is 100e6 and 200e6 respectively.
   - Value Range: N/A
   - Notes: N/A
   - Example: `--master-clock-rate 100e6`
+  
 - `--tx-channel arg`
   - Description: Specify the Tx channel(s) for SDR frontend. The default value is 0, which means 0-th channel. Multiple channel numbers are separated by a comma `,`. In multi-channel configurations, taking two combined X310s for example, you can specify `0,1,2,3` to use all 4 channels for Tx. You can also skip some of them, such as `0,2,3` which specify the 0-th, 1st and 3rd antenna for Tx.
   - Default: `0`
@@ -250,108 +258,130 @@ PicoScenes provides different options for QCA9300/IWL5300 NICs and USRPs.
     - The order does not matter. `0,2,3` is equal to `3,2,0`.
     - The physical mapping between the channel number and antenna is ordered. For example, assuming that we combine two X310s together with `-i usrp192.168.40.2,192.168.41.2`, 0-th and 1st antennas correspond to the left and right daughterboards of the X310 with IP address 192.168.40.2; and 2nd and 3rd antennas correspond to the left and right daughterboards of the X310 with IP address 192.168.41.2.
   - Example: `--tx-channel 0,1`
+  
 - `--rx-channel arg`
   - Description: Specify the Tx channel(s) for SDR frontend. The default value is 0, which means 0-th channel. Multiple channel numbers are separated by a comma `,`. This option has the identical format as `--tx-channel`.
   - Default: `0`
   - Value Range: N/A
   - Notes: N/A
   - Example: `--rx-channel 0,1`
+  
+- `--rx-pipe arg` `--rx-pipe-cfg-file arg`
+
+  - see [MultiPipeLine Config](./MultiPipeline.md)
+
 - `--rx-cbw arg`
   - Description: Specify the Channel Bandwidth (CBW) for Rx baseband. You can specify `20`, `40`, `80` or `160`, which corresponds to 20/40/80/160MHz CBW for Rx baseband.
   - Default: `20`
   - Value Range: `20`, `40`, `80`, `160`
   - Notes: In order to receive and correctly decode the packet transmitted in HT20/HT40/VHT80/VHT160 formats, you must specify Rx CBW to 20/40/80/160, respectively.
   - Example: `--rx-cbw 40`
+  
 - `--rx-ant arg`
   - Description: Specify which RX antenna to use.
   - Default: `RX2`
   - Value Range: `TX/RX`, `RX2`
   - Notes: For USRP UBX/CBX/SBX daughterboard, TX/RX or RX2
   - Example: `--rx-ant TX/RX`
+  
 - `--txpower arg`
   - Description: Tx gain.
   - Default: N/A
   - Value Range: 0 ~ 38 dB
   - Notes: N/A
   - Example: `--txpower 20`
+  
 - `--rx-gain arg`
   - Description: Rx gain.
   - Default: N/A
   - Value Range: 0 ~ 38 dB
   - Notes: N/A
   - Example: `--rx-gain 20`
+  
 - `--filter-bw arg`
   - Description: Baseband filter bandwidth (unit in Hz, scientific notation supported)
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: N/A
+  
 - `--tx-to-file arg`
   - Description: Supply a file name (without extension, just the name), `PicoScenes` will save all the Tx signals to a file. The signals will be saved to a `.bbsignals` file with the specified file name.
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `tx-to-file demo`
+  
 - `--tx-from-file arg`
   - Description: Supply a file name (without extension, just the name), PicoScenes will replay the signal saved in the `.bbsignals` file as if the signal is generated from the baseband.
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `--tx-from-file demo`
+  
 - `--tx-from-file-delay arg`
   - Description: The delay (in ms) before Tx signal replay.
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `--tx-from-file-delay 1000`
+  
 - `--rx-to-file arg`
   - Description: Dump baseband signals received from SDR device to a `.bbsignals` file with the specified file name. This is actually the Rx signal recorder.
   - Default: N/A
   - Value Range: N/A
   - Notes: When rx-to-file is ON, the received signal will NOT be sent to baseband for decoding.
   - Example: `--rx-to-file demo`
+  
 - `--rx-from-file arg`
   - Description: Replay baseband signals saved in the `.bbsignals` file as if the signal is received from the RF frontend. This is actually the Rx signal replay.
   - Default: N/A
   - Value Range: N/A
   - Notes: The Rx signal replay keeps the same pace with the Rx baseband, therefore there will be no signal dropping.
   - Example: `--rx-from-file demo`
+  
 - `--rx-sensitivity arg`
   - Description: Specify the lowest power level (specified in dB) above the rx noise floor to trigger packet detection.
   - Default: 5
   - Value Range: N/A
   - Notes: N/A
   - Example: `--rx-sensitivity 10`
+  
 - `--rx-cp-offset arg`
   - Description: Specify at which position of Cyclic Prefix is regarded as the start of OFDM signal (pre-advancement)
   - Default: 0.75
   - Value Range: 0 ~ 1
   - Notes: N/A
   - Example: `--rx-cp-offset 0.5`
+  
 - `--tx-iq-mismatch arg`
   - Description: Specify Tx I/Q mismatch, for example `1.5 15` means 1.5dB Tx I/Q ratio and 15 degree of Tx I/Q crosstalk
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `tx-iq-mismatch "1.5 15"`
+  
 - `--rx-iq-mismatch arg`
   - Description: Specify Rx I/Q mismatch, for example `1.5 15` means 1.5dB Rx I/Q ratio and 15 degree of Rx I/Q crosstalk
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `rx-iq-mismatch "1.5 15"`
+  
 - `--disable-1ant-tx-4-extra-sounding`
   - Description: Enable a special HT-LTF demodulation mode when signal is received from a transmitter with only 1 TX antenna.
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `--disable-1ant-tx-4-extra-sounding`
+  
 - `--enable-loopback`
   - Description: Enable USRP Rx loopback signal from Tx.
   - Default: N/A
   - Value Range: N/A
   - Notes: N/A
   - Example: `--enable-loopback`
+  
 - `--enable-hw-acc`
   - Description: Enable or disable hardware acceleration for Wi-Fi packet detection (enabling requires our special firmware, false as default).
   - Default: N/A
