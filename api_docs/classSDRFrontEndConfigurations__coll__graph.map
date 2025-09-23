@@ -1,0 +1,5 @@
+<map id="SDRFrontEndConfigurations" name="SDRFrontEndConfigurations">
+<area shape="rect" id="Node000001" title="Configuration class for SDR frontend hardware settings." alt="" coords="37,79,237,104"/>
+<area shape="rect" id="Node000002" href="$classSDRFrontEndBasebandConfigurations.html" title="Interface class for SDR frontend baseband configurations." alt="" coords="5,5,269,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,44,140,79,135,79,135,44"/>
+</map>

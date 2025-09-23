@@ -1,0 +1,18 @@
+<map id="headers/AbstractPicoScenesPlugin.hxx" name="headers/AbstractPicoScenesPlugin.hxx">
+<area shape="rect" id="Node000001" title=" " alt="" coords="356,5,561,45"/>
+<area shape="rect" id="Node000002" href="$PicoScenesPluginManager_8hxx.html" title=" " alt="" coords="363,93,554,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="461,59,461,93,456,93,456,59"/>
+<area shape="rect" id="Node000003" href="$AbstractNIC_8hxx.html" title=" " alt="" coords="367,181,550,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="452,147,455,181,449,181,447,147"/>
+<area shape="poly" id="edge6_Node000003_Node000002" title=" " alt="" coords="464,167,464,134,469,133,470,167"/>
+<area shape="rect" id="Node000004" href="$MAC80211CSIExtractableNIC_8hxx.html" title=" " alt="" coords="5,255,248,295"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="398,212,207,257,206,252,397,207"/>
+<area shape="rect" id="Node000005" href="$NICPortal_8hxx.html" title=" " alt="" coords="273,262,439,287"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="434,217,373,264,370,260,431,213"/>
+<area shape="rect" id="Node000007" href="$PyPicoScenes_8hxx.html" title=" " alt="" coords="464,262,659,287"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="487,213,548,260,545,264,483,217"/>
+<area shape="rect" id="Node000008" href="$SDRNIC_8hxx.html" title=" " alt="" coords="683,262,839,287"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="516,207,718,259,717,265,515,213"/>
+<area shape="rect" id="Node000006" href="$PicoScenesMessagingService_8hxx.html" title=" " alt="" coords="245,343,467,383"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="359,301,359,342,353,342,353,301"/>
+</map>

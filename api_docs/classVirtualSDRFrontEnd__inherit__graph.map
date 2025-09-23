@@ -1,0 +1,15 @@
+<map id="VirtualSDRFrontEnd" name="VirtualSDRFrontEnd">
+<area shape="rect" id="Node000001" title="Interface class for the Virtual SDR Frontend." alt="" coords="247,225,396,251"/>
+<area shape="rect" id="Node000002" href="$classAbstractSDRFrontEnd.html" title="The shared abstract frontend for SDR devices only." alt="" coords="241,152,401,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="324,191,324,225,319,225,319,191"/>
+<area shape="rect" id="Node000003" href="$classAbstractFrontEnd.html" title="The shared abstract frontend interface for both SDR and NIC." alt="" coords="51,79,184,104"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="164,106,289,149,287,154,162,111"/>
+<area shape="rect" id="Node000004" href="$classFrontEndConfigurations.html" title="This class holds the common hardware configuration setters/getters for ALL types of frontend (SDR or ..." alt="" coords="5,5,179,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="103,43,116,78,111,79,98,45"/>
+<area shape="rect" id="Node000005" href="$classSDRFrontEndConfigurations.html" title="Configuration class for SDR frontend hardware settings." alt="" coords="221,79,421,104"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="324,118,324,152,319,152,319,118"/>
+<area shape="rect" id="Node000006" href="$classSDRFrontEndBasebandConfigurations.html" title="Interface class for SDR frontend baseband configurations." alt="" coords="203,5,467,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="333,45,326,79,321,78,327,44"/>
+<area shape="rect" id="Node000007" href="$classSDRDeviceHardwareInformation.html" title="Class providing comprehensive hardware information for SDR devices." alt="" coords="446,79,679,104"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="511,110,361,154,360,149,510,105"/>
+</map>

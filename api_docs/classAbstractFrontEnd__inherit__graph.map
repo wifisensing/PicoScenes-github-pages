@@ -1,0 +1,23 @@
+<map id="AbstractFrontEnd" name="AbstractFrontEnd">
+<area shape="rect" id="Node000001" title="The shared abstract frontend interface for both SDR and NIC." alt="" coords="227,129,360,155"/>
+<area shape="rect" id="Node000003" href="$classAbstractSDRFrontEnd.html" title="The shared abstract frontend for SDR devices only." alt="" coords="445,80,605,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="366,124,464,103,465,108,367,129"/>
+<area shape="rect" id="Node000007" href="$classMAC80211InjectionOnlyFrontEnd.html" title="Frontend class for MAC80211&#45;based devices supporting frame injection." alt="" coords="408,153,643,179"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="374,148,408,151,407,156,374,153"/>
+<area shape="rect" id="Node000002" href="$classFrontEndConfigurations.html" title="This class holds the common hardware configuration setters/getters for ALL types of frontend (SDR or ..." alt="" coords="5,129,179,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,139,226,139,226,145,192,145"/>
+<area shape="rect" id="Node000004" href="$classSoapySDRAbstractFrontEnd.html" title="A class representing an abstract front end for SoapySDR devices." alt="" coords="713,5,913,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="576,73,690,39,740,28,741,33,691,45,578,78"/>
+<area shape="rect" id="Node000005" href="$classUSRPFrontEnd.html" title="Interface class for the USRP Frontend." alt="" coords="755,55,870,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="619,82,755,70,756,75,619,87"/>
+<area shape="rect" id="Node000006" href="$classVirtualSDRFrontEnd.html" title="Interface class for the Virtual SDR Frontend." alt="" coords="738,104,887,129"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="619,98,738,108,737,113,619,103"/>
+<area shape="rect" id="Node000008" href="$classMAC80211CSIExtractableFrontEnd.html" title="Base class for MAC80211&#45;based NICs that support CSI extraction." alt="" coords="691,153,935,179"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="657,163,690,163,690,169,657,169"/>
+<area shape="rect" id="Node000009" href="$classIWL5300FrontEnd.html" title=" " alt="" coords="985,104,1119,129"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="888,148,989,127,990,132,889,153"/>
+<area shape="rect" id="Node000010" href="$classIWLMVMFrontEnd.html" title=" " alt="" coords="984,153,1120,179"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="948,163,984,163,984,169,948,169"/>
+<area shape="rect" id="Node000011" href="$classQCA9300FrontEnd.html" title="Frontend interface for QCA9300 wireless network card." alt="" coords="983,203,1121,228"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="889,179,990,200,989,205,888,184"/>
+</map>

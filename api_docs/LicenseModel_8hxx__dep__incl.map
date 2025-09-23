@@ -1,0 +1,15 @@
+<map id="headers/LicenseModel.hxx" name="headers/LicenseModel.hxx">
+<area shape="rect" id="Node000001" title=" " alt="" coords="298,5,493,31"/>
+<area shape="rect" id="Node000002" href="$LicenseService_8hxx.html" title=" " alt="" coords="294,79,497,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="398,44,398,79,393,79,393,44"/>
+<area shape="rect" id="Node000003" href="$AbstractSDRFrontEnd_8hxx.html" title=" " alt="" coords="299,152,491,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="398,118,398,152,393,152,393,118"/>
+<area shape="rect" id="Node000004" href="$SDRNIC_8hxx.html" title=" " alt="" coords="5,247,161,273"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="315,198,126,250,124,245,313,193"/>
+<area shape="rect" id="Node000005" href="$SoapySDRAbstractFrontEnd_8hxx.html" title=" " alt="" coords="185,240,384,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="361,203,311,242,308,238,358,199"/>
+<area shape="rect" id="Node000006" href="$USRPFrontEnd_8hxx.html" title=" " alt="" coords="408,247,607,273"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="433,198,493,245,490,249,429,203"/>
+<area shape="rect" id="Node000007" href="$VirtualSDRFrontEnd_8hxx.html" title=" " alt="" coords="631,247,864,273"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="486,193,701,245,700,250,485,198"/>
+</map>

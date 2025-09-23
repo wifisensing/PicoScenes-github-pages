@@ -1,0 +1,19 @@
+<map id="VirtualSDRFrontEnd" name="VirtualSDRFrontEnd">
+<area shape="rect" id="Node000001" title="Interface class for the Virtual SDR Frontend." alt="" coords="253,331,403,356"/>
+<area shape="rect" id="Node000002" href="$classAbstractSDRFrontEnd.html" title="The shared abstract frontend for SDR devices only." alt="" coords="248,256,408,281"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="331,296,331,330,325,330,325,296"/>
+<area shape="rect" id="Node000003" href="$classAbstractFrontEnd.html" title="The shared abstract frontend interface for both SDR and NIC." alt="" coords="48,181,181,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="162,209,295,253,294,259,161,214"/>
+<area shape="rect" id="Node000004" href="$classFrontEndConfigurations.html" title="This class holds the common hardware configuration setters/getters for ALL types of frontend (SDR or ..." alt="" coords="5,93,179,119"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="101,131,114,180,109,181,96,133"/>
+<area shape="rect" id="Node000005" href="$classSDRFrontEndConfigurations.html" title="Configuration class for SDR frontend hardware settings." alt="" coords="228,181,428,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="331,221,331,256,325,256,325,221"/>
+<area shape="rect" id="Node000006" href="$classSDRFrontEndBasebandConfigurations.html" title="Interface class for SDR frontend baseband configurations." alt="" coords="203,93,467,119"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="335,133,332,181,326,181,330,132"/>
+<area shape="rect" id="Node000007" href="$classSDRDeviceHardwareInformation.html" title="Class providing comprehensive hardware information for SDR devices." alt="" coords="453,181,686,207"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="519,213,367,259,365,253,517,208"/>
+<area shape="rect" id="Node000008" href="$structSDRMainBoardInfo.html" title="Structure containing main board information." alt="" coords="497,93,641,119"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="572,133,572,181,567,181,567,133"/>
+<area shape="rect" id="Node000009" href="$structSDRConnectionProfile.html" title="Structure containing connection profile information for SDR devices." alt="" coords="488,5,651,31"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="572,45,572,93,567,93,567,45"/>
+</map>

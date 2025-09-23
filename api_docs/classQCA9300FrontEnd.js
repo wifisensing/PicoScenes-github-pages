@@ -1,0 +1,28 @@
+var classQCA9300FrontEnd =
+[
+    [ "QCA9300FrontEnd", "classQCA9300FrontEnd.html#a139c222331578152aef6171baad471fe", null ],
+    [ "getBMode", "classQCA9300FrontEnd.html#ad860096646f50201af5dcd09b3e702d5", null ],
+    [ "getChansel", "classQCA9300FrontEnd.html#a602e2c1adfe58d586e786e0a1503d28b", null ],
+    [ "getPLLClockSelect", "classQCA9300FrontEnd.html#a499cb3f57d64e51ec9edca7cc35661c0", null ],
+    [ "getPLLMultiplier", "classQCA9300FrontEnd.html#a3bac07cc3095ae905b9017ba367d8cec", null ],
+    [ "getPLLRate", "classQCA9300FrontEnd.html#a3f3005332d95815ca226bc69c78480dd", null ],
+    [ "getPLLRefDiv", "classQCA9300FrontEnd.html#a76b0b2c8d1d8f2d6aa5bae56e73d5e01", null ],
+    [ "getRegisterValue", "classQCA9300FrontEnd.html#afa36665e758aab2c8d3efc0d17145689", null ],
+    [ "getTSF", "classQCA9300FrontEnd.html#a24134b3ad5ba4dca30622ac1dea59ae6", null ],
+    [ "getTuningPolicy", "classQCA9300FrontEnd.html#a455bfd8acbf02369f694106bd6397717", null ],
+    [ "getTxNess", "classQCA9300FrontEnd.html#aac2b2eceed30660ad696b4bc29e92430", null ],
+    [ "getTxNotSounding", "classQCA9300FrontEnd.html#a965c161d09a0752365e910e51d065399", null ],
+    [ "setBMode", "classQCA9300FrontEnd.html#adf4a35ac912ec1ccf5325179666351b6", null ],
+    [ "setCarrierFrequency", "classQCA9300FrontEnd.html#a4127e6349184c5b5131910c8c3ae3bc9", null ],
+    [ "setChansel", "classQCA9300FrontEnd.html#a2c5a16dc025f8016fe50279ffc8ce2e9", null ],
+    [ "setPLLClockSelect", "classQCA9300FrontEnd.html#a7cc27eb3ea179262d3676880392315c4", null ],
+    [ "setPLLMultiplier", "classQCA9300FrontEnd.html#a139eda3600807b9392d13313ff50a0e9", null ],
+    [ "setPLLRefDiv", "classQCA9300FrontEnd.html#a17a9def7f5fc5dbf7d20e84f519e12a0", null ],
+    [ "setPLLValues", "classQCA9300FrontEnd.html#a9cdefce19c479df6bb9cd2948a4e18f2", null ],
+    [ "setRegisterValue", "classQCA9300FrontEnd.html#aa58951a44eb9f45e02c4c55b3ee323da", null ],
+    [ "setRxAGC", "classQCA9300FrontEnd.html#a43077486598f3791801ed5a965873538", null ],
+    [ "setRxPA", "classQCA9300FrontEnd.html#a9adc2fdc51d203e78f976fd59e9f10f3", null ],
+    [ "setTuningPolicy", "classQCA9300FrontEnd.html#a31da437c5b7221acc71bc5ca6603a1de", null ],
+    [ "setTxNess", "classQCA9300FrontEnd.html#ab8a1a62e554e2b8071d058935ef9afac", null ],
+    [ "setTxNotSounding", "classQCA9300FrontEnd.html#a3519e1245cf05587d3e8ec30900a94ea", null ]
+];
